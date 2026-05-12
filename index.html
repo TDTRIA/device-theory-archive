@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<div class="entry corrupt">
+/CONTINUATION/ DIRECTORY MISSING
+</div>
+
+<div class="footer">
+ARCHIVE BUILD: 0.4.3
+
+LAST VERIFIED:
+[DATA LOSS]
+
+NO VERIFIED ORIGINAL STRUCTURE EXISTS.
+</div>
+
+</div>
+
+<script>
+
+const bootText = `
+connecting to delta continuity network...
+
+mounting archive sectors...
+
+DVC-01 ........ OK
+DVC-02 ........ OK
+DVC-03 ........ PARTIAL
+NODE/3 ........ UNRESOLVED
+
+checking archive integrity...
+
+warning:
+structural inconsistencies detected
+
+warning:
+original archive state unavailable
+
+observer synchronization stable
+
+press any key to continue
+`;
+
+let i = 0;
+
+function typeBoot(){
+    if(i < bootText.length){
+        document.getElementById("boot").innerHTML += bootText.charAt(i);
+        i++;
+        setTimeout(typeBoot,18);
+    }
+}
+
+typeBoot();
+
+window.addEventListener("keydown", () => {
+    document.getElementById("boot").style.display = "none";
+    document.getElementById("archive").style.display = "block";
+},{once:true});
+
+</script>
+
+</body>
+</html>
