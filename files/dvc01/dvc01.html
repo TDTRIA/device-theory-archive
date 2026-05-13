@@ -1,59 +1,247 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DVC-01</title>
+
+<style>
+
+body{
+    background:#04030a;
+    color:#d0d0d0;
+    font-family:"Courier New", monospace;
+    margin:0;
+    overflow-x:hidden;
+}
+
+.scanlines::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    background:repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.015),
+        rgba(255,255,255,0.015) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+}
+
+.container{
+    padding:40px;
+    max-width:700px;
+    text-shadow:0 0 2px rgba(180,140,255,0.08);
+}
+
+.header{
+    border-bottom:1px solid #2b2633;
+    padding-bottom:20px;
+    margin-bottom:35px;
+    line-height:1.8;
+    letter-spacing:1px;
+    color:#d8d2e2;
+}
+
+.warning{
+    color:#8a8397;
+    margin-bottom:40px;
+    line-height:1.8;
+}
+
+.section{
+    margin-top:35px;
+    margin-bottom:20px;
+    color:#6d5b8c;
+    letter-spacing:1px;
+}
+
+.entry{
+    display:block;
+    color:#d0d0d0;
+    text-decoration:none;
+    margin:18px 0;
+    transition:0.15s;
+    line-height:1.6;
+}
+
+.entry:hover{
+    color:white;
+    transform:translateX(6px);
+}
+
+.corrupt{
+    color:#5d5866;
+}
+
+.footer{
+    margin-top:60px;
+    color:#66606f;
+    line-height:1.8;
+    font-size:12px;
+}
+
+.small{
+    color:#7b7388;
+    font-size:13px;
+    margin-top:3px;
+}
+
+::selection{
+    background:#3b2d52;
+    color:white;
+}
+
+</style>
+</head>
+
+<body class="scanlines">
+
+<div class="container">
+
+<div class="header">
+[DVC-01]
+
+PRIMARY RESEARCH DOCUMENTS
+
+DEVICE FAILSAFE PROTOCOL
+
+STATUS:
 STABLE RECOVERY
+
+PRIMARY AUTHOR:
+RESEARCHER M.
 </div>
 
 <div class="warning">
 Earliest recovered continuation research.
 
-Most files remain structurally intact.
+Most files remain structurally stable.
 
 This sector predates major archive instability.
 </div>
 
-<div class="directory-title">
-RECOVERED REPORTS
+<div class="section">
+RECOVERED DOCUMENTS
 </div>
 
-<a href="DVC-01-REPORT-01.txt" class="entry">DVC-01-REPORT-01.txt</a>
-<a href="DVC-01-REPORT-02.txt" class="entry">DVC-01-REPORT-02.txt</a>
-<a href="DVC-01-REPORT-03.txt" class="entry">DVC-01-REPORT-03.txt</a>
-<a href="DVC-01-REPORT-04.txt" class="entry">DVC-01-REPORT-04.txt</a>
-<a href="DVC-01-REPORT-05.txt" class="entry">DVC-01-REPORT-05.txt</a>
-<a href="DVC-01-REPORT-06.txt" class="entry">DVC-01-REPORT-06.txt</a>
-<a href="DVC-01-REPORT-07.txt" class="entry">DVC-01-REPORT-07.txt</a>
-<a href="DVC-01-REPORT-08.txt" class="entry">DVC-01-REPORT-08.txt</a>
-<a href="DVC-01-REPORT-09.txt" class="entry">DVC-01-REPORT-09.txt</a>
-<a href="DVC-01-REPORT-10.txt" class="entry">DVC-01-REPORT-10.txt</a>
-<a href="DVC-01-REPORT-11.txt" class="entry">DVC-01-REPORT-11.txt</a>
-<a href="DVC-01-REPORT-12.txt" class="entry">DVC-01-REPORT-12.txt</a>
-<a href="DVC-01-REPORT-13.txt" class="entry">DVC-01-REPORT-13.txt</a>
-<a href="DVC-01-REPORT-14.txt" class="entry">DVC-01-REPORT-14.txt</a>
-<a href="DVC-01-REPORT-15.txt" class="entry">DVC-01-REPORT-15.txt</a>
-<a href="DVC-01-REPORT-16.txt" class="entry">DVC-01-REPORT-16.txt</a>
-
-<br>
-
-<div class="entry corrupt">
-MISSING-REFERENCE-01.txt
-</div>
-
-<div class="entry corrupt">
-NODE-REFERENCE.fragment
-</div>
-
-<br>
-
-<a href="../../index.html" class="entry">
-[RETURN TO ROOT DIRECTORY]
+<a href="report01.html" class="entry">
+[REPORT_01]
+<div class="small">"THIS IS NOT A GAME"</div>
 </a>
 
-<div class="footer">
-16 FILES RECOVERED
+<a href="report02.html" class="entry">
+[REPORT_02]
+<div class="small">SURVEY PROGRAM ANALYSIS</div>
+</a>
 
-2 FILES UNRESOLVED
+<a href="report03.html" class="entry">
+[REPORT_03]
+<div class="small">THE SOUL PROBLEM</div>
+</a>
+
+<a href="report04.html" class="entry">
+[REPORT_04]
+<div class="small">CONTROL CONFLICT</div>
+</a>
+
+<a href="report05.html" class="entry">
+[REPORT_05]
+<div class="small">DARK WORLD STRUCTURE</div>
+</a>
+
+<a href="report06.html" class="entry">
+[REPORT_06]
+<div class="small">SYSTEM AWARENESS</div>
+</a>
+
+<a href="report07.html" class="entry">
+[REPORT_07]
+<div class="small">ANOMALIES (RECLASSIFIED)</div>
+</a>
+
+<a href="report08.html" class="entry">
+[REPORT_08]
+<div class="small">SECOND LAYER ACCESS</div>
+</a>
+
+<a href="report09.html" class="entry">
+[REPORT_09]
+<div class="small">THE DEVICE (FORMALIZED MODEL)</div>
+</a>
+
+<a href="report10.html" class="entry">
+[REPORT_10]
+<div class="small">EXTERNALIZATION EVENT</div>
+</a>
+
+<a href="report11.html" class="entry">
+[REPORT_11]
+<div class="small">SHADOW LAYER (UNAUTHORIZED)</div>
+</a>
+
+<a href="report12.html" class="entry">
+[REPORT_12]
+<div class="small">TRANSITION POINT</div>
+</a>
+
+<a href="report13.html" class="entry">
+[REPORT_13]
+<div class="small">INCIDENT REPORT</div>
+</a>
+
+<a href="report14.html" class="entry">
+[REPORT_14]
+<div class="small">FINAL THEORY SYNTHESIS</div>
+</a>
+
+<a href="report15.html" class="entry">
+[REPORT_15]
+<div class="small">FINAL LOGS (UNSTRUCTURED)</div>
+</a>
+
+<a href="report16.html" class="entry">
+[REPORT_16]
+<div class="small">URGENT TRANSMISSION</div>
+</a>
+
+<div class="section">
+UNRESOLVED REFERENCES
+</div>
+
+<div class="entry corrupt">
+[MISSING_REFERENCE]
+
+<div class="small">
+cross-sector dependency unresolved
+</div>
+</div>
+
+<div class="entry corrupt">
+[NODE_REFERENCE_FRAGMENT]
+
+<div class="small">
+origin sector unavailable
+</div>
+</div>
+
+<div class="footer">
+RECOVERED FILES:
+16
+
+UNRESOLVED REFERENCES:
+02
 
 LAST VERIFIED:
-[UNKNOWN]
+[DATA LOSS]
+
+RETURN PATH:
+../../index.html
 </div>
 
 </div>
