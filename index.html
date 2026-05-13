@@ -1,17 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DEVICE THEORY INSTITUTION ARCHIVE</title>
+
+<style>
+
+body{
+    background:#04030a;
+    color:#d0d0d0;
+    font-family:"Courier New", monospace;
+    margin:0;
+    overflow-x:hidden;
+}
+
+.scanlines::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    background:repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.015),
+        rgba(255,255,255,0.015) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+}
+
+.boot{
+    white-space:pre-wrap;
+    line-height:1.7;
+    padding:35px;
+    min-height:100vh;
+    color:#bfb8c9;
+}
+
+.container{
+    display:none;
+    padding:40px;
+    max-width:700px;
+    text-shadow:0 0 2px rgba(180,140,255,0.08);
+}
+
+.header{
+    border-bottom:1px solid #2b2633;
+    padding-bottom:20px;
+    margin-bottom:35px;
+    line-height:1.8;
+    letter-spacing:1px;
+    color:#d8d2e2;
+}
+
+.warning{
+    color:#8a8397;
+    margin-bottom:40px;
+    line-height:1.8;
+}
+
+.section{
+    margin-top:35px;
+    margin-bottom:20px;
+    color:#6d5b8c;
+    letter-spacing:1px;
+}
+
+.entry{
+    display:block;
+    color:#d0d0d0;
+    text-decoration:none;
+    margin:14px 0;
+    transition:0.15s;
+}
+
+.entry:hover{
+    color:white;
+    transform:translateX(6px);
+}
+
+.corrupt{
+    color:#5d5866;
+}
+
+.footer{
+    margin-top:60px;
+    color:#66606f;
+    line-height:1.8;
+    font-size:12px;
+}
+
+::selection{
+    background:#3b2d52;
+    color:white;
+}
+
+</style>
+</head>
+
+<body class="scanlines">
+
+<div id="boot" class="boot"></div>
+
+<div id="archive" class="container">
+
+<div class="header">
+DEVICE THEORY INSTITUTION ARCHIVE
+
+DELTA CONTINUITY RESEARCH NETWORK
+
+RECOVERY NODE:
+DVC-MAIN-01
+
+SOURCE:
+UNDERTALE RESEARCH ARCHIVES
+
+STATUS:
+PARTIAL RECOVERY
+</div>
+
+<div class="warning">
+WARNING:
+
+Repeated archive exposure may increase:
+- observer synchronization
+- continuation fixation
+- structural familiarity
+
+Original archive state unavailable.
+</div>
+
+<div class="section">
+RECOVERED SECTORS
+</div>
+
+<a href="files/dvc01/dvc01.html" class="entry">
+/DVC-01/ FOUNDATIONAL THEORY RECORDS
+</a>
+
+<a href="files/dvc02/dvc02.html" class="entry">
+/DVC-02/ OBSERVER / SOUL RESEARCH
+</a>
+
+<a href="files/dvc03/dvc03.html" class="entry">
+/DVC-03/ STRUCTURAL INSTABILITY
+</a>
+
+<div class="section">
+UNRESOLVED STRUCTURES
+</div>
+
+<div class="entry corrupt">
+/NODE/3/ PATHWAY UNRESOLVED
+</div>
+
+<div class="entry corrupt">
+/DARK_FOUNTAIN/ ACCESS RESTRICTED
+</div>
+
+<div class="entry corrupt">
+/CONTINUATION/ DIRECTORY MISSING
+</div>
+
+<div class="footer">
+ARCHIVE BUILD: 0.4.3
+
+LAST VERIFIED:
+[DATA LOSS]
+
+NO VERIFIED ORIGINAL STRUCTURE EXISTS.
+</div>
+
+</div>
 
 <script>
 
-const bootText = `
-connecting to delta continuity network...
+const bootText = `connecting to delta continuity network...
 
 mounting archive sectors...
 
 DVC-01 ........ OK
 DVC-02 ........ OK
 DVC-03 ........ PARTIAL
+
 NODE/3 ........ UNRESOLVED
 
 checking archive integrity...
@@ -24,8 +199,7 @@ original archive state unavailable
 
 observer synchronization stable
 
-press any key to continue
-`;
+press any key to continue`;
 
 let i = 0;
 
@@ -40,9 +214,12 @@ function typeBoot(){
 typeBoot();
 
 window.addEventListener("keydown", () => {
+
     document.getElementById("boot").style.display = "none";
+
     document.getElementById("archive").style.display = "block";
-},{once:true});
+
+}, {once:true});
 
 </script>
 
