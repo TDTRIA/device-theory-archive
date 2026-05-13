@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DEVICE CONTINUITY NETWORK</title>
+
+<style>
+
+body{
+    margin:0;
+    background:black;
+    color:white;
+    font-family:"Courier New", monospace;
+    overflow:hidden;
+}
+
+.scanlines::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    background:repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.02),
+        rgba(255,255,255,0.02) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+}
+
+.container{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    padding:40px;
+    box-sizing:border-box;
+}
+
+.logo{
+    font-size:30px;
+    letter-spacing:6px;
+    margin-bottom:15px;
+    text-align:center;
+}
+
+.subtitle{
+    color:#7d748f;
+    letter-spacing:2px;
+    margin-bottom:60px;
+    text-align:center;
+}
+
+.terminal{
+    width:700px;
+    max-width:90%;
+}
+
+.line{
+    margin-bottom:20px;
+    color:#bfb9cc;
+    letter-spacing:1px;
+}
+
+.prompt{
+    display:flex;
+    align-items:center;
+    border-bottom:1px solid #38324a;
+    padding-bottom:10px;
+}
+
+.symbol{
+    color:#7f6aa8;
+    margin-right:12px;
+}
+
+input{
+    background:transparent;
+    border:none;
+    outline:none;
+    color:white;
+    font-family:"Courier New", monospace;
+    font-size:18px;
+    width:100%;
+    letter-spacing:2px;
+}
+
+.error{
+    margin-top:20px;
+    color:#8b2f2f;
+    opacity:0;
+    transition:0.3s;
+}
+
+.footer{
+    position:absolute;
+    bottom:30px;
+    color:#4f4a5a;
+    font-size:12px;
+    letter-spacing:2px;
+}
+
+</style>
+</head>
+
+<body class="scanlines">
+
+<div class="container">
+
+<div class="logo">
+DEVICE CONTINUITY NETWORK
+</div>
+
+<div class="subtitle">
+OBSERVER AUTHORIZATION REQUIRED
+</div>
+
+<div class="terminal">
+
+<div class="line">
+CONNECTION STATUS: ACTIVE
+</div>
+
+<div class="line">
+ENTER ACCESS PHRASE
+</div>
+
+<div class="prompt">
+
+<div class="symbol">
+>
+</div>
+
+<input type="password" id="password" autofocus>
+
+</div>
+
+<div class="error" id="error">
+BLACK EYES NOT DETECTED
+</div>
+
+</div>
+
+<div class="footer">
+DCN BUILD // OBSERVER LAYER ACTIVE
+</div>
+
+</div>
+
+<script>
+
+const input = document.getElementById("password");
+const error = document.getElementById("error");
+
+input.addEventListener("keydown", function(e){
+
+    if(e.key === "Enter"){
+
+        const value = input.value.trim();
+
+        if(value === "DEVICE"){
+
+            document.body.style.opacity = "0";
+
+            setTimeout(() => {
+
+                window.location.href = "archive.html";
+
+            }, 1200);
+
+        } else {
+
+            error.style.opacity = "1";
+
+            input.value = "";
+
+        }
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
