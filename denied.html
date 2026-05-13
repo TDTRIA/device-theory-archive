@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ACCESS DENIED</title>
+
+<style>
+
+@font-face{
+    font-family:'Wingdings';
+    src:local('Wingdings');
+}
+
+body{
+    margin:0;
+    background:black;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+    flex-direction:column;
+    font-family:"Courier New", monospace;
+}
+
+.scanlines::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    background:repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.02),
+        rgba(255,255,255,0.02) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+}
+
+.wingdings{
+    font-family:'Wingdings';
+    font-size:52px;
+    opacity:0.9;
+    margin-bottom:40px;
+    animation:flicker 2s infinite;
+}
+
+.message{
+    color:#9d1f1f;
+    letter-spacing:3px;
+    font-size:18px;
+    text-align:center;
+}
+
+.sub{
+    margin-top:25px;
+    color:#4d4d4d;
+    font-size:12px;
+    letter-spacing:2px;
+}
+
+@keyframes flicker{
+
+    0%{opacity:1;}
+    4%{opacity:0.3;}
+    6%{opacity:1;}
+    60%{opacity:1;}
+    61%{opacity:0.2;}
+    64%{opacity:1;}
+    100%{opacity:1;}
+
+}
+
+</style>
+</head>
+
+<body class="scanlines">
+
+<div class="wingdings">
+👁 ✋︎⚐❄ 👎☜❄☜👍❄☜👎
+</div>
+
+<div class="message">
+BLACK EYES NOT DETECTED
+</div>
+
+<div class="sub">
+DEVICE CONTINUITY NETWORK REJECTED CONNECTION
+</div>
+
+</body>
+</html>
