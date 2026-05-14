@@ -166,15 +166,18 @@ input.addEventListener("keydown", function(e){
 
         if(value === "DEVICE"){
 
-            document.body.style.opacity = "0";
+    document.getElementById("acceptSound").play();
 
-            setTimeout(() => {
+    document.body.style.transition = "1.2s";
+    document.body.style.opacity = "0";
 
-                window.location.href = "archive.html";
+    setTimeout(() => {
 
-            }, 1200);
+        window.location.href = "archive.html";
 
-        } else {
+    }, 1200);
+
+} else {
 
             error.style.opacity = "1";
 
@@ -185,7 +188,9 @@ input.addEventListener("keydown", function(e){
     }
 
 });
-
+<audio id="acceptSound">
+    <source src="audio/accept.mp3" type="audio/mpeg">
+</audio>
 </script>
 
 </body>
