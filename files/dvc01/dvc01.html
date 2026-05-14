@@ -4,17 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>DVC-01</title>
+<title>DVC-01 // PRIMARY RESEARCH DOCUMENTS</title>
 
 <style>
 
 body{
-    background:#04030a;
-    color:#d0d0d0;
-    font-family:"Courier New", monospace;
     margin:0;
+    background:#05050a;
+    color:#d7d3e2;
+    font-family:"Courier New", monospace;
     overflow-x:hidden;
 }
+
+/* SCANLINES */
 
 .scanlines::before{
     content:"";
@@ -31,90 +33,149 @@ body{
         transparent 1px,
         transparent 3px
     );
+    z-index:999;
 }
+
+/* SUBTLE GRID */
+
+.grid{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-image:
+        linear-gradient(rgba(120,90,180,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120,90,180,0.03) 1px, transparent 1px);
+    background-size:42px 42px;
+    pointer-events:none;
+}
+
+/* MAIN */
 
 .container{
+    max-width:950px;
+    margin:auto;
     padding:40px;
-    max-width:700px;
-    text-shadow:0 0 2px rgba(180,140,255,0.08);
+    position:relative;
+    z-index:2;
 }
+
+/* BACK */
+
+.back{
+    display:inline-block;
+    margin-bottom:30px;
+    color:#8678a8;
+    text-decoration:none;
+    transition:0.2s;
+}
+
+.back:hover{
+    color:white;
+    transform:translateX(-4px);
+}
+
+/* HEADER */
 
 .header{
-    border-bottom:1px solid #2b2633;
-    padding-bottom:20px;
+    border:1px solid #332b47;
+    background:rgba(10,10,18,0.88);
+    padding:25px;
     margin-bottom:35px;
+    box-shadow:0 0 18px rgba(140,110,255,0.08);
+}
+
+.title{
+    font-size:34px;
+    letter-spacing:4px;
+    color:#d6c9ff;
+    margin-bottom:15px;
+}
+
+.subtitle{
+    color:#968ab3;
     line-height:1.8;
     letter-spacing:1px;
-    color:#d8d2e2;
 }
+
+/* WARNING */
 
 .warning{
-    color:#8a8397;
+    border-left:3px solid #6d5f91;
+    padding:18px;
     margin-bottom:40px;
+    background:rgba(16,14,24,0.8);
+    color:#aba1c9;
     line-height:1.8;
 }
 
+/* SECTION */
+
 .section{
-    margin-top:35px;
+    margin-top:45px;
     margin-bottom:20px;
-    color:#6d5b8c;
-    letter-spacing:1px;
+    color:#9f8be0;
+    letter-spacing:3px;
+    font-size:14px;
 }
+
+/* ENTRIES */
 
 .entry{
     display:block;
-    color:#d0d0d0;
+    padding:18px;
+    margin-bottom:16px;
     text-decoration:none;
-    margin:18px 0;
-    transition:0.15s;
-    line-height:1.6;
+    color:#e0dcef;
+    border:1px solid #332c47;
+    background:rgba(10,10,18,0.8);
+    transition:0.2s;
+    position:relative;
 }
 
 .entry:hover{
-    color:white;
     transform:translateX(6px);
+    border-color:#8f78d8;
+    box-shadow:0 0 14px rgba(140,110,255,0.12);
 }
+
+.entry-title{
+    font-size:18px;
+    margin-bottom:8px;
+    letter-spacing:2px;
+}
+
+.entry-desc{
+    color:#9f96bb;
+    font-size:13px;
+    line-height:1.7;
+}
+
+/* CORRUPT */
 
 .corrupt{
-    color:#5d5866;
+    opacity:0.45;
+    border-style:dashed;
 }
+
+/* FOOTER */
 
 .footer{
-    margin-top:60px;
-    color:#66606f;
-    line-height:1.8;
+    margin-top:70px;
+    padding-top:25px;
+    border-top:1px solid #2d2640;
+    color:#5f5970;
     font-size:12px;
-}
-
-.small{
-    color:#7b7388;
-    font-size:13px;
-    margin-top:3px;
-}
-
-::selection{
-    background:#3b2d52;
-    color:white;
-}
-
-    .directory-links{
-    margin-top:80px;
-    padding-top:30px;
-    border-top:1px solid #221d2b;
-}
-
-.directory-links a{
-    display:block;
-    color:#8c84a0;
-    text-decoration:none;
-    margin-top:18px;
-    transition:0.15s;
+    line-height:1.8;
     letter-spacing:1px;
 }
 
-.directory-links a:hover{
-    color:#ffffff;
-    transform:translateX(6px);
+/* SELECTION */
+
+::selection{
+    background:#58418a;
+    color:white;
 }
 
 </style>
@@ -122,149 +183,340 @@ body{
 
 <body class="scanlines">
 
+<div class="grid"></div>
+
 <div class="container">
 
+<a href="../../archive.html" class="back">
+← RETURN TO MAIN DIRECTORY
+</a>
+
 <div class="header">
-[DVC-01]
+
+<div class="title">
+DVC-01
+</div>
+
+<div class="subtitle">
 
 PRIMARY RESEARCH DOCUMENTS
 
-DEVICE FAILSAFE PROTOCOL
+<br><br>
 
-STATUS:
-STABLE RECOVERY
+AUTHOR:
+M
 
-PRIMARY AUTHOR:
-RESEARCHER M.
+<br>
+
+CLASSIFICATION:
+INTERNAL RESEARCH ARCHIVE
+
+<br>
+
+RECOVERY STATUS:
+PARTIAL RECONSTRUCTION
+
+</div>
+
 </div>
 
 <div class="warning">
-Earliest recovered continuation research.
 
-Most files remain structurally stable.
+WARNING:
 
-This sector predates major archive instability.
+Repeated archive exposure may increase:
+<br><br>
+
+- observer synchronization<br>
+- continuation fixation<br>
+- anomaly responsiveness<br>
+- continuity retention
+<br><br>
+
+Original page ordering remains unverified.
+
+Several entries appear to have been rewritten
+after initial archival storage.
+
 </div>
 
 <div class="section">
-RECOVERED DOCUMENTS
+FOUNDATIONAL ENTRIES
 </div>
 
 <a href="report01.html" class="entry">
-[REPORT_01]
-<div class="small">"THIS IS NOT A GAME"</div>
+
+<div class="entry-title">
+DOC-01 // THIS IS NOT A GAME
+</div>
+
+<div class="entry-desc">
+Initial structural realization regarding interaction-layer inconsistency
+and observer participation theory.
+</div>
+
 </a>
 
 <a href="report02.html" class="entry">
-[REPORT_02]
-<div class="small">SURVEY PROGRAM ANALYSIS</div>
+
+<div class="entry-title">
+DOC-02 // SURVEY PROGRAM ANALYSIS
+</div>
+
+<div class="entry-desc">
+Behavioral examination of observer registration,
+compliance verification,
+and participation initiation.
+</div>
+
 </a>
 
 <a href="report03.html" class="entry">
-[REPORT_03]
-<div class="small">THE SOUL PROBLEM</div>
-</a>
 
-<a href="report04.html" class="entry">
-[REPORT_04]
-<div class="small">CONTROL CONFLICT</div>
-</a>
+<div class="entry-title">
+DOC-03 // THE SOUL PROBLEM
+</div>
 
-<a href="report05.html" class="entry">
-[REPORT_05]
-<div class="small">DARK WORLD STRUCTURE</div>
-</a>
+<div class="entry-desc">
+Core analysis regarding SOUL separation,
+external control structure,
+and host autonomy conflict.
+</div>
 
-<a href="report06.html" class="entry">
-[REPORT_06]
-<div class="small">SYSTEM AWARENESS</div>
-</a>
-
-<a href="report07.html" class="entry">
-[REPORT_07]
-<div class="small">ANOMALIES (RECLASSIFIED)</div>
-</a>
-
-<a href="report08.html" class="entry">
-[REPORT_08]
-<div class="small">SECOND LAYER ACCESS</div>
-</a>
-
-<a href="report09.html" class="entry">
-[REPORT_09]
-<div class="small">THE DEVICE (FORMALIZED MODEL)</div>
-</a>
-
-<a href="report10.html" class="entry">
-[REPORT_10]
-<div class="small">EXTERNALIZATION EVENT</div>
-</a>
-
-<a href="report11.html" class="entry">
-[REPORT_11]
-<div class="small">SHADOW LAYER (UNAUTHORIZED)</div>
-</a>
-
-<a href="report12.html" class="entry">
-[REPORT_12]
-<div class="small">TRANSITION POINT</div>
-</a>
-
-<a href="report13.html" class="entry">
-[REPORT_13]
-<div class="small">INCIDENT REPORT</div>
-</a>
-
-<a href="report14.html" class="entry">
-[REPORT_14]
-<div class="small">FINAL THEORY SYNTHESIS</div>
-</a>
-
-<a href="report15.html" class="entry">
-[REPORT_15]
-<div class="small">FINAL LOGS (UNSTRUCTURED)</div>
-</a>
-
-<a href="report16.html" class="entry">
-[REPORT_16]
-<div class="small">URGENT TRANSMISSION</div>
 </a>
 
 <div class="section">
-UNRESOLVED REFERENCES
+CONTROL & SYSTEM RESEARCH
+</div>
+
+<a href="report04.html" class="entry">
+
+<div class="entry-title">
+DOC-04 // CONTROL CONFLICT
+</div>
+
+<div class="entry-desc">
+Expanded breakdown of competing intent structures
+between observer input and host resistance behavior.
+</div>
+
+</a>
+
+<a href="report05.html" class="entry">
+
+<div class="entry-title">
+DOC-05 // DARK WORLD STRUCTURE
+</div>
+
+<div class="entry-desc">
+Research regarding environmental conversion,
+layered execution spaces,
+and isolated continuity systems.
+</div>
+
+</a>
+
+<a href="report06.html" class="entry">
+
+<div class="entry-title">
+DOC-06 // SYSTEM AWARENESS
+</div>
+
+<div class="entry-desc">
+Preliminary investigation into adaptive interaction behavior
+and observer recognition phenomena.
+</div>
+
+</a>
+
+<div class="section">
+ANOMALY INVESTIGATION
+</div>
+
+<a href="report07.html" class="entry">
+
+<div class="entry-title">
+DOC-07 // ANOMALIES (RECLASSIFIED)
+</div>
+
+<div class="entry-desc">
+Reclassification of “glitches” as deliberate structural deviations
+containing hidden continuity-layer information.
+</div>
+
+</a>
+
+<a href="report08.html" class="entry">
+
+<div class="entry-title">
+DOC-08 // SECOND LAYER ACCESS
+</div>
+
+<div class="entry-desc">
+Documentation regarding external node discovery,
+embedded pathways,
+and continuity expansion beyond primary systems.
+</div>
+
+</a>
+
+<a href="report09.html" class="entry">
+
+<div class="entry-title">
+DOC-09 // THE DEVICE (FORMALIZED MODEL)
+</div>
+
+<div class="entry-desc">
+Comprehensive structural model describing the Device
+as a distributed observer-dependent system.
+</div>
+
+</a>
+
+<div class="section">
+LATE-STAGE ENTRIES
+</div>
+
+<a href="report10.html" class="entry">
+
+<div class="entry-title">
+DOC-10 // EXTERNALIZATION EVENT
+</div>
+
+<div class="entry-desc">
+Fragmented documentation concerning continuity persistence
+across layered environments.
+</div>
+
+</a>
+
+<a href="report11.html" class="entry">
+
+<div class="entry-title">
+DOC-11 // SHADOW LAYER
+</div>
+
+<div class="entry-desc">
+Partial reconstruction of restricted continuity structures
+not intended for standard observer access.
+</div>
+
+</a>
+
+<a href="report12.html" class="entry">
+
+<div class="entry-title">
+DOC-12 // TRANSITION POINT
+</div>
+
+<div class="entry-desc">
+Pre-incident entry documenting structural instability escalation
+and observer-layer fragmentation.
+</div>
+
+</a>
+
+<div class="section">
+INCIDENT RECORDS
+</div>
+
+<a href="report13.html" class="entry">
+
+<div class="entry-title">
+DOC-13 // PART 3 INCIDENT REPORT
+</div>
+
+<div class="entry-desc">
+Compiled reconstruction of continuity collapse behavior
+following deep-layer anomaly engagement.
+</div>
+
+</a>
+
+<a href="report14.html" class="entry">
+
+<div class="entry-title">
+DOC-14 // FINAL THEORY SYNTHESIS
+</div>
+
+<div class="entry-desc">
+Last complete theoretical framework regarding
+observer integration and Device functionality.
+</div>
+
+</a>
+
+<a href="report15.html" class="entry">
+
+<div class="entry-title">
+DOC-15 // FINAL LOGS
+</div>
+
+<div class="entry-desc">
+Recovered fragmented entries documenting
+continued synchronization persistence after disconnection.
+</div>
+
+</a>
+
+<a href="report16.html" class="entry">
+
+<div class="entry-title">
+DOC-16 // UNSENT TRANSMISSION
+</div>
+
+<div class="entry-desc">
+Final recovered communication fragment.
+Origin point remains unresolved.
+</div>
+
+</a>
+
+<div class="section">
+UNRESOLVED STRUCTURES
 </div>
 
 <div class="entry corrupt">
-[U.R.A RESEARCH DOCUMENTS]
 
-<div class="small">
-cross-sector dependency unresolved
+<div class="entry-title">
+DOC-██ // OBSERVER TRACE LOGS
 </div>
+
+<div class="entry-desc">
+FILE MISSING
+</div>
+
 </div>
 
 <div class="entry corrupt">
-[PROJECT: ROARING]
 
-<div class="small">
-origin sector unavailable
+<div class="entry-title">
+DOC-██ // CONTINUATION LAYER ANALYSIS
 </div>
+
+<div class="entry-desc">
+ACCESS DENIED
+</div>
+
 </div>
 
 <div class="footer">
-RECOVERED FILES:
-16
 
-UNRESOLVED REFERENCES:
-02
+DVC-01 BUILD: 1.3.2
+
+<br><br>
 
 LAST VERIFIED:
 [DATA LOSS]
 
-<div class="directory-links">
+<br><br>
 
-<a href="../../archive.html">
-RETURN TO MAIN ARCHIVE
-</a>
+ARCHIVE NOTE:
+
+Several entries contain contradictory timestamps.
+Earlier versions of the archive may no longer exist.
+
+</div>
 
 </div>
 
