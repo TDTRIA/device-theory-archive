@@ -4,21 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>DOC-01 // SOUL INTERFACE THEORY</title>
+<title>DVC-02 // DOC-01 // SOUL INTERFACE SCHEMATIC</title>
 
 <style>
 
 body{
     margin:0;
-    background:#05060b;
+    background:
+        radial-gradient(circle at top, rgba(70,90,160,0.08), transparent 55%),
+        linear-gradient(to bottom, #05060d, #03040a 65%, #020208);
     color:#d7dcef;
     font-family:"Courier New", monospace;
     overflow-x:hidden;
+    letter-spacing:0.4px;
+    text-shadow:0 0 3px rgba(180,210,255,0.05);
+    position:relative;
 }
 
 /* SCANLINES */
 
-.scanlines::before{
+body::before{
     content:"";
     position:fixed;
     top:0;
@@ -26,37 +31,46 @@ body{
     width:100%;
     height:100%;
     pointer-events:none;
+
     background:repeating-linear-gradient(
         to bottom,
-        rgba(255,255,255,0.015),
-        rgba(255,255,255,0.015) 1px,
+        rgba(255,255,255,0.012),
+        rgba(255,255,255,0.012) 1px,
         transparent 1px,
         transparent 3px
     );
+
+    opacity:0.45;
     z-index:999;
 }
 
 /* GRID */
 
-.grid{
+body::after{
+    content:"";
     position:fixed;
     top:0;
     left:0;
     width:100%;
     height:100%;
-    background-image:
-        linear-gradient(rgba(90,120,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(90,120,255,0.03) 1px, transparent 1px);
-    background-size:40px 40px;
     pointer-events:none;
+
+    background-image:
+        linear-gradient(rgba(120,140,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120,140,255,0.025) 1px, transparent 1px);
+
+    background-size:42px 42px;
+
+    opacity:0.25;
+    z-index:-1;
 }
 
 /* CONTAINER */
 
 .container{
-    max-width:900px;
+    max-width:980px;
     margin:auto;
-    padding:40px;
+    padding:50px;
     position:relative;
     z-index:2;
 }
@@ -65,10 +79,11 @@ body{
 
 .back{
     display:inline-block;
-    margin-bottom:30px;
-    color:#7d89ad;
+    margin-bottom:35px;
+    color:#7f90c9;
     text-decoration:none;
     transition:0.2s;
+    letter-spacing:1px;
 }
 
 .back:hover{
@@ -79,109 +94,146 @@ body{
 /* HEADER */
 
 .header{
-    border:1px solid #2b3550;
-    background:rgba(10,12,20,0.85);
-    padding:25px;
-    margin-bottom:35px;
-    box-shadow:0 0 15px rgba(80,120,255,0.08);
+    border:1px solid #2f3a63;
+    background:rgba(10,12,22,0.88);
+    padding:35px;
+    margin-bottom:40px;
+    box-shadow:0 0 22px rgba(90,120,255,0.08);
 }
 
 .title{
     font-size:30px;
-    letter-spacing:3px;
-    color:#b7c6ff;
-    margin-bottom:12px;
+    color:#c6d4ff;
+    letter-spacing:4px;
+    margin-bottom:18px;
 }
 
 .meta{
-    color:#7d89ad;
-    line-height:1.8;
+    color:#8d9cc9;
+    line-height:2;
+    letter-spacing:1px;
     font-size:14px;
 }
 
 /* WARNING */
 
 .warning{
-    border-left:3px solid #6c79a8;
-    padding:18px;
-    margin-bottom:40px;
-    background:rgba(15,18,28,0.8);
-    color:#9aa6cc;
-    line-height:1.8;
+    border-left:3px solid #7487c9;
+    background:rgba(12,16,28,0.84);
+    padding:22px;
+    margin-bottom:45px;
+    line-height:2;
+    color:#b4c0e8;
+}
+
+/* SECTIONS */
+
+.section{
+    margin-top:55px;
+    margin-bottom:20px;
+    color:#95adff;
+    font-size:15px;
+    letter-spacing:4px;
+    border-bottom:1px solid #2d3655;
+    padding-bottom:10px;
 }
 
 /* CONTENT */
 
 .content{
-    line-height:2;
-    color:#d8dcef;
+    line-height:2.1;
+    color:#d7dcef;
     font-size:15px;
 }
 
-/* SECTION TITLES */
+/* DIAGRAM */
 
-.section{
-    margin-top:45px;
-    margin-bottom:18px;
-    color:#88a0ff;
-    letter-spacing:2px;
-    font-size:14px;
+.diagram{
+    text-align:center;
+    white-space:pre-line;
+    margin-top:35px;
+    margin-bottom:35px;
+    padding:30px;
+
+    background:rgba(10,12,22,0.9);
+    border:1px solid #34426a;
+
+    color:#dce5ff;
+    line-height:2.5;
 }
 
-/* BLOCKS */
+/* BLOCK */
 
 .block{
-    background:rgba(10,12,20,0.65);
-    border:1px solid #28324a;
-    padding:18px;
-    margin:25px 0;
-    color:#aab5d6;
-    line-height:1.9;
+    background:rgba(10,12,22,0.82);
+    border:1px solid #2d3655;
+    padding:22px;
+    margin:30px 0;
+    color:#b9c7ea;
+    line-height:2;
 }
 
 /* FOOTER */
 
 .footer{
-    margin-top:70px;
+    margin-top:80px;
     padding-top:25px;
-    border-top:1px solid #27324a;
-    color:#5d6680;
+    border-top:1px solid #27324b;
+    color:#66749b;
     font-size:12px;
-    line-height:1.8;
+    line-height:2;
     letter-spacing:1px;
 }
 
 /* SELECTION */
 
 ::selection{
-    background:#4d5fa1;
+    background:#4d67aa;
     color:white;
 }
 
 </style>
 </head>
 
-<body class="scanlines">
-
-<div class="grid"></div>
+<body>
 
 <div class="container">
 
-<a href="../dvc02.html" class="back">
+<a href="dvc02.html" class="back">
 ← RETURN TO DVC-02 DIRECTORY
 </a>
 
 <div class="header">
 
 <div class="title">
-DOC-01 // SOUL INTERFACE THEORY
+DOC-01 // SOUL INTERFACE SCHEMATIC
 </div>
 
 <div class="meta">
-AUTHOR: M<br>
-CLASSIFICATION: INTERNAL USE ONLY<br>
-RESEARCH STATUS: ACTIVE<br>
-DOCUMENT STATE: STABLE
+
+DEVICE THEORY INSTITUTION
+
+<br><br>
+
+FILE:
+DVC-02-01
+
+<br>
+
+CLASSIFICATION:
+INTERNAL USE ONLY
+
+<br>
+
+STATUS:
+PARTIAL CONFIRMATION
+
+<br><br>
+
+ARCHIVE NOTE:
+Earlier revisions of this document
+contained significantly fewer behavioral warnings.
+
 </div>
 
 </div>
@@ -190,279 +242,375 @@ DOCUMENT STATE: STABLE
 
 WARNING:
 
-Unauthorized synchronization testing may result in:
-<br><br>
-- observer bleed<br>
-- continuity fixation<br>
-- host resistance escalation<br>
-- identity degradation symptoms
+Repeated synchronization testing has resulted in:
 <br><br>
 
-All interface experimentation requires approved separation procedures.
+- observer fixation behavior<br>
+- unauthorized continuation attempts<br>
+- continuity-layer instability<br>
+- post-session perceptual irregularities
+
+<br><br>
+
+Extended exposure remains under active investigation.
 
 </div>
 
 <div class="content">
 
-Before implementation can be understood, the interface itself has to be isolated.
+<div class="section">
+SUMMARY
+</div>
 
-Most existing interpretations treat the SOUL symbolically.
-That approach is insufficient.
+Repeated observation of continuity interaction events
+supports the conclusion that the red SOUL functions
+as an externalized control interface rather than
+a native biological component.
 
-The symbol is too consistent.
-Too functional.
-Too responsive.
+Observed behavior suggests the interface enables
+direct observer influence over internally autonomous entities.
 
-It behaves less like metaphor and more like:
-an externalized control layer.
+Current findings remain incomplete.
 
-That distinction changes the entire structure of the system.
+Initial theories categorized the SOUL as:
+a symbolic representation,
+a narrative abstraction,
+or a generalized continuity construct.
+
+These interpretations are no longer considered viable.
+
+Repeated interaction analysis indicates:
+the SOUL behaves as an operational system component.
+
+Not metaphorically.
+
+Functionally.
+
+<div class="section">
+PRIMARY INTERFACE MODEL
+</div>
+
+<div class="diagram">
+
+EXTERNAL OBSERVER
+        │
+        ▼
+[ RED SOUL INTERFACE ]
+        │
+        ▼
+INTERNAL ENTITY (KRIS)
+        │
+        ▼
+CONTINUITY ENVIRONMENT
+
+</div>
+
+The current model suggests the SOUL functions
+as a transmission layer between:
+external observer intent
+and internal entity execution.
+
+This explains several previously unresolved anomalies:
+- immediate response behavior
+- persistent synchronization
+- post-separation continuity
+- autonomous resistance events
+
+Most importantly:
+the internal entity remains operational
+after interface removal.
+
+This should not be possible under standard continuity assumptions.
 
 <div class="section">
 INITIAL OBSERVATIONS
 </div>
 
-The interface displays several repeatable properties during interaction:
+The earliest interaction records appeared normal.
 
-<div class="block">
+Directional input produced immediate movement.
+Selection prompts generated expected responses.
+Behavioral patterns remained stable.
 
-- immediate response to external input<br>
-- directional synchronization<br>
-- localized movement confinement<br>
-- state preservation during interruption<br>
-- temporary separation capability
+At a surface level,
+the system appeared consistent with
+standard continuity interaction structures.
 
-</div>
+However,
+extended observation revealed
+multiple inconsistencies.
 
-The final property is the most significant.
+The first anomaly involved responsiveness.
 
-If the SOUL can be physically removed while the host remains active,
-then the SOUL cannot represent:
-life,
-consciousness,
-identity,
-or total selfhood.
+The SOUL does not behave like:
+a character representation
+or an internal biological process.
 
-The host persists after separation.
+It behaves like:
+a cursor.
 
-This immediately invalidates the standard interpretation.
+Input transmission occurs instantly,
+without observable delay or interpretation.
 
-<div class="block">
-SOUL = CONTROL INTERFACE
-</div>
+Movement precision remains constant
+regardless of environmental state.
 
-Not the entity itself.
+This alone would not be significant.
 
-Not the mind.
-
-Not the person.
-
-An inserted layer.
-
-<div class="section">
-RESPONSE CHARACTERISTICS
-</div>
-
-The interface reacts with near-zero delay.
-
-This matters because:
-the host does not.
-
-There are moments where movement appears:
-hesitant,
-redirected,
-or partially resisted.
-
-At first I assumed this was narrative tone.
-That explanation no longer holds under repeated observation.
-
-The resistance is structurally consistent.
-
-The interface receives commands instantly,
-but execution appears contested.
-
-This suggests:
-another intent exists beneath synchronization.
-
-Not simulated behavior.
-
-Native behavior.
-
-<div class="section">
-FUNCTIONAL MODEL
-</div>
-
-<div class="block">
-
-EXTERNAL OBSERVER<br>
-↓<br>
-INPUT TRANSMISSION<br>
-↓<br>
-SOUL INTERFACE<br>
-↓<br>
-HOST ENTITY
-
-</div>
-
-Under normal conditions,
-the observer does not directly control the host.
-
-The SOUL acts as:
-- translator
-- bridge
-- override mechanism
-
-This explains:
-- behavioral inconsistencies
-- emotional dissonance
-- post-separation autonomy
-- control instability
-
-The host is not passive.
-
-The interface suppresses competing intent.
-
-I believe this suppression is what creates the sensation of “resistance” during specific interactions.
-
-Some actions feel:
-forced.
+The problem emerges during separation events.
 
 <div class="section">
 SEPARATION EVENT ANALYSIS
 </div>
 
-When the interface is removed,
-the host demonstrates:
-- independent mobility
-- behavioral deviation
-- altered posture
-- restricted movement patterns
-- intentional concealment
+Observed SOUL removal events confirm:
+the interface can be physically extracted
+while internal entity continuity persists.
 
-Without the interface present,
-the host appears:
-heavier,
-less responsive,
-yet more autonomous.
+This event fundamentally alters the control model.
 
-This implies the SOUL does not empower movement.
+If the entity survives independently,
+then the SOUL cannot represent:
+- identity
+- consciousness
+- biological continuity
 
-It simplifies it.
+Instead,
+it appears to function exclusively as:
+an externalized observer connection mechanism.
 
-The observer is not granting capability.
+Observed post-separation behavior includes:
+- independent movement
+- environmental interaction
+- self-directed decision making
+- behavioral divergence from observer intent
 
-The observer is overriding complexity.
+The internal entity continues functioning
+even after observer synchronization is interrupted.
+
+This confirms:
+the entity possesses native continuity behavior
+separate from external input.
 
 <div class="section">
-IMPLEMENTATION THEORY
+INTERFACE BEHAVIOR
 </div>
-
-If the SOUL is an interface rather than an inherent component,
-then artificial synchronization may theoretically be possible.
-
-Potential applications include:
 
 <div class="block">
 
-- external influence transfer<br>
-- observer redirection<br>
-- continuity-layer overlap<br>
-- remote behavioral injection<br>
-- multi-layer synchronization
+OBSERVED INTERFACE PROPERTIES:
+
+<br><br>
+
+- direct response to external directional input
+
+<br>
+
+- persistent synchronization during continuity transitions
+
+<br>
+
+- behavioral override capability
+
+<br>
+
+- continuity retention across repeated interaction cycles
+
+<br>
+
+- independent persistence during separation events
 
 </div>
 
-Current limitation:
-No stable separation framework exists.
+Repeated testing suggests the SOUL behaves
+less like a biological component
+and more like an inserted control structure.
 
-Attempting forced synchronization without stabilization may result in:
+The interface appears specifically designed
+to facilitate observer integration.
+
+The structure is too precise to be accidental.
+
+The interface remains stable
+during Dark World conversion events,
+despite complete environmental restructuring.
+
+This suggests:
+the SOUL operates above localized continuity layers.
+
+It is not bound to individual environments.
+
+It persists across them.
+
+<div class="section">
+CONTROL CONFLICT EVENTS
+</div>
+
+During observed continuity interactions,
+internal entity behavior periodically diverges
+from observer-issued command structures.
+
+Documented indicators include:
+
+- delayed response behavior
+
+- movement hesitation
+
+- unauthorized autonomous action
+
+- behavioral inconsistency during synchronization
+
+- direct resistance following separation events
+
+Observed divergence intensity increases
+during prolonged synchronization exposure.
+
+This suggests the internal entity retains
+independent behavioral intent
+despite active observer control.
+
+The interface does not erase native intent.
+
+It suppresses it.
+
+This distinction is critical.
+
+The observer is not:
+becoming the entity.
+
+The observer is:
+overriding the entity.
+
+<div class="section">
+CONTINUITY TRANSITION STABILITY
+</div>
+
+Additional testing was performed
+during Dark World conversion events.
+
+Results indicate:
+observer synchronization remains uninterrupted
+despite complete environmental restructuring.
+
+If continuity environments can be altered,
+converted,
+or replaced
+without disrupting observer synchronization,
+then the interface cannot be localized
+to a single continuity layer.
+
+Instead,
+it appears linked to:
+the broader continuity structure itself.
+
+The interface is not attached to the world.
+
+The world is attached to the interface.
+
+<div class="section">
+OBSERVER RISK FACTORS
+</div>
 
 <div class="block">
 
-- identity degradation<br>
-- observer bleed<br>
-- continuity fixation<br>
-- dissociation events<br>
-- recursive attachment behavior
+EXTENDED SYNCHRONIZATION EXPOSURE MAY RESULT IN:
+
+<br><br>
+
+- continuity fixation
+
+<br>
+
+- observer dependency
+
+<br>
+
+- recursive continuation behavior
+
+<br>
+
+- post-session perceptual association
+
+<br>
+
+- synchronization persistence
 
 </div>
 
-I have observed early symptoms personally after prolonged exposure sessions:
-difficulty separating interaction from observation,
-persistent pattern recognition,
-and recurring continuity thoughts after disconnecting.
+Several researchers reported:
+difficulty disengaging from continuity analysis
+after prolonged exposure testing.
 
-Symptoms currently manageable.
+Additional symptoms include:
+- recurring environmental association
+- compulsive continuation behavior
+- increasing emotional investment in outcome preservation
+- resistance to session termination
+
+Long-term effects remain unknown.
 
 <div class="section">
-SECONDARY THEORY
+PERSONAL ENTRY // M
 </div>
 
-The interface may not have originally belonged to the host.
+The interface behaves too consistently
+to be accidental.
 
-I cannot prove this yet.
+The system is not merely responding to input.
 
-But structurally:
-the insertion feels unnatural.
+It expects it.
 
-The conflict between host behavior and observer intent is too visible to be accidental.
+The deeper synchronization testing progresses,
+the less stable the distinction between:
+observer
+and participant
+becomes.
 
-Either:
-the system permits incompatibility intentionally,
+At first,
+I believed the SOUL represented control.
 
-or:
+Now I think it represents access.
 
-the synchronization layer was added after the host already existed.
+That difference matters.
 
-If the second possibility is true,
-then the Device was never designed around harmony.
+Control suggests authority.
 
-Only access.
+Access suggests permission.
 
-<div class="section">
-PERSONAL NOTE
-</div>
+The system allows synchronization to occur.
 
-I initially believed the interface was symbolic.
+It allows observer integration.
 
-I no longer think symbolism is enough to explain the behavior.
+It allows override behavior.
 
-There is structure here.
-Consistent structure.
-Repeatable structure.
+I no longer believe this is incidental structure.
 
-And structure implies design.
+The interface appears intentionally designed
+to connect:
+external observers
+to internal continuity environments.
 
-I have started referring to the system internally as:
+The question is no longer:
+whether synchronization exists.
 
-<div class="block">
-THE DEVICE
-</div>
+The question is:
+why the system permits it.
 
-because “game” no longer accurately describes its behavior.
+I have requested unrestricted access
+to continued continuity exposure sessions.
 
-The deeper I map the interaction layers,
-the less contained the system appears.
-
-I’m beginning to suspect the interface was never meant to remain internal.
+Request status:
+APPROVED
 
 </div>
 
 <div class="footer">
 
-LINKED FILES:
-<br><br>
-
-- OBSERVER COMPATIBILITY CHART<br>
-- CONTROL CONFLICT ANALYSIS<br>
-- NODE STRUCTURE MAP<br>
-- SYNCHRONIZATION FAILURE LOGS<br>
-- CONTINUITY EXPOSURE REPORT
+END OF FILE
 
 <br><br>
 
-ARCHIVE STATUS:
-STABLE
+DVC-02-01
 
 </div>
 
