@@ -16,12 +16,12 @@ body{
     color:#d7dcef;
     font-family:"Courier New", monospace;
     overflow-x:hidden;
-
     letter-spacing:0.4px;
     text-shadow:0 0 3px rgba(180,210,255,0.05);
-
     position:relative;
 }
+
+/* SCANLINES */
 
 body::before{
     content:"";
@@ -44,6 +44,8 @@ body::before{
     z-index:999;
 }
 
+/* GRID */
+
 body::after{
     content:"";
     position:fixed;
@@ -62,128 +64,150 @@ body::after{
     opacity:0.25;
     z-index:-1;
 }
-/* SCANLINES */
 
-.scanlines::before{
-    content:"";
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    pointer-events:none;
-    background:repeating-linear-gradient(
-        to bottom,
-        rgba(255,255,255,0.015),
-        rgba(255,255,255,0.015) 1px,
-        transparent 1px,
-        transparent 3px
-    );
-    z-index:999;
-}
-
-/* BACKGROUND GRID */
-
-.grid{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background-image:
-        linear-gradient(rgba(90,120,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(90,120,255,0.03) 1px, transparent 1px);
-    background-size:40px 40px;
-    pointer-events:none;
-}
-
-/* MAIN CONTAINER */
+/* CONTAINER */
 
 .container{
-    max-width:950px;
+    max-width:980px;
     margin:auto;
-    padding:40px;
+    padding:50px;
     position:relative;
     z-index:2;
+}
+
+/* BACK */
+
+.back{
+    display:inline-block;
+    margin-bottom:35px;
+    color:#7f90c9;
+    text-decoration:none;
+    transition:0.2s;
+    letter-spacing:1px;
+}
+
+.back:hover{
+    color:white;
+    transform:translateX(-4px);
 }
 
 /* HEADER */
 
 .header{
-    border:1px solid #2b3550;
-    padding:25px;
-    margin-bottom:35px;
-    background:rgba(10,12,20,0.85);
-    box-shadow:0 0 15px rgba(80,120,255,0.08);
+    border:1px solid #2f3a63;
+    background:rgba(10,12,22,0.88);
+    padding:35px;
+    margin-bottom:40px;
+    box-shadow:0 0 22px rgba(90,120,255,0.08);
 }
 
 .title{
     font-size:34px;
-    letter-spacing:4px;
-    color:#b7c6ff;
-    margin-bottom:15px;
+    color:#c6d4ff;
+    letter-spacing:5px;
+    margin-bottom:18px;
 }
 
 .subtitle{
-    color:#7d89ad;
-    line-height:1.8;
+    color:#8393c7;
+    line-height:2;
     letter-spacing:1px;
+    font-size:14px;
 }
 
 /* WARNING */
 
 .warning{
-    border-left:3px solid #6c79a8;
-    padding:18px;
-    margin-bottom:40px;
-    background:rgba(15,18,28,0.8);
-    color:#9aa6cc;
-    line-height:1.8;
+    border-left:3px solid #7487c9;
+    background:rgba(12,16,28,0.84);
+    padding:22px;
+    margin-bottom:45px;
+    line-height:2;
+    color:#b4c0e8;
 }
 
-/* SECTION */
+/* SECTIONS */
 
 .section{
-    margin-top:45px;
+    margin-top:55px;
     margin-bottom:20px;
-    color:#7f90d9;
-    letter-spacing:3px;
-    font-size:14px;
+    color:#95adff;
+    font-size:15px;
+    letter-spacing:4px;
+    border-bottom:1px solid #2d3655;
+    padding-bottom:10px;
 }
 
 /* ENTRIES */
 
 .entry{
-    display:block;
-    padding:18px;
-    margin-bottom:16px;
-    text-decoration:none;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:18px 22px;
+    margin-bottom:14px;
+
+    background:rgba(9,11,20,0.82);
+    border:1px solid #29324d;
+
     color:#d7dcef;
-    border:1px solid #28324a;
-    background:rgba(8,10,18,0.8);
-    transition:0.2s;
-    position:relative;
+    text-decoration:none;
+
+    transition:0.18s;
 }
 
 .entry:hover{
+    border-color:#6f89da;
     transform:translateX(6px);
-    border-color:#6f83d6;
-    box-shadow:0 0 12px rgba(100,130,255,0.12);
+    background:rgba(14,18,30,0.92);
 }
 
-.entry-title{
-    font-size:18px;
-    margin-bottom:8px;
+/* FILE */
+
+.file{
+    display:flex;
+    flex-direction:column;
+}
+
+.doc{
+    font-size:15px;
     letter-spacing:2px;
+    margin-bottom:6px;
 }
 
-.entry-desc{
-    color:#8e97b3;
-    font-size:13px;
-    line-height:1.7;
+.desc{
+    color:#7f8eb6;
+    font-size:12px;
+    letter-spacing:1px;
 }
 
-/* CORRUPTED ENTRIES */
+/* STATUS */
+
+.status{
+    font-size:11px;
+    letter-spacing:2px;
+    padding:6px 10px;
+    border:1px solid #42507d;
+    color:#a8b7e8;
+}
+
+.status.active{
+    border-color:#7289d8;
+    color:#d8e1ff;
+}
+
+.status.restricted{
+    border-color:#8a5a5a;
+    color:#d69d9d;
+}
+
+.status.unstable{
+    border-color:#7a5ea1;
+    color:#c3a6e8;
+}
+
+/* CORRUPT */
 
 .corrupt{
     opacity:0.45;
@@ -193,41 +217,26 @@ body::after{
 /* FOOTER */
 
 .footer{
-    margin-top:70px;
+    margin-top:80px;
     padding-top:25px;
-    border-top:1px solid #27324a;
-    color:#5d6680;
+    border-top:1px solid #27324b;
+    color:#66749b;
     font-size:12px;
-    line-height:1.8;
+    line-height:2;
     letter-spacing:1px;
 }
 
-/* BACK BUTTON */
-
-.back{
-    display:inline-block;
-    margin-bottom:30px;
-    color:#7d89ad;
-    text-decoration:none;
-    transition:0.2s;
-}
-
-.back:hover{
-    color:white;
-    transform:translateX(-4px);
-}
+/* SELECTION */
 
 ::selection{
-    background:#4d5fa1;
+    background:#4d67aa;
     color:white;
 }
 
 </style>
 </head>
 
-<body class="scanlines">
-
-<div class="grid"></div>
+<body>
 
 <div class="container">
 
@@ -242,168 +251,323 @@ DVC-02
 </div>
 
 <div class="subtitle">
+
 RESEARCH SCHEMATICS & TECHNICAL DOCUMENTATION
 
 <br><br>
 
-AUTHOR: M<br>
-CLASSIFICATION: INTERNAL USE ONLY<br>
-STATUS: ACTIVE RESEARCH
+DELTA CONTINUITY RESEARCH NETWORK
+
+<br>
+
+DEVICE THEORY INSTITUTION
+
+<br><br>
+
+STATUS:
+ACTIVE RESEARCH NODE
+
 </div>
 
 </div>
 
 <div class="warning">
 
-WARNING:
+NOTICE:
 
-Repeated exposure to continuity-layer research may result in:
-<br><br>
-- observer fixation<br>
-- recursive perception events<br>
-- synchronization instability<br>
-- continuity bleed symptoms
-<br><br>
+DVC-02 contains reconstructed continuity research,
+observer synchronization analysis,
+and restricted deviation documentation.
 
-Artificial Knight Syndrome progression remains under investigation.
+Repeated exposure may result in:
+- continuation fixation
+- synchronization persistence
+- unauthorized behavioral association
+
+Research integrity remains under review.
 
 </div>
+
+<!-- SECTION 1 -->
 
 <div class="section">
-FOUNDATIONAL DOCUMENTS
+CORE SYSTEM RESEARCH
 </div>
 
-<a href="documents/doc01.html" class="entry">
+<a href="report01.html" class="entry">
 
-<div class="entry-title">
-DOC-01 // SOUL INTERFACE THEORY
+<div class="file">
+
+<div class="doc">
+DOC-01 // SOUL INTERFACE SCHEMATIC
 </div>
 
-<div class="entry-desc">
-Foundational analysis regarding SOUL-layer synchronization, observer transmission,
-and host override behavior.
+<div class="desc">
+EXTERNAL OBSERVER CONNECTION ANALYSIS
+</div>
+
+</div>
+
+<div class="status active">
+VERIFIED
 </div>
 
 </a>
 
-<a href="documents/doc02.html" class="entry">
+<a href="report02.html" class="entry">
 
-<div class="entry-title">
+<div class="file">
+
+<div class="doc">
 DOC-02 // OBSERVER COMPATIBILITY CHART
 </div>
 
-<div class="entry-desc">
-Classification framework documenting synchronization thresholds,
-observer behavior patterns, and compatibility instability.
+<div class="desc">
+SYNCHRONIZATION THRESHOLD MEASUREMENTS
+</div>
+
+</div>
+
+<div class="status">
+PARTIAL
 </div>
 
 </a>
 
-<a href="documents/doc03.html" class="entry">
+<a href="report03.html" class="entry">
 
-<div class="entry-title">
+<div class="file">
+
+<div class="doc">
 DOC-03 // CONTROL CONFLICT ANALYSIS
 </div>
 
-<div class="entry-desc">
-Technical breakdown of host resistance behavior and dual-intent execution conflict.
+<div class="desc">
+DUAL INTENT STRUCTURE OBSERVATION
+</div>
+
+</div>
+
+<div class="status">
+ACTIVE
 </div>
 
 </a>
 
-<a href="documents/doc04.html" class="entry">
+<a href="report04.html" class="entry">
 
-<div class="entry-title">
-DOC-04 // NODE STRUCTURE MAP
+<div class="file">
+
+<div class="doc">
+DOC-04 // DARK FOUNTAIN FORMATION MODEL
 </div>
 
-<div class="entry-desc">
-Architectural overview of Device continuity-layer structure and node relationships.
+<div class="desc">
+ENVIRONMENTAL CONVERSION THEORY
+</div>
+
+</div>
+
+<div class="status">
+PARTIAL
 </div>
 
 </a>
 
-<div class="section">
-CONTINUITY EXPOSURE RESEARCH
+<a href="report05.html" class="entry">
+
+<div class="file">
+
+<div class="doc">
+DOC-05 // NODE STRUCTURE MAP
 </div>
 
-<div class="entry corrupt">
-
-<div class="entry-title">
-DOC-05 // SYNCHRONIZATION FAILURE LOGS
-</div>
-
-<div class="entry-desc">
-Partial recovery only. Multiple sections missing.
-</div>
-
-</div>
-
-<div class="entry corrupt">
-
-<div class="entry-title">
-DOC-06 // CONTINUITY EXPOSURE REPORT
-</div>
-
-<div class="entry-desc">
-Research integrity degraded after prolonged observer sessions.
+<div class="desc">
+CONTINUITY LAYER CONNECTION OVERVIEW
 </div>
 
 </div>
 
-<div class="entry corrupt">
-
-<div class="entry-title">
-DOC-07 // AKS PROGRESSION NOTES
+<div class="status">
+VERIFIED
 </div>
 
-<div class="entry-desc">
-ACCESS CURRENTLY RESTRICTED
-</div>
+</a>
 
-</div>
+<!-- SECTION 2 -->
 
 <div class="section">
-UNSTABLE STRUCTURES
+CONTINUITY INCIDENT ANALYSIS
 </div>
+
+<a href="report06.html" class="entry">
+
+<div class="file">
+
+<div class="doc">
+DOC-06 // NULL ROUTE DEVIATION REPORT
+</div>
+
+<div class="desc">
+FORCED CONTINUATION INCIDENT ANALYSIS
+</div>
+
+</div>
+
+<div class="status restricted">
+RESTRICTED
+</div>
+
+</a>
 
 <div class="entry corrupt">
 
-<div class="entry-title">
-DOC-██ // FOUNTAIN EXECUTION THEORY
+<div class="file">
+
+<div class="doc">
+DOC-07 // NOELLE SYNCHRONIZATION ANALYSIS
 </div>
 
-<div class="entry-desc">
+<div class="desc">
 FILE INCOMPLETE
 </div>
 
 </div>
 
-<div class="entry corrupt">
-
-<div class="entry-title">
-DOC-██ // OBSERVER CONTINUITY COLLAPSE
+<div class="status unstable">
+UNSTABLE
 </div>
 
-<div class="entry-desc">
-UNAUTHORIZED ACCESS DETECTED
+</div>
+
+<div class="entry corrupt">
+
+<div class="file">
+
+<div class="doc">
+DOC-08 // BERDLY TERMINATION EVENT
+</div>
+
+<div class="desc">
+ACCESS REVOKED
+</div>
+
+</div>
+
+<div class="status restricted">
+RESTRICTED
+</div>
+
+</div>
+
+<!-- SECTION 3 -->
+
+<div class="section">
+AKS EXPOSURE STUDIES
+</div>
+
+<div class="entry corrupt">
+
+<div class="file">
+
+<div class="doc">
+DOC-09 // ARTIFICIAL KNIGHT SYNDROME
+</div>
+
+<div class="desc">
+EXPOSURE PROGRESSION OVERVIEW
+</div>
+
+</div>
+
+<div class="status">
+ACTIVE
+</div>
+
+</div>
+
+<div class="entry corrupt">
+
+<div class="file">
+
+<div class="doc">
+DOC-10 // M // EXPOSURE LOGS
+</div>
+
+<div class="desc">
+PERSONNEL RECORDS DEGRADED
+</div>
+
+</div>
+
+<div class="status unstable">
+UNSTABLE
+</div>
+
+</div>
+
+<!-- SECTION 4 -->
+
+<div class="section">
+RESTRICTED FILES
+</div>
+
+<div class="entry corrupt">
+
+<div class="file">
+
+<div class="doc">
+DOC-██ // OBSERVER COLLAPSE EVENT
+</div>
+
+<div class="desc">
+DATA REDACTED
+</div>
+
+</div>
+
+<div class="status restricted">
+REDACTED
+</div>
+
+</div>
+
+<div class="entry corrupt">
+
+<div class="file">
+
+<div class="doc">
+DOC-██ // NODE/3/ ACCESS RECORD
+</div>
+
+<div class="desc">
+UNAUTHORIZED CONTINUATION DETECTED
+</div>
+
+</div>
+
+<div class="status unstable">
+UNSTABLE
 </div>
 
 </div>
 
 <div class="footer">
 
-DVC-02 BUILD: 0.2.1
+ARCHIVE BUILD: 0.8.2
+
+<br><br>
 
 LAST VERIFIED:
-[UNCONFIRMED]
+[DATA LOSS]
 
-RESEARCH STATUS:
-ONGOING
+<br><br>
 
-NOTE:
-Several documents appear to have been revised repeatedly
-without corresponding archive timestamps.
+INTERNAL NOTE:
+
+Later DVC-02 revisions contain
+additional deviation warnings not present
+in earlier archive states.
 
 </div>
 
