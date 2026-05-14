@@ -8,25 +8,22 @@
 
 <style>
 
-@font-face{
-    font-family:'Wingdings';
-    src:local('Wingdings');
-}
-
 body{
     margin:0;
     background:black;
-    color:white;
+    color:#4d0000;
+    font-family:"Wingdings", sans-serif;
     display:flex;
     justify-content:center;
     align-items:center;
+    flex-direction:column;
     height:100vh;
     overflow:hidden;
-    flex-direction:column;
-    font-family:"Courier New", monospace;
 }
 
-.scanlines::before{
+/* SCANLINES */
+
+body::before{
     content:"";
     position:fixed;
     top:0;
@@ -36,43 +33,35 @@ body{
     pointer-events:none;
     background:repeating-linear-gradient(
         to bottom,
-        rgba(255,255,255,0.02),
-        rgba(255,255,255,0.02) 1px,
+        rgba(255,255,255,0.015),
+        rgba(255,255,255,0.015) 1px,
         transparent 1px,
         transparent 3px
     );
 }
 
-.wingdings{
-    font-family:'Wingdings';
-    font-size:52px;
-    opacity:0.9;
-    margin-bottom:40px;
-    animation:flicker 2s infinite;
-}
+/* TEXT */
 
-.message{
-    color:#9d1f1f;
-    letter-spacing:3px;
-    font-size:18px;
+.denied{
+    font-size:72px;
+    font-weight:bold;
+    letter-spacing:10px;
+    animation:flicker 1.5s infinite;
     text-align:center;
+    text-shadow:0 0 12px rgba(120,0,0,0.4);
 }
-
 .sub{
-    margin-top:25px;
-    color:#4d4d4d;
-    font-size:12px;
+    margin-top:30px;
+    color:#300000;
+    font-family:"Courier New", monospace;
+    font-size:13px;
     letter-spacing:2px;
 }
 
 @keyframes flicker{
 
     0%{opacity:1;}
-    4%{opacity:0.3;}
-    6%{opacity:1;}
-    60%{opacity:1;}
-    61%{opacity:0.2;}
-    64%{opacity:1;}
+    50%{opacity:0.35;}
     100%{opacity:1;}
 
 }
@@ -80,18 +69,14 @@ body{
 </style>
 </head>
 
-<body class="scanlines">
+<body>
 
-<div class="wingdings">
-👁 ✋︎⚐❄ 👎☜❄☜👍❄☜👎
-</div>
-
-<div class="message">
+<div class="denied">
 BLACK EYES NOT DETECTED
 </div>
 
 <div class="sub">
-DEVICE CONTINUITY NETWORK REJECTED CONNECTION
+OBSERVER REJECTED
 </div>
 
 </body>
