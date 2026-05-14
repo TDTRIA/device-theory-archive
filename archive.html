@@ -4,17 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>DEVICE THEORY INSTITUTION RESEARCH ARCHIVE</title>
+<title>DEVICE CONTINUITY NETWORK</title>
 
 <style>
 
 body{
-    background:#04030a;
-    color:#d0d0d0;
-    font-family:"Courier New", monospace;
     margin:0;
-    overflow-x:hidden;
+    background:#04050a;
+    color:#d7dcef;
+    font-family:"Courier New", monospace;
+    overflow:hidden;
 }
+
+/* SCANLINES */
 
 .scanlines::before{
     content:"";
@@ -31,71 +33,143 @@ body{
         transparent 1px,
         transparent 3px
     );
+    z-index:999;
 }
+
+/* GRID */
+
+.grid{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-image:
+        linear-gradient(rgba(120,90,180,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120,90,180,0.03) 1px, transparent 1px);
+    background-size:42px 42px;
+    pointer-events:none;
+}
+
+/* BOOT */
 
 .boot{
     white-space:pre-wrap;
-    line-height:1.7;
-    padding:35px;
+    line-height:1.8;
+    padding:40px;
+    color:#bdb5d4;
     min-height:100vh;
-    color:#bfb8c9;
+    font-size:15px;
+    text-shadow:0 0 5px rgba(170,140,255,0.08);
 }
+
+/* ARCHIVE */
 
 .container{
     display:none;
+    max-width:980px;
+    margin:auto;
     padding:40px;
-    max-width:700px;
-    text-shadow:0 0 2px rgba(180,140,255,0.08);
+    position:relative;
+    z-index:2;
 }
+
+/* HEADER */
 
 .header{
-    border-bottom:1px solid #2b2633;
-    padding-bottom:20px;
+    border:1px solid #332b47;
+    background:rgba(10,10,18,0.88);
+    padding:25px;
     margin-bottom:35px;
-    line-height:1.8;
-    letter-spacing:1px;
-    color:#d8d2e2;
+    box-shadow:0 0 18px rgba(140,110,255,0.08);
 }
+
+.title{
+    font-size:36px;
+    letter-spacing:4px;
+    color:#d7c8ff;
+    margin-bottom:15px;
+}
+
+.subtitle{
+    color:#988bb8;
+    line-height:1.9;
+    letter-spacing:1px;
+}
+
+/* WARNING */
 
 .warning{
-    color:#8a8397;
+    border-left:3px solid #6d5f91;
+    padding:18px;
     margin-bottom:40px;
-    line-height:1.8;
+    background:rgba(16,14,24,0.8);
+    color:#b1a5cf;
+    line-height:1.9;
 }
 
+/* SECTIONS */
+
 .section{
-    margin-top:35px;
+    margin-top:45px;
     margin-bottom:20px;
-    color:#6d5b8c;
-    letter-spacing:1px;
+    color:#a38ae8;
+    letter-spacing:3px;
+    font-size:14px;
 }
+
+/* ENTRIES */
 
 .entry{
     display:block;
-    color:#d0d0d0;
+    padding:18px;
+    margin-bottom:16px;
     text-decoration:none;
-    margin:14px 0;
-    transition:0.15s;
+    color:#dfdbef;
+    border:1px solid #342d49;
+    background:rgba(10,10,18,0.8);
+    transition:0.2s;
 }
 
 .entry:hover{
-    color:white;
     transform:translateX(6px);
+    border-color:#9177de;
+    box-shadow:0 0 14px rgba(140,110,255,0.12);
 }
+
+.entry-title{
+    font-size:18px;
+    margin-bottom:8px;
+    letter-spacing:2px;
+}
+
+.entry-desc{
+    color:#9f96bb;
+    font-size:13px;
+    line-height:1.8;
+}
+
+/* CORRUPTED */
 
 .corrupt{
-    color:#5d5866;
+    opacity:0.45;
+    border-style:dashed;
 }
 
+/* FOOTER */
+
 .footer{
-    margin-top:60px;
-    color:#66606f;
-    line-height:1.8;
+    margin-top:70px;
+    padding-top:25px;
+    border-top:1px solid #2d2640;
+    color:#5f5970;
     font-size:12px;
+    line-height:1.9;
+    letter-spacing:1px;
 }
 
 ::selection{
-    background:#3b2d52;
+    background:#58418a;
     color:white;
 }
 
@@ -104,75 +178,161 @@ body{
 
 <body class="scanlines">
 
+<div class="grid"></div>
+
 <div id="boot" class="boot"></div>
 
 <div id="archive" class="container">
 
 <div class="header">
-DEVICE THEORY INSTITUTION ARCHIVE
 
-DELTA CONTINUITY RESEARCH NETWORK
+<div class="title">
+DEVICE CONTINUITY NETWORK
+</div>
 
-RECOVERY NODE:
+<div class="subtitle">
+
+ARCHIVE NODE:
 DVC-MAIN-NDE
+
+<br><br>
 
 SOURCE:
 DEVICE FAILSAFE PROTOCOL
 
-STATUS:
-PARTIAL RECOVERY
+<br>
+
+RECOVERY STATUS:
+PARTIAL RECONSTRUCTION
+
+<br>
+
+CONTINUITY STATE:
+ACTIVE
+
+</div>
+
 </div>
 
 <div class="warning">
+
 WARNING:
 
-Repeated archive exposure may increase:
-- observer synchronization
-- continuation fixation
-- structural familiarity
+Repeated archive exposure may result in:
+<br><br>
 
-Original archive state unavailable.
+- observer synchronization<br>
+- recursive continuation behavior<br>
+- continuity fixation<br>
+- anomaly responsiveness
+<br><br>
+
+The original archive structure no longer exists in a verified state.
+
+Some recovered files appear altered after archival storage.
+
 </div>
 
 <div class="section">
-RECOVERED SECTORS
+PRIMARY ARCHIVE NODES
 </div>
 
 <a href="files/dvc01/dvc01.html" class="entry">
-/DVC-01/ PRIMARY RESEARCH DOCUMENTS
+
+<div class="entry-title">
+DVC-01 // PRIMARY RESEARCH DOCUMENTS
+</div>
+
+<div class="entry-desc">
+Recovered foundational theories regarding control conflict,
+observer integration,
+and continuity-layer behavior.
+</div>
+
 </a>
 
 <a href="files/dvc02/dvc02.html" class="entry">
-/DVC-02/ RESEARCH SCHEMATICS & DOCS
+
+<div class="entry-title">
+DVC-02 // RESEARCH SCHEMATICS & TECHNICAL DOCUMENTATION
+</div>
+
+<div class="entry-desc">
+Technical diagrams,
+synchronization studies,
+and Device structural mapping.
+</div>
+
 </a>
 
-<a href="files/dvc03/dvc03.html" class="entry">
-/DVC-03/ STRUCTURAL INSTABILITY
+<a href="files/dvc03/dvc03.html" class="entry corrupt">
+
+<div class="entry-title">
+DVC-03 // STRUCTURAL INSTABILITY
+</div>
+
+<div class="entry-desc">
+Recovery incomplete.
+Archive fragmentation detected.
+</div>
+
 </a>
 
 <div class="section">
-UNRESOLVED STRUCTURES
+RESTRICTED PROJECTS
 </div>
 
 <div class="entry corrupt">
-/NODE/3/ PATHWAY UNRESOLVED
+
+<div class="entry-title">
+PROJECT: ROARING
+</div>
+
+<div class="entry-desc">
+Dark Fountain research currently inaccessible.
+</div>
+
 </div>
 
 <div class="entry corrupt">
-/PROJECT/ROARING/ ACCESS RESTRICTED
+
+<div class="entry-title">
+U.R.A // UNDERTALE RESEARCH ARCHIVE
+</div>
+
+<div class="entry-desc">
+Connection to external continuity structures interrupted.
+</div>
+
 </div>
 
 <div class="entry corrupt">
-/U/R/A/ RESEARCH CORRUPTED
+
+<div class="entry-title">
+NODE/3/ PATHWAY
+</div>
+
+<div class="entry-desc">
+Destination unresolved.
+</div>
+
 </div>
 
 <div class="footer">
-ARCHIVE BUILD: 0.4.3
+
+ARCHIVE BUILD: 0.8.7
+
+<br><br>
 
 LAST VERIFIED:
 [DATA LOSS]
 
-NO VERIFIED ORIGINAL STRUCTURE EXISTS.
+<br><br>
+
+SYSTEM NOTE:
+
+Observer activity appears to increase archive responsiveness over time.
+
 </div>
 
 </div>
@@ -181,34 +341,56 @@ NO VERIFIED ORIGINAL STRUCTURE EXISTS.
 
 const bootText = `connecting to DEVICE continuity network...
 
+establishing observer link...
+
+checking synchronization state...
+
+observer detected
+
+continuity layer active
+
 mounting archive sectors...
 
 DVC-01 ........ OK
 DVC-02 ........ OK
-DVC-03 ........ PARTIAL
+DVC-03 ........ DEGRADED
 
-NODE/3 ........ UNRESOLVED
+recovering fragmented structures...
 
-checking archive integrity...
+PROJECT: ROARING ........ RESTRICTED
+U.R.A ........ CONNECTION INTERRUPTED
 
-warning:
-structural inconsistencies detected
+verifying archive integrity...
 
 warning:
 original archive state unavailable
 
-observer synchronization stable
+warning:
+multiple continuity inconsistencies detected
+
+checking observer compatibility...
+
+observer status:
+ACTIVE PARTICIPANT
+
+synchronization stable
 
 press any key to continue`;
 
 let i = 0;
 
 function typeBoot(){
+
     if(i < bootText.length){
+
         document.getElementById("boot").innerHTML += bootText.charAt(i);
+
         i++;
+
         setTimeout(typeBoot,18);
+
     }
+
 }
 
 typeBoot();
@@ -224,17 +406,4 @@ window.addEventListener("keydown", () => {
 </script>
 
 </body>
-    <audio id="bgAudio" loop>
-    <source src="audio/wind.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-
-window.addEventListener("click", () => {
-
-    document.getElementById("bgAudio").play();
-
-}, { once:true });
-
-</script>
 </html>
