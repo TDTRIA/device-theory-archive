@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DVC-02 // DOC-04 // NODE STRUCTURE MAP</title>
+
+<style>
+
+body{
+    margin:0;
+    background:
+        radial-gradient(circle at top, rgba(80,100,180,0.08), transparent 55%),
+        linear-gradient(to bottom, #05060d, #02030a 70%, #010106);
+    color:#d7dcef;
+    font-family:"Courier New", monospace;
+    overflow-x:hidden;
+    letter-spacing:0.4px;
+    text-shadow:0 0 3px rgba(180,210,255,0.05);
+    position:relative;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+
+    background:repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.012),
+        rgba(255,255,255,0.012) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+
+    opacity:0.45;
+    z-index:999;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+
+    background-image:
+        linear-gradient(rgba(120,140,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120,140,255,0.025) 1px, transparent 1px);
+
+    background-size:42px 42px;
+
+    opacity:0.2;
+    z-index:-1;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:50px;
+    position:relative;
+    z-index:2;
+}
+
+.back{
+    display:inline-block;
+    margin-bottom:35px;
+    color:#7f90c9;
+    text-decoration:none;
+    transition:0.2s;
+    letter-spacing:1px;
+}
+
+.back:hover{
+    color:white;
+    transform:translateX(-4px);
+}
+
+.header{
+    border:1px solid #2f3a63;
+    background:rgba(10,12,22,0.9);
+    padding:40px;
+    margin-bottom:40px;
+    box-shadow:0 0 25px rgba(90,120,255,0.08);
+}
+
+.title{
+    font-size:32px;
+    color:#c6d4ff;
+    letter-spacing:5px;
+    margin-bottom:18px;
+}
+
+.meta{
+    color:#8d9cc9;
+    line-height:2;
+    font-size:14px;
+}
+
+.warning{
+    border-left:3px solid #7e8fd1;
+    background:rgba(12,16,28,0.85);
+    padding:25px;
+    margin-bottom:45px;
+    line-height:2;
+    color:#bcc8ef;
+}
+
+.section{
+    margin-top:70px;
+    margin-bottom:20px;
+    color:#95adff;
+    font-size:15px;
+    letter-spacing:4px;
+    border-bottom:1px solid #2d3655;
+    padding-bottom:12px;
+}
+
+.content{
+    line-height:2.2;
+    color:#d7dcef;
+    font-size:15px;
+}
+
+.diagram{
+    text-align:center;
+    white-space:pre-line;
+    margin-top:35px;
+    margin-bottom:35px;
+    padding:35px;
+    background:rgba(10,12,22,0.92);
+    border:1px solid #34426a;
+    color:#dce5ff;
+    line-height:2.5;
+    overflow-x:auto;
+}
+
+.block{
+    background:rgba(10,12,22,0.84);
+    border:1px solid #2d3655;
+    padding:24px;
+    margin:35px 0;
+    color:#b9c7ea;
+    line-height:2;
+}
+
+.log{
+    margin-top:35px;
+    margin-bottom:35px;
+    padding:25px;
+    background:rgba(7,9,18,0.95);
+    border:1px solid #26314f;
+    color:#aebee8;
+    line-height:2.1;
+    font-size:14px;
+}
+
+.corrupt{
+    color:#67739a;
+    opacity:0.65;
+}
+
+.glitch{
+    animation:flicker 5s infinite;
+}
+
+@keyframes flicker{
+
+0%{opacity:1;}
+2%{opacity:0.5;}
+3%{opacity:1;}
+61%{opacity:0.5;}
+62%{opacity:1;}
+
+}
+
+.footer{
+    margin-top:90px;
+    padding-top:30px;
+    border-top:1px solid #27324b;
+    color:#66749b;
+    font-size:12px;
+    line-height:2;
+    letter-spacing:1px;
+}
+
+::selection{
+    background:#4d67aa;
+    color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="dvc02.html" class="back">
+← RETURN TO DVC-02 DIRECTORY
+</a>
+
+<div class="header">
+
+<div class="title">
+DOC-04 // NODE STRUCTURE MAP
+</div>
+
+<div class="meta">
+
+DEVICE THEORY INSTITUTION
+
+<br><br>
+
+FILE:
+DVC-02-04
+
+<br>
+
+CLASSIFICATION:
+RESTRICTED STRUCTURAL ACCESS
+
+<br>
+
+STATUS:
+PARTIAL STRUCTURE CONFIRMATION
+
+<br>
+
+ACCESS LEVEL:
+LEVEL 3 OR HIGHER
+
+<br><br>
+
+ARCHIVE NOTE:
+
+This document contains incomplete
+continuity structure mappings.
+
+Several identified pathways remain unresolved.
+
+Repeated attempts to fully chart
+the network have failed.
+
+</div>
+
+</div>
+
+<div class="warning">
+
+WARNING:
+
+Extended structural mapping sessions
+have resulted in:
+<br><br>
+
+- recursive continuity loops
+
+<br>
+
+- observer disorientation
+
+<br>
+
+- environmental recognition fixation
+
+<br>
+
+- restricted pathway pursuit behavior
+
+<br><br>
+
+Researchers are advised
+to avoid prolonged unsupervised review.
+
+</div>
+
+<div class="content">
+
+<div class="section">
+SUMMARY
+</div>
+
+The following document represents
+the current structural model
+for continuity node interaction behavior.
+
+Initial research assumed:
+continuity progression followed
+linear environmental pathways.
+
+This assumption is no longer considered accurate.
+
+Observed continuity behavior instead suggests:
+interconnected node structures
+capable of:
+- overlap
+- deviation
+- recursive progression
+- unstable branching
+
+Current evidence indicates:
+continuity itself behaves less like a sequence
+and more like a network.
+
+Several pathways appear inaccessible
+under standard progression conditions.
+
+Others only emerge:
+after repeated synchronization exposure,
+elevated anomaly interaction,
+or persistent override behavior.
+
+This finding remains unresolved.
+
+<div class="section">
+PRIMARY NODE MODEL
+</div>
+
+<div class="diagram">
+
+                [ OBSERVER ]
+                      │
+                      ▼
+             [ SOUL INTERFACE ]
+                      │
+          ┌───────────┼───────────┐
+          ▼           ▼           ▼
+
+     [ LIGHT ]   [ DARK ]   [ DEVIATION ]
+       NODE        NODE         NODE
+
+          │           │            │
+          ▼           ▼            ▼
+
+    STANDARD     CONTINUITY     RESTRICTED
+   PROGRESSION    INSTABILITY      PATHS
+
+          │           │            │
+          └───────────┼────────────┘
+                      ▼
+
+              [ CONTINUITY CORE ]
+
+</div>
+
+The current model proposes
+that continuity progression occurs
+through interconnected structural nodes
+rather than isolated narrative sequences.
+
+Each node appears capable of:
+- environmental restructuring
+- behavioral alteration
+- progression divergence
+- synchronization destabilization
+
+The relationship between these structures
+remains poorly understood.
+
+<div class="section">
+LIGHT NODE STRUCTURES
+</div>
+
+Light Nodes appear to maintain:
+high continuity stability,
+predictable progression behavior,
+and reduced anomaly responsiveness.
+
+Observed characteristics include:
+- environmental consistency
+- stable synchronization
+- limited deviation emergence
+- reduced structural distortion
+
+Researchers originally believed
+Light Nodes represented:
+baseline continuity environments.
+
+This interpretation has become unstable
+following recent deviation discoveries.
+
+Several Light Nodes produced:
+temporary instability events
+after prolonged observer interaction.
+
+This should not occur
+under standard continuity conditions.
+
+<div class="block">
+
+OBSERVATION:
+
+Even highly stable nodes
+eventually begin exhibiting
+minor structural inconsistencies
+under repeated synchronization exposure.
+
+</div>
+
+<div class="section">
+DARK NODE STRUCTURES
+</div>
+
+Dark Nodes demonstrate:
+elevated continuity responsiveness,
+increased synchronization instability,
+and significantly higher anomaly emergence rates.
+
+Environmental rules within Dark Nodes
+appear more flexible than standard continuity environments.
+
+Observed behaviors include:
+- object reclassification
+- atmospheric restructuring
+- behavioral amplification
+- progression instability
+- emotional intensification
+
+Most concerning:
+Dark Nodes demonstrate unusually high
+observer responsiveness.
+
+The environment appears reactive.
+
+Not simulated.
+
+Reactive.
+
+Several researchers reported
+the sensation that:
+Dark Nodes “responded” to continuation behavior.
+
+No formal explanation exists.
+
+<div class="section">
+DEVIATION NODE THEORY
+</div>
+
+Deviation Nodes remain largely unverified.
+
+These structures appear:
+outside standard progression architecture.
+
+Access conditions remain inconsistent.
+
+However,
+all confirmed deviation pathways
+share several characteristics:
+- elevated override behavior
+- persistent continuation fixation
+- increased control conflict
+- structural instability escalation
+
+<div class="diagram">
+
+STANDARD PROGRESSION
+        │
+        ▼
+MINOR INSTABILITY
+        │
+        ▼
+OVERRIDE PERSISTENCE
+        │
+        ▼
+DEVIATION ACCESS
+
+</div>
+
+Researchers initially believed
+Deviation Nodes represented:
+corrupted continuity branches.
+
+Current evidence suggests otherwise.
+
+The structures appear intentional.
+
+This distinction is extremely important.
+
+A corrupted path is accidental.
+
+An intentional path was designed.
+
+<div class="section">
+RESTRICTED PATHWAY DESIGNATION
+</div>
+
+The designation:
+<span class="glitch">NULL ROUTE</span>
+
+first appeared during high-instability
+deviation mapping sessions.
+
+The pathway does not behave
+like standard continuity progression.
+
+Observed characteristics include:
+- accelerated conflict escalation
+- environmental hostility
+- reduced behavioral stabilization
+- abnormal observer synchronization retention
+- increased resistance frequency
+
+The pathway appears responsive
+to persistent override behavior.
+
+Researchers remain divided
+on whether the structure:
+- emerges dynamically
+or
+- preexists within continuity architecture
+
+No consensus has been reached.
+
+<div class="log">
+
+MAPPING LOG // SESSION N-04
+
+<br><br>
+
+Deviation exposure threshold exceeded
+at timestamp 01:42:11.
+
+Environmental stability collapsed shortly afterward.
+
+Observer continuation behavior persisted
+despite repeated distress indicators.
+
+Restricted pathway emergence confirmed.
+
+Several mapped structures
+did not exist during previous review cycles.
+
+Final structure alignment inconsistent
+with archived continuity models.
+
+<br><br>
+
+Researcher note:
+
+“the path looked unfinished
+until continuation began”
+
+</div>
+
+<div class="section">
+CONTINUITY CORE HYPOTHESIS
+</div>
+
+Several researchers proposed
+that all continuity structures
+connect to a deeper architectural layer:
+the Continuity Core.
+
+Current evidence remains incomplete.
+
+However,
+multiple node instability events
+demonstrated synchronized behavioral shifts
+across otherwise disconnected environments.
+
+This suggests:
+the nodes are not isolated.
+
+They are linked.
+
+If true,
+then progression within one node
+may alter:
+adjacent structures,
+future pathways,
+or hidden continuity states.
+
+The implications remain severe.
+
+<div class="block">
+
+CURRENT THEORY:
+
+Observer interaction does not merely
+travel through continuity structures.
+
+It changes them.
+
+</div>
+
+<div class="section">
+STRUCTURAL INSTABILITY EVENTS
+</div>
+
+Repeated node mapping sessions
+produced increasingly severe
+continuity irregularities.
+
+Observed effects include:
+- pathway disappearance
+- recursive environmental loops
+- inaccessible progression states
+- altered interaction outcomes
+- structural overlap behavior
+
+Several researchers described:
+recognizing environments
+before entering them.
+
+One researcher accurately described
+an unrevealed pathway layout
+prior to direct exposure.
+
+No explanation has been established.
+
+<div class="section">
+INTERNAL REVIEW NOTE
+</div>
+
+Original node mapping objectives focused on:
+structural navigation,
+continuity organization,
+and synchronization prediction.
+
+The research objective has changed.
+
+The greater concern is no longer:
+how the structures connect.
+
+The greater concern is:
+why they react to observation.
+
+Repeated testing increasingly suggests:
+continuity architecture
+is not passive.
+
+It adapts.
+
+<div class="section">
+PERSONAL ENTRY // M
+</div>
+
+I reviewed the latest deviation maps alone.
+
+That was another mistake.
+
+The structures are becoming easier to recognize.
+
+You begin noticing similarities
+between disconnected environments.
+
+Repeated shapes.
+Repeated pathways.
+Repeated progression patterns.
+
+At first I believed
+we were discovering the architecture.
+
+Now I think the architecture
+is revealing itself gradually.
+
+The restricted paths concern me most.
+
+They do not feel unstable.
+
+They feel unfinished.
+
+As though continuation itself
+is completing them.
+
+That possibility should be impossible.
+
+And yet every high-instability session
+produces additional structure alignment.
+
+The observers think they are navigating the system.
+
+I am beginning to suspect
+the system is guiding them instead.
+
+</div>
+
+<div class="footer">
+
+END OF FILE
+
+<br><br>
+
+DVC-02-04
+
+</div>
+
+</div>
+
+</body>
+</html>
