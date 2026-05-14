@@ -1,1 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>DVC-02 // RESEARCH SCHEMATICS & TECHNICAL DOCUMENTATION</title>
+
+<style>
+
+body{
+    margin:0;
+    background:#05060b;
+    color:#cfd3df;
+    font-family:"Courier New", monospace;
+    overflow-x:hidden;
+}
+
+/* SCANLINES */
+
+.scanlines::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    background:repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.015),
+        rgba(255,255,255,0.015) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    z-index:999;
+}
+
+/* BACKGROUND GRID */
+
+.grid{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-image:
+        linear-gradient(rgba(90,120,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(90,120,255,0.03) 1px, transparent 1px);
+    background-size:40px 40px;
+    pointer-events:none;
+}
+
+/* MAIN CONTAINER */
+
+.container{
+    max-width:950px;
+    margin:auto;
+    padding:40px;
+    position:relative;
+    z-index:2;
+}
+
+/* HEADER */
+
+.header{
+    border:1px solid #2b3550;
+    padding:25px;
+    margin-bottom:35px;
+    background:rgba(10,12,20,0.85);
+    box-shadow:0 0 15px rgba(80,120,255,0.08);
+}
+
+.title{
+    font-size:34px;
+    letter-spacing:4px;
+    color:#b7c6ff;
+    margin-bottom:15px;
+}
+
+.subtitle{
+    color:#7d89ad;
+    line-height:1.8;
+    letter-spacing:1px;
+}
+
+/* WARNING */
+
+.warning{
+    border-left:3px solid #6c79a8;
+    padding:18px;
+    margin-bottom:40px;
+    background:rgba(15,18,28,0.8);
+    color:#9aa6cc;
+    line-height:1.8;
+}
+
+/* SECTION */
+
+.section{
+    margin-top:45px;
+    margin-bottom:20px;
+    color:#7f90d9;
+    letter-spacing:3px;
+    font-size:14px;
+}
+
+/* ENTRIES */
+
+.entry{
+    display:block;
+    padding:18px;
+    margin-bottom:16px;
+    text-decoration:none;
+    color:#d7dcef;
+    border:1px solid #28324a;
+    background:rgba(8,10,18,0.8);
+    transition:0.2s;
+    position:relative;
+}
+
+.entry:hover{
+    transform:translateX(6px);
+    border-color:#6f83d6;
+    box-shadow:0 0 12px rgba(100,130,255,0.12);
+}
+
+.entry-title{
+    font-size:18px;
+    margin-bottom:8px;
+    letter-spacing:2px;
+}
+
+.entry-desc{
+    color:#8e97b3;
+    font-size:13px;
+    line-height:1.7;
+}
+
+/* CORRUPTED ENTRIES */
+
+.corrupt{
+    opacity:0.45;
+    border-style:dashed;
+}
+
+/* FOOTER */
+
+.footer{
+    margin-top:70px;
+    padding-top:25px;
+    border-top:1px solid #27324a;
+    color:#5d6680;
+    font-size:12px;
+    line-height:1.8;
+    letter-spacing:1px;
+}
+
+/* BACK BUTTON */
+
+.back{
+    display:inline-block;
+    margin-bottom:30px;
+    color:#7d89ad;
+    text-decoration:none;
+    transition:0.2s;
+}
+
+.back:hover{
+    color:white;
+    transform:translateX(-4px);
+}
+
+::selection{
+    background:#4d5fa1;
+    color:white;
+}
+
+</style>
+</head>
+
+<body class="scanlines">
+
+<div class="grid"></div>
+
+<div class="container">
+
+<a href="../../archive.html" class="back">
+← RETURN TO MAIN DIRECTORY
+</a>
+
+<div class="header">
+
+<div class="title">
+DVC-02
+</div>
+
+<div class="subtitle">
+RESEARCH SCHEMATICS & TECHNICAL DOCUMENTATION
+
+<br><br>
+
+AUTHOR: M<br>
+CLASSIFICATION: INTERNAL USE ONLY<br>
+STATUS: ACTIVE RESEARCH
+</div>
+
+</div>
+
+<div class="warning">
+
+WARNING:
+
+Repeated exposure to continuity-layer research may result in:
+<br><br>
+- observer fixation<br>
+- recursive perception events<br>
+- synchronization instability<br>
+- continuity bleed symptoms
+<br><br>
+
+Artificial Knight Syndrome progression remains under investigation.
+
+</div>
+
+<div class="section">
+FOUNDATIONAL DOCUMENTS
+</div>
+
+<a href="documents/doc01.html" class="entry">
+
+<div class="entry-title">
+DOC-01 // SOUL INTERFACE THEORY
+</div>
+
+<div class="entry-desc">
+Foundational analysis regarding SOUL-layer synchronization, observer transmission,
+and host override behavior.
+</div>
+
+</a>
+
+<a href="documents/doc02.html" class="entry">
+
+<div class="entry-title">
+DOC-02 // OBSERVER COMPATIBILITY CHART
+</div>
+
+<div class="entry-desc">
+Classification framework documenting synchronization thresholds,
+observer behavior patterns, and compatibility instability.
+</div>
+
+</a>
+
+<a href="documents/doc03.html" class="entry">
+
+<div class="entry-title">
+DOC-03 // CONTROL CONFLICT ANALYSIS
+</div>
+
+<div class="entry-desc">
+Technical breakdown of host resistance behavior and dual-intent execution conflict.
+</div>
+
+</a>
+
+<a href="documents/doc04.html" class="entry">
+
+<div class="entry-title">
+DOC-04 // NODE STRUCTURE MAP
+</div>
+
+<div class="entry-desc">
+Architectural overview of Device continuity-layer structure and node relationships.
+</div>
+
+</a>
+
+<div class="section">
+CONTINUITY EXPOSURE RESEARCH
+</div>
+
+<div class="entry corrupt">
+
+<div class="entry-title">
+DOC-05 // SYNCHRONIZATION FAILURE LOGS
+</div>
+
+<div class="entry-desc">
+Partial recovery only. Multiple sections missing.
+</div>
+
+</div>
+
+<div class="entry corrupt">
+
+<div class="entry-title">
+DOC-06 // CONTINUITY EXPOSURE REPORT
+</div>
+
+<div class="entry-desc">
+Research integrity degraded after prolonged observer sessions.
+</div>
+
+</div>
+
+<div class="entry corrupt">
+
+<div class="entry-title">
+DOC-07 // AKS PROGRESSION NOTES
+</div>
+
+<div class="entry-desc">
+ACCESS CURRENTLY RESTRICTED
+</div>
+
+</div>
+
+<div class="section">
+UNSTABLE STRUCTURES
+</div>
+
+<div class="entry corrupt">
+
+<div class="entry-title">
+DOC-██ // FOUNTAIN EXECUTION THEORY
+</div>
+
+<div class="entry-desc">
+FILE INCOMPLETE
+</div>
+
+</div>
+
+<div class="entry corrupt">
+
+<div class="entry-title">
+DOC-██ // OBSERVER CONTINUITY COLLAPSE
+</div>
+
+<div class="entry-desc">
+UNAUTHORIZED ACCESS DETECTED
+</div>
+
+</div>
+
+<div class="footer">
+
+DVC-02 BUILD: 0.2.1
+
+LAST VERIFIED:
+[UNCONFIRMED]
+
+RESEARCH STATUS:
+ONGOING
+
+NOTE:
+Several documents appear to have been revised repeatedly
+without corresponding archive timestamps.
+
+</div>
+
+</div>
+
+</body>
+</html>
