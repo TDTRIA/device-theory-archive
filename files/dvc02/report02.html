@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DVC-02 // DOC-02 // OBSERVER COMPATIBILITY CHART</title>
+
+<style>
+
+body{
+    margin:0;
+    background:
+        radial-gradient(circle at top, rgba(70,90,160,0.08), transparent 55%),
+        linear-gradient(to bottom, #05060d, #03040a 65%, #020208);
+    color:#d7dcef;
+    font-family:"Courier New", monospace;
+    overflow-x:hidden;
+    letter-spacing:0.4px;
+    text-shadow:0 0 3px rgba(180,210,255,0.05);
+    position:relative;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+
+    background:repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.012),
+        rgba(255,255,255,0.012) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+
+    opacity:0.45;
+    z-index:999;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+
+    background-image:
+        linear-gradient(rgba(120,140,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120,140,255,0.025) 1px, transparent 1px);
+
+    background-size:42px 42px;
+
+    opacity:0.25;
+    z-index:-1;
+}
+
+/* CONTAINER */
+
+.container{
+    max-width:980px;
+    margin:auto;
+    padding:50px;
+    position:relative;
+    z-index:2;
+}
+
+/* BACK */
+
+.back{
+    display:inline-block;
+    margin-bottom:35px;
+    color:#7f90c9;
+    text-decoration:none;
+    transition:0.2s;
+    letter-spacing:1px;
+}
+
+.back:hover{
+    color:white;
+    transform:translateX(-4px);
+}
+
+/* HEADER */
+
+.header{
+    border:1px solid #2f3a63;
+    background:rgba(10,12,22,0.88);
+    padding:35px;
+    margin-bottom:40px;
+    box-shadow:0 0 22px rgba(90,120,255,0.08);
+}
+
+.title{
+    font-size:30px;
+    color:#c6d4ff;
+    letter-spacing:4px;
+    margin-bottom:18px;
+}
+
+.meta{
+    color:#8d9cc9;
+    line-height:2;
+    letter-spacing:1px;
+    font-size:14px;
+}
+
+/* WARNING */
+
+.warning{
+    border-left:3px solid #7487c9;
+    background:rgba(12,16,28,0.84);
+    padding:22px;
+    margin-bottom:45px;
+    line-height:2;
+    color:#b4c0e8;
+}
+
+/* SECTIONS */
+
+.section{
+    margin-top:55px;
+    margin-bottom:20px;
+    color:#95adff;
+    font-size:15px;
+    letter-spacing:4px;
+    border-bottom:1px solid #2d3655;
+    padding-bottom:10px;
+}
+
+/* CONTENT */
+
+.content{
+    line-height:2.1;
+    color:#d7dcef;
+    font-size:15px;
+}
+
+/* BLOCK */
+
+.block{
+    background:rgba(10,12,22,0.82);
+    border:1px solid #2d3655;
+    padding:22px;
+    margin:30px 0;
+    color:#b9c7ea;
+    line-height:2;
+}
+
+/* CHART */
+
+.chart{
+    margin-top:35px;
+    margin-bottom:35px;
+    border:1px solid #34426a;
+    background:rgba(10,12,22,0.92);
+}
+
+.row{
+    display:flex;
+    border-bottom:1px solid #27314e;
+}
+
+.row:last-child{
+    border-bottom:none;
+}
+
+.cell{
+    flex:1;
+    padding:16px;
+    font-size:14px;
+    line-height:1.8;
+}
+
+.head{
+    background:rgba(25,32,55,0.92);
+    color:#c9d5ff;
+    letter-spacing:2px;
+}
+
+/* FOOTER */
+
+.footer{
+    margin-top:80px;
+    padding-top:25px;
+    border-top:1px solid #27324b;
+    color:#66749b;
+    font-size:12px;
+    line-height:2;
+    letter-spacing:1px;
+}
+
+/* SELECTION */
+
+::selection{
+    background:#4d67aa;
+    color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="dvc02.html" class="back">
+← RETURN TO DVC-02 DIRECTORY
+</a>
+
+<div class="header">
+
+<div class="title">
+DOC-02 // OBSERVER COMPATIBILITY CHART
+</div>
+
+<div class="meta">
+
+DEVICE THEORY INSTITUTION
+
+<br><br>
+
+FILE:
+DVC-02-02
+
+<br>
+
+CLASSIFICATION:
+LIMITED INTERNAL ACCESS
+
+<br>
+
+STATUS:
+ONGOING TESTING
+
+<br><br>
+
+ARCHIVE NOTE:
+Observer synchronization thresholds remain unstable.
+
+</div>
+
+</div>
+
+<div class="warning">
+
+NOTICE:
+
+Compatibility scoring does not measure:
+intelligence,
+behavioral morality,
+or emotional stability.
+
+Observed compatibility is determined exclusively by:
+continuation persistence,
+synchronization tolerance,
+and override responsiveness.
+
+</div>
+
+<div class="content">
+
+<div class="section">
+SUMMARY
+</div>
+
+The following chart was developed
+to measure observer synchronization stability
+during prolonged continuity exposure sessions.
+
+Initial testing attempted to determine:
+why certain observers demonstrated
+significantly stronger interface synchronization
+than others.
+
+Results indicate:
+compatibility is not random.
+
+Repeated exposure testing suggests
+certain behavioral traits dramatically increase
+observer-interface stability.
+
+Most notably:
+subjects displaying high continuation persistence
+consistently achieved deeper synchronization thresholds.
+
+This finding remains under active review.
+
+<div class="section">
+PRIMARY COMPATIBILITY MODEL
+</div>
+
+<div class="chart">
+
+<div class="row head">
+
+<div class="cell">
+TRAIT
+</div>
+
+<div class="cell">
+SYNCHRONIZATION EFFECT
+</div>
+
+<div class="cell">
+RISK LEVEL
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="cell">
+Continuation Persistence
+</div>
+
+<div class="cell">
+Increases long-term interface stability
+</div>
+
+<div class="cell">
+HIGH
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="cell">
+Behavioral Compliance
+</div>
+
+<div class="cell">
+Improves synchronization retention
+</div>
+
+<div class="cell">
+MODERATE
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="cell">
+Outcome Fixation
+</div>
+
+<div class="cell">
+Increases override persistence
+</div>
+
+<div class="cell">
+HIGH
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="cell">
+Deviation Curiosity
+</div>
+
+<div class="cell">
+Promotes anomaly discovery behavior
+</div>
+
+<div class="cell">
+ELEVATED
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="cell">
+Session Detachment
+</div>
+
+<div class="cell">
+Weakens observer synchronization
+</div>
+
+<div class="cell">
+LOW
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+CONTINUATION PERSISTENCE
+</div>
+
+Of all measured variables,
+continuation persistence demonstrated
+the strongest correlation with synchronization depth.
+
+Subjects willing to:
+repeat actions,
+revisit unstable paths,
+or continue interaction despite discomfort
+consistently produced higher interface stability.
+
+This behavior appears especially significant
+during anomaly exposure events.
+
+Researchers initially believed
+extended continuation behavior
+represented simple curiosity.
+
+Current findings no longer support this assumption.
+
+The interface appears responsive
+to persistence itself.
+
+This may explain:
+why prolonged exposure increases
+observer synchronization intensity over time.
+
+<div class="section">
+DEVIATION RESPONSE TESTING
+</div>
+
+Additional testing was performed
+using restricted continuity deviations.
+
+Subjects exposed to:
+behavioral inconsistencies,
+environmental instability,
+and unresolved continuity structures
+demonstrated one of two responses:
+
+- disengagement
+or
+- intensified continuation behavior
+
+Observers falling into the second category
+consistently displayed elevated compatibility scores.
+
+This finding remains poorly understood.
+
+The system appears to favor:
+continued interaction under unstable conditions.
+
+Why this occurs remains unresolved.
+
+<div class="section">
+SYNCHRONIZATION THRESHOLDS
+</div>
+
+<div class="block">
+
+LOW COMPATIBILITY:
+
+<br><br>
+
+- weak interface retention
+
+<br>
+
+- limited anomaly recognition
+
+<br>
+
+- reduced continuation persistence
+
+<br><br>
+
+MODERATE COMPATIBILITY:
+
+<br><br>
+
+- stable synchronization
+
+<br>
+
+- increased environmental association
+
+<br>
+
+- partial override consistency
+
+<br><br>
+
+HIGH COMPATIBILITY:
+
+<br><br>
+
+- prolonged synchronization retention
+
+<br>
+
+- elevated continuation fixation
+
+<br>
+
+- strong override persistence
+
+<br>
+
+- increased anomaly responsiveness
+
+</div>
+
+No observer has yet demonstrated
+complete synchronization saturation.
+
+At present,
+upper thresholds remain unknown.
+
+Several researchers have recommended
+termination of deep compatibility testing.
+
+Request status:
+DENIED.
+
+<div class="section">
+ANOMALY ASSOCIATION
+</div>
+
+An unexpected pattern emerged
+during late-stage compatibility analysis.
+
+Observers with elevated synchronization scores
+demonstrated significantly higher rates of:
+- anomaly detection
+- hidden structure recognition
+- continuity deviation pursuit
+
+This suggests:
+the interface may not merely respond to input.
+
+It may selectively reinforce
+certain observer behaviors.
+
+The implications of this remain unclear.
+
+Current evidence suggests
+the system is not passive.
+
+It adapts to engagement patterns.
+
+<div class="section">
+PERSONAL ENTRY // M
+</div>
+
+The compatibility scores are misleading.
+
+They imply:
+the observer is adapting to the interface.
+
+I think the opposite is happening.
+
+The interface adapts to the observer.
+
+That would explain:
+why synchronization deepens over time,
+why anomaly responsiveness increases,
+and why continuation becomes harder to interrupt.
+
+We are not measuring compatibility.
+
+We are measuring integration.
+
+I requested access to restricted deviation testing
+following the latest synchronization review.
+
+Approval was immediate.
+
+That concerns me more than the results.
+
+</div>
+
+<div class="footer">
+
+END OF FILE
+
+<br><br>
+
+DVC-02-02
+
+</div>
+
+</div>
+
+</body>
+</html>
