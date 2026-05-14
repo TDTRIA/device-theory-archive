@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DVC-02 // DOC-05 // DEVIATION THRESHOLD TESTING</title>
+
+<style>
+
+body{
+    margin:0;
+    background:
+        radial-gradient(circle at top, rgba(90,110,200,0.08), transparent 55%),
+        linear-gradient(to bottom, #05060d, #02030a 70%, #010106);
+    color:#d7dcef;
+    font-family:"Courier New", monospace;
+    overflow-x:hidden;
+    letter-spacing:0.4px;
+    text-shadow:0 0 3px rgba(180,210,255,0.05);
+    position:relative;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+
+    background:repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.012),
+        rgba(255,255,255,0.012) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+
+    opacity:0.45;
+    z-index:999;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+
+    background-image:
+        linear-gradient(rgba(120,140,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120,140,255,0.025) 1px, transparent 1px);
+
+    background-size:42px 42px;
+
+    opacity:0.2;
+    z-index:-1;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:50px;
+    position:relative;
+    z-index:2;
+}
+
+.back{
+    display:inline-block;
+    margin-bottom:35px;
+    color:#7f90c9;
+    text-decoration:none;
+    transition:0.2s;
+    letter-spacing:1px;
+}
+
+.back:hover{
+    color:white;
+    transform:translateX(-4px);
+}
+
+.header{
+    border:1px solid #2f3a63;
+    background:rgba(10,12,22,0.9);
+    padding:40px;
+    margin-bottom:40px;
+    box-shadow:0 0 25px rgba(90,120,255,0.08);
+}
+
+.title{
+    font-size:32px;
+    color:#c6d4ff;
+    letter-spacing:5px;
+    margin-bottom:18px;
+}
+
+.meta{
+    color:#8d9cc9;
+    line-height:2;
+    font-size:14px;
+}
+
+.warning{
+    border-left:3px solid #7e8fd1;
+    background:rgba(12,16,28,0.85);
+    padding:25px;
+    margin-bottom:45px;
+    line-height:2;
+    color:#bcc8ef;
+}
+
+.section{
+    margin-top:70px;
+    margin-bottom:20px;
+    color:#95adff;
+    font-size:15px;
+    letter-spacing:4px;
+    border-bottom:1px solid #2d3655;
+    padding-bottom:12px;
+}
+
+.content{
+    line-height:2.2;
+    color:#d7dcef;
+    font-size:15px;
+}
+
+.block{
+    background:rgba(10,12,22,0.84);
+    border:1px solid #2d3655;
+    padding:24px;
+    margin:35px 0;
+    color:#b9c7ea;
+    line-height:2;
+}
+
+.diagram{
+    text-align:center;
+    white-space:pre-line;
+    margin-top:35px;
+    margin-bottom:35px;
+    padding:32px;
+    background:rgba(10,12,22,0.92);
+    border:1px solid #34426a;
+    color:#dce5ff;
+    line-height:2.5;
+}
+
+.log{
+    margin-top:35px;
+    margin-bottom:35px;
+    padding:25px;
+    background:rgba(7,9,18,0.95);
+    border:1px solid #26314f;
+    color:#aebee8;
+    line-height:2.1;
+    font-size:14px;
+}
+
+.glitch{
+    animation:flicker 5s infinite;
+}
+
+@keyframes flicker{
+
+0%{opacity:1;}
+2%{opacity:0.5;}
+3%{opacity:1;}
+60%{opacity:1;}
+61%{opacity:0.4;}
+62%{opacity:1;}
+
+}
+
+.footer{
+    margin-top:90px;
+    padding-top:30px;
+    border-top:1px solid #27324b;
+    color:#66749b;
+    font-size:12px;
+    line-height:2;
+    letter-spacing:1px;
+}
+
+::selection{
+    background:#4d67aa;
+    color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="dvc02.html" class="back">
+← RETURN TO DVC-02 DIRECTORY
+</a>
+
+<div class="header">
+
+<div class="title">
+DOC-05 // DEVIATION THRESHOLD TESTING
+</div>
+
+<div class="meta">
+
+DEVICE THEORY INSTITUTION
+
+<br><br>
+
+FILE:
+DVC-02-05
+
+<br>
+
+CLASSIFICATION:
+RESTRICTED EXPERIMENTAL DATA
+
+<br>
+
+STATUS:
+TESTING ONGOING
+
+<br>
+
+ACCESS LEVEL:
+LEVEL 4 OR HIGHER
+
+<br><br>
+
+ARCHIVE NOTE:
+
+This report documents the point
+at which standard continuity behavior
+begins transitioning into unstable deviation response.
+
+Threshold values remain inconsistent.
+
+</div>
+
+</div>
+
+<div class="warning">
+
+WARNING:
+
+Deviation threshold exposure has resulted in:
+<br><br>
+
+- elevated synchronization retention
+
+<br>
+
+- recursive continuation behavior
+
+<br>
+
+- abnormal emotional fixation
+
+<br>
+
+- repeated unauthorized session returns
+
+<br><br>
+
+Multiple personnel refused
+recommended cooldown intervals.
+
+</div>
+
+<div class="content">
+
+<div class="section">
+SUMMARY
+</div>
+
+Deviation Threshold Testing was initiated
+to determine:
+when continuity structures begin responding
+outside expected progression behavior.
+
+Early experiments assumed
+deviation emergence required:
+environmental corruption,
+structural instability,
+or synchronization failure.
+
+Current evidence does not support this.
+
+Instead,
+deviation behavior appears linked directly to:
+persistent continuation behavior.
+
+Most notably:
+override persistence.
+
+The threshold is not triggered by error.
+
+It is triggered by intent.
+
+<div class="section">
+PRIMARY THRESHOLD MODEL
+</div>
+
+<div class="diagram">
+
+STANDARD INTERACTION
+        │
+        ▼
+REPEATED CONTINUATION
+        │
+        ▼
+OVERRIDE PERSISTENCE
+        │
+        ▼
+INSTABILITY RESPONSE
+        │
+        ▼
+DEVIATION ACCESS
+
+</div>
+
+Testing suggests:
+continuity structures tolerate
+a limited degree of behavioral override
+before instability begins escalating rapidly.
+
+Once threshold levels are exceeded,
+the environment itself appears to change.
+
+Not visually at first.
+
+Behaviorally.
+
+<div class="section">
+EARLY THRESHOLD INDICATORS
+</div>
+
+Researchers identified several recurring signs
+preceding deviation emergence.
+
+These include:
+- delayed environmental response
+- interaction inconsistencies
+- unusual dialogue repetition
+- synchronization discomfort
+- increased resistance behavior
+- progression pacing irregularities
+
+Most observers initially ignored these signs.
+
+However,
+subjects demonstrating high continuation persistence
+continued interaction despite instability.
+
+Those sessions produced
+the highest deviation emergence rates.
+
+<div class="block">
+
+IMPORTANT FINDING:
+
+Deviation escalation increases
+when observers continue progression
+after recognizing instability.
+
+Recognition itself may be significant.
+
+</div>
+
+<div class="section">
+OVERRIDE PERSISTENCE TESTING
+</div>
+
+Controlled experiments revealed
+that repeated override behavior
+dramatically accelerates threshold destabilization.
+
+Observers instructed to:
+- repeat progression loops
+- force unstable interactions
+- continue despite resistance indicators
+
+produced measurable continuity response changes.
+
+The environment began:
+- withholding expected interactions
+- altering pacing behavior
+- reducing stabilization events
+- increasing atmospheric hostility
+
+Researchers originally interpreted this
+as continuity corruption.
+
+Current findings suggest:
+the system is adapting dynamically.
+
+<div class="diagram">
+
+RESISTANCE
+        │
+IGNORED
+        ▼
+OVERRIDE CONTINUES
+        │
+        ▼
+STABILITY DECLINE
+        │
+        ▼
+DEVIATION EMERGENCE
+
+</div>
+
+<div class="section">
+DEVIATION RESPONSE EVENTS
+</div>
+
+Several threshold sessions produced
+unusual environmental responses.
+
+Observed effects include:
+- inaccessible interactions becoming available
+- progression routes altering unexpectedly
+- emotional behavior divergence
+- continuity pacing acceleration
+- environmental silence events
+
+The silence events remain poorly understood.
+
+During these moments,
+standard environmental responsiveness declined sharply.
+
+Observers consistently described:
+the sensation that “something was waiting.”
+
+No measurable source was identified.
+
+<div class="log">
+
+THRESHOLD LOG // T-08
+
+<br><br>
+
+Observer instructed to discontinue
+override testing following instability escalation.
+
+Observer ignored instruction.
+
+Continuation persisted for an additional
+47 minutes.
+
+<br><br>
+
+Environmental interaction frequency declined steadily.
+
+Background response systems became inconsistent.
+
+Entity resistance behavior intensified.
+
+<br><br>
+
+At timestamp 02:18:44,
+continuity pacing changed abruptly.
+
+No known trigger identified.
+
+Observer later stated:
+
+“it felt like the environment realized
+I was not going to stop.”
+
+</div>
+
+<div class="section">
+NULL ROUTE CORRELATION
+</div>
+
+The designation:
+<span class="glitch">NULL ROUTE</span>
+
+began appearing consistently
+during advanced threshold sessions.
+
+Researchers originally assumed
+the pathway represented:
+high-instability continuity collapse.
+
+Evidence no longer supports this conclusion.
+
+The pathway displays:
+- structural consistency
+- progression logic
+- escalating responsiveness
+- intentional pacing behavior
+
+This suggests:
+the route is not random.
+
+It exists.
+
+More concerning:
+the route appears inaccessible
+without elevated override persistence.
+
+<div class="block">
+
+CURRENT THEORY:
+
+Deviation pathways are not discovered.
+
+They are unlocked.
+
+</div>
+
+<div class="section">
+OBSERVER FIXATION EFFECTS
+</div>
+
+Threshold exposure produced
+unexpected behavioral changes among personnel.
+
+Documented symptoms include:
+- compulsive continuation behavior
+- emotional desensitization
+- increased deviation curiosity
+- resistance suppression tendencies
+- post-session environmental fixation
+
+Several researchers independently described:
+wanting to see “how far the route continued.”
+
+This phrase emerged repeatedly
+across unrelated personnel interviews.
+
+No common source was identified.
+
+<div class="section">
+INTERNAL REVIEW NOTE
+</div>
+
+The original purpose of threshold testing
+was containment.
+
+Researchers believed:
+if deviation emergence conditions were understood,
+they could be prevented.
+
+Current evidence suggests:
+the opposite may be true.
+
+The more the structure is studied,
+the easier threshold access becomes.
+
+This should not be possible.
+
+Several archived sessions
+produced lower threshold activation requirements
+after repeated exposure cycles.
+
+In simple terms:
+
+continuation itself
+appears to reduce resistance.
+
+<div class="section">
+PERSONAL ENTRY // M
+</div>
+
+I reviewed the threshold sessions again.
+
+The progression patterns are becoming obvious.
+
+The instability does not begin
+when the environment changes.
+
+It begins when the observer refuses to stop.
+
+That is the actual threshold.
+
+The continuity responds afterward.
+
+I think we misunderstood deviation entirely.
+
+We believed the structures became unstable
+because synchronization was failing.
+
+Now I think synchronization is succeeding.
+
+The route changes because the observer proves
+they are willing to continue
+regardless of resistance.
+
+That may be the requirement.
+
+Not skill.
+Not knowledge.
+
+Persistence.
+
+I requested suspension
+of high-threshold override testing.
+
+Approval status:
+DENIED.
+
+The request was returned
+without reviewer identification.
+
+</div>
+
+<div class="footer">
+
+END OF FILE
+
+<br><br>
+
+DVC-02-05
+
+</div>
+
+</div>
+
+</body>
+</html>
