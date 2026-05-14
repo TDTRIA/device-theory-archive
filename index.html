@@ -14,6 +14,7 @@ body{
     color:white;
     font-family:"Courier New", monospace;
     overflow:hidden;
+    opacity:1;
 }
 
 .scanlines::before{
@@ -48,6 +49,7 @@ body{
     letter-spacing:6px;
     margin-bottom:15px;
     text-align:center;
+    color:#ffffff;
 }
 
 .subtitle{
@@ -96,6 +98,7 @@ input{
     color:#8b2f2f;
     opacity:0;
     transition:0.3s;
+    letter-spacing:2px;
 }
 
 .footer{
@@ -106,6 +109,22 @@ input{
     letter-spacing:2px;
 }
 
+.flash{
+    animation:flicker 3s infinite;
+}
+
+@keyframes flicker{
+
+    0%{opacity:1;}
+    2%{opacity:0.5;}
+    4%{opacity:1;}
+    33%{opacity:1;}
+    34%{opacity:0.3;}
+    36%{opacity:1;}
+    100%{opacity:1;}
+
+}
+
 </style>
 </head>
 
@@ -113,7 +132,7 @@ input{
 
 <div class="container">
 
-<div class="logo">
+<div class="logo flash">
 DEVICE CONTINUITY NETWORK
 </div>
 
@@ -153,6 +172,16 @@ DCN BUILD // OBSERVER LAYER ACTIVE
 
 </div>
 
+<!-- ACCEPT SOUND -->
+<audio id="acceptSound">
+    <source src="audio/accept.mp3" type="audio/mpeg">
+</audio>
+
+<!-- DENIED SOUND -->
+<audio id="denySound">
+    <source src="audio/deny.mp3" type="audio/mpeg">
+</audio>
+
 <script>
 
 const input = document.getElementById("password");
@@ -166,18 +195,20 @@ input.addEventListener("keydown", function(e){
 
         if(value === "DEVICE"){
 
-    document.getElementById("acceptSound").play();
+            document.getElementById("acceptSound").play();
 
-    document.body.style.transition = "1.2s";
-    document.body.style.opacity = "0";
+            document.body.style.transition = "1.2s";
+            document.body.style.opacity = "0";
 
-    setTimeout(() => {
+            setTimeout(() => {
 
-        window.location.href = "archive.html";
+                window.location.href = "archive.html";
 
-    }, 1200);
+            }, 1200);
 
-} else {
+        } else {
+
+            document.getElementById("denySound").play();
 
             error.style.opacity = "1";
 
@@ -188,9 +219,7 @@ input.addEventListener("keydown", function(e){
     }
 
 });
-<audio id="acceptSound">
-    <source src="audio/accept.mp3" type="audio/mpeg">
-</audio>
+
 </script>
 
 </body>
