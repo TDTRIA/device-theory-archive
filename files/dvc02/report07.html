@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DVC-02 // DOC-07 // RESTRICTED PATHWAY OBSERVATION</title>
+
+<style>
+
+body{
+    margin:0;
+    background:
+        radial-gradient(circle at top, rgba(95,110,210,0.08), transparent 55%),
+        linear-gradient(to bottom, #04050c, #02030a 72%, #010106);
+    color:#d7dcef;
+    font-family:"Courier New", monospace;
+    overflow-x:hidden;
+    letter-spacing:0.4px;
+    text-shadow:0 0 3px rgba(180,210,255,0.05);
+    position:relative;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+
+    background:repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.012),
+        rgba(255,255,255,0.012) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+
+    opacity:0.45;
+    z-index:999;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+
+    background-image:
+        linear-gradient(rgba(120,140,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120,140,255,0.025) 1px, transparent 1px);
+
+    background-size:42px 42px;
+
+    opacity:0.2;
+    z-index:-1;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:50px;
+    position:relative;
+    z-index:2;
+}
+
+.back{
+    display:inline-block;
+    margin-bottom:35px;
+    color:#7f90c9;
+    text-decoration:none;
+    transition:0.2s;
+    letter-spacing:1px;
+}
+
+.back:hover{
+    color:white;
+    transform:translateX(-4px);
+}
+
+.header{
+    border:1px solid #2f3a63;
+    background:rgba(10,12,22,0.9);
+    padding:40px;
+    margin-bottom:40px;
+    box-shadow:0 0 25px rgba(90,120,255,0.08);
+}
+
+.title{
+    font-size:32px;
+    color:#c6d4ff;
+    letter-spacing:5px;
+    margin-bottom:18px;
+}
+
+.meta{
+    color:#8d9cc9;
+    line-height:2;
+    font-size:14px;
+}
+
+.warning{
+    border-left:3px solid #7e8fd1;
+    background:rgba(12,16,28,0.85);
+    padding:25px;
+    margin-bottom:45px;
+    line-height:2;
+    color:#bcc8ef;
+}
+
+.section{
+    margin-top:70px;
+    margin-bottom:20px;
+    color:#95adff;
+    font-size:15px;
+    letter-spacing:4px;
+    border-bottom:1px solid #2d3655;
+    padding-bottom:12px;
+}
+
+.content{
+    line-height:2.2;
+    color:#d7dcef;
+    font-size:15px;
+}
+
+.block{
+    background:rgba(10,12,22,0.84);
+    border:1px solid #2d3655;
+    padding:24px;
+    margin:35px 0;
+    color:#b9c7ea;
+    line-height:2;
+}
+
+.diagram{
+    text-align:center;
+    white-space:pre-line;
+    margin-top:35px;
+    margin-bottom:35px;
+    padding:32px;
+    background:rgba(10,12,22,0.92);
+    border:1px solid #34426a;
+    color:#dce5ff;
+    line-height:2.5;
+}
+
+.log{
+    margin-top:35px;
+    margin-bottom:35px;
+    padding:25px;
+    background:rgba(7,9,18,0.95);
+    border:1px solid #26314f;
+    color:#aebee8;
+    line-height:2.1;
+    font-size:14px;
+}
+
+.corrupt{
+    opacity:0.45;
+    letter-spacing:2px;
+}
+
+.glitch{
+    animation:flicker 6s infinite;
+}
+
+@keyframes flicker{
+
+0%{opacity:1;}
+1%{opacity:0.4;}
+2%{opacity:1;}
+80%{opacity:1;}
+81%{opacity:0.3;}
+82%{opacity:1;}
+
+}
+
+.footer{
+    margin-top:90px;
+    padding-top:30px;
+    border-top:1px solid #27324b;
+    color:#66749b;
+    font-size:12px;
+    line-height:2;
+    letter-spacing:1px;
+}
+
+::selection{
+    background:#4d67aa;
+    color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="dvc02.html" class="back">
+← RETURN TO DVC-02 DIRECTORY
+</a>
+
+<div class="header">
+
+<div class="title">
+DOC-07 // RESTRICTED PATHWAY OBSERVATION
+</div>
+
+<div class="meta">
+
+DEVICE THEORY INSTITUTION
+
+<br><br>
+
+FILE:
+DVC-02-07
+
+<br>
+
+CLASSIFICATION:
+HIGH DEVIATION MATERIAL
+
+<br>
+
+STATUS:
+ACTIVE CONTAINMENT REVIEW
+
+<br>
+
+ACCESS LEVEL:
+LEVEL 5 REQUIRED
+
+<br><br>
+
+ARCHIVE NOTE:
+
+The following report contains
+direct observation records
+from confirmed restricted pathway sessions.
+
+Several recordings remain unavailable.
+
+</div>
+
+</div>
+
+<div class="warning">
+
+WARNING:
+
+Reviewing restricted pathway material
+has resulted in:
+<br><br>
+
+- compulsive continuation behavior
+
+<br>
+
+- elevated emotional desensitization
+
+<br>
+
+- persistent synchronization fixation
+
+<br>
+
+- unresolved pathway ideation
+
+<br>
+
+- unauthorized archive access attempts
+
+<br><br>
+
+Personnel are advised
+to discontinue review immediately
+if continuation impulses intensify.
+
+</div>
+
+<div class="content">
+
+<div class="section">
+SUMMARY
+</div>
+
+Restricted Pathways represent:
+continuity structures inaccessible
+through standard progression behavior.
+
+Initial researchers believed:
+these pathways emerged accidentally
+during high-instability sessions.
+
+This conclusion is no longer supported.
+
+Current evidence suggests:
+restricted pathways require
+specific observer behavior patterns
+before access conditions become available.
+
+Most notably:
+persistent override continuation.
+
+The structures do not appear corrupted.
+
+They appear selective.
+
+<div class="section">
+ACCESS CONDITION MODEL
+</div>
+
+<div class="diagram">
+
+RESISTANCE DETECTED
+        │
+        ▼
+OVERRIDE CONTINUES
+        │
+        ▼
+INSTABILITY ESCALATES
+        │
+        ▼
+THRESHOLD EXCEEDED
+        │
+        ▼
+RESTRICTED PATHWAY ACCESS
+
+</div>
+
+Repeated testing confirms:
+standard synchronization behavior
+rarely produces restricted access conditions.
+
+Observers demonstrating:
+hesitation,
+empathy,
+or progression withdrawal
+consistently failed to trigger pathway emergence.
+
+Observers who ignored resistance indicators
+produced the highest access rates.
+
+This finding remains ethically unresolved.
+
+<div class="section">
+EARLY OBSERVATION EVENTS
+</div>
+
+The earliest restricted pathway recordings
+appeared incomplete.
+
+Environmental transitions became unstable.
+Interaction pacing changed abruptly.
+Atmospheric response intensified.
+
+Most researchers assumed:
+the continuity was collapsing.
+
+Further review disproved this.
+
+The structures remained internally consistent.
+
+The pathway was functioning correctly.
+
+It was simply functioning differently.
+
+<div class="block">
+
+IMPORTANT:
+
+Restricted pathways do not behave randomly.
+
+Every confirmed session demonstrated:
+- escalation logic
+- structural consistency
+- progression continuity
+- environmental adaptation
+
+</div>
+
+<div class="section">
+ENVIRONMENTAL RESPONSE CHANGES
+</div>
+
+Restricted pathways produce
+significant environmental deviation behavior.
+
+Observed effects include:
+- reduced ambient interaction
+- altered pacing structures
+- interaction suppression
+- emotional atmosphere escalation
+- accelerated progression pressure
+
+Most disturbing:
+the environments become quieter
+as continuation persists.
+
+Researchers repeatedly described:
+the sensation that the continuity
+was “waiting for observer input.”
+
+No explanation has been verified.
+
+<div class="diagram">
+
+STANDARD CONTINUITY
+        │
+        ▼
+DEVIATION EXPOSURE
+        │
+        ▼
+ENVIRONMENTAL WITHDRAWAL
+        │
+        ▼
+RESTRICTED RESPONSE STATE
+
+</div>
+
+<div class="section">
+ENTITY RESPONSE ESCALATION
+</div>
+
+Entities exposed to restricted pathway progression
+demonstrated severe behavioral divergence.
+
+Observed effects include:
+- reduced emotional responsiveness
+- increased resistance hesitation
+- altered interaction patterns
+- abnormal silence events
+- progression avoidance behavior
+
+Several entities displayed:
+visible hesitation
+before observer continuation events.
+
+The observer continued regardless.
+
+Review personnel later described
+these recordings as:
+“difficult to watch.”
+
+<div class="log">
+
+OBSERVATION LOG // RP-12
+
+<br><br>
+
+Restricted pathway conditions confirmed
+following prolonged override persistence.
+
+Environmental interaction frequency declined sharply.
+
+Ambient response systems reduced gradually
+over the course of progression.
+
+<br><br>
+
+At timestamp 01:11:04,
+entity movement halted
+despite continued observer command input.
+
+Pause duration:
+6.3 seconds.
+
+No mechanical interruption detected.
+
+<br><br>
+
+Observer continuation resumed immediately afterward.
+
+Research annotation:
+
+“the hesitation appeared emotional”
+
+</div>
+
+<div class="section">
+CONTINUATION FIXATION
+</div>
+
+One of the most severe effects
+associated with restricted pathways
+is continuation fixation escalation.
+
+Observers repeatedly demonstrated:
+- refusal to disengage
+- progression prioritization
+- emotional suppression behavior
+- increasing override justification
+
+Several observers acknowledged:
+recognizing instability
+while continuing progression intentionally.
+
+This distinction is critical.
+
+The continuation was not accidental.
+
+It was chosen.
+
+<div class="block">
+
+ARCHIVE NOTE:
+
+The phrase:
+<span class="glitch">“JUST KEEP GOING”</span>
+
+appears repeatedly
+in restricted pathway session notes.
+
+Origin unknown.
+
+</div>
+
+<div class="section">
+PATHWAY STABILITY REVIEW
+</div>
+
+Researchers initially expected
+restricted pathways to collapse
+under prolonged observation.
+
+The opposite occurred.
+
+The structures became more stable
+the longer continuation persisted.
+
+Environmental pacing aligned.
+Progression logic intensified.
+Deviation response accelerated.
+
+This finding deeply concerns
+remaining review personnel.
+
+If restricted pathways stabilize
+through observer persistence,
+then continuation itself
+may reinforce deviation architecture.
+
+Several researchers requested:
+immediate suspension
+of all restricted pathway testing.
+
+Request outcome:
+DENIED.
+
+<div class="section">
+UNAUTHORIZED SESSION EVENTS
+</div>
+
+Multiple personnel accessed
+restricted recordings
+outside assigned review authorization.
+
+Most claimed:
+they intended only brief observation.
+
+Several remained engaged
+for multiple consecutive hours.
+
+One researcher reportedly stated:
+
+“I wanted to see if the route stopped.”
+
+No confirmed restricted pathway session
+has yet demonstrated
+a natural termination point.
+
+<div class="log">
+
+INTERNAL INCIDENT REPORT // R-03
+
+<br><br>
+
+Research personnel entered
+restricted archive review sector
+without authorization.
+
+Personnel remained inside
+for approximately 3 hours.
+
+Review footage confirms:
+multiple opportunities for disengagement.
+
+None were taken.
+
+<br><br>
+
+When questioned afterward,
+personnel stated:
+
+“It felt wrong to leave it unfinished.”
+
+</div>
+
+<div class="section">
+INTERNAL REVIEW NOTE
+</div>
+
+The original assumption:
+that deviation pathways represented
+continuity failure
+has become increasingly difficult to defend.
+
+The structures display:
+consistency,
+adaptation,
+and response behavior.
+
+Most concerning:
+they appear dependent
+on observer willingness to continue.
+
+This implies:
+the pathways are not merely discovered.
+
+They are participated in.
+
+<div class="section">
+PERSONAL ENTRY // M
+</div>
+
+I watched another restricted pathway session tonight.
+
+I should not have.
+
+The silence is becoming the worst part.
+
+Not because it is empty.
+
+Because it feels expectant.
+
+The environments stop behaving naturally.
+The pacing changes.
+Everything narrows toward continuation.
+
+And the observer keeps going.
+
+Every time.
+
+I used to think the restricted pathways
+revealed hidden continuity structures.
+
+Now I think they reveal the observer instead.
+
+The route changes
+when resistance is ignored repeatedly.
+
+Not once.
+
+Repeatedly.
+
+That means the pathway is responding
+to demonstrated intent.
+
+I cannot stop thinking about that.
+
+The continuity is learning
+what the observer is willing to do.
+
+And once it learns,
+the pathway opens further.
+
+</div>
+
+<div class="footer">
+
+END OF FILE
+
+<br><br>
+
+DVC-02-07
+
+</div>
+
+</div>
+
+</body>
+</html>
