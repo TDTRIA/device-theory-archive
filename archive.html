@@ -224,4 +224,17 @@ window.addEventListener("keydown", () => {
 </script>
 
 </body>
+    <audio id="bgAudio" loop>
+    <source src="audio/wind.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+window.addEventListener("click", () => {
+
+    document.getElementById("bgAudio").play();
+
+}, { once:true });
+
+</script>
 </html>
