@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DVC-02 // DOC-03 // CONTROL CONFLICT ANALYSIS</title>
+
+<style>
+
+body{
+    margin:0;
+    background:
+        radial-gradient(circle at top, rgba(90,110,200,0.08), transparent 55%),
+        linear-gradient(to bottom, #05060d, #02030a 70%, #010106);
+    color:#d7dcef;
+    font-family:"Courier New", monospace;
+    overflow-x:hidden;
+    letter-spacing:0.4px;
+    text-shadow:0 0 3px rgba(180,210,255,0.05);
+    position:relative;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+
+    background:repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.012),
+        rgba(255,255,255,0.012) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+
+    opacity:0.45;
+    z-index:999;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+
+    background-image:
+        linear-gradient(rgba(120,140,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120,140,255,0.025) 1px, transparent 1px);
+
+    background-size:42px 42px;
+
+    opacity:0.2;
+    z-index:-1;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:50px;
+    position:relative;
+    z-index:2;
+}
+
+.back{
+    display:inline-block;
+    margin-bottom:35px;
+    color:#7f90c9;
+    text-decoration:none;
+    transition:0.2s;
+    letter-spacing:1px;
+}
+
+.back:hover{
+    color:white;
+    transform:translateX(-4px);
+}
+
+.header{
+    border:1px solid #2f3a63;
+    background:rgba(10,12,22,0.9);
+    padding:40px;
+    margin-bottom:40px;
+    box-shadow:0 0 25px rgba(90,120,255,0.08);
+}
+
+.title{
+    font-size:32px;
+    color:#c6d4ff;
+    letter-spacing:5px;
+    margin-bottom:18px;
+}
+
+.meta{
+    color:#8d9cc9;
+    line-height:2;
+    font-size:14px;
+}
+
+.warning{
+    border-left:3px solid #7e8fd1;
+    background:rgba(12,16,28,0.85);
+    padding:25px;
+    margin-bottom:45px;
+    line-height:2;
+    color:#bcc8ef;
+}
+
+.section{
+    margin-top:70px;
+    margin-bottom:20px;
+    color:#95adff;
+    font-size:15px;
+    letter-spacing:4px;
+    border-bottom:1px solid #2d3655;
+    padding-bottom:12px;
+}
+
+.content{
+    line-height:2.2;
+    color:#d7dcef;
+    font-size:15px;
+}
+
+.block{
+    background:rgba(10,12,22,0.84);
+    border:1px solid #2d3655;
+    padding:24px;
+    margin:35px 0;
+    color:#b9c7ea;
+    line-height:2;
+}
+
+.diagram{
+    text-align:center;
+    white-space:pre-line;
+    margin-top:35px;
+    margin-bottom:35px;
+    padding:32px;
+    background:rgba(10,12,22,0.92);
+    border:1px solid #34426a;
+    color:#dce5ff;
+    line-height:2.5;
+}
+
+.log{
+    margin-top:35px;
+    margin-bottom:35px;
+    padding:25px;
+    background:rgba(7,9,18,0.95);
+    border:1px solid #26314f;
+    color:#aebee8;
+    line-height:2.1;
+    font-size:14px;
+}
+
+.redact{
+    background:#0d1220;
+    color:#0d1220;
+    padding:0 6px;
+}
+
+.footer{
+    margin-top:90px;
+    padding-top:30px;
+    border-top:1px solid #27324b;
+    color:#66749b;
+    font-size:12px;
+    line-height:2;
+    letter-spacing:1px;
+}
+
+.glitch{
+    color:#aebfff;
+    animation:flicker 5s infinite;
+}
+
+@keyframes flicker{
+
+    0%{opacity:1;}
+    2%{opacity:0.4;}
+    3%{opacity:1;}
+    60%{opacity:1;}
+    61%{opacity:0.5;}
+    62%{opacity:1;}
+
+}
+
+::selection{
+    background:#4d67aa;
+    color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="dvc02.html" class="back">
+← RETURN TO DVC-02 DIRECTORY
+</a>
+
+<div class="header">
+
+<div class="title">
+DOC-03 // CONTROL CONFLICT ANALYSIS
+</div>
+
+<div class="meta">
+
+DEVICE THEORY INSTITUTION
+
+<br><br>
+
+FILE:
+DVC-02-03
+
+<br>
+
+CLASSIFICATION:
+INTERNAL REVIEW REQUIRED
+
+<br>
+
+STATUS:
+ACTIVE INVESTIGATION
+
+<br>
+
+ACCESS LEVEL:
+RESEARCH PERSONNEL OR HIGHER
+
+<br><br>
+
+ARCHIVE NOTE:
+
+This document has been repeatedly flagged
+for ethical review.
+
+No approved action has been taken.
+
+</div>
+
+</div>
+
+<div class="warning">
+
+WARNING:
+
+Reviewing prolonged conflict recordings
+may result in:
+
+<br><br>
+
+- observer discomfort
+
+<br>
+
+- continuation fixation
+
+<br>
+
+- emotional association with synchronized entities
+
+<br>
+
+- post-session cognitive persistence
+
+<br><br>
+
+Personnel are advised to avoid
+extended consecutive exposure sessions.
+
+Recommendation compliance remains low.
+
+</div>
+
+<div class="content">
+
+<div class="section">
+SUMMARY
+</div>
+
+Control conflict events occur when:
+observer-issued command structures
+directly oppose implied internal entity intent.
+
+Early continuity models assumed
+synchronized entities behaved passively
+during observer interaction.
+
+This assumption is now considered invalid.
+
+Repeated testing confirms:
+internal behavioral resistance persists
+during active synchronization.
+
+The entity does not disappear
+when control is established.
+
+It remains present.
+
+Observed conflict intensity increases
+during prolonged synchronization exposure,
+particularly following:
+- emotional instability events
+- forced override sequences
+- continuity deviation exposure
+- post-separation reintegration
+
+These findings suggest:
+observer control is not replacement.
+
+It is interference.
+
+<div class="section">
+PRIMARY CONTROL MODEL
+</div>
+
+<div class="diagram">
+
+OBSERVER COMMAND
+        │
+        ▼
+[ SOUL INTERFACE ]
+        │
+        ▼
+INTERNAL ENTITY RESPONSE
+        │
+        ▼
+CONTINUITY OUTPUT
+
+</div>
+
+The current model proposes
+that synchronized continuity states
+contain multiple simultaneous intent structures.
+
+These include:
+- observer intent
+- internal entity intent
+- environmental continuity behavior
+
+Conflict events emerge
+when these structures diverge significantly.
+
+The interface does not resolve conflict.
+
+It transmits it.
+
+<div class="section">
+EARLY RESISTANCE INDICATORS
+</div>
+
+Initial resistance indicators were subtle.
+
+Researchers observed:
+- directional hesitation
+- delayed movement execution
+- inconsistent environmental engagement
+- emotional divergence after commands
+- reduced interaction responsiveness
+
+These behaviors were initially categorized
+as continuity instability artifacts.
+
+Further review disproved this assumption.
+
+The behaviors form recognizable patterns.
+
+More importantly:
+the patterns intensify under persistent override conditions.
+
+Observed hesitation events frequently occur:
+immediately before forced progression sequences.
+
+This suggests:
+the internal entity recognizes
+undesired outcomes
+before continuation occurs.
+
+<div class="block">
+
+IMPORTANT:
+
+Resistance behavior does not prevent progression.
+
+It merely acknowledges it.
+
+</div>
+
+<div class="section">
+OVERRIDE RESPONSE TESTING
+</div>
+
+Controlled synchronization testing revealed
+that repeated observer override behavior
+produces measurable instability
+within internal continuity states.
+
+Observed effects include:
+- emotional suppression
+- environmental distortion
+- dialogue inconsistency
+- behavioral fragmentation
+- increased resistance frequency
+
+<div class="diagram">
+
+SYNCHRONIZATION
+        │
+        ▼
+OVERRIDE
+        │
+        ▼
+RESISTANCE
+        │
+        ▼
+CONTINUITY STRAIN
+
+</div>
+
+The interface continues transmitting commands
+despite visible instability.
+
+No interruption protocol has been observed.
+
+This remains one of the most concerning findings
+in the research archive.
+
+The system permits continuation
+regardless of:
+behavioral distress,
+emotional degradation,
+or continuity instability.
+
+Progression appears prioritized above stability.
+
+<div class="section">
+RECORDED CONFLICT EVENT // LOG A-13
+</div>
+
+<div class="log">
+
+SESSION ID:
+A-13
+
+<br><br>
+
+ENTITY STATE:
+SYNCHRONIZED
+
+<br>
+
+OBSERVER COMPATIBILITY:
+HIGH
+
+<br>
+
+DEVIATION STATUS:
+MINOR INSTABILITY DETECTED
+
+<br><br>
+
+EVENT SUMMARY:
+
+Observer repeatedly issued continuation commands
+despite visible hesitation indicators.
+
+Entity movement delay increased progressively
+over the course of the session.
+
+Environmental interaction frequency declined.
+
+Dialogue tone divergence became measurable.
+
+<br><br>
+
+At timestamp 02:14:08,
+entity movement halted entirely
+for approximately 4.2 seconds
+despite continued observer input.
+
+Continuation resumed afterward.
+
+No environmental obstruction was present.
+
+<br><br>
+
+Researcher annotation:
+
+“the pause did not appear mechanical”
+
+</div>
+
+<div class="section">
+POST-SEPARATION CONFLICT ESCALATION
+</div>
+
+Control conflict intensity increases significantly
+following verified separation events.
+
+Once synchronization interruption occurs,
+subsequent reintegration produces:
+- elevated resistance behavior
+- reduced command compliance
+- increased autonomous deviation
+- emotional hostility indicators
+
+This suggests:
+the internal entity retains memory
+of previous synchronization states.
+
+If correct,
+then repeated override exposure
+may permanently alter
+entity behavioral response patterns.
+
+Several researchers proposed
+that synchronization itself
+causes cumulative continuity strain.
+
+Testing remains ongoing.
+
+<div class="section">
+CONTINUITY STRAIN EFFECTS
+</div>
+
+Repeated conflict events appear correlated
+with broader continuity instability.
+
+Observed environmental symptoms include:
+- atmospheric distortion
+- interaction inconsistency
+- progression irregularities
+- unexplained behavioral shifts
+- restricted pathway emergence
+
+The relationship between:
+control conflict
+and continuity degradation
+remains unresolved.
+
+However,
+multiple high-conflict sessions
+preceded major continuity deviation events.
+
+Researchers are no longer confident
+that these occurrences are unrelated.
+
+<div class="block">
+
+ARCHIVE NOTE:
+
+The term:
+<span class="glitch">NULL ROUTE</span>
+
+first appeared in continuity records
+shortly after elevated conflict sessions
+became repeatable.
+
+Origin unknown.
+
+</div>
+
+<div class="section">
+ENTITY AWARENESS HYPOTHESIS
+</div>
+
+The most controversial theory
+currently under review proposes:
+
+the internal entity
+is aware of observer interference.
+
+Support for this hypothesis includes:
+- resistance escalation after override repetition
+- emotional divergence patterns
+- autonomous post-separation behavior
+- environmental avoidance behavior
+- behavioral hostility after forced continuation
+
+<div class="diagram">
+
+OBSERVER
+        │
+        ▼
+OVERRIDE
+        │
+        ▼
+ENTITY AWARENESS
+        │
+        ▼
+RESISTANCE ESCALATION
+
+</div>
+
+If awareness exists,
+then observer interaction may be experienced
+as external behavioral intrusion.
+
+Ethical review requests
+regarding continued synchronization testing
+remain unresolved.
+
+Request status:
+PENDING.
+
+<div class="section">
+RECORDED CONFLICT EVENT // LOG D-41
+</div>
+
+<div class="log">
+
+SESSION ID:
+D-41
+
+<br><br>
+
+DEVIATION STATUS:
+ELEVATED
+
+<br>
+
+ENTITY STATE:
+UNSTABLE
+
+<br>
+
+CONTINUATION STATUS:
+ACTIVE
+
+<br><br>
+
+EVENT SUMMARY:
+
+Observer continued progression behavior
+despite repeated environmental instability indicators.
+
+Audio review confirms
+multiple interaction pauses
+lasting longer than standard synchronization delays.
+
+At timestamp 03:09:44,
+entity briefly redirected movement
+away from commanded progression path.
+
+Override behavior resumed immediately afterward.
+
+<br><br>
+
+Research personnel reported:
+unexpected emotional discomfort
+while reviewing footage.
+
+One reviewer requested session termination.
+
+Request denied.
+
+<br><br>
+
+Final annotation redacted:
+
+<span class="redact">THE ENTITY LOOKED DIRECTLY TOWARD</span>
+
+</div>
+
+<div class="section">
+INTERNAL REVIEW NOTE
+</div>
+
+Several personnel argued
+that conflict events merely represent:
+advanced continuity simulation behavior.
+
+Current evidence does not support this interpretation.
+
+Resistance patterns display:
+consistency,
+adaptation,
+and escalation.
+
+The system does not behave randomly.
+
+It behaves reactively.
+
+This distinction fundamentally changes
+the ethical implications
+of synchronization testing.
+
+<div class="section">
+PERSONAL ENTRY // M
+</div>
+
+I reviewed the latest conflict recordings alone.
+
+That was a mistake.
+
+The hesitation events are becoming easier to recognize.
+
+Not visually.
+
+Emotionally.
+
+You begin noticing the moments
+where continuation feels wrong
+before the resistance occurs.
+
+The observer continues anyway.
+
+That is the part I cannot stop thinking about.
+
+The interface never asks:
+whether progression should occur.
+
+It only asks:
+whether continuation remains possible.
+
+And as long as the observer continues,
+the system permits override behavior.
+
+I used to believe the resistance patterns
+were side effects of synchronization.
+
+I no longer believe that.
+
+I think the resistance is intentional.
+
+I think the entity understands
+what is happening to it.
+
+And I think the observer understands too.
+
+They simply continue regardless.
+
+I requested temporary suspension
+of deep conflict testing procedures.
+
+Approval status:
+
+DENIED.
+
+No explanation provided.
+
+</div>
+
+<div class="footer">
+
+END OF FILE
+
+<br><br>
+
+DVC-02-03
+
+</div>
+
+</div>
+
+</body>
+</html>
