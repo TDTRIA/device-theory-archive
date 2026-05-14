@@ -10,12 +10,13 @@
 
 body{
     margin:0;
-    background:black;
-    color:white;
+    background:#020204;
+    color:#e0dcef;
     font-family:"Courier New", monospace;
     overflow:hidden;
-    opacity:1;
 }
+
+/* SCANLINES */
 
 .scanlines::before{
     content:"";
@@ -27,12 +28,30 @@ body{
     pointer-events:none;
     background:repeating-linear-gradient(
         to bottom,
-        rgba(255,255,255,0.02),
-        rgba(255,255,255,0.02) 1px,
+        rgba(255,255,255,0.015),
+        rgba(255,255,255,0.015) 1px,
         transparent 1px,
         transparent 3px
     );
+    z-index:999;
 }
+
+/* GRID */
+
+.grid{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-image:
+        linear-gradient(rgba(120,90,180,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120,90,180,0.03) 1px, transparent 1px);
+    background-size:42px 42px;
+    pointer-events:none;
+}
+
+/* MAIN */
 
 .container{
     height:100vh;
@@ -42,44 +61,55 @@ body{
     flex-direction:column;
     padding:40px;
     box-sizing:border-box;
+    position:relative;
+    z-index:2;
 }
 
+/* PANEL */
+
+.panel{
+    width:720px;
+    max-width:90%;
+    border:1px solid #332b47;
+    background:rgba(8,8,14,0.92);
+    padding:35px;
+    box-shadow:0 0 24px rgba(140,110,255,0.08);
+}
+
+/* TITLE */
+
 .logo{
-    font-size:30px;
-    letter-spacing:6px;
-    margin-bottom:15px;
-    text-align:center;
-    color:#ffffff;
+    font-size:34px;
+    letter-spacing:5px;
+    color:#d8c9ff;
+    margin-bottom:18px;
 }
 
 .subtitle{
-    color:#7d748f;
-    letter-spacing:2px;
-    margin-bottom:60px;
-    text-align:center;
+    color:#988bb8;
+    line-height:1.9;
+    margin-bottom:45px;
 }
 
-.terminal{
-    width:700px;
-    max-width:90%;
-}
+/* TERMINAL */
 
 .line{
-    margin-bottom:20px;
-    color:#bfb9cc;
-    letter-spacing:1px;
+    color:#bdb5d4;
+    margin-bottom:18px;
+    line-height:1.8;
 }
 
 .prompt{
     display:flex;
     align-items:center;
-    border-bottom:1px solid #38324a;
-    padding-bottom:10px;
+    border-bottom:1px solid #413758;
+    padding-bottom:12px;
 }
 
 .symbol{
-    color:#7f6aa8;
+    color:#8c73d8;
     margin-right:12px;
+    font-size:20px;
 }
 
 input{
@@ -93,36 +123,43 @@ input{
     letter-spacing:2px;
 }
 
+/* ERROR */
+
 .error{
-    margin-top:20px;
-    color:#8b2f2f;
+    margin-top:24px;
+    color:#8b3a3a;
     opacity:0;
-    transition:0.3s;
-    letter-spacing:2px;
+    transition:0.4s;
+    line-height:1.8;
 }
+
+/* FOOTER */
 
 .footer{
-    position:absolute;
-    bottom:30px;
-    color:#4f4a5a;
+    margin-top:40px;
+    color:#5d566e;
     font-size:12px;
     letter-spacing:2px;
+    line-height:1.8;
 }
+
+/* FLASH */
 
 .flash{
-    animation:flicker 3s infinite;
+    animation:flash 0.15s linear 3;
 }
 
-@keyframes flicker{
+@keyframes flash{
 
     0%{opacity:1;}
-    2%{opacity:0.5;}
-    4%{opacity:1;}
-    33%{opacity:1;}
-    34%{opacity:0.3;}
-    36%{opacity:1;}
+    50%{opacity:0.3;}
     100%{opacity:1;}
 
+}
+
+::selection{
+    background:#58418a;
+    color:white;
 }
 
 </style>
@@ -130,20 +167,33 @@ input{
 
 <body class="scanlines">
 
+<div class="grid"></div>
+
 <div class="container">
 
-<div class="logo flash">
+<div class="panel">
+
+<div class="logo">
 DEVICE CONTINUITY NETWORK
 </div>
 
 <div class="subtitle">
-OBSERVER AUTHORIZATION REQUIRED
-</div>
 
-<div class="terminal">
+OBSERVER AUTHORIZATION REQUIRED
+
+<br><br>
+
+ACCESS TO CONTINUITY ARCHIVE
+REQUIRES VERIFIED SYNCHRONIZATION
+
+</div>
 
 <div class="line">
 CONNECTION STATUS: ACTIVE
+</div>
+
+<div class="line">
+OBSERVER LAYER DETECTED
 </div>
 
 <div class="line">
@@ -164,22 +214,28 @@ ENTER ACCESS PHRASE
 BLACK EYES NOT DETECTED
 </div>
 
-</div>
-
 <div class="footer">
+
 DCN BUILD // OBSERVER LAYER ACTIVE
+
+<br>
+
+UNAUTHORIZED ACCESS MAY RESULT IN CONTINUITY REJECTION
+
+</div>
+
 </div>
 
 </div>
 
-<!-- ACCEPT SOUND -->
+<!-- AUDIO -->
+
 <audio id="acceptSound">
-    <source src="audio/accept.mp3" type="audio/mpeg">
+<source src="audio/accept.mp3" type="audio/mpeg">
 </audio>
 
-<!-- DENIED SOUND -->
 <audio id="denySound">
-    <source src="audio/deny.mp3" type="audio/mpeg">
+<source src="audio/deny.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -197,22 +253,32 @@ input.addEventListener("keydown", function(e){
 
             document.getElementById("acceptSound").play();
 
-            document.body.style.transition = "1.2s";
+            document.body.style.transition = "1.4s";
             document.body.style.opacity = "0";
 
             setTimeout(() => {
 
                 window.location.href = "archive.html";
 
-            }, 1200);
+            }, 1400);
 
-        } else {
+        }
+
+        else{
 
             document.getElementById("denySound").play();
+
+            document.body.classList.add("flash");
 
             error.style.opacity = "1";
 
             input.value = "";
+
+            setTimeout(() => {
+
+                window.location.href = "denied.html";
+
+            }, 1600);
 
         }
 
