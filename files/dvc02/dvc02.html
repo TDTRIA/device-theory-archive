@@ -4,21 +4,31 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>DVC-02 // RESEARCH SCHEMATICS & TECHNICAL DOCUMENTATION</title>
+<title>DVC-02 // DELTA CONTINUITY RESEARCH</title>
 
 <style>
+
+:root{
+    --bg:#05060d;
+    --bg2:#090b16;
+    --line:#28324f;
+    --text:#d7dcef;
+    --soft:#9ba9d6;
+    --dim:#66749b;
+    --glow:rgba(120,150,255,0.08);
+}
 
 body{
     margin:0;
     background:
-        radial-gradient(circle at top, rgba(70,90,160,0.08), transparent 55%),
-        linear-gradient(to bottom, #05060d, #03040a 65%, #020208);
-    color:#d7dcef;
+        radial-gradient(circle at top, rgba(90,110,200,0.08), transparent 55%),
+        linear-gradient(to bottom, #05060d, #02030a 75%, #010106);
+    color:var(--text);
     font-family:"Courier New", monospace;
     overflow-x:hidden;
     letter-spacing:0.4px;
-    text-shadow:0 0 3px rgba(180,210,255,0.05);
     position:relative;
+    text-shadow:0 0 3px rgba(180,210,255,0.04);
 }
 
 /* SCANLINES */
@@ -26,13 +36,11 @@ body{
 body::before{
     content:"";
     position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
+    inset:0;
     pointer-events:none;
 
-    background:repeating-linear-gradient(
+    background:
+    repeating-linear-gradient(
         to bottom,
         rgba(255,255,255,0.012),
         rgba(255,255,255,0.012) 1px,
@@ -49,10 +57,7 @@ body::before{
 body::after{
     content:"";
     position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
+    inset:0;
     pointer-events:none;
 
     background-image:
@@ -61,18 +66,41 @@ body::after{
 
     background-size:42px 42px;
 
-    opacity:0.25;
+    opacity:0.15;
     z-index:-1;
 }
 
-/* CONTAINER */
-
 .container{
-    max-width:980px;
+    max-width:1200px;
     margin:auto;
-    padding:50px;
+    padding:40px;
     position:relative;
     z-index:2;
+}
+
+/* TOPBAR */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid var(--line);
+    padding-bottom:18px;
+    margin-bottom:35px;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.network{
+    color:#d5deff;
+    letter-spacing:4px;
+    font-size:14px;
+}
+
+.status{
+    color:#7d8dbb;
+    font-size:12px;
+    letter-spacing:2px;
 }
 
 /* BACK */
@@ -80,7 +108,7 @@ body::after{
 .back{
     display:inline-block;
     margin-bottom:35px;
-    color:#7f90c9;
+    color:#8ea3eb;
     text-decoration:none;
     transition:0.2s;
     letter-spacing:1px;
@@ -94,142 +122,208 @@ body::after{
 /* HEADER */
 
 .header{
-    border:1px solid #2f3a63;
-    background:rgba(10,12,22,0.88);
-    padding:35px;
+    border:1px solid #2d3655;
+    background:rgba(8,10,20,0.92);
+    padding:40px;
     margin-bottom:40px;
-    box-shadow:0 0 22px rgba(90,120,255,0.08);
+    box-shadow:0 0 30px var(--glow);
+    position:relative;
+    overflow:hidden;
+}
+
+.header::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:1px;
+    background:rgba(180,210,255,0.4);
+    animation:scan 8s linear infinite;
+}
+
+@keyframes scan{
+
+0%{left:-100%;}
+100%{left:100%;}
+
+}
+
+.id{
+    color:#8ea3eb;
+    letter-spacing:4px;
+    font-size:13px;
+    margin-bottom:16px;
 }
 
 .title{
-    font-size:34px;
-    color:#c6d4ff;
-    letter-spacing:5px;
-    margin-bottom:18px;
+    font-size:40px;
+    letter-spacing:6px;
+    color:#dce5ff;
+    margin-bottom:28px;
+    line-height:1.4;
 }
 
-.subtitle{
-    color:#8393c7;
-    line-height:2;
-    letter-spacing:1px;
+.meta{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:18px;
+    color:#96a5d2;
+    line-height:1.9;
     font-size:14px;
+}
+
+.meta span{
+    color:#dce5ff;
 }
 
 /* WARNING */
 
 .warning{
-    border-left:3px solid #7487c9;
-    background:rgba(12,16,28,0.84);
-    padding:22px;
+    border-left:3px solid #8ea3eb;
+    background:rgba(10,14,24,0.88);
+    padding:25px;
     margin-bottom:45px;
+    color:#c1cef1;
     line-height:2;
-    color:#b4c0e8;
 }
 
-/* SECTIONS */
+/* SECTION TITLES */
 
 .section{
-    margin-top:55px;
+    margin-top:60px;
     margin-bottom:20px;
-    color:#95adff;
-    font-size:15px;
+    color:#9cb2ff;
     letter-spacing:4px;
-    border-bottom:1px solid #2d3655;
-    padding-bottom:10px;
-}
-
-/* ENTRIES */
-
-.entry{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    padding:18px 22px;
-    margin-bottom:14px;
-
-    background:rgba(9,11,20,0.82);
-    border:1px solid #29324d;
-
-    color:#d7dcef;
-    text-decoration:none;
-
-    transition:0.18s;
-}
-
-.entry:hover{
-    border-color:#6f89da;
-    transform:translateX(6px);
-    background:rgba(14,18,30,0.92);
-}
-
-/* FILE */
-
-.file{
-    display:flex;
-    flex-direction:column;
-}
-
-.doc{
     font-size:15px;
+    border-bottom:1px solid #2b3555;
+    padding-bottom:12px;
+}
+
+/* CONTENT */
+
+.content{
+    line-height:2.1;
+    color:#d7dcef;
+    font-size:15px;
+}
+
+/* REPORT LIST */
+
+.report{
+    display:block;
+    text-decoration:none;
+    color:#dce5ff;
+    background:rgba(9,12,22,0.88);
+    border:1px solid #2d3757;
+    padding:24px;
+    margin:18px 0;
+    transition:0.2s;
+    position:relative;
+    overflow:hidden;
+}
+
+.report::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(140,170,255,0.05),
+        transparent
+    );
+    transition:0.5s;
+}
+
+.report:hover::before{
+    left:100%;
+}
+
+.report:hover{
+    border-color:#4d67aa;
+    transform:translateX(6px);
+    box-shadow:0 0 20px rgba(120,150,255,0.08);
+}
+
+.report-title{
     letter-spacing:2px;
-    margin-bottom:6px;
+    margin-bottom:10px;
+    color:#dce5ff;
 }
 
-.desc{
-    color:#7f8eb6;
-    font-size:12px;
-    letter-spacing:1px;
+.report-desc{
+    color:#95a4cf;
+    line-height:1.8;
+    font-size:14px;
 }
 
-/* STATUS */
+/* LOCKED */
 
-.status{
-    font-size:11px;
-    letter-spacing:2px;
-    padding:6px 10px;
-    border:1px solid #42507d;
-    color:#a8b7e8;
-}
-
-.status.active{
-    border-color:#7289d8;
-    color:#d8e1ff;
-}
-
-.status.restricted{
-    border-color:#8a5a5a;
-    color:#d69d9d;
-}
-
-.status.unstable{
-    border-color:#7a5ea1;
-    color:#c3a6e8;
-}
-
-/* CORRUPT */
-
-.corrupt{
+.locked{
     opacity:0.45;
-    border-style:dashed;
+    cursor:default;
+}
+
+.locked:hover{
+    transform:none;
+    border-color:#2d3757;
+    box-shadow:none;
 }
 
 /* FOOTER */
 
 .footer{
-    margin-top:80px;
-    padding-top:25px;
-    border-top:1px solid #27324b;
+    margin-top:90px;
+    padding-top:30px;
+    border-top:1px solid #28324f;
     color:#66749b;
-    font-size:12px;
     line-height:2;
+    font-size:12px;
     letter-spacing:1px;
 }
 
-/* SELECTION */
+/* GLITCH */
+
+.glitch{
+    animation:flicker 7s infinite;
+}
+
+@keyframes flicker{
+
+0%{opacity:1;}
+1%{opacity:0.5;}
+2%{opacity:1;}
+85%{opacity:1;}
+86%{opacity:0.2;}
+87%{opacity:1;}
+
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+.container{
+    padding:22px;
+}
+
+.title{
+    font-size:25px;
+    letter-spacing:3px;
+}
+
+.meta{
+    grid-template-columns:1fr;
+}
+
+}
 
 ::selection{
-    background:#4d67aa;
+    background:#536db8;
     color:white;
 }
 
@@ -240,32 +334,63 @@ body::after{
 
 <div class="container">
 
+<div class="topbar">
+
+<div class="network">
+DELTA CONTINUITY RESEARCH NETWORK
+</div>
+
+<div class="status">
+NODE STATUS // ACTIVE
+</div>
+
+</div>
+
 <a href="../../archive.html" class="back">
-← RETURN TO MAIN DIRECTORY
+← RETURN TO ARCHIVE DIRECTORY
 </a>
 
 <div class="header">
 
-<div class="title">
-DVC-02
+<div class="id">
+DVC-02 // RESEARCH DIVISION
 </div>
 
-<div class="subtitle">
+<div class="title">
+CONTINUITY DEVIATION ANALYSIS
+</div>
 
-RESEARCH SCHEMATICS & TECHNICAL DOCUMENTATION
+<div class="meta">
 
-<br><br>
+<div>
+ARCHIVE STATUS:
+<span>PARTIAL RECOVERY</span>
+</div>
 
-DELTA CONTINUITY RESEARCH NETWORK
+<div>
+ACCESS LEVEL:
+<span>LEVEL 4</span>
+</div>
 
-<br>
+<div>
+DEVIATION INDEX:
+<span>RISING</span>
+</div>
 
-DEVICE THEORY INSTITUTION
+<div>
+OBSERVER STABILITY:
+<span>MONITORED</span>
+</div>
 
-<br><br>
+<div>
+NODE:
+<span>DVC-MAIN-NDE</span>
+</div>
 
-STATUS:
-ACTIVE RESEARCH NODE
+<div>
+ARCHIVE BUILD:
+<span>0.8.4</span>
+</div>
 
 </div>
 
@@ -273,301 +398,248 @@ ACTIVE RESEARCH NODE
 
 <div class="warning">
 
-NOTICE:
+WARNING:
 
-DVC-02 contains reconstructed continuity research,
-observer synchronization analysis,
-and restricted deviation documentation.
+DVC-02 contains advanced continuity deviation material.
 
-Repeated exposure may result in:
+<br><br>
+
+Extended exposure may increase:
+<br><br>
+
+- synchronization retention
+
+<br>
+
 - continuation fixation
-- synchronization persistence
-- unauthorized behavioral association
 
-Research integrity remains under review.
+<br>
+
+- environmental familiarity recognition
+
+<br>
+
+- restricted pathway curiosity
+
+<br>
+
+- observer destabilization
 
 </div>
 
-<!-- SECTION 1 -->
+<div class="content">
 
 <div class="section">
-CORE SYSTEM RESEARCH
+DIVISION SUMMARY
 </div>
 
-<a href="report01.html" class="entry">
+DVC-02 documents the progression of:
+continuity instability research,
+observer synchronization analysis,
+restricted pathway emergence,
+and advanced deviation response phenomena.
 
-<div class="file">
+Early reports remain controlled and clinical.
 
-<div class="doc">
-DOC-01 // SOUL INTERFACE SCHEMATIC
-</div>
+Later documentation demonstrates:
+increasing structural inconsistency,
+ethical destabilization,
+and archive containment failure.
 
-<div class="desc">
-EXTERNAL OBSERVER CONNECTION ANALYSIS
-</div>
-
-</div>
-
-<div class="status active">
-VERIFIED
-</div>
-
-</a>
-
-<a href="report02.html" class="entry">
-
-<div class="file">
-
-<div class="doc">
-DOC-02 // OBSERVER COMPATIBILITY CHART
-</div>
-
-<div class="desc">
-SYNCHRONIZATION THRESHOLD MEASUREMENTS
-</div>
-
-</div>
-
-<div class="status">
-PARTIAL
-</div>
-
-</a>
-
-<a href="report03.html" class="entry">
-
-<div class="file">
-
-<div class="doc">
-DOC-03 // CONTROL CONFLICT ANALYSIS
-</div>
-
-<div class="desc">
-DUAL INTENT STRUCTURE OBSERVATION
-</div>
-
-</div>
-
-<div class="status">
-ACTIVE
-</div>
-
-</a>
-
-<a href="report04.html" class="entry">
-
-<div class="file">
-
-<div class="doc">
-DOC-04 // DARK FOUNTAIN FORMATION MODEL
-</div>
-
-<div class="desc">
-ENVIRONMENTAL CONVERSION THEORY
-</div>
-
-</div>
-
-<div class="status">
-PARTIAL
-</div>
-
-</a>
-
-<a href="report05.html" class="entry">
-
-<div class="file">
-
-<div class="doc">
-DOC-05 // NODE STRUCTURE MAP
-</div>
-
-<div class="desc">
-CONTINUITY LAYER CONNECTION OVERVIEW
-</div>
-
-</div>
-
-<div class="status">
-VERIFIED
-</div>
-
-</a>
-
-<!-- SECTION 2 -->
+Research suspension requests remain unresolved.
 
 <div class="section">
-CONTINUITY INCIDENT ANALYSIS
+ACTIVE REPORTS
 </div>
 
-<a href="report06.html" class="entry">
+<a href="report01.html" class="report">
 
-<div class="file">
-
-<div class="doc">
-DOC-06 // NULL ROUTE DEVIATION REPORT
+<div class="report-title">
+DOC-01 // BASELINE SYNCHRONIZATION THEORY
 </div>
 
-<div class="desc">
-FORCED CONTINUATION INCIDENT ANALYSIS
-</div>
-
-</div>
-
-<div class="status restricted">
-RESTRICTED
+<div class="report-desc">
+Initial continuity synchronization models,
+observer attachment structures,
+and early deviation assumptions.
 </div>
 
 </a>
 
-<div class="entry corrupt">
+<a href="report02.html" class="report">
 
-<div class="file">
-
-<div class="doc">
-DOC-07 // NOELLE SYNCHRONIZATION ANALYSIS
+<div class="report-title">
+DOC-02 // OBSERVER COMPATIBILITY ANALYSIS
 </div>
 
-<div class="desc">
-FILE INCOMPLETE
+<div class="report-desc">
+Compatibility metrics,
+continuation persistence behavior,
+and synchronization response variation.
+</div>
+
+</a>
+
+<a href="report03.html" class="report">
+
+<div class="report-title">
+DOC-03 // CONTROL CONFLICT RESPONSE
+</div>
+
+<div class="report-desc">
+Behavioral instability during override resistance
+and early continuation escalation events.
+</div>
+
+</a>
+
+<a href="report04.html" class="report">
+
+<div class="report-title">
+DOC-04 // NODE STRUCTURE MAPPING
+</div>
+
+<div class="report-desc">
+Structural continuity architecture,
+pathway layering,
+and unresolved node relationships.
+</div>
+
+</a>
+
+<a href="report05.html" class="report">
+
+<div class="report-title">
+DOC-05 // DEVIATION THRESHOLD TESTING
+</div>
+
+<div class="report-desc">
+Threshold emergence conditions,
+override persistence testing,
+and deviation activation models.
+</div>
+
+</a>
+
+<a href="report06.html" class="report">
+
+<div class="report-title">
+DOC-06 // SYNCHRONIZATION RETENTION PHENOMENA
+</div>
+
+<div class="report-desc">
+Post-session fixation behavior,
+environmental persistence reports,
+and emotional carryover analysis.
+</div>
+
+</a>
+
+<a href="report07.html" class="report">
+
+<div class="report-title">
+DOC-07 // RESTRICTED PATHWAY OBSERVATION
+</div>
+
+<div class="report-desc">
+High-deviation progression recordings,
+environmental withdrawal events,
+and continuation fixation escalation.
+</div>
+
+</a>
+
+<a href="report08.html" class="report">
+
+<div class="report-title">
+DOC-08 // CONTINUITY RESPONSE ANOMALIES
+</div>
+
+<div class="report-desc">
+Preemptive environmental reactions,
+intent recognition theories,
+and adaptive continuity behavior.
+</div>
+
+</a>
+
+<a href="report09.html" class="report">
+
+<div class="report-title">
+DOC-09 // OBSERVER RECOGNITION EVENTS
+</div>
+
+<div class="report-desc">
+Advanced recognition incidents,
+direct alignment behaviors,
+and observer acknowledgment phenomena.
+</div>
+
+</a>
+
+<div class="report locked">
+
+<div class="report-title glitch">
+DOC-10 // [DATA UNSTABLE]
+</div>
+
+<div class="report-desc">
+Archive recovery incomplete.
+Structural integrity unresolved.
 </div>
 
 </div>
 
-<div class="status unstable">
-UNSTABLE
+<div class="report locked">
+
+<div class="report-title glitch">
+DOC-11 // [ACCESS FAILURE]
+</div>
+
+<div class="report-desc">
+Node synchronization interrupted.
+Continuation pathway unresolved.
 </div>
 
 </div>
 
-<div class="entry corrupt">
+<div class="report locked">
 
-<div class="file">
-
-<div class="doc">
-DOC-08 // BERDLY TERMINATION EVENT
+<div class="report-title glitch">
+DOC-12 // [RESTRICTED]
 </div>
 
-<div class="desc">
-ACCESS REVOKED
-</div>
-
-</div>
-
-<div class="status restricted">
-RESTRICTED
+<div class="report-desc">
+Observer authorization denied.
 </div>
 
 </div>
-
-<!-- SECTION 3 -->
 
 <div class="section">
-AKS EXPOSURE STUDIES
+INTERNAL NOTICE
 </div>
 
-<div class="entry corrupt">
+Several DVC-02 personnel submitted requests
+to suspend advanced deviation testing.
 
-<div class="file">
+No suspension requests have been approved.
 
-<div class="doc">
-DOC-09 // ARTIFICIAL KNIGHT SYNDROME
-</div>
-
-<div class="desc">
-EXPOSURE PROGRESSION OVERVIEW
-</div>
-
-</div>
-
-<div class="status">
-ACTIVE
-</div>
-
-</div>
-
-<div class="entry corrupt">
-
-<div class="file">
-
-<div class="doc">
-DOC-10 // M // EXPOSURE LOGS
-</div>
-
-<div class="desc">
-PERSONNEL RECORDS DEGRADED
-</div>
-
-</div>
-
-<div class="status unstable">
-UNSTABLE
-</div>
-
-</div>
-
-<!-- SECTION 4 -->
-
-<div class="section">
-RESTRICTED FILES
-</div>
-
-<div class="entry corrupt">
-
-<div class="file">
-
-<div class="doc">
-DOC-██ // OBSERVER COLLAPSE EVENT
-</div>
-
-<div class="desc">
-DATA REDACTED
-</div>
-
-</div>
-
-<div class="status restricted">
-REDACTED
-</div>
-
-</div>
-
-<div class="entry corrupt">
-
-<div class="file">
-
-<div class="doc">
-DOC-██ // NODE/3/ ACCESS RECORD
-</div>
-
-<div class="desc">
-UNAUTHORIZED CONTINUATION DETECTED
-</div>
-
-</div>
-
-<div class="status unstable">
-UNSTABLE
-</div>
+Continuation research remains active.
 
 </div>
 
 <div class="footer">
 
-ARCHIVE BUILD: 0.8.2
+DELTA CONTINUITY RESEARCH NETWORK
 
 <br><br>
 
-LAST VERIFIED:
-[DATA LOSS]
+DVC-02 STATUS:
+ACTIVE
 
-<br><br>
+<br>
 
-INTERNAL NOTE:
-
-Later DVC-02 revisions contain
-additional deviation warnings not present
-in earlier archive states.
+NO VERIFIED ORIGINAL STRUCTURE EXISTS.
 
 </div>
 
