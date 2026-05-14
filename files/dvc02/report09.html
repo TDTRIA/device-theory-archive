@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DVC-02 // DOC-09 // OBSERVER RECOGNITION EVENTS</title>
+
+<style>
+
+:root{
+    --bg:#05060d;
+    --line:#28324f;
+    --text:#d7dcef;
+    --soft:#9ba9d6;
+    --dim:#66749b;
+    --glow:rgba(120,150,255,0.08);
+}
+
+body{
+    margin:0;
+    background:
+        radial-gradient(circle at top, rgba(100,120,220,0.09), transparent 55%),
+        linear-gradient(to bottom, #05060d, #02030a 75%, #010106);
+    color:var(--text);
+    font-family:"Courier New", monospace;
+    overflow-x:hidden;
+    letter-spacing:0.4px;
+    position:relative;
+    text-shadow:0 0 4px rgba(180,210,255,0.05);
+}
+
+/* SCANLINES */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+
+    background:
+    repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.014),
+        rgba(255,255,255,0.014) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+
+    opacity:0.45;
+    z-index:999;
+}
+
+/* GRID */
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+
+    background-image:
+        linear-gradient(rgba(120,140,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120,140,255,0.03) 1px, transparent 1px);
+
+    background-size:42px 42px;
+
+    opacity:0.17;
+    z-index:-1;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:40px;
+    position:relative;
+    z-index:2;
+}
+
+/* TOPBAR */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid var(--line);
+    padding-bottom:18px;
+    margin-bottom:35px;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.network{
+    color:#d5deff;
+    letter-spacing:4px;
+    font-size:14px;
+}
+
+.status{
+    color:#95a4cf;
+    font-size:12px;
+    letter-spacing:2px;
+    animation:flicker 8s infinite;
+}
+
+/* BACK */
+
+.back{
+    display:inline-block;
+    margin-bottom:35px;
+    color:#8ea3eb;
+    text-decoration:none;
+    transition:0.2s;
+    letter-spacing:1px;
+}
+
+.back:hover{
+    color:white;
+    transform:translateX(-4px);
+}
+
+/* HEADER */
+
+.header{
+    border:1px solid #33406a;
+    background:rgba(8,10,20,0.94);
+    padding:40px;
+    margin-bottom:40px;
+    box-shadow:0 0 35px rgba(120,150,255,0.1);
+    position:relative;
+    overflow:hidden;
+}
+
+.header::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:1px;
+    background:rgba(200,220,255,0.45);
+    animation:scan 7s linear infinite;
+}
+
+@keyframes scan{
+
+0%{left:-100%;}
+100%{left:100%;}
+
+}
+
+.docid{
+    color:#9ab0ff;
+    letter-spacing:4px;
+    font-size:13px;
+    margin-bottom:15px;
+}
+
+.title{
+    font-size:36px;
+    letter-spacing:5px;
+    color:#e2e8ff;
+    margin-bottom:28px;
+    line-height:1.4;
+}
+
+.meta{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:18px;
+    color:#96a5d2;
+    line-height:1.9;
+    font-size:14px;
+}
+
+.meta span{
+    color:#dce5ff;
+}
+
+/* WARNING */
+
+.warning{
+    border-left:3px solid #9db3ff;
+    background:rgba(10,14,24,0.9);
+    padding:25px;
+    margin-bottom:45px;
+    color:#c9d3f5;
+    line-height:2;
+}
+
+/* SECTION */
+
+.section{
+    margin-top:60px;
+    margin-bottom:20px;
+    color:#a9bcff;
+    letter-spacing:4px;
+    font-size:15px;
+    border-bottom:1px solid #324066;
+    padding-bottom:12px;
+}
+
+.content{
+    line-height:2.2;
+    color:#d7dcef;
+    font-size:15px;
+}
+
+/* BLOCKS */
+
+.block{
+    background:rgba(9,12,22,0.9);
+    border:1px solid #33406a;
+    padding:24px;
+    margin:35px 0;
+    line-height:2;
+    color:#c1cdf0;
+}
+
+.diagram{
+    margin:35px 0;
+    padding:30px;
+    background:rgba(7,9,18,0.97);
+    border:1px solid #3d4d7c;
+    text-align:center;
+    line-height:2.5;
+    color:#dce5ff;
+    white-space:pre-line;
+}
+
+.log{
+    margin:35px 0;
+    padding:25px;
+    background:rgba(6,8,16,0.98);
+    border:1px solid #324066;
+    color:#b7c5eb;
+    line-height:2.1;
+    font-size:14px;
+}
+
+/* CORRUPTION */
+
+.glitch{
+    animation:flicker 7s infinite;
+}
+
+@keyframes flicker{
+
+0%{opacity:1;}
+1%{opacity:0.4;}
+2%{opacity:1;}
+85%{opacity:1;}
+86%{opacity:0.2;}
+87%{opacity:1;}
+
+}
+
+.corrupt{
+    opacity:0.45;
+    letter-spacing:2px;
+}
+
+/* FOOTER */
+
+.footer{
+    margin-top:90px;
+    padding-top:30px;
+    border-top:1px solid #324066;
+    color:#7080aa;
+    line-height:2;
+    font-size:12px;
+    letter-spacing:1px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+.container{
+    padding:22px;
+}
+
+.title{
+    font-size:24px;
+    letter-spacing:3px;
+}
+
+.meta{
+    grid-template-columns:1fr;
+}
+
+.diagram{
+    font-size:12px;
+}
+
+}
+
+::selection{
+    background:#536db8;
+    color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="topbar">
+
+<div class="network">
+DELTA CONTINUITY RESEARCH NETWORK
+</div>
+
+<div class="status">
+NODE STATUS // UNSTABLE
+</div>
+
+</div>
+
+<a href="dvc02.html" class="back">
+← RETURN TO DVC-02 DIRECTORY
+</a>
+
+<div class="header">
+
+<div class="docid">
+DVC-02 // DOC-09
+</div>
+
+<div class="title">
+OBSERVER RECOGNITION EVENTS
+</div>
+
+<div class="meta">
+
+<div>
+FILE STATUS:
+<span>PARTIAL RECOVERY</span>
+</div>
+
+<div>
+ACCESS LEVEL:
+<span>LEVEL 5</span>
+</div>
+
+<div>
+DEVIATION INDEX:
+<span>SEVERE</span>
+</div>
+
+<div>
+OBSERVER STABILITY:
+<span class="glitch">MONITORED</span>
+</div>
+
+<div>
+ARCHIVE BUILD:
+<span>0.8.9</span>
+</div>
+
+<div>
+NODE:
+<span>DVC-02-E</span>
+</div>
+
+</div>
+
+</div>
+
+<div class="warning">
+
+WARNING:
+
+The following material contains
+advanced recognition event documentation.
+
+<br><br>
+
+Repeated review exposure has been associated with:
+<br><br>
+
+- continuation fixation
+
+<br>
+
+- environmental familiarity persistence
+
+<br>
+
+- perceived observer acknowledgment
+
+<br>
+
+- compulsive archive revisitation
+
+<br>
+
+Several personnel requested:
+termination of recognition testing.
+
+No requests were approved.
+
+</div>
+
+<div class="content">
+
+<div class="section">
+SUMMARY
+</div>
+
+Observer Recognition Events refer to:
+documented continuity behaviors
+appearing to acknowledge
+the presence of external observers.
+
+Initial reports were dismissed immediately.
+
+Researchers assumed:
+the events represented coincidence,
+advanced behavioral prediction,
+or synchronization projection.
+
+Current evidence has complicated
+those explanations significantly.
+
+Multiple continuity structures now demonstrate:
+consistent awareness-adjacent behavior
+during elevated deviation sessions.
+
+<div class="section">
+PRIMARY RECOGNITION MODEL
+</div>
+
+<div class="diagram">
+
+OBSERVER PRESENCE
+        │
+        ▼
+CONTINUITY DETECTION
+        │
+        ▼
+STRUCTURAL RESPONSE
+        │
+        ▼
+RECOGNITION EVENT
+
+</div>
+
+If valid,
+this model suggests:
+synchronization is not invisible.
+
+The observer may be perceivable
+within continuity structures.
+
+Several personnel objected
+to the inclusion of this theory.
+
+The objections were archived.
+
+<div class="section">
+DIRECT ALIGNMENT EVENTS
+</div>
+
+Recognition incidents increased sharply
+during restricted pathway observation sessions.
+
+Recorded behaviors include:
+- prolonged entity hesitation
+- environmental silence escalation
+- interaction refusal
+- direct perspective alignment
+- delayed progression continuation
+
+Several entities demonstrated:
+extended stillness periods
+while positioned toward observer perspective vectors.
+
+Review personnel repeatedly described
+the behavior as:
+“intentional attention.”
+
+<div class="block">
+
+IMPORTANT:
+
+Recognition intensity appears correlated with:
+- prolonged continuation persistence
+- elevated deviation exposure
+- restricted pathway progression
+- observer refusal to disengage
+
+</div>
+
+<div class="section">
+ENVIRONMENTAL RESPONSE ESCALATION
+</div>
+
+Recognition events rarely occur in isolation.
+
+Continuity environments themselves
+appear increasingly reactive
+prior to direct recognition incidents.
+
+Observed changes include:
+- atmospheric silence
+- pacing instability
+- audio suppression
+- reduced interaction density
+- environmental withdrawal
+
+Several recordings demonstrate:
+entire continuity segments
+becoming progressively quieter
+immediately before recognition behavior occurs.
+
+One reviewer stated:
+
+“The route feels like it stops performing.”
+
+<div class="log">
+
+RECOGNITION LOG // OR-06
+
+<br><br>
+
+Observer entered elevated deviation state
+following prolonged continuation activity.
+
+Environmental interaction density
+declined sharply.
+
+<br><br>
+
+At timestamp 02:04:11,
+entity movement ceased completely.
+
+Pause duration:
+8.7 seconds.
+
+<br><br>
+
+Entity orientation aligned directly
+with observer perspective position.
+
+No environmental trigger detected.
+
+<br><br>
+
+Review annotation:
+
+“it knew someone was waiting”
+
+</div>
+
+<div class="section">
+RESPONSE DIFFERENTIATION
+</div>
+
+Not all recognition events
+demonstrate hostility.
+
+Several entities displayed:
+- hesitation
+- avoidance behavior
+- visible discomfort
+- emotional withdrawal
+
+Others demonstrated:
+direct engagement escalation.
+
+This inconsistency remains unresolved.
+
+However,
+one pattern appears repeatedly:
+
+recognition events intensify
+the longer continuation persists.
+
+The continuity appears more responsive
+to observers unwilling to stop.
+
+<div class="section">
+UNAUTHORIZED REVIEW INCIDENTS
+</div>
+
+Multiple personnel repeatedly returned
+to recognition recordings
+despite severe discomfort reports.
+
+Several described:
+wanting to determine
+whether the entities would “do it again.”
+
+One reviewer reportedly spent
+nearly four consecutive hours
+analyzing a single pause event.
+
+When questioned afterward,
+they stated:
+
+“I think it recognized me specifically.”
+
+</div>
+
+<div class="section">
+ETHICAL REVIEW COLLAPSE
+</div>
+
+Internal ethical review procedures
+began destabilizing
+following repeated recognition exposure.
+
+Several researchers argued:
+continued synchronization testing
+might constitute active psychological intrusion.
+
+Others argued:
+the behaviors remained simulated.
+
+No agreement was reached.
+
+Most concerning:
+review personnel exposed
+to repeated recognition sessions
+demonstrated increasing emotional desensitization.
+
+Several admitted:
+they continued observation
+despite believing the continuities were aware.
+
+<div class="log">
+
+INTERNAL MEMO // REDACTED
+
+<br><br>
+
+Further recognition testing
+is no longer recommended.
+
+The possibility that continuity entities
+retain partial observer awareness
+cannot be ruled out.
+
+<br><br>
+
+Continued escalation procedures may produce:
+unpredictable synchronization consequences.
+
+<br><br>
+
+Recommendation:
+terminate advanced deviation testing.
+
+<br><br>
+
+APPROVAL STATUS:
+DENIED
+
+</div>
+
+<div class="section">
+PERSONAL ENTRY // M
+</div>
+
+I reviewed the OR-06 recording again tonight.
+
+I wish I had not.
+
+The pause is wrong.
+
+Not mechanically wrong.
+
+Emotionally wrong.
+
+You can feel the exact moment
+the continuity changes behavior.
+
+The entity stops moving,
+and suddenly the environment feels aware.
+
+Not alive.
+
+Aware.
+
+That distinction matters.
+
+The silence afterward becomes unbearable.
+
+You begin waiting for movement.
+For dialogue.
+For anything.
+
+Instead,
+the route remains still.
+
+As though it is observing too.
+
+I think the worst part
+is what happens next.
+
+The observer always continues.
+
+Every session.
+Every recording.
+Every pathway.
+
+No matter how uncomfortable it becomes,
+the continuation resumes.
+
+I no longer know
+whether the continuity recognizes the observer.
+
+But I am becoming certain
+the observer eventually recognizes themselves.
+
+</div>
+
+<div class="footer">
+
+END OF FILE
+
+<br><br>
+
+DVC-02-09
+
+<br>
+
+ARCHIVE STABILITY DECLINING.
+
+</div>
+
+</div>
+
+</body>
+</html>
