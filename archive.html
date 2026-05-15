@@ -26,10 +26,14 @@ body{
     overflow-x:hidden;
     letter-spacing:0.4px;
     position:relative;
-    transition:background 2s ease, filter 2s ease;
+    transition:
+        background 2s ease,
+        filter 2s ease;
 }
 
+/* ========================= */
 /* SCANLINES */
+/* ========================= */
 
 body::before{
     content:"";
@@ -50,7 +54,9 @@ body::before{
     z-index:999;
 }
 
+/* ========================= */
 /* GRID */
+/* ========================= */
 
 body::after{
     content:"";
@@ -68,7 +74,9 @@ body::after{
     z-index:-1;
 }
 
+/* ========================= */
 /* ROARING MODE */
+/* ========================= */
 
 body.roaring{
 
@@ -85,6 +93,37 @@ body.roaring{
     filter:
         contrast(1.05)
         brightness(0.95);
+
+}
+
+body.roaring .header{
+
+    border-color:#6e5bff;
+
+    box-shadow:
+        0 0 40px rgba(120,90,255,0.15);
+
+}
+
+body.roaring .section{
+
+    color:#b7a9ff;
+    border-color:#493d8b;
+
+}
+
+body.roaring .file{
+
+    border-color:#4c4584;
+
+}
+
+body.roaring .file:hover{
+
+    border-color:#8e7dff;
+
+    box-shadow:
+        0 0 25px rgba(120,90,255,0.18);
 
 }
 
@@ -456,7 +495,7 @@ ARCHIVE STATUS // ACTIVE
 DCN // MAIN ARCHIVE NODE
 </div>
 
-<div class="title">
+<div class="title" id="archive-title">
 ARCHIVE DIRECTORY
 </div>
 
@@ -506,7 +545,9 @@ and observer recognition phenomena.
 
 </a>
 
+<!-- ========================= -->
 <!-- ROARING NODE -->
+<!-- ========================= -->
 
 <a href="files/roaring/prj_roaring.html"
 class="file glitch"
@@ -580,7 +621,7 @@ const flash =
 document.getElementById("flash");
 
 /* ========================= */
-/* ROARING CHECK */
+/* ROARING DETECTION */
 /* ========================= */
 
 const params =
@@ -588,22 +629,27 @@ new URLSearchParams(window.location.search);
 
 const roaringMode =
 params.get("phase") === "roaring"
-|| localStorage.getItem("roaring") === "true";
+||
+localStorage.getItem("roaring") === "true";
 
 /* ========================= */
-/* BOOT SCREEN */
+/* BOOT SEQUENCE */
 /* ========================= */
 
 if(sessionStorage.getItem("dvcBooted")){
 
     bootScreen.style.display = "none";
+
     archiveContent.style.display = "block";
 
     applyRoaring();
 
 } else {
 
-    sessionStorage.setItem("dvcBooted", "true");
+    sessionStorage.setItem(
+    "dvcBooted",
+    "true"
+    );
 
     setTimeout(() => {
 
@@ -618,6 +664,7 @@ if(sessionStorage.getItem("dvcBooted")){
         setTimeout(() => {
 
             bootScreen.style.display = "none";
+
             archiveContent.style.display = "block";
 
             applyRoaring();
@@ -640,18 +687,23 @@ function applyRoaring(){
 
     /* STATUS */
 
-    const status =
-    document.getElementById("archive-status");
-
-    status.innerText =
+    document.getElementById(
+    "archive-status"
+    ).innerText =
     "ARCHIVE STATUS // CONTAMINATED";
 
-    /* HEADER */
+    /* TITLE */
 
-    document.querySelector(".title").innerHTML =
+    document.getElementById(
+    "archive-title"
+    ).innerHTML =
     "ARCHIVE DIRECTORY // ALTERED";
 
-    document.getElementById("archive-desc").innerHTML = `
+    /* DESCRIPTION */
+
+    document.getElementById(
+    "archive-desc"
+    ).innerHTML = `
 
     Synchronization collapse detected.
 
@@ -667,36 +719,39 @@ function applyRoaring(){
 
     `;
 
-    /* SHOW ROARING */
+    /* SHOW PROJECT ROARING */
 
     document.getElementById(
     "roaring-node"
     ).style.display = "block";
 
-    /* MUSIC */
+    /* AUDIO */
 
-    const existing =
+    let audio =
     document.getElementById(
     "persistentGlaceir"
     );
 
-    if(existing) return;
+    if(!audio){
 
-    const audio =
-    document.createElement("audio");
+        audio =
+        document.createElement("audio");
 
-    audio.id = "persistentGlaceir";
+        audio.id =
+        "persistentGlaceir";
 
-    audio.src =
-    "files/dvc02/glaceir.mp3";
+        audio.src =
+        "files/dvc02/glaceir.mp3";
 
-    audio.loop = true;
+        audio.loop = true;
 
-    audio.volume = 0.7;
+        audio.volume = 0.7;
 
-    audio.autoplay = true;
+        document.body.appendChild(audio);
 
-    document.body.appendChild(audio);
+    }
+
+    audio.play().catch(()=>{});
 
 }
 
