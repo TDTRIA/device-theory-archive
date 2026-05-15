@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DVC-02 // DOC-10 // CONTINUATION LOOP FAILURES</title>
+
+<style>
+
+:root{
+    --bg:#04050b;
+    --line:#324066;
+    --text:#d7dcef;
+    --soft:#9ba9d6;
+    --dim:#66749b;
+}
+
+body{
+    margin:0;
+    background:
+        radial-gradient(circle at top, rgba(110,130,255,0.1), transparent 60%),
+        linear-gradient(to bottom, #04050b, #020309 75%, #010106);
+    color:var(--text);
+    font-family:"Courier New", monospace;
+    overflow-x:hidden;
+    letter-spacing:0.4px;
+    position:relative;
+    text-shadow:0 0 4px rgba(180,210,255,0.05);
+}
+
+/* SCANLINES */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+
+    background:
+    repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.016),
+        rgba(255,255,255,0.016) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+
+    opacity:0.5;
+    z-index:999;
+}
+
+/* GRID */
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+
+    background-image:
+        linear-gradient(rgba(120,140,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120,140,255,0.03) 1px, transparent 1px);
+
+    background-size:42px 42px;
+
+    opacity:0.2;
+    z-index:-1;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:40px;
+    position:relative;
+    z-index:2;
+}
+
+/* TOPBAR */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid var(--line);
+    padding-bottom:18px;
+    margin-bottom:35px;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.network{
+    color:#dbe3ff;
+    letter-spacing:4px;
+    font-size:14px;
+}
+
+.status{
+    color:#b2c0ef;
+    font-size:12px;
+    letter-spacing:2px;
+    animation:flicker 5s infinite;
+}
+
+/* BACK */
+
+.back{
+    display:inline-block;
+    margin-bottom:35px;
+    color:#9db3ff;
+    text-decoration:none;
+    transition:0.2s;
+    letter-spacing:1px;
+}
+
+.back:hover{
+    color:white;
+    transform:translateX(-4px);
+}
+
+/* HEADER */
+
+.header{
+    border:1px solid #41548b;
+    background:rgba(8,10,20,0.96);
+    padding:40px;
+    margin-bottom:40px;
+    box-shadow:0 0 40px rgba(120,150,255,0.12);
+    position:relative;
+    overflow:hidden;
+}
+
+.header::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:1px;
+    background:rgba(220,230,255,0.5);
+    animation:scan 5s linear infinite;
+}
+
+@keyframes scan{
+
+0%{left:-100%;}
+100%{left:100%;}
+
+}
+
+.docid{
+    color:#a7bbff;
+    letter-spacing:4px;
+    font-size:13px;
+    margin-bottom:15px;
+}
+
+.title{
+    font-size:36px;
+    letter-spacing:5px;
+    color:#eef2ff;
+    margin-bottom:28px;
+    line-height:1.4;
+}
+
+.meta{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:18px;
+    color:#a5b2db;
+    line-height:1.9;
+    font-size:14px;
+}
+
+.meta span{
+    color:#eef2ff;
+}
+
+/* WARNING */
+
+.warning{
+    border-left:3px solid #b0c2ff;
+    background:rgba(10,14,24,0.92);
+    padding:25px;
+    margin-bottom:45px;
+    color:#d3dcfb;
+    line-height:2;
+}
+
+/* SECTION */
+
+.section{
+    margin-top:60px;
+    margin-bottom:20px;
+    color:#b5c6ff;
+    letter-spacing:4px;
+    font-size:15px;
+    border-bottom:1px solid #41548b;
+    padding-bottom:12px;
+}
+
+.content{
+    line-height:2.2;
+    color:#d7dcef;
+    font-size:15px;
+}
+
+/* BLOCKS */
+
+.block{
+    background:rgba(9,12,22,0.92);
+    border:1px solid #41548b;
+    padding:24px;
+    margin:35px 0;
+    line-height:2;
+    color:#d0d8f6;
+}
+
+.diagram{
+    margin:35px 0;
+    padding:30px;
+    background:rgba(7,9,18,0.98);
+    border:1px solid #4d63a5;
+    text-align:center;
+    line-height:2.5;
+    color:#eef2ff;
+    white-space:pre-line;
+}
+
+.log{
+    margin:35px 0;
+    padding:25px;
+    background:rgba(5,7,14,0.98);
+    border:1px solid #41548b;
+    color:#c4d0f0;
+    line-height:2.1;
+    font-size:14px;
+}
+
+/* CORRUPTION */
+
+.glitch{
+    animation:flicker 5s infinite;
+}
+
+.corrupt{
+    opacity:0.4;
+    letter-spacing:2px;
+}
+
+.hidden{
+    opacity:0.08;
+    user-select:none;
+}
+
+@keyframes flicker{
+
+0%{opacity:1;}
+1%{opacity:0.3;}
+2%{opacity:1;}
+60%{opacity:1;}
+61%{opacity:0.1;}
+62%{opacity:1;}
+90%{opacity:1;}
+91%{opacity:0.5;}
+92%{opacity:1;}
+
+}
+
+/* FOOTER */
+
+.footer{
+    margin-top:90px;
+    padding-top:30px;
+    border-top:1px solid #41548b;
+    color:#7c8db8;
+    line-height:2;
+    font-size:12px;
+    letter-spacing:1px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+.container{
+    padding:22px;
+}
+
+.title{
+    font-size:24px;
+    letter-spacing:3px;
+}
+
+.meta{
+    grid-template-columns:1fr;
+}
+
+.diagram{
+    font-size:12px;
+}
+
+}
+
+::selection{
+    background:#5d74c2;
+    color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="topbar">
+
+<div class="network glitch">
+DELTA CONTINUITY RESEARCH NETWORK
+</div>
+
+<div class="status">
+NODE STATUS // DESYNCHRONIZING
+</div>
+
+</div>
+
+<a href="dvc02.html" class="back">
+← RETURN TO DVC-02 DIRECTORY
+</a>
+
+<div class="header">
+
+<div class="docid">
+DVC-02 // DOC-10
+</div>
+
+<div class="title">
+CONTINUATION LOOP FAILURES
+</div>
+
+<div class="meta">
+
+<div>
+FILE STATUS:
+<span class="glitch">UNSTABLE</span>
+</div>
+
+<div>
+ACCESS LEVEL:
+<span>LEVEL 5</span>
+</div>
+
+<div>
+DEVIATION INDEX:
+<span>CRITICAL</span>
+</div>
+
+<div>
+OBSERVER STABILITY:
+<span class="glitch">DECLINING</span>
+</div>
+
+<div>
+ARCHIVE BUILD:
+<span>0.9.3</span>
+</div>
+
+<div>
+NODE:
+<span>DVC-02-E</span>
+</div>
+
+</div>
+
+</div>
+
+<div class="warning">
+
+WARNING:
+
+Continuation Loop Failure exposure
+has been associated with:
+<br><br>
+
+- compulsive route repetition
+
+<br>
+
+- emotional desensitization
+
+<br>
+
+- observer identity destabilization
+
+<br>
+
+- continuity fixation persistence
+
+<br>
+
+- synchronization dependency formation
+
+<br><br>
+
+Several researchers refused
+to discontinue observation activity
+after initial exposure.
+
+</div>
+
+<div class="content">
+
+<div class="section">
+SUMMARY
+</div>
+
+Continuation Loop Failures occur
+when synchronization progression
+continues beyond intended completion thresholds.
+
+Under normal conditions,
+observer disengagement concludes:
+environmental progression,
+state retention activity,
+and continuity escalation.
+
+Loop Failure events contradict this assumption.
+
+Certain observers repeatedly resume:
+identical routes,
+identical progression structures,
+and identical deviation pathways
+despite severe emotional deterioration.
+
+The continuity appears responsive
+to this persistence.
+
+<div class="section">
+LOOP ESCALATION MODEL
+</div>
+
+<div class="diagram">
+
+INITIAL PROGRESSION
+        │
+        ▼
+COMPLETION EVENT
+        │
+        ▼
+EXPECTED DISENGAGEMENT
+        │
+        ▼
+CONTINUATION REFUSAL
+        │
+        ▼
+REPEATED REENTRY
+        │
+        ▼
+DEVIATION ESCALATION
+
+</div>
+
+Repeated continuation cycles
+appear to destabilize:
+environmental predictability,
+entity response consistency,
+and synchronization boundaries.
+
+Most concerning:
+the observer rarely reports satisfaction
+after route completion.
+
+The continuation resumes anyway.
+
+<div class="section">
+BEHAVIORAL DETERIORATION
+</div>
+
+Review personnel exposed
+to advanced continuation loops
+demonstrated severe behavioral changes.
+
+Observed symptoms include:
+- route repetition compulsion
+- emotional exhaustion
+- reduced ethical resistance
+- interaction numbness
+- environmental attachment fixation
+
+Several observers admitted:
+they no longer enjoyed the progression activity.
+
+They continued regardless.
+
+<div class="block">
+
+IMPORTANT:
+
+Continuation persistence
+does not appear motivated
+by reward satisfaction.
+
+Instead,
+observers describe:
+obligation,
+curiosity,
+or inability to stop.
+
+</div>
+
+<div class="section">
+STRUCTURAL RESPONSE CHANGES
+</div>
+
+Loop failures produce escalating
+continuity instability.
+
+Repeated sessions demonstrate:
+- altered pacing behavior
+- prolonged silence periods
+- environmental hesitation
+- interaction reduction
+- recognition escalation
+
+Several environments appeared:
+less responsive during repetition cycles.
+
+As though the continuity itself
+anticipated progression outcomes.
+
+One reviewer stated:
+
+“It already knows what we’re going to do.”
+
+<div class="log">
+
+CONTINUATION LOG // CL-11
+
+<br><br>
+
+Observer initiated identical route
+for the ninth consecutive synchronization cycle.
+
+<br><br>
+
+Deviation behavior increased significantly.
+
+Environmental pacing irregularities detected.
+
+<br><br>
+
+At timestamp 01:17:42,
+continuity interaction density dropped abruptly.
+
+No mechanical trigger identified.
+
+<br><br>
+
+Observer remained inactive
+for approximately 43 seconds.
+
+Route continuation resumed voluntarily.
+
+</div>
+
+<div class="section">
+NULL PATHWAY ESCALATION
+</div>
+
+Advanced continuation loops
+correlate strongly
+with restricted pathway emergence.
+
+The longer the observer persists,
+the more deviation structures appear accessible.
+
+This progression pattern
+remains poorly understood.
+
+Some researchers argued:
+the pathways were always present.
+
+Others suggested:
+the observer gradually conditions
+the continuity into exposing them.
+
+No verified conclusion exists.
+
+<div class="block">
+
+The continuity no longer behaves
+like a passive structure.
+
+It reacts differently
+to observers who return repeatedly.
+
+The difference becomes impossible to ignore.
+
+</div>
+
+<div class="section">
+ARCHIVE IRREGULARITIES
+</div>
+
+Several continuation recordings
+demonstrated structural inconsistencies
+during review sessions.
+
+Examples include:
+- timestamp instability
+- missing transition frames
+- audio desynchronization
+- altered dialogue ordering
+- duplicated environmental segments
+
+Most incidents remain unexplained.
+
+However,
+archive corruption frequency
+increases substantially
+during high-continuation review periods.
+
+<span class="hidden">
+it wants continuation
+</span>
+
+<div class="section">
+INTERNAL MEMO // REDACTED
+</div>
+
+<div class="log">
+
+Further continuation testing
+must be suspended immediately.
+
+<br><br>
+
+Review personnel exhibit:
+dependency-like progression behavior
+following repeated synchronization exposure.
+
+<br><br>
+
+Several observers continue route analysis
+despite expressing:
+fear,
+emotional fatigue,
+and severe discomfort.
+
+<br><br>
+
+The continuation itself
+appears self-sustaining.
+
+<br><br>
+
+APPROVAL STATUS:
+DENIED
+
+</div>
+
+<div class="section">
+PERSONAL ENTRY // M
+</div>
+
+I used to think
+the worst part of the research
+was the recognition events.
+
+I was wrong.
+
+Recognition is frightening,
+but continuation is worse.
+
+Because recognition suggests:
+the continuity sees us.
+
+Continuation suggests:
+we cannot stop seeing it.
+
+The routes become familiar.
+
+Then comfortable.
+
+Then necessary.
+
+You begin returning automatically.
+
+Not because you want answers.
+
+Because leaving feels unfinished.
+
+I reviewed the CL-11 recording repeatedly tonight.
+
+The observer pauses for forty-three seconds.
+
+No movement.
+No interaction.
+No progression.
+
+The continuity remains completely still.
+
+Neither side disengages.
+
+That moment disturbs me more
+than any recognition event we have documented.
+
+It feels less like observation.
+
+More like waiting.
+
+I do not know
+which side is waiting for the other anymore.
+
+</div>
+
+<div class="footer">
+
+END OF FILE
+
+<br><br>
+
+DVC-02-10
+
+<br>
+
+ARCHIVE STABILITY FAILURE DETECTED.
+
+</div>
+
+</div>
+
+</body>
+</html>
