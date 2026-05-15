@@ -545,5 +545,40 @@ if(sessionStorage.getItem("dvcBooted")){
 
 </script>
 
+    <script>
+
+const params =
+new URLSearchParams(window.location.search);
+
+const roaringMode =
+params.get("phase") === "roaring";
+
+if(roaringMode){
+
+    document.body.classList.add("roaring");
+
+    const status =
+    document.getElementById("archive-status");
+
+    if(status){
+
+        status.innerText =
+        "ARCHIVE STATUS // CONTAMINATED";
+
+    }
+
+    const roaringNode =
+    document.getElementById("roaring-node");
+
+    if(roaringNode){
+
+        roaringNode.style.display = "block";
+
+    }
+
+}
+
+</script>
+
 </body>
 </html>
