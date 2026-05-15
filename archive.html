@@ -26,6 +26,7 @@ body{
     overflow-x:hidden;
     letter-spacing:0.4px;
     position:relative;
+    transition:background 2s ease, filter 2s ease;
 }
 
 /* SCANLINES */
@@ -65,6 +66,26 @@ body::after{
 
     opacity:0.15;
     z-index:-1;
+}
+
+/* ROARING MODE */
+
+body.roaring{
+
+    background:
+        radial-gradient(circle at top,
+        rgba(120,80,255,0.14),
+        transparent 60%),
+
+        linear-gradient(to bottom,
+        #04020a,
+        #020106 70%,
+        #000000);
+
+    filter:
+        contrast(1.05)
+        brightness(0.95);
+
 }
 
 /* ========================= */
@@ -299,6 +320,26 @@ to{
     font-size:14px;
 }
 
+/* GLITCH */
+
+.glitch{
+    animation:flicker 3s infinite;
+}
+
+@keyframes flicker{
+
+0%{opacity:1;}
+1%{opacity:0.2;}
+2%{opacity:1;}
+55%{opacity:1;}
+56%{opacity:0.4;}
+57%{opacity:1;}
+90%{opacity:1;}
+91%{opacity:0.1;}
+92%{opacity:1;}
+
+}
+
 /* FOOTER */
 
 .footer{
@@ -403,7 +444,7 @@ SYNC COMPLETE
 DEVICE CONTINUITY NETWORK
 </div>
 
-<div class="status">
+<div class="status" id="archive-status">
 ARCHIVE STATUS // ACTIVE
 </div>
 
@@ -419,7 +460,7 @@ DCN // MAIN ARCHIVE NODE
 ARCHIVE DIRECTORY
 </div>
 
-<div class="desc">
+<div class="desc" id="archive-desc">
 
 Recovered continuity research materials,
 observer synchronization reports,
@@ -465,6 +506,34 @@ and observer recognition phenomena.
 
 </a>
 
+<!-- ROARING NODE -->
+
+<a href="files/roaring/prj_roaring.html"
+class="file glitch"
+id="roaring-node"
+style="display:none; border-color:#7d5fff;">
+
+<div class="file-title">
+PRJ-ROARING // CONTINUATION CASCADE
+</div>
+
+<div class="file-desc">
+
+Unauthorized continuity layer detected.
+
+<br><br>
+
+Observer contamination has exceeded
+verified synchronization boundaries.
+
+<br><br>
+
+DO NOT CONTINUE.
+
+</div>
+
+</a>
+
 <div class="section">
 SYSTEM NOTICE
 </div>
@@ -499,24 +568,38 @@ NO VERIFIED ORIGINAL STRUCTURE EXISTS.
 
 </div>
 
-<audio id="windAudio" autoplay loop>
-<source src="audio/wind.mp3" type="audio/mpeg">
-</audio>
-
 <script>
 
-const bootScreen = document.getElementById("bootScreen");
-const archiveContent = document.getElementById("archiveContent");
-const flash = document.getElementById("flash");
+const bootScreen =
+document.getElementById("bootScreen");
 
-/*
-ONLY SHOW FULL BOOT ON FIRST VISIT
-*/
+const archiveContent =
+document.getElementById("archiveContent");
+
+const flash =
+document.getElementById("flash");
+
+/* ========================= */
+/* ROARING CHECK */
+/* ========================= */
+
+const params =
+new URLSearchParams(window.location.search);
+
+const roaringMode =
+params.get("phase") === "roaring"
+|| localStorage.getItem("roaring") === "true";
+
+/* ========================= */
+/* BOOT SCREEN */
+/* ========================= */
 
 if(sessionStorage.getItem("dvcBooted")){
 
     bootScreen.style.display = "none";
     archiveContent.style.display = "block";
+
+    applyRoaring();
 
 } else {
 
@@ -537,44 +620,83 @@ if(sessionStorage.getItem("dvcBooted")){
             bootScreen.style.display = "none";
             archiveContent.style.display = "block";
 
+            applyRoaring();
+
         }, 1000);
 
     }, 5600);
 
 }
 
-</script>
+/* ========================= */
+/* ROARING TRANSFORMATION */
+/* ========================= */
 
-    <script>
+function applyRoaring(){
 
-const params =
-new URLSearchParams(window.location.search);
-
-const roaringMode =
-params.get("phase") === "roaring";
-
-if(roaringMode){
+    if(!roaringMode) return;
 
     document.body.classList.add("roaring");
+
+    /* STATUS */
 
     const status =
     document.getElementById("archive-status");
 
-    if(status){
+    status.innerText =
+    "ARCHIVE STATUS // CONTAMINATED";
 
-        status.innerText =
-        "ARCHIVE STATUS // CONTAMINATED";
+    /* HEADER */
 
-    }
+    document.querySelector(".title").innerHTML =
+    "ARCHIVE DIRECTORY // ALTERED";
 
-    const roaringNode =
-    document.getElementById("roaring-node");
+    document.getElementById("archive-desc").innerHTML = `
 
-    if(roaringNode){
+    Synchronization collapse detected.
 
-        roaringNode.style.display = "block";
+    <br><br>
 
-    }
+    Observer contamination has spread
+    beyond verified continuity layers.
+
+    <br><br>
+
+    Certain directories were not present
+    in previous archive builds.
+
+    `;
+
+    /* SHOW ROARING */
+
+    document.getElementById(
+    "roaring-node"
+    ).style.display = "block";
+
+    /* MUSIC */
+
+    const existing =
+    document.getElementById(
+    "persistentGlaceir"
+    );
+
+    if(existing) return;
+
+    const audio =
+    document.createElement("audio");
+
+    audio.id = "persistentGlaceir";
+
+    audio.src =
+    "files/dvc02/glaceir.mp3";
+
+    audio.loop = true;
+
+    audio.volume = 0.7;
+
+    audio.autoplay = true;
+
+    document.body.appendChild(audio);
 
 }
 
