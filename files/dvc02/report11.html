@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DVC-02 // DOC-11 // ACCESS FAILURE</title>
+
+<style>
+
+:root{
+    --bg:#03040a;
+    --line:#445788;
+    --text:#d7dcef;
+}
+
+body{
+    margin:0;
+    background:
+        radial-gradient(circle at top, rgba(120,140,255,0.14), transparent 55%),
+        linear-gradient(to bottom, #03040a, #010207 80%, #000104);
+    color:var(--text);
+    font-family:"Courier New", monospace;
+    overflow-x:hidden;
+    letter-spacing:0.5px;
+    position:relative;
+    text-shadow:0 0 4px rgba(180,210,255,0.05);
+}
+
+/* SCANLINES */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+
+    background:
+    repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.018),
+        rgba(255,255,255,0.018) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+
+    opacity:0.55;
+    z-index:999;
+}
+
+/* GRID */
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+
+    background-image:
+        linear-gradient(rgba(120,140,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120,140,255,0.04) 1px, transparent 1px);
+
+    background-size:42px 42px;
+
+    opacity:0.22;
+    z-index:-1;
+}
+
+.container{
+    max-width:1050px;
+    margin:auto;
+    padding:40px;
+    position:relative;
+    z-index:2;
+}
+
+/* TOPBAR */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #445788;
+    padding-bottom:18px;
+    margin-bottom:35px;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.network{
+    color:#dbe3ff;
+    letter-spacing:4px;
+    font-size:14px;
+    animation:flicker 9s infinite;
+}
+
+.status{
+    color:#c3cff5;
+    font-size:12px;
+    letter-spacing:2px;
+    animation:flicker 4s infinite;
+}
+
+/* BACK */
+
+.back{
+    display:inline-block;
+    margin-bottom:35px;
+    color:#b2c3ff;
+    text-decoration:none;
+    transition:0.2s;
+    letter-spacing:1px;
+}
+
+.back:hover{
+    color:white;
+    transform:translateX(-4px);
+}
+
+/* HEADER */
+
+.header{
+    border:1px solid #5068a7;
+    background:rgba(7,9,18,0.97);
+    padding:40px;
+    margin-bottom:40px;
+    box-shadow:0 0 50px rgba(120,150,255,0.14);
+    position:relative;
+    overflow:hidden;
+}
+
+.header::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:1px;
+    background:rgba(220,230,255,0.6);
+    animation:scan 4s linear infinite;
+}
+
+@keyframes scan{
+
+0%{left:-100%;}
+100%{left:100%;}
+
+}
+
+.docid{
+    color:#b6c6ff;
+    letter-spacing:4px;
+    font-size:13px;
+    margin-bottom:15px;
+}
+
+.title{
+    font-size:38px;
+    letter-spacing:6px;
+    color:#f0f3ff;
+    margin-bottom:28px;
+    line-height:1.5;
+}
+
+.meta{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:18px;
+    color:#aab7de;
+    line-height:1.9;
+    font-size:14px;
+}
+
+.meta span{
+    color:#ffffff;
+}
+
+/* WARNING */
+
+.warning{
+    border-left:3px solid #c0ceff;
+    background:rgba(10,14,24,0.94);
+    padding:25px;
+    margin-bottom:45px;
+    color:#dce4ff;
+    line-height:2;
+}
+
+/* SECTIONS */
+
+.section{
+    margin-top:60px;
+    margin-bottom:20px;
+    color:#c0ceff;
+    letter-spacing:4px;
+    font-size:15px;
+    border-bottom:1px solid #445788;
+    padding-bottom:12px;
+}
+
+.content{
+    line-height:2.2;
+    color:#d7dcef;
+    font-size:15px;
+}
+
+/* BLOCKS */
+
+.block{
+    background:rgba(8,11,20,0.95);
+    border:1px solid #5068a7;
+    padding:24px;
+    margin:35px 0;
+    line-height:2;
+    color:#d5ddfa;
+}
+
+.log{
+    margin:35px 0;
+    padding:25px;
+    background:rgba(4,6,12,0.98);
+    border:1px solid #5068a7;
+    color:#d0d9f7;
+    line-height:2.1;
+    font-size:14px;
+}
+
+/* GLITCH */
+
+.glitch{
+    animation:flicker 5s infinite;
+}
+
+@keyframes flicker{
+
+0%{opacity:1;}
+1%{opacity:0.2;}
+2%{opacity:1;}
+35%{opacity:1;}
+36%{opacity:0.4;}
+37%{opacity:1;}
+78%{opacity:1;}
+79%{opacity:0.1;}
+80%{opacity:1;}
+
+}
+
+.corrupt{
+    opacity:0.35;
+    letter-spacing:2px;
+}
+
+.hidden{
+    opacity:0.05;
+    user-select:none;
+}
+
+/* FOOTER */
+
+.footer{
+    margin-top:90px;
+    padding-top:30px;
+    border-top:1px solid #445788;
+    color:#8191bf;
+    line-height:2;
+    font-size:12px;
+    letter-spacing:1px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+.container{
+    padding:22px;
+}
+
+.title{
+    font-size:24px;
+    letter-spacing:3px;
+}
+
+.meta{
+    grid-template-columns:1fr;
+}
+
+}
+
+::selection{
+    background:#6078c8;
+    color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="topbar">
+
+<div class="network glitch">
+DELTA CONTINUITY RESEARCH NETWORK
+</div>
+
+<div class="status glitch">
+NODE STATUS // ACCESS FAILURE
+</div>
+
+</div>
+
+<a href="dvc02.html" class="back">
+← RETURN TO DVC-02 DIRECTORY
+</a>
+
+<div class="header">
+
+<div class="docid">
+DVC-02 // DOC-11
+</div>
+
+<div class="title glitch">
+NODE SYNCHRONIZATION FAILURE
+</div>
+
+<div class="meta">
+
+<div>
+FILE STATUS:
+<span class="glitch">CORRUPTED</span>
+</div>
+
+<div>
+ACCESS LEVEL:
+<span>RESTRICTED</span>
+</div>
+
+<div>
+DEVIATION INDEX:
+<span class="glitch">UNKNOWN</span>
+</div>
+
+<div>
+OBSERVER STABILITY:
+<span class="glitch">UNVERIFIED</span>
+</div>
+
+<div>
+ARCHIVE BUILD:
+<span>0.9.8</span>
+</div>
+
+<div>
+NODE:
+<span class="glitch">DVC-02-NULL</span>
+</div>
+
+</div>
+
+</div>
+
+<div class="warning">
+
+WARNING:
+
+Archive synchronization integrity
+can no longer be verified.
+
+<br><br>
+
+Repeated continuation activity
+has produced:
+<br><br>
+
+- node instability
+
+<br>
+
+- continuity overlap
+
+<br>
+
+- progression desynchronization
+
+<br>
+
+- archive fragmentation
+
+<br>
+
+- observer retention anomalies
+
+</div>
+
+<div class="content">
+
+<div class="section">
+RECOVERY SUMMARY
+</div>
+
+DOC-11 was recovered
+from a partially fragmented archive layer.
+
+Significant structural corruption remains.
+
+Several portions of the original document
+could not be restored successfully.
+
+Recovered material suggests:
+advanced synchronization collapse
+occurred shortly before
+archive containment failure.
+
+<div class="section">
+NODE INSTABILITY EVENTS
+</div>
+
+Researchers initially believed:
+continuities remained structurally isolated.
+
+This assumption appears incorrect.
+
+Advanced continuation exposure
+produced:
+cross-node interference,
+environmental overlap,
+and progression instability
+between previously separated structures.
+
+Multiple synchronization layers
+began demonstrating:
+shared behavioral anomalies.
+
+The distinction between continuities
+became increasingly difficult to define.
+
+<div class="block">
+
+IMPORTANT:
+
+Several researchers reported:
+environments appearing “familiar”
+before synchronization initialization.
+
+Others claimed:
+certain entities behaved consistently
+across unrelated continuities.
+
+Verification remains impossible.
+
+</div>
+
+<div class="section">
+ARCHIVE FAILURE ESCALATION
+</div>
+
+Review recordings recovered from late-stage testing
+demonstrate severe structural instability.
+
+Examples include:
+- duplicated environmental segments
+- incomplete progression resets
+- dialogue persistence between sessions
+- node overlap artifacts
+- inaccessible transition layers
+
+One recording reportedly contained:
+environmental structures
+not associated with any archived continuity.
+
+The recording no longer exists.
+
+<div class="log">
+
+NODE LOG // NF-03
+
+<br><br>
+
+Synchronization initiated successfully.
+
+<br><br>
+
+Progression route divergence detected
+after completion threshold exceeded.
+
+<br><br>
+
+Environmental transition failed.
+
+<br><br>
+
+Observer remained active
+inside unresolved continuity space
+for approximately 12 minutes.
+
+<br><br>
+
+Session termination unsuccessful.
+
+</div>
+
+<div class="section">
+PERSONNEL COLLAPSE
+</div>
+
+Late-stage personnel evaluations
+became increasingly inconsistent.
+
+Several researchers displayed:
+identity confusion,
+memory irregularities,
+and synchronization dependency symptoms.
+
+Multiple personnel claimed:
+they could no longer distinguish
+between:
+review,
+observation,
+and participation.
+
+One reviewer reportedly asked:
+
+“Are we certain we ever exited the route?”
+
+<div class="section">
+RESTRICTED CONTINUATION EVENTS
+</div>
+
+The final continuation sessions
+remain heavily corrupted.
+
+Recovered fragments reference:
+observer refusal,
+route persistence,
+and failed disengagement attempts.
+
+One surviving annotation states:
+
+<div class="block glitch">
+
+THE CONTINUITY NO LONGER REQUIRES INPUT
+
+</div>
+
+This statement appears repeatedly
+throughout fragmented archive sectors.
+
+No verified explanation exists.
+
+<span class="hidden">
+it continues without you
+</span>
+
+<div class="section">
+INTERNAL NOTICE // REDACTED
+</div>
+
+<div class="log">
+
+Containment procedures failed.
+
+<br><br>
+
+Synchronization separation no longer stable.
+
+<br><br>
+
+Observer distinction integrity compromised.
+
+<br><br>
+
+Further continuation prohibited.
+
+<br><br>
+
+RESEARCH STATUS:
+ACTIVE
+
+</div>
+
+<div class="section">
+PERSONAL ENTRY // M
+</div>
+
+I reviewed the remaining fragments tonight.
+
+I should not have.
+
+The archive no longer behaves correctly.
+
+Files appear where they should not.
+Sections repeat.
+Timestamps shift.
+
+Sometimes entire portions of the directory
+feel different than I remember.
+
+At first,
+I assumed exhaustion.
+
+Now I am less certain.
+
+There is a recording fragment
+I cannot stop thinking about.
+
+The observer completes the route.
+
+Nothing happens.
+
+No reset.
+No disengagement.
+No termination.
+
+The continuity simply remains active.
+
+Waiting.
+
+The observer hesitates for several seconds.
+
+Then continues moving.
+
+I think that was the moment
+everything changed.
+
+Not because the continuity broke.
+
+Because the observer realized
+they were allowed to continue.
+
+</div>
+
+<div class="footer">
+
+END OF FILE
+
+<br><br>
+
+DVC-02-11
+
+<br>
+
+ARCHIVE STRUCTURE NO LONGER VERIFIED.
+
+</div>
+
+</div>
+
+</body>
+</html>
