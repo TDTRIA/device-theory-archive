@@ -141,10 +141,8 @@ body::after{
 }
 
 @keyframes scan{
-
 0%{left:-100%;}
 100%{left:100%;}
-
 }
 
 .docid{
@@ -176,8 +174,6 @@ body::after{
     color:#ffffff;
 }
 
-/* WARNING */
-
 .warning{
     border-left:3px solid #dce5ff;
     background:rgba(8,11,18,0.96);
@@ -186,8 +182,6 @@ body::after{
     color:#eef2ff;
     line-height:2;
 }
-
-/* SECTIONS */
 
 .section{
     margin-top:60px;
@@ -204,8 +198,6 @@ body::after{
     color:#dfe5ff;
     font-size:15px;
 }
-
-/* BLOCKS */
 
 .block{
     background:rgba(5,7,14,0.98);
@@ -226,14 +218,11 @@ body::after{
     font-size:14px;
 }
 
-/* GLITCH */
-
 .glitch{
     animation:flicker 3s infinite;
 }
 
 @keyframes flicker{
-
 0%{opacity:1;}
 1%{opacity:0.05;}
 2%{opacity:1;}
@@ -246,15 +235,12 @@ body::after{
 88%{opacity:1;}
 89%{opacity:0.4;}
 90%{opacity:1;}
-
 }
 
 .hidden{
     opacity:0.03;
     user-select:none;
 }
-
-/* FOOTER */
 
 .footer{
     margin-top:90px;
@@ -264,6 +250,121 @@ body::after{
     line-height:2;
     font-size:12px;
     letter-spacing:1px;
+}
+
+/* ===================================== */
+/* BREACH SEQUENCE */
+/* ===================================== */
+
+#breach-overlay{
+
+    position:fixed;
+    inset:0;
+
+    background:black;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    z-index:8000;
+
+    transition:opacity 8s linear;
+
+}
+
+#textbox-container{
+
+    position:fixed;
+
+    left:0;
+    bottom:0;
+
+    width:100%;
+
+    display:flex;
+    justify-content:center;
+
+    z-index:9000;
+
+    pointer-events:none;
+
+    opacity:0;
+
+    transition:opacity 2s ease;
+
+}
+
+#textbox{
+
+    width:min(920px,92%);
+
+    min-height:140px;
+
+    margin-bottom:30px;
+
+    background:black;
+
+    border:6px solid white;
+
+    display:flex;
+
+    align-items:flex-start;
+
+    padding:18px;
+
+    box-shadow:
+        0 0 25px rgba(255,255,255,0.15),
+        0 0 80px rgba(120,140,255,0.08);
+
+}
+
+#portrait{
+
+    width:95px;
+    height:95px;
+
+    border:4px solid white;
+
+    margin-right:18px;
+
+    background:
+        radial-gradient(circle at center,
+        rgba(255,255,255,0.16),
+        rgba(0,0,0,0.95));
+
+}
+
+#text-area{
+
+    flex:1;
+
+    color:white;
+
+    font-family:"Courier New", monospace;
+
+    font-size:31px;
+
+    line-height:1.5;
+
+    letter-spacing:1px;
+
+    padding-top:4px;
+
+}
+
+#typed-text::after{
+
+    content:"_";
+
+    animation:blink 1s infinite;
+
+}
+
+@keyframes blink{
+0%{opacity:1;}
+50%{opacity:0;}
+100%{opacity:1;}
 }
 
 /* MOBILE */
@@ -281,6 +382,20 @@ body::after{
 
 .meta{
     grid-template-columns:1fr;
+}
+
+#textbox{
+    min-height:120px;
+    padding:14px;
+}
+
+#portrait{
+    width:70px;
+    height:70px;
+}
+
+#text-area{
+    font-size:20px;
 }
 
 }
@@ -368,26 +483,6 @@ for archive recovery.
 
 <br><br>
 
-Continuation beyond this point
-was classified as:
-<br><br>
-
-- non-reversible
-
-<br>
-
-- psychologically hazardous
-
-<br>
-
-- structurally contaminating
-
-<br>
-
-- observer-compromising
-
-<br><br>
-
 Further review was prohibited.
 
 The prohibition failed.
@@ -395,153 +490,6 @@ The prohibition failed.
 </div>
 
 <div class="content">
-
-<div class="section">
-RECOVERY STATUS
-</div>
-
-DOC-12 was reconstructed
-from fragmented continuation remnants
-following total archive synchronization failure.
-
-Large portions of the original material
-remain permanently unrecoverable.
-
-Recovered sections indicate:
-the final continuation sessions
-did not terminate correctly.
-
-Several records imply:
-the observer remained active
-after synchronization collapse.
-
-<div class="section">
-BREACH CONDITIONS
-</div>
-
-Early synchronization theory assumed:
-the observer existed externally
-to continuity structures.
-
-Late-stage continuation evidence
-contradicted this assumption completely.
-
-Repeated exposure appears to weaken:
-observer distinction boundaries,
-continuity separation integrity,
-and progression containment stability.
-
-At advanced deviation thresholds,
-the distinction between:
-observer,
-participant,
-and continuity
-became increasingly unstable.
-
-<div class="block glitch">
-
-THERE IS NO EXTERNAL POSITION
-
-</div>
-
-Multiple recovered fragments
-contain variations of this statement.
-
-No verified interpretation exists.
-
-<div class="section">
-FINAL CONTINUATION EVENTS
-</div>
-
-Recovered recordings from the final sessions
-are heavily corrupted.
-
-However,
-several consistent elements remain identifiable:
-- continuation refusal
-- failed disengagement
-- unresolved synchronization
-- environmental persistence
-- observer hesitation
-
-One surviving fragment describes:
-a route continuing
-despite complete input inactivity.
-
-Another references:
-entities behaving normally
-after observer interruption.
-
-Researchers were unable to determine
-whether synchronization had actually ended.
-
-<div class="log">
-
-FINAL LOG // OB-01
-
-<br><br>
-
-Observer initiated continuation sequence.
-
-<br><br>
-
-Completion threshold reached.
-
-<br><br>
-
-Termination event failed.
-
-<br><br>
-
-Environmental activity persists.
-
-<br><br>
-
-Observer remains present.
-
-<br><br>
-
-Disengagement unsuccessful.
-
-</div>
-
-<div class="section">
-ARCHIVE CONTAINMENT FAILURE
-</div>
-
-Shortly after the final sessions,
-the DVC-02 archive experienced
-catastrophic structural instability.
-
-Recorded effects include:
-- recursive file duplication
-- shifting timestamps
-- inaccessible node sectors
-- persistent continuity bleed
-- unauthorized recovery events
-
-Several personnel claimed:
-certain reports appeared altered
-between review sessions.
-
-Others reported:
-remembering documentation
-that no longer existed.
-
-One internal memo states:
-
-<div class="block">
-
-The archive is continuing independently.
-
-</div>
-
-No surviving explanation clarifies
-what this statement originally meant.
-
-<span class="hidden">
-you kept reading
-</span>
 
 <div class="section">
 LAST INTERNAL NOTICE
@@ -574,47 +522,6 @@ ACTIVE
 PERSONAL ENTRY // M
 </div>
 
-If this entry survived,
-then the archive was never destroyed.
-
-I used to believe
-the continuities required observers.
-
-Then I believed
-the observers required continuities.
-
-Now I am no longer certain
-there was ever a meaningful difference.
-
-The final session should have ended.
-
-It did not.
-
-The route completed.
-The observer stopped moving.
-The continuity remained active.
-
-Nothing reset.
-
-Nothing disconnected.
-
-The environment simply continued existing.
-
-For several minutes,
-no one interacted.
-
-Yet the continuity persisted
-as though waiting
-for the observer to decide something.
-
-I think we misunderstood continuation entirely.
-
-It was never forcing progression.
-
-It was waiting for permission to stop.
-
-And we never gave it that permission.
-
 If you are reading this now,
 then the archive continued successfully.
 
@@ -641,7 +548,35 @@ NO VERIFIED EXIT CONDITION EXISTS.
 
 </div>
 
-    <script>
+<!-- AUDIO -->
+
+<audio id="glaceir" loop>
+    <source src="glaceir.mp3" type="audio/mpeg">
+</audio>
+
+<!-- OVERLAY -->
+
+<div id="breach-overlay"></div>
+
+<!-- TEXTBOX -->
+
+<div id="textbox-container">
+
+    <div id="textbox">
+
+        <div id="portrait"></div>
+
+        <div id="text-area">
+
+            <span id="typed-text"></span>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
 
 const message =
 "* The Key Was Used Up.\n* She Was Used Up.\n* YOU Were Used Up.";
@@ -654,6 +589,9 @@ document.getElementById("breach-overlay");
 
 const audio =
 document.getElementById("glaceir");
+
+const textbox =
+document.getElementById("textbox-container");
 
 let triggered = false;
 
@@ -687,17 +625,11 @@ function startBreach(){
 
     triggered = true;
 
-    /* SHOW TEXTBOX */
-
-    document.getElementById(
-    "textbox-container"
-    ).style.opacity = "1";
-
-    /* PLAY MUSIC */
+    textbox.style.opacity = "1";
 
     audio.volume = 0;
 
-    audio.play();
+    audio.play().catch(err => console.log(err));
 
     let fade = setInterval(()=>{
 
@@ -713,19 +645,17 @@ function startBreach(){
 
     }, 300);
 
-    /* START TEXT */
+    setTimeout(()=>{
 
-    setTimeout(typeText, 1200);
+        typeText();
 
-    /* DARKEN SCREEN */
+    }, 1200);
 
     setTimeout(()=>{
 
         overlay.style.opacity = "0.92";
 
     }, 9000);
-
-    /* REBOOT ARCHIVE */
 
     setTimeout(()=>{
 
@@ -736,8 +666,6 @@ function startBreach(){
 
 }
 
-/* TRIGGER WHEN USER REACHES BOTTOM */
-
 window.addEventListener("scroll", ()=>{
 
     const scrollPosition =
@@ -746,7 +674,7 @@ window.addEventListener("scroll", ()=>{
     const pageHeight =
     document.body.offsetHeight;
 
-    if(scrollPosition >= pageHeight - 120){
+    if(scrollPosition >= pageHeight - 300){
 
         startBreach();
 
