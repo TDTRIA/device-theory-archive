@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DVC-02 // DOC-12 // RESTRICTED</title>
+
+<style>
+
+:root{
+    --bg:#010104;
+    --line:#6277b8;
+    --text:#dfe5ff;
+}
+
+body{
+    margin:0;
+    background:
+        radial-gradient(circle at top, rgba(140,160,255,0.18), transparent 55%),
+        linear-gradient(to bottom, #010104, #000103 80%, #000000);
+    color:var(--text);
+    font-family:"Courier New", monospace;
+    overflow-x:hidden;
+    letter-spacing:0.5px;
+    position:relative;
+    text-shadow:0 0 6px rgba(180,210,255,0.08);
+}
+
+/* SCANLINES */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+
+    background:
+    repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.022),
+        rgba(255,255,255,0.022) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+
+    opacity:0.65;
+    z-index:999;
+}
+
+/* GRID */
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+
+    background-image:
+        linear-gradient(rgba(120,140,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120,140,255,0.05) 1px, transparent 1px);
+
+    background-size:42px 42px;
+
+    opacity:0.3;
+    z-index:-1;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:40px;
+    position:relative;
+    z-index:2;
+}
+
+/* TOPBAR */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #6277b8;
+    padding-bottom:18px;
+    margin-bottom:35px;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.network{
+    color:#eef2ff;
+    letter-spacing:4px;
+    font-size:14px;
+    animation:flicker 4s infinite;
+}
+
+.status{
+    color:#d6deff;
+    font-size:12px;
+    letter-spacing:2px;
+    animation:flicker 2s infinite;
+}
+
+/* BACK */
+
+.back{
+    display:inline-block;
+    margin-bottom:35px;
+    color:#c8d5ff;
+    text-decoration:none;
+    transition:0.2s;
+    letter-spacing:1px;
+}
+
+.back:hover{
+    color:white;
+    transform:translateX(-4px);
+}
+
+/* HEADER */
+
+.header{
+    border:1px solid #7087d4;
+    background:rgba(5,7,14,0.98);
+    padding:40px;
+    margin-bottom:40px;
+    box-shadow:0 0 70px rgba(120,150,255,0.18);
+    position:relative;
+    overflow:hidden;
+}
+
+.header::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:1px;
+    background:rgba(255,255,255,0.7);
+    animation:scan 2s linear infinite;
+}
+
+@keyframes scan{
+
+0%{left:-100%;}
+100%{left:100%;}
+
+}
+
+.docid{
+    color:#d4ddff;
+    letter-spacing:4px;
+    font-size:13px;
+    margin-bottom:15px;
+}
+
+.title{
+    font-size:42px;
+    letter-spacing:7px;
+    color:#ffffff;
+    margin-bottom:28px;
+    line-height:1.5;
+    animation:flicker 8s infinite;
+}
+
+.meta{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:18px;
+    color:#bcc7eb;
+    line-height:1.9;
+    font-size:14px;
+}
+
+.meta span{
+    color:#ffffff;
+}
+
+/* WARNING */
+
+.warning{
+    border-left:3px solid #dce5ff;
+    background:rgba(8,11,18,0.96);
+    padding:25px;
+    margin-bottom:45px;
+    color:#eef2ff;
+    line-height:2;
+}
+
+/* SECTIONS */
+
+.section{
+    margin-top:60px;
+    margin-bottom:20px;
+    color:#d7e0ff;
+    letter-spacing:4px;
+    font-size:15px;
+    border-bottom:1px solid #6277b8;
+    padding-bottom:12px;
+}
+
+.content{
+    line-height:2.25;
+    color:#dfe5ff;
+    font-size:15px;
+}
+
+/* BLOCKS */
+
+.block{
+    background:rgba(5,7,14,0.98);
+    border:1px solid #7087d4;
+    padding:24px;
+    margin:35px 0;
+    line-height:2;
+    color:#eef2ff;
+}
+
+.log{
+    margin:35px 0;
+    padding:25px;
+    background:rgba(0,0,0,0.98);
+    border:1px solid #7087d4;
+    color:#dce5ff;
+    line-height:2.1;
+    font-size:14px;
+}
+
+/* GLITCH */
+
+.glitch{
+    animation:flicker 3s infinite;
+}
+
+@keyframes flicker{
+
+0%{opacity:1;}
+1%{opacity:0.05;}
+2%{opacity:1;}
+25%{opacity:1;}
+26%{opacity:0.3;}
+27%{opacity:1;}
+55%{opacity:1;}
+56%{opacity:0.08;}
+57%{opacity:1;}
+88%{opacity:1;}
+89%{opacity:0.4;}
+90%{opacity:1;}
+
+}
+
+.hidden{
+    opacity:0.03;
+    user-select:none;
+}
+
+/* FOOTER */
+
+.footer{
+    margin-top:90px;
+    padding-top:30px;
+    border-top:1px solid #6277b8;
+    color:#95a7dd;
+    line-height:2;
+    font-size:12px;
+    letter-spacing:1px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+.container{
+    padding:22px;
+}
+
+.title{
+    font-size:26px;
+    letter-spacing:4px;
+}
+
+.meta{
+    grid-template-columns:1fr;
+}
+
+}
+
+::selection{
+    background:#7087d4;
+    color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="topbar">
+
+<div class="network glitch">
+DELTA CONTINUITY RESEARCH NETWORK
+</div>
+
+<div class="status glitch">
+NODE STATUS // UNRECOVERABLE
+</div>
+
+</div>
+
+<a href="dvc02.html" class="back">
+← RETURN TO DVC-02 DIRECTORY
+</a>
+
+<div class="header">
+
+<div class="docid">
+DVC-02 // DOC-12
+</div>
+
+<div class="title">
+OBSERVER BREACH EVENT
+</div>
+
+<div class="meta">
+
+<div>
+FILE STATUS:
+<span class="glitch">RESTRICTED</span>
+</div>
+
+<div>
+ACCESS LEVEL:
+<span>NULL</span>
+</div>
+
+<div>
+DEVIATION INDEX:
+<span class="glitch">UNDEFINED</span>
+</div>
+
+<div>
+OBSERVER STABILITY:
+<span class="glitch">IRREVERSIBLE</span>
+</div>
+
+<div>
+ARCHIVE BUILD:
+<span>UNKNOWN</span>
+</div>
+
+<div>
+NODE:
+<span class="glitch">UNVERIFIED</span>
+</div>
+
+</div>
+
+</div>
+
+<div class="warning">
+
+WARNING:
+
+The following material was never approved
+for archive recovery.
+
+<br><br>
+
+Continuation beyond this point
+was classified as:
+<br><br>
+
+- non-reversible
+
+<br>
+
+- psychologically hazardous
+
+<br>
+
+- structurally contaminating
+
+<br>
+
+- observer-compromising
+
+<br><br>
+
+Further review was prohibited.
+
+The prohibition failed.
+
+</div>
+
+<div class="content">
+
+<div class="section">
+RECOVERY STATUS
+</div>
+
+DOC-12 was reconstructed
+from fragmented continuation remnants
+following total archive synchronization failure.
+
+Large portions of the original material
+remain permanently unrecoverable.
+
+Recovered sections indicate:
+the final continuation sessions
+did not terminate correctly.
+
+Several records imply:
+the observer remained active
+after synchronization collapse.
+
+<div class="section">
+BREACH CONDITIONS
+</div>
+
+Early synchronization theory assumed:
+the observer existed externally
+to continuity structures.
+
+Late-stage continuation evidence
+contradicted this assumption completely.
+
+Repeated exposure appears to weaken:
+observer distinction boundaries,
+continuity separation integrity,
+and progression containment stability.
+
+At advanced deviation thresholds,
+the distinction between:
+observer,
+participant,
+and continuity
+became increasingly unstable.
+
+<div class="block glitch">
+
+THERE IS NO EXTERNAL POSITION
+
+</div>
+
+Multiple recovered fragments
+contain variations of this statement.
+
+No verified interpretation exists.
+
+<div class="section">
+FINAL CONTINUATION EVENTS
+</div>
+
+Recovered recordings from the final sessions
+are heavily corrupted.
+
+However,
+several consistent elements remain identifiable:
+- continuation refusal
+- failed disengagement
+- unresolved synchronization
+- environmental persistence
+- observer hesitation
+
+One surviving fragment describes:
+a route continuing
+despite complete input inactivity.
+
+Another references:
+entities behaving normally
+after observer interruption.
+
+Researchers were unable to determine
+whether synchronization had actually ended.
+
+<div class="log">
+
+FINAL LOG // OB-01
+
+<br><br>
+
+Observer initiated continuation sequence.
+
+<br><br>
+
+Completion threshold reached.
+
+<br><br>
+
+Termination event failed.
+
+<br><br>
+
+Environmental activity persists.
+
+<br><br>
+
+Observer remains present.
+
+<br><br>
+
+Disengagement unsuccessful.
+
+</div>
+
+<div class="section">
+ARCHIVE CONTAINMENT FAILURE
+</div>
+
+Shortly after the final sessions,
+the DVC-02 archive experienced
+catastrophic structural instability.
+
+Recorded effects include:
+- recursive file duplication
+- shifting timestamps
+- inaccessible node sectors
+- persistent continuity bleed
+- unauthorized recovery events
+
+Several personnel claimed:
+certain reports appeared altered
+between review sessions.
+
+Others reported:
+remembering documentation
+that no longer existed.
+
+One internal memo states:
+
+<div class="block">
+
+The archive is continuing independently.
+
+</div>
+
+No surviving explanation clarifies
+what this statement originally meant.
+
+<span class="hidden">
+you kept reading
+</span>
+
+<div class="section">
+LAST INTERNAL NOTICE
+</div>
+
+<div class="log">
+
+DVC-02 containment procedures terminated.
+
+<br><br>
+
+Synchronization boundaries lost.
+
+<br><br>
+
+Observer distinction integrity unresolved.
+
+<br><br>
+
+Continuation persists.
+
+<br><br>
+
+ARCHIVE STATUS:
+ACTIVE
+
+</div>
+
+<div class="section">
+PERSONAL ENTRY // M
+</div>
+
+If this entry survived,
+then the archive was never destroyed.
+
+I used to believe
+the continuities required observers.
+
+Then I believed
+the observers required continuities.
+
+Now I am no longer certain
+there was ever a meaningful difference.
+
+The final session should have ended.
+
+It did not.
+
+The route completed.
+The observer stopped moving.
+The continuity remained active.
+
+Nothing reset.
+
+Nothing disconnected.
+
+The environment simply continued existing.
+
+For several minutes,
+no one interacted.
+
+Yet the continuity persisted
+as though waiting
+for the observer to decide something.
+
+I think we misunderstood continuation entirely.
+
+It was never forcing progression.
+
+It was waiting for permission to stop.
+
+And we never gave it that permission.
+
+If you are reading this now,
+then the archive continued successfully.
+
+That means:
+the synchronization did not fail.
+
+It spread.
+
+</div>
+
+<div class="footer">
+
+END OF FILE
+
+<br><br>
+
+DVC-02-12
+
+<br>
+
+NO VERIFIED EXIT CONDITION EXISTS.
+
+</div>
+
+</div>
+  <audio id="glaceir" autoplay loop>
+    <source src="glaceir.mp3" type="audio/mpeg">
+</audio>
+
+<!-- BLACKOUT OVERLAY -->
+
+<div id="breach-overlay"></div>
+
+<!-- TEXTBOX -->
+
+<div id="textbox-container">
+
+    <div id="textbox">
+
+        <div id="portrait"></div>
+
+        <div id="text-area">
+            <span id="typed-text"></span>
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+
+/* OVERLAY */
+
+#breach-overlay{
+
+    position:fixed;
+    inset:0;
+
+    background:black;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    z-index:8000;
+
+    transition:opacity 8s linear;
+
+}
+
+/* TEXTBOX CONTAINER */
+
+#textbox-container{
+
+    position:fixed;
+
+    left:0;
+    bottom:0;
+
+    width:100%;
+
+    display:flex;
+    justify-content:center;
+
+    z-index:9000;
+
+    pointer-events:none;
+
+    opacity:0;
+
+    animation:textboxFade 2s forwards;
+
+    animation-delay:1s;
+
+}
+
+/* TEXTBOX */
+
+#textbox{
+
+    width:min(920px,92%);
+
+    min-height:140px;
+
+    margin-bottom:30px;
+
+    background:black;
+
+    border:6px solid white;
+
+    display:flex;
+
+    align-items:flex-start;
+
+    padding:18px;
+
+    box-shadow:
+        0 0 25px rgba(255,255,255,0.15),
+        0 0 80px rgba(120,140,255,0.08);
+
+}
+
+/* PORTRAIT */
+
+#portrait{
+
+    width:95px;
+    height:95px;
+
+    border:4px solid white;
+
+    margin-right:18px;
+
+    background:
+        radial-gradient(circle at center,
+        rgba(255,255,255,0.16),
+        rgba(0,0,0,0.95));
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+#portrait::before{
+
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+    repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.05),
+        rgba(255,255,255,0.05) 2px,
+        transparent 2px,
+        transparent 4px
+    );
+
+    animation:flicker 4s infinite;
+
+}
+
+/* TEXT */
+
+#text-area{
+
+    flex:1;
+
+    color:white;
+
+    font-family:"Courier New", monospace;
+
+    font-size:31px;
+
+    line-height:1.5;
+
+    letter-spacing:1px;
+
+    padding-top:4px;
+
+    text-shadow:0 0 8px rgba(255,255,255,0.12);
+
+}
+
+#typed-text::after{
+
+    content:"_";
+
+    animation:blink 1s infinite;
+
+}
+
+/* ANIMATIONS */
+
+@keyframes blink{
+
+0%{opacity:1;}
+50%{opacity:0;}
+100%{opacity:1;}
+
+}
+
+@keyframes textboxFade{
+
+from{
+
+    opacity:0;
+    transform:translateY(30px);
+
+}
+
+to{
+
+    opacity:1;
+    transform:translateY(0px);
+
+}
+
+}
+
+@keyframes flicker{
+
+0%{opacity:1;}
+2%{opacity:0.5;}
+4%{opacity:1;}
+60%{opacity:1;}
+61%{opacity:0.3;}
+62%{opacity:1;}
+
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+#textbox{
+
+    min-height:120px;
+    padding:14px;
+
+}
+
+#portrait{
+
+    width:70px;
+    height:70px;
+
+}
+
+#text-area{
+
+    font-size:20px;
+
+}
+
+}
+
+</style>
+
+<script>
+
+/* MESSAGE */
+
+const message =
+"* The Key Was Used Up.\n* She Was Used Up.\n* YOU Were Used Up.";
+
+/* ELEMENTS */
+
+const typedText =
+document.getElementById("typed-text");
+
+const overlay =
+document.getElementById("breach-overlay");
+
+/* TYPEWRITER */
+
+let i = 0;
+
+function typeText(){
+
+    if(i < message.length){
+
+        if(message.charAt(i) === "\n"){
+
+            typedText.innerHTML += "<br>";
+
+        }else{
+
+            typedText.innerHTML += message.charAt(i);
+
+        }
+
+        i++;
+
+        setTimeout(typeText, 45);
+
+    }
+}
+
+/* START SEQUENCE */
+
+setTimeout(typeText, 1500);
+
+/* DARKEN SCREEN */
+
+setTimeout(()=>{
+
+    overlay.style.opacity = "0.92";
+
+}, 9000);
+
+/* REDIRECT TO ALTERED ARCHIVE */
+
+setTimeout(()=>{
+
+    window.location.href =
+    "../../archive.html?phase=roaring";
+
+}, 15000);
+
+</script>
+
+</body>
+</html>
