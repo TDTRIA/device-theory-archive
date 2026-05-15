@@ -668,22 +668,19 @@ function startBreach(){
 
 window.addEventListener("scroll", ()=>{
 
-    const scrollPosition =
-    window.innerHeight + window.scrollY;
+const scrollPosition =
+window.innerHeight + window.scrollY;
 
-    const pageHeight =
-    document.body.offsetHeight;
+const pageHeight =
+document.body.offsetHeight;
 
-    if(scrollPosition >= pageHeight - 300){
+if(scrollPosition >= pageHeight - 300){
 
-        startBreach();
+    localStorage.setItem("roaring", "true");
 
-        localStorage.setItem("roaring", "true");
+    startBreach();
 
-window.location.href =
-"../../archive.html?phase=roaring";
-
-    }
+}
 
 });
 
