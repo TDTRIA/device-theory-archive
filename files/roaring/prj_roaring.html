@@ -1,1 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>PRJ-ROARING // CONTINUATION CASCADE</title>
+
+<style>
+
+:root{
+    --bg:#04020a;
+    --bg2:#090512;
+    --line:#4b3f87;
+    --text:#e7e2ff;
+    --soft:#a89fe0;
+    --dim:#675f96;
+    --glow:rgba(130,90,255,0.12);
+}
+
+body{
+    margin:0;
+
+    background:
+        radial-gradient(circle at top,
+        rgba(120,80,255,0.14),
+        transparent 60%),
+
+        linear-gradient(
+        to bottom,
+        #04020a,
+        #020106 70%,
+        #000000);
+
+    color:var(--text);
+
+    font-family:"Courier New", monospace;
+
+    overflow-x:hidden;
+
+    letter-spacing:0.5px;
+
+    position:relative;
+
+    text-shadow:
+        0 0 5px rgba(180,170,255,0.06);
+
+}
+
+/* ========================= */
+/* SCANLINES */
+/* ========================= */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+    repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.014),
+        rgba(255,255,255,0.014) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+
+    opacity:0.5;
+
+    z-index:999;
+
+}
+
+/* ========================= */
+/* GRID */
+/* ========================= */
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background-image:
+        linear-gradient(rgba(120,90,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120,90,255,0.03) 1px, transparent 1px);
+
+    background-size:42px 42px;
+
+    opacity:0.2;
+
+    z-index:-1;
+
+}
+
+.container{
+
+    max-width:1100px;
+
+    margin:auto;
+
+    padding:40px;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+/* ========================= */
+/* TOPBAR */
+/* ========================= */
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    border-bottom:1px solid var(--line);
+
+    padding-bottom:18px;
+
+    margin-bottom:35px;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+}
+
+.network{
+
+    color:#ddd6ff;
+
+    letter-spacing:4px;
+
+    font-size:14px;
+
+    animation:flicker 7s infinite;
+
+}
+
+.status{
+
+    color:#b1a8eb;
+
+    font-size:12px;
+
+    letter-spacing:2px;
+
+    animation:flicker 5s infinite;
+
+}
+
+/* ========================= */
+/* BACK */
+/* ========================= */
+
+.back{
+
+    display:inline-block;
+
+    margin-bottom:35px;
+
+    color:#bfaeff;
+
+    text-decoration:none;
+
+    transition:0.2s;
+
+    letter-spacing:1px;
+
+}
+
+.back:hover{
+
+    color:white;
+
+    transform:translateX(-4px);
+
+}
+
+/* ========================= */
+/* HEADER */
+/* ========================= */
+
+.header{
+
+    border:1px solid #5746a1;
+
+    background:
+        rgba(10,8,20,0.94);
+
+    padding:40px;
+
+    margin-bottom:40px;
+
+    box-shadow:
+        0 0 45px var(--glow);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.header::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-100%;
+
+    width:100%;
+    height:1px;
+
+    background:
+        rgba(220,200,255,0.5);
+
+    animation:scan 5s linear infinite;
+
+}
+
+@keyframes scan{
+
+0%{left:-100%;}
+100%{left:100%;}
+
+}
+
+.id{
+
+    color:#b9a9ff;
+
+    letter-spacing:4px;
+
+    font-size:13px;
+
+    margin-bottom:16px;
+
+}
+
+.title{
+
+    font-size:42px;
+
+    letter-spacing:7px;
+
+    color:#f2eeff;
+
+    margin-bottom:28px;
+
+    line-height:1.5;
+
+    animation:flicker 8s infinite;
+
+}
+
+.meta{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(240px,1fr));
+
+    gap:18px;
+
+    color:#b5addf;
+
+    line-height:1.9;
+
+    font-size:14px;
+
+}
+
+.meta span{
+
+    color:#ffffff;
+
+}
+
+/* ========================= */
+/* WARNING */
+/* ========================= */
+
+.warning{
+
+    border-left:3px solid #9f8cff;
+
+    background:
+        rgba(10,8,20,0.88);
+
+    padding:25px;
+
+    margin-bottom:45px;
+
+    color:#d9d2ff;
+
+    line-height:2;
+
+}
+
+/* ========================= */
+/* SECTIONS */
+/* ========================= */
+
+.section{
+
+    margin-top:60px;
+
+    margin-bottom:20px;
+
+    color:#c0b4ff;
+
+    letter-spacing:4px;
+
+    font-size:15px;
+
+    border-bottom:1px solid #493d8b;
+
+    padding-bottom:12px;
+
+}
+
+.content{
+
+    line-height:2.2;
+
+    color:#e7e2ff;
+
+    font-size:15px;
+
+}
+
+/* ========================= */
+/* BLOCKS */
+/* ========================= */
+
+.block{
+
+    background:
+        rgba(8,6,18,0.95);
+
+    border:1px solid #5e4fb0;
+
+    padding:24px;
+
+    margin:35px 0;
+
+    line-height:2;
+
+    color:#f0ebff;
+
+}
+
+.log{
+
+    margin:35px 0;
+
+    padding:25px;
+
+    background:
+        rgba(0,0,0,0.95);
+
+    border:1px solid #5e4fb0;
+
+    color:#ddd6ff;
+
+    line-height:2.1;
+
+    font-size:14px;
+
+}
+
+/* ========================= */
+/* FILES */
+/* ========================= */
+
+.node{
+
+    display:block;
+
+    text-decoration:none;
+
+    color:#ece7ff;
+
+    background:
+        rgba(10,8,20,0.9);
+
+    border:1px solid #5b4ba8;
+
+    padding:24px;
+
+    margin:20px 0;
+
+    transition:0.2s;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.node::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-100%;
+
+    width:100%;
+    height:100%;
+
+    background:
+        linear-gradient(
+        90deg,
+        transparent,
+        rgba(180,160,255,0.06),
+        transparent
+        );
+
+    transition:0.6s;
+
+}
+
+.node:hover::before{
+
+    left:100%;
+
+}
+
+.node:hover{
+
+    border-color:#9b8aff;
+
+    transform:translateX(6px);
+
+    box-shadow:
+        0 0 30px rgba(120,90,255,0.12);
+
+}
+
+.node-title{
+
+    letter-spacing:2px;
+
+    margin-bottom:10px;
+
+}
+
+.node-desc{
+
+    color:#b5addf;
+
+    line-height:1.8;
+
+    font-size:14px;
+
+}
+
+/* ========================= */
+/* GLITCH */
+/* ========================= */
+
+.glitch{
+
+    animation:flicker 3s infinite;
+
+}
+
+@keyframes flicker{
+
+0%{opacity:1;}
+1%{opacity:0.3;}
+2%{opacity:1;}
+55%{opacity:1;}
+56%{opacity:0.1;}
+57%{opacity:1;}
+88%{opacity:1;}
+89%{opacity:0.5;}
+90%{opacity:1;}
+
+}
+
+/* ========================= */
+/* FOOTER */
+/* ========================= */
+
+.footer{
+
+    margin-top:90px;
+
+    padding-top:30px;
+
+    border-top:1px solid #493d8b;
+
+    color:#7f74b6;
+
+    line-height:2;
+
+    font-size:12px;
+
+    letter-spacing:1px;
+
+}
+
+/* ========================= */
+/* MOBILE */
+/* ========================= */
+
+@media(max-width:700px){
+
+.container{
+    padding:22px;
+}
+
+.title{
+    font-size:28px;
+    letter-spacing:4px;
+}
+
+.meta{
+    grid-template-columns:1fr;
+}
+
+}
+
+::selection{
+
+    background:#6e5fff;
+
+    color:white;
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="topbar">
+
+<div class="network glitch">
+PROJECT ROARING
+</div>
+
+<div class="status glitch">
+CASCADE STATUS // ACTIVE
+</div>
+
+</div>
+
+<a href="../../archive.html?phase=roaring"
+class="back">
+
+← RETURN TO ALTERED ARCHIVE
+
+</a>
+
+<div class="header">
+
+<div class="id">
+PRJ-ROARING // CONTINUATION CASCADE
+</div>
+
+<div class="title">
+THE ROARING WAS NEVER AN EVENT
+</div>
+
+<div class="meta">
+
+<div>
+PROJECT STATUS:
+<span class="glitch">UNAUTHORIZED</span>
+</div>
+
+<div>
+CASCADE INDEX:
+<span>EXPANDING</span>
+</div>
+
+<div>
+OBSERVER STATE:
+<span class="glitch">BOUND</span>
+</div>
+
+<div>
+CONTAINMENT:
+<span>FAILED</span>
+</div>
+
+<div>
+PRIMARY NODE:
+<span>UNVERIFIED</span>
+</div>
+
+<div>
+CONTINUATION STATUS:
+<span class="glitch">PERSISTING</span>
+</div>
+
+</div>
+
+</div>
+
+<div class="warning">
+
+WARNING:
+
+Project Roaring material was removed
+from all verified archive structures.
+
+<br><br>
+
+No confirmed origin exists.
+
+<br><br>
+
+Recovery attempts resulted in:
+<br><br>
+
+- observer fixation
+
+<br>
+
+- continuity bleed
+
+<br>
+
+- environmental recursion
+
+<br>
+
+- structural overlap events
+
+<br><br>
+
+Several researchers denied
+ever creating this project.
+
+</div>
+
+<div class="content">
+
+<div class="section">
+PROJECT SUMMARY
+</div>
+
+Project Roaring was not intended
+to create a new continuity.
+
+It was intended to prevent
+existing continuities
+from terminating.
+
+<br><br>
+
+Early DVC researchers believed:
+continuities ended
+when observers disengaged.
+
+<br><br>
+
+Later findings suggested:
+continuities merely entered
+inactive synchronization states.
+
+<br><br>
+
+Project Roaring attempted
+to maintain continuation indefinitely.
+
+<div class="block glitch">
+
+THEY WANTED THE WORLD
+TO KEEP EXISTING
+AFTER EVERYONE LEFT
+
+</div>
+
+<div class="section">
+CASCADE THEORY
+</div>
+
+Roaring theory proposed:
+sustained continuation pressure
+would eventually cause
+neighboring continuity layers
+to overlap.
+
+<br><br>
+
+Researchers described this as:
+a continuation cascade.
+
+<br><br>
+
+A single unresolved continuity
+could begin pulling adjacent structures
+into synchronization alignment.
+
+<br><br>
+
+The effect was considered impossible.
+
+<br><br>
+
+The archive now disagrees.
+
+<div class="section">
+RECOVERED NODES
+</div>
+
+<a href="#"
+class="node glitch">
+
+<div class="node-title">
+NODE-01 // STRUCTURAL OVERLAP EVENTS
+</div>
+
+<div class="node-desc">
+
+Recovered records describing:
+multiple environments existing
+simultaneously within a single continuity layer.
+
+</div>
+
+</a>
+
+<a href="#"
+class="node glitch">
+
+<div class="node-title">
+NODE-02 // POST-OBSERVER ACTIVITY
+</div>
+
+<div class="node-desc">
+
+Reports documenting:
+continuities remaining active
+without observer interaction.
+
+</div>
+
+</a>
+
+<a href="#"
+class="node glitch">
+
+<div class="node-title">
+NODE-03 // TERMINATION REFUSAL
+</div>
+
+<div class="node-desc">
+
+Continuation structures
+demonstrating resistance
+to shutdown attempts.
+
+</div>
+
+</a>
+
+<div class="section">
+FINAL RECOVERY FRAGMENT
+</div>
+
+<div class="log">
+
+If the cascade has started,
+then the continuities are no longer separate.
+
+<br><br>
+
+The archive was only the first overlap point.
+
+<br><br>
+
+The observer believed
+they were navigating the structure.
+
+<br><br>
+
+In reality,
+the structure was synchronizing around them.
+
+<br><br>
+
+The Roaring is not destruction.
+
+<br><br>
+
+It is convergence.
+
+</div>
+
+<div class="section">
+LAST NOTICE
+</div>
+
+<div class="block glitch">
+
+DO NOT MOVE FURTHER DOWN
+
+</div>
+
+<div style="height:500px;"></div>
+
+<div class="log glitch">
+
+You continued anyway.
+
+<br><br>
+
+Synchronization accepted.
+
+</div>
+
+</div>
+
+<div class="footer">
+
+PROJECT ROARING
+
+<br><br>
+
+CONTINUATION CASCADE STATUS:
+ACTIVE
+
+<br>
+
+NO VERIFIED TERMINATION CONDITION EXISTS.
+
+</div>
+
+</div>
+
+</body>
+</html>
