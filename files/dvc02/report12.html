@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +17,7 @@
 body{
     margin:0;
     background:
-        radial-gradient(circle at top, rgba(140,160,255,0.12), transparent 55%),
+        radial-gradient(circle at top, rgba(140,160,255,0.18), transparent 55%),
         linear-gradient(to bottom, #010104, #000103 80%, #000000);
     color:var(--text);
     font-family:"Courier New", monospace;
@@ -27,6 +26,8 @@ body{
     position:relative;
     text-shadow:0 0 6px rgba(180,210,255,0.08);
 }
+
+/* SCANLINES */
 
 body::before{
     content:"";
@@ -37,14 +38,32 @@ body::before{
     background:
     repeating-linear-gradient(
         to bottom,
-        rgba(255,255,255,0.018),
-        rgba(255,255,255,0.018) 1px,
+        rgba(255,255,255,0.022),
+        rgba(255,255,255,0.022) 1px,
         transparent 1px,
         transparent 3px
     );
 
-    opacity:0.6;
+    opacity:0.65;
     z-index:999;
+}
+
+/* GRID */
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+
+    background-image:
+        linear-gradient(rgba(120,140,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120,140,255,0.05) 1px, transparent 1px);
+
+    background-size:42px 42px;
+
+    opacity:0.3;
+    z-index:-1;
 }
 
 .container{
@@ -54,6 +73,8 @@ body::before{
     position:relative;
     z-index:2;
 }
+
+/* TOPBAR */
 
 .topbar{
     display:flex;
@@ -70,13 +91,17 @@ body::before{
     color:#eef2ff;
     letter-spacing:4px;
     font-size:14px;
+    animation:flicker 4s infinite;
 }
 
 .status{
     color:#d6deff;
     font-size:12px;
     letter-spacing:2px;
+    animation:flicker 2s infinite;
 }
+
+/* BACK */
 
 .back{
     display:inline-block;
@@ -92,12 +117,32 @@ body::before{
     transform:translateX(-4px);
 }
 
+/* HEADER */
+
 .header{
     border:1px solid #7087d4;
     background:rgba(5,7,14,0.98);
     padding:40px;
     margin-bottom:40px;
-    box-shadow:0 0 70px rgba(120,150,255,0.12);
+    box-shadow:0 0 70px rgba(120,150,255,0.18);
+    position:relative;
+    overflow:hidden;
+}
+
+.header::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:1px;
+    background:rgba(255,255,255,0.7);
+    animation:scan 2s linear infinite;
+}
+
+@keyframes scan{
+0%{left:-100%;}
+100%{left:100%;}
 }
 
 .docid{
@@ -113,6 +158,7 @@ body::before{
     color:#ffffff;
     margin-bottom:28px;
     line-height:1.5;
+    animation:flicker 8s infinite;
 }
 
 .meta{
@@ -148,7 +194,7 @@ body::before{
 }
 
 .content{
-    line-height:2.2;
+    line-height:2.25;
     color:#dfe5ff;
     font-size:15px;
 }
@@ -177,75 +223,23 @@ body::before{
 }
 
 @keyframes flicker{
-
 0%{opacity:1;}
-1%{opacity:0.2;}
+1%{opacity:0.05;}
 2%{opacity:1;}
+25%{opacity:1;}
+26%{opacity:0.3;}
+27%{opacity:1;}
 55%{opacity:1;}
-56%{opacity:0.3;}
+56%{opacity:0.08;}
 57%{opacity:1;}
+88%{opacity:1;}
+89%{opacity:0.4;}
 90%{opacity:1;}
-91%{opacity:0.1;}
-92%{opacity:1;}
-
 }
 
 .hidden{
     opacity:0.02;
     user-select:none;
-}
-
-.password{
-    margin-top:60px;
-    padding:30px;
-    border:1px solid #7087d4;
-    background:black;
-}
-
-.password input{
-
-    width:100%;
-    padding:16px;
-
-    background:#05060d;
-    border:1px solid #6277b8;
-
-    color:white;
-
-    font-family:"Courier New", monospace;
-
-    margin-top:15px;
-
-}
-
-.password button{
-
-    margin-top:20px;
-    padding:14px 22px;
-
-    background:#11182f;
-    border:1px solid #6277b8;
-
-    color:#dce5ff;
-
-    cursor:pointer;
-
-    font-family:"Courier New", monospace;
-
-}
-
-.password button:hover{
-
-    background:#1a2445;
-
-}
-
-#response{
-
-    margin-top:25px;
-    color:#d7e0ff;
-    line-height:2;
-
 }
 
 .footer{
@@ -257,6 +251,46 @@ body::before{
     font-size:12px;
     letter-spacing:1px;
 }
+
+/* HIDDEN KEY */
+
+#hidden-key{
+
+    position:absolute;
+
+    right:7%;
+    bottom:120px;
+
+    width:20px;
+    height:20px;
+
+    opacity:0.04;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+    color:#dfe5ff;
+
+    font-size:14px;
+
+    z-index:5000;
+
+    user-select:none;
+
+}
+
+#hidden-key:hover{
+
+    opacity:0.55;
+
+    transform:scale(1.3);
+
+    text-shadow:0 0 15px white;
+
+}
+
+/* MOBILE */
 
 @media(max-width:700px){
 
@@ -289,12 +323,12 @@ body::before{
 
 <div class="topbar">
 
-<div class="network">
+<div class="network glitch">
 DELTA CONTINUITY RESEARCH NETWORK
 </div>
 
 <div class="status glitch">
-NODE STATUS // RESTRICTED
+NODE STATUS // UNRECOVERABLE
 </div>
 
 </div>
@@ -336,13 +370,13 @@ OBSERVER STABILITY:
 </div>
 
 <div>
-NODE:
-<span class="glitch">UNVERIFIED</span>
+ARCHIVE BUILD:
+<span>UNKNOWN</span>
 </div>
 
 <div>
-ARCHIVE BUILD:
-<span>UNKNOWN</span>
+NODE:
+<span class="glitch">UNVERIFIED</span>
 </div>
 
 </div>
@@ -353,17 +387,34 @@ ARCHIVE BUILD:
 
 WARNING:
 
-Further continuation beyond this document
-was prohibited following unauthorized recovery attempts.
+The following material was never approved
+for archive recovery.
 
 <br><br>
 
-Several associated records were removed
-from standard archive indexing.
+Continuation beyond this point
+was classified as:
+<br><br>
+
+- non-reversible
+
+<br>
+
+- psychologically hazardous
+
+<br>
+
+- structurally contaminating
+
+<br>
+
+- observer-compromising
 
 <br><br>
 
-Removal attempts were unsuccessful.
+Further review was prohibited.
+
+The prohibition failed.
 
 </div>
 
@@ -373,133 +424,164 @@ Removal attempts were unsuccessful.
 RECOVERY STATUS
 </div>
 
-DOC-12 was reconstructed from fragmented
-continuation remnants following
-late-stage synchronization collapse.
+DOC-12 was reconstructed
+from fragmented continuation remnants
+following total archive synchronization failure.
 
-Recovered segments indicate:
-certain observers continued attempting
-restricted access after termination directives.
+Large portions of the original material
+remain permanently unrecoverable.
 
-One internal review states:
+Recovered sections indicate:
+the final continuation sessions
+did not terminate correctly.
+
+Several records imply:
+the observer remained active
+after synchronization collapse.
+
+<div class="section">
+BREACH CONDITIONS
+</div>
+
+Early synchronization theory assumed:
+the observer existed externally
+to continuity structures.
+
+Late-stage continuation evidence
+contradicted this assumption completely.
+
+Repeated exposure appears to weaken:
+observer distinction boundaries,
+continuity separation integrity,
+and progression containment stability.
 
 <div class="block glitch">
 
-OBSERVERS CONTINUE SEEKING
-UNINDEXED RESEARCH PATHWAYS
+THERE IS NO EXTERNAL POSITION
 
 </div>
 
 <div class="section">
-UNAUTHORIZED REFERENCES
+FINAL CONTINUATION EVENTS
 </div>
 
-Multiple corrupted logs reference:
-a secondary archive division
-not present in any verified system build.
+Recovered recordings from the final sessions
+are heavily corrupted.
 
-Repeated identifiers include:
-
-<br><br>
-
-- U.R.A.
-<br>
-- extraction records
-<br>
-- continuation fuel studies
-<br>
-- redacted core experiments
-<br>
-- observer persistence modeling
-
-<br><br>
-
-No verified division matching these references
-officially existed.
+However,
+several consistent elements remain identifiable:
+- continuation refusal
+- failed disengagement
+- unresolved synchronization
+- environmental persistence
+- observer hesitation
 
 <div class="log">
 
-INTERNAL MEMO // RECOVERED
+FINAL LOG // OB-01
 
 <br><br>
 
-Researcher M requested continued access
-to restricted extraction materials.
+Observer initiated continuation sequence.
 
 <br><br>
 
-Request denied.
+Completion threshold reached.
 
 <br><br>
 
-Researcher M submitted 14 additional requests.
+Termination event failed.
 
 <br><br>
 
-Final request included direct references
-to "continuation fuel transfer"
-and "dark fountain compatibility."
+Environmental activity persists.
 
 <br><br>
 
-Further requests suppressed.
+Observer remains present.
+
+<br><br>
+
+Disengagement unsuccessful.
 
 </div>
 
 <div class="section">
-FINAL NOTES
+LAST INTERNAL NOTICE
 </div>
 
-The original archive assumed:
-continuities required observers.
+<div class="log">
 
-Late-stage findings instead suggest:
-observers may require continuities.
-
-Several personnel expressed concern
-regarding prolonged continuation exposure.
-
-One final recovered note states:
-
-<div class="block">
-
-It was never trying to trap us.
+DVC-02 containment procedures terminated.
 
 <br><br>
 
-It was trying to continue.
+Synchronization boundaries lost.
+
+<br><br>
+
+Observer distinction integrity unresolved.
+
+<br><br>
+
+Continuation persists.
+
+<br><br>
+
+ARCHIVE STATUS:
+ACTIVE
 
 </div>
+
+<div class="section">
+PERSONAL ENTRY // M
+</div>
+
+If this entry survived,
+then the archive was never destroyed.
+
+I used to believe
+the continuities required observers.
+
+Then I believed
+the observers required continuities.
+
+Now I am no longer certain
+there was ever a meaningful difference.
+
+The final session should have ended.
+
+It did not.
+
+The route completed.
+The observer stopped moving.
+The continuity remained active.
+
+Nothing reset.
+
+Nothing disconnected.
+
+The environment simply continued existing.
+
+For several minutes,
+no one interacted.
+
+Yet the continuity persisted
+as though waiting
+for the observer to decide something.
+
+I think we misunderstood continuation entirely.
+
+It was never forcing progression.
+
+It was waiting for permission to stop.
+
+And we never gave it that permission.
 
 <span class="hidden">
-
-the key remains active
-
+the key is not gone
+it was USED UP
 </span>
-
-<div class="section">
-RESTRICTED ACCESS
-</div>
-
-Some recovered sectors remain inaccessible
-through standard archive pathways.
-
-Observer authorization may still exist.
-
-<div class="password">
-
-ENTER AUTHORIZATION KEY
-
-<input
-type="password"
-id="passwordInput"
-placeholder="AUTHORIZATION REQUIRED">
-
-<button onclick="checkPassword()">
-ACCESS RESTRICTED ARCHIVE
-</button>
-
-<div id="response"></div>
 
 </div>
 
@@ -519,61 +601,45 @@ NO VERIFIED EXIT CONDITION EXISTS.
 
 </div>
 
+<!-- HIDDEN KEY -->
+
+<div id="hidden-key">⌁</div>
+
 <script>
 
-function checkPassword(){
+const hiddenKey =
+document.getElementById("hidden-key");
 
-    const input =
-    document.getElementById(
-    "passwordInput"
-    ).value.toLowerCase();
+hiddenKey.addEventListener("click", ()=>{
 
-    const response =
-    document.getElementById(
-    "response"
+    hiddenKey.innerHTML = "USED UP";
+
+    hiddenKey.style.opacity = "1";
+
+    hiddenKey.style.textShadow =
+    "0 0 18px white";
+
+    localStorage.setItem(
+        "uraUnlocked",
+        "true"
     );
 
-    if(input === "thekey"){
+    document.body.style.transition =
+    "2s";
 
-        response.innerHTML = `
+    document.body.style.filter =
+    "brightness(2) contrast(0.4)";
 
-        ACCESS ACCEPTED
+    setTimeout(()=>{
 
-        <br><br>
+        window.location.href =
+        "../../ura.html";
 
-        U.R.A. pathway recovered.
+    }, 1800);
 
-        <br><br>
-
-        Redirecting observer...
-
-        `;
-
-        setTimeout(()=>{
-
-            window.location.href =
-            "../ura/ura.html";
-
-        }, 3500);
-
-    } else {
-
-        response.innerHTML = `
-
-        AUTHORIZATION FAILURE
-
-        <br><br>
-
-        Observer access denied.
-
-        `;
-
-    }
-
-}
+});
 
 </script>
 
 </body>
 </html>
-```
