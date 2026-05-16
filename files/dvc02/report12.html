@@ -3,11 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>DVC-02 // DOC-12 // CONTINUATION RECORD</title>
+<title>DVC-02 // DOC-12 // RESTRICTED</title>
 
 <style>
-
 :root{
     --bg:#010104;
     --line:#6277b8;
@@ -21,11 +19,13 @@ body{
         linear-gradient(to bottom, #010104, #000103 80%, #000000);
     color:var(--text);
     font-family:"Courier New", monospace;
-    letter-spacing:0.5px;
     overflow-x:hidden;
+    letter-spacing:0.5px;
+    position:relative;
+    text-shadow:0 0 6px rgba(180,210,255,0.08);
 }
 
-/* scanlines */
+/* SCANLINES */
 body::before{
     content:"";
     position:fixed;
@@ -33,15 +33,16 @@ body::before{
     pointer-events:none;
     background:repeating-linear-gradient(
         to bottom,
-        rgba(255,255,255,0.02),
-        rgba(255,255,255,0.02) 1px,
+        rgba(255,255,255,0.022),
+        rgba(255,255,255,0.022) 1px,
         transparent 1px,
         transparent 3px
     );
-    opacity:0.6;
+    opacity:0.65;
+    z-index:999;
 }
 
-/* grid */
+/* GRID */
 body::after{
     content:"";
     position:fixed;
@@ -51,25 +52,45 @@ body::after{
         linear-gradient(rgba(120,140,255,0.05) 1px, transparent 1px),
         linear-gradient(90deg, rgba(120,140,255,0.05) 1px, transparent 1px);
     background-size:42px 42px;
-    opacity:0.25;
+    opacity:0.3;
+    z-index:-1;
 }
 
+/* CONTAINERS */
 .container{
     max-width:1000px;
     margin:auto;
     padding:40px;
+    position:relative;
+    z-index:2;
 }
 
-/* header */
+/* TOPBAR */
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #6277b8;
+    padding-bottom:18px;
+    margin-bottom:35px;
+}
+.network{color:#eef2ff;letter-spacing:4px;font-size:14px;animation:flicker 4s infinite;}
+.status{color:#d6deff;font-size:12px;letter-spacing:2px;animation:flicker 2s infinite;}
+
+/* BACK */
+.back{display:inline-block;margin-bottom:35px;color:#c8d5ff;text-decoration:none;transition:0.2s;letter-spacing:1px;}
+.back:hover{color:white;transform:translateX(-4px);}
+
+/* HEADER */
 .header{
     border:1px solid #7087d4;
-    background:rgba(5,7,14,0.95);
+    background:rgba(5,7,14,0.98);
     padding:40px;
     margin-bottom:40px;
+    box-shadow:0 0 70px rgba(120,150,255,0.18);
     position:relative;
     overflow:hidden;
 }
-
 .header::after{
     content:"";
     position:absolute;
@@ -77,112 +98,39 @@ body::after{
     left:-100%;
     width:100%;
     height:1px;
-    background:white;
-    animation:scan 3s linear infinite;
+    background:rgba(255,255,255,0.7);
+    animation:scan 2s linear infinite;
 }
+@keyframes scan{0%{left:-100%;}100%{left:100%;}}
+.docid{color:#d4ddff;letter-spacing:4px;font-size:13px;margin-bottom:15px;}
+.title{font-size:42px;letter-spacing:7px;color:#ffffff;margin-bottom:28px;line-height:1.5;animation:flicker 8s infinite;}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;color:#bcc7eb;line-height:1.9;font-size:14px;}
+.meta span{color:#ffffff;}
 
-@keyframes scan{
-    0%{left:-100%;}
-    100%{left:100%;}
-}
+/* SECTIONS */
+.section{margin-top:60px;margin-bottom:20px;color:#d7e0ff;letter-spacing:4px;font-size:15px;border-bottom:1px solid #6277b8;padding-bottom:12px;}
+.content{line-height:2.25;color:#dfe5ff;font-size:15px;}
+.block{background:rgba(5,7,14,0.98);border:1px solid #7087d4;padding:24px;margin:35px 0;line-height:2;color:#eef2ff;}
+.log{margin:35px 0;padding:25px;background:rgba(0,0,0,0.98);border:1px solid #7087d4;color:#dce5ff;line-height:2.1;font-size:14px;}
+.glitch{animation:flicker 3s infinite;}
+@keyframes flicker{0%{opacity:1;}1%{opacity:0.05;}2%{opacity:1;}55%{opacity:1;}56%{opacity:0.08;}57%{opacity:1;}90%{opacity:1;}91%{opacity:0.1;}92%{opacity:1;}}
+.hidden{opacity:0.03;user-select:none;}
+.footer{margin-top:90px;padding-top:30px;border-top:1px solid #6277b8;color:#95a7dd;line-height:2;font-size:12px;letter-spacing:1px;}
 
-.docid{
-    font-size:12px;
-    letter-spacing:4px;
-    opacity:0.9;
-}
-
-.title{
-    font-size:40px;
-    letter-spacing:6px;
-    margin:18px 0;
-}
-
-.meta{
-    font-size:13px;
-    line-height:1.8;
-    opacity:0.85;
-}
-
-/* sections */
-.section{
-    margin-top:55px;
-    border-bottom:1px solid #6277b8;
-    padding-bottom:10px;
-    letter-spacing:3px;
-    font-size:14px;
-}
-
-/* content */
-.content{
-    line-height:2.2;
-    margin-top:20px;
-}
-
-/* system blocks */
-.block{
-    border:1px solid #7087d4;
-    padding:22px;
-    margin:30px 0;
-    background:rgba(0,0,0,0.55);
-}
-
-/* glitch */
-.glitch{
-    animation:flicker 4s infinite;
-}
-
-@keyframes flicker{
-    0%{opacity:1;}
-    2%{opacity:0.2;}
-    4%{opacity:1;}
-    55%{opacity:1;}
-    56%{opacity:0.3;}
-    57%{opacity:1;}
-    90%{opacity:1;}
-    91%{opacity:0.4;}
-    92%{opacity:1;}
-}
-
-/* hidden system residue (DO NOT call attention to it) */
-.hidden{
-    opacity:0.02;
-    user-select:none;
-}
-
-/* footer */
-.footer{
-    margin-top:80px;
-    border-top:1px solid #6277b8;
-    padding-top:25px;
-    font-size:12px;
-    opacity:0.8;
-}
-
-/* interaction node (NOT labeled as key) */
-#node{
+/* HIDDEN KEY */
+#hidden-key{
     position:fixed;
-    right:7%;
-    bottom:110px;
-
-    width:18px;
-    height:18px;
-
-    opacity:0.12;
-
+    bottom:40px;
+    right:40px;
+    width:50px;
+    height:50px;
+    background:rgba(140,0,255,0.3);
+    border:2px dashed #d7dcef;
     cursor:pointer;
-    user-select:none;
-
-    transition:1s;
-    color:#dfe5ff;
+    opacity:0.05;
+    transition:opacity 0.4s;
 }
-
-#node:hover{
-    opacity:0.6;
-    transform:scale(1.3);
-    text-shadow:0 0 12px white;
-}
-
+#hidden-key:hover{opacity:0.3;}
 </style>
 </head>
 
@@ -190,136 +138,91 @@ body::after{
 
 <div class="container">
 
+<div class="topbar">
+<div class="network glitch">DELTA CONTINUITY RESEARCH NETWORK</div>
+<div class="status glitch">NODE STATUS // UNRECOVERABLE</div>
+</div>
+
+<a href="dvc02.html" class="back">← RETURN TO DVC-02 DIRECTORY</a>
+
 <div class="header">
-
 <div class="docid">DVC-02 // DOC-12</div>
-
-<div class="title glitch">CONTINUATION RECORD</div>
-
+<div class="title">OBSERVER BREACH EVENT</div>
 <div class="meta">
-FILE TYPE: SYSTEM OUTPUT<br>
-STATUS: PARTIAL RECOVERY<br>
-INTEGRITY: UNSTABLE<br>
-OBSERVATION STATE: ACTIVE
+<div>FILE STATUS: <span class="glitch">RESTRICTED</span></div>
+<div>ACCESS LEVEL: <span>NULL</span></div>
+<div>DEVIATION INDEX: <span class="glitch">UNDEFINED</span></div>
+<div>OBSERVER STABILITY: <span class="glitch">IRREVERSIBLE</span></div>
+<div>ARCHIVE BUILD: <span>UNKNOWN</span></div>
+<div>NODE: <span class="glitch">UNVERIFIED</span></div>
+</div>
 </div>
 
+<div class="warning">
+WARNING:
+<br><br>
+The following material was never approved for archive recovery.
+<br><br>
+Further review was prohibited. The prohibition failed.
 </div>
-
-<div class="section">RECOVERY NOTE</div>
 
 <div class="content">
 
-DOC-12 was reconstructed from continuation traces.
-
-No complete record of the final session exists.
-
-Only system output fragments remain.
-
-</div>
-
-<div class="section">CONTINUATION BEHAVIOR</div>
-
-<div class="content">
-
-Analysis suggests the system did not terminate.
-
-It transitioned into an unresolved state of persistence.
-
-No external reset signal was detected.
-
-</div>
-
-<div class="block glitch">
-
-NO TERMINATION EVENT CONFIRMED
-
-</div>
-
-<div class="section">SESSION LOG FRAGMENTS</div>
-
-<div class="block">
-
-Observer input registered.
-
+<div class="section">LAST INTERNAL NOTICE</div>
+<div class="log">
+DVC-02 containment procedures terminated.
 <br><br>
-
-Continuation sequence executed.
-
+Synchronization boundaries lost.
 <br><br>
-
-System returned no completion state.
-
+Observer distinction integrity unresolved.
 <br><br>
-
-Process remained active.
-
+Continuation persists.
+<br><br>
+ARCHIVE STATUS: ACTIVE
 </div>
 
-<div class="section">LOCALIZED ENTRY</div>
-
-<div class="content">
-
-A residual instruction fragment persists within the system layer.
-
-It does not correspond to any documented protocol.
-
-It appears to function as a continuation access condition.
-
+<div class="section">PERSONAL ENTRY // M</div>
+<div class="log">
+M observes irregularities within the continuation layers.
 <br><br>
-
-<span class="hidden">
-node status: active but unclassified
-</span>
-
+Evidence suggests extraction of determination from the CORE.
+<br><br>
+Hints point to a shadowed entity influencing outcomes.
+<br><br>
+Observer alignment appears compromised.
+<br><br>
+M’s persistence indicates a potential escalation in deviation containment.
+<br><br>
+Continued observation advised.
 </div>
-
-<div class="section">M // FIELD NOTE</div>
-
-<div class="content">
-
-If this record is intact,
-then termination never occurred.
-
-We assumed continuity required observation.
-
-We were incorrect.
-
-Continuity persists without permission.
-
-It simply continues.
 
 </div>
 
 <div class="footer">
-
-END OF FILE<br><br>
-
-DVC-02-12 // NO EXIT CONDITION CONFIRMED
-
+END OF FILE
+<br><br>
+DVC-02-12
+<br>
+NO VERIFIED EXIT CONDITION EXISTS.
 </div>
 
 </div>
 
-<!-- INTERACTION NODE (not called a key) -->
-<div id="node">⌁</div>
+<!-- HIDDEN KEY -->
+<div id="hidden-key" title="click me"></div>
 
 <script>
-
-document.getElementById("node").addEventListener("click", ()=>{
-
-    document.body.style.transition = "2s";
-    document.body.style.filter = "brightness(2) contrast(0.4)";
-
-    document.getElementById("node").innerHTML = "USED UP";
-
-    localStorage.setItem("uraUnlocked","true");
-
-    setTimeout(()=>{
-        window.location.href = "../../ura.html";
-    }, 1600);
-
+// Hidden key mechanic
+const hiddenKey = document.getElementById("hidden-key");
+hiddenKey.addEventListener("click", () => {
+    // Visual corruption effect
+    document.body.style.filter = "hue-rotate(180deg) blur(2px)";
+    // After brief delay, redirect to URA
+    setTimeout(() => {
+        localStorage.setItem("uraUnlocked", "true");
+        window.location.href = "../ura/ura.html";
+    }, 2000);
 });
-
 </script>
 
 </body>
