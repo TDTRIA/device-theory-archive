@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>URA-02 // CORE TRANSFER LOGS</title>
+
+<style>
+
+:root{
+    --bg:#010205;
+    --panel:#05070d;
+    --line:#3b4354;
+    --text:#d8dde8;
+    --soft:#9098aa;
+    --dim:#565d6e;
+    --amber:#b7a06a;
+}
+
+body{
+    margin:0;
+    background:
+        radial-gradient(circle at top, rgba(180,190,210,0.05), transparent 55%),
+        linear-gradient(to bottom, #010205, #020206 70%, #000000);
+    color:var(--text);
+    font-family:"Courier New", monospace;
+    overflow-x:hidden;
+    letter-spacing:0.35px;
+    position:relative;
+    text-shadow:0 0 4px rgba(220,230,255,0.035);
+}
+
+/* SCANLINES */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+    repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.009),
+        rgba(255,255,255,0.009) 1px,
+        transparent 1px,
+        transparent 4px
+    );
+    opacity:0.55;
+    z-index:999;
+}
+
+/* OLD GRID */
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+        linear-gradient(rgba(180,190,210,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(180,190,210,0.015) 1px, transparent 1px);
+    background-size:56px 56px;
+    opacity:0.18;
+    z-index:-1;
+}
+
+.container{
+    max-width:1050px;
+    margin:auto;
+    padding:42px;
+    position:relative;
+    z-index:2;
+}
+
+/* TOPBAR */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid var(--line);
+    padding-bottom:18px;
+    margin-bottom:35px;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.network{
+    color:#e1e5ef;
+    letter-spacing:4px;
+    font-size:14px;
+}
+
+.status{
+    color:#9aa2b4;
+    font-size:12px;
+    letter-spacing:2px;
+}
+
+/* BACK */
+
+.back{
+    display:inline-block;
+    margin-bottom:35px;
+    color:#aeb7cc;
+    text-decoration:none;
+    transition:0.2s;
+    letter-spacing:1px;
+}
+
+.back:hover{
+    color:white;
+    transform:translateX(-4px);
+}
+
+/* HEADER */
+
+.header{
+    border:1px solid var(--line);
+    background:rgba(4,6,12,0.96);
+    padding:40px;
+    margin-bottom:40px;
+    box-shadow:0 0 40px rgba(180,190,210,0.045);
+    position:relative;
+    overflow:hidden;
+}
+
+.header::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:1px;
+    background:rgba(220,230,255,0.22);
+    animation:scan 12s linear infinite;
+}
+
+@keyframes scan{
+0%{left:-100%;}
+100%{left:100%;}
+}
+
+.docid{
+    color:#9da8bf;
+    letter-spacing:4px;
+    font-size:13px;
+    margin-bottom:16px;
+}
+
+.title{
+    font-size:40px;
+    letter-spacing:7px;
+    color:#edf1fa;
+    margin-bottom:28px;
+    line-height:1.45;
+}
+
+.meta{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:18px;
+    color:#8c95a8;
+    line-height:1.9;
+    font-size:14px;
+}
+
+.meta span{
+    color:#e5e9f2;
+}
+
+/* WARNING */
+
+.warning{
+    border-left:3px solid #9da8bf;
+    background:rgba(4,6,10,0.92);
+    padding:25px;
+    margin-bottom:45px;
+    color:#cfd5e3;
+    line-height:2;
+}
+
+/* CONTENT */
+
+.section{
+    margin-top:60px;
+    margin-bottom:20px;
+    color:#b3bdd3;
+    letter-spacing:4px;
+    font-size:15px;
+    border-bottom:1px solid #323a4d;
+    padding-bottom:12px;
+}
+
+.content{
+    line-height:2.15;
+    color:#d8dde8;
+    font-size:15px;
+}
+
+.block{
+    background:rgba(4,6,12,0.95);
+    border:1px solid #343d50;
+    padding:24px;
+    margin:35px 0;
+    line-height:2;
+    color:#ccd3e2;
+}
+
+.log{
+    margin:35px 0;
+    padding:25px;
+    background:rgba(0,0,0,0.97);
+    border:1px solid #343d50;
+    color:#cfd5e3;
+    line-height:2.1;
+    font-size:14px;
+}
+
+.table{
+    margin:35px 0;
+    border:1px solid #343d50;
+    background:rgba(0,0,0,0.7);
+}
+
+.row{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    border-bottom:1px solid #252c3b;
+}
+
+.row:last-child{
+    border-bottom:none;
+}
+
+.cell{
+    padding:16px;
+    border-right:1px solid #252c3b;
+    color:#cfd5e3;
+    font-size:14px;
+    line-height:1.8;
+}
+
+.cell:last-child{
+    border-right:none;
+}
+
+.cell span{
+    color:#e1d3a2;
+}
+
+.redact{
+    background:#000;
+    color:#000;
+    padding:0 8px;
+    user-select:none;
+}
+
+.redact:hover{
+    color:#d8dde8;
+}
+
+.glitch{
+    animation:flicker 5s infinite;
+}
+
+@keyframes flicker{
+0%{opacity:1;}
+1%{opacity:0.35;}
+2%{opacity:1;}
+72%{opacity:1;}
+73%{opacity:0.18;}
+74%{opacity:1;}
+}
+
+.footer{
+    margin-top:90px;
+    padding-top:30px;
+    border-top:1px solid #323a4d;
+    color:#697183;
+    line-height:2;
+    font-size:12px;
+    letter-spacing:1px;
+}
+
+@media(max-width:700px){
+
+.container{
+    padding:22px;
+}
+
+.title{
+    font-size:25px;
+    letter-spacing:4px;
+}
+
+.meta{
+    grid-template-columns:1fr;
+}
+
+.row{
+    grid-template-columns:1fr;
+}
+
+.cell{
+    border-right:none;
+    border-bottom:1px solid #252c3b;
+}
+
+.cell:last-child{
+    border-bottom:none;
+}
+
+}
+
+::selection{
+    background:#4d5568;
+    color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="topbar">
+
+<div class="network">
+UNINDEXED RESEARCH ARCHIVE
+</div>
+
+<div class="status glitch">
+VISIBILITY STATUS // SUPPRESSED
+</div>
+
+</div>
+
+<a href="ura.html" class="back">
+← RETURN TO U.R.A INDEX
+</a>
+
+<div class="header">
+
+<div class="docid">
+URA-02 // CORE TRANSFER LOGS
+</div>
+
+<div class="title">
+REACTOR CORRESPONDENCE
+</div>
+
+<div class="meta">
+
+<div>
+FILE STATUS:
+<span>PARTIAL RECOVERY</span>
+</div>
+
+<div>
+ACCESS LEVEL:
+<span>UNINDEXED</span>
+</div>
+
+<div>
+TRANSFER CLASS:
+<span class="glitch">RESTRICTED</span>
+</div>
+
+<div>
+SOURCE TYPE:
+<span>PERSISTENCE MEDIUM</span>
+</div>
+
+<div>
+ASSOCIATED SYSTEM:
+<span>CORE</span>
+</div>
+
+<div>
+PERSONNEL ATTRIBUTION:
+<span class="glitch">FAILED</span>
+</div>
+
+</div>
+
+</div>
+
+<div class="warning">
+
+WARNING:
+
+This document contains suppressed transfer data
+associated with reactor stabilization procedures.
+
+<br><br>
+
+Several values exceed verified material storage limits.
+
+<br><br>
+
+Official review determined the records to be:
+fabricated,
+corrupted,
+or structurally impossible.
+
+<br><br>
+
+Unofficial review was discontinued.
+
+</div>
+
+<div class="content">
+
+<div class="section">
+RECOVERY SUMMARY
+</div>
+
+URA-02 was recovered from an unindexed correspondence chain
+attached to early CORE stabilization records.
+
+The correspondence does not appear in any approved engineering archive.
+
+However,
+its checksum pattern matches several known continuation fuel studies
+catalogued under URA-01.
+
+This indicates the records were not random corruption.
+
+They were removed.
+
+<div class="block">
+
+The CORE was described publicly
+as a thermal conversion and distribution system.
+
+<br><br>
+
+Recovered transfer notes suggest
+the system may have also functioned
+as a persistence stabilizer.
+
+<br><br>
+
+The term used internally was not “energy.”
+
+<br><br>
+
+The term was:
+<span class="glitch">retention</span>.
+
+</div>
+
+<div class="section">
+TRANSFER TABLE // PARTIAL</div>
+
+<div class="table">
+
+<div class="row">
+
+<div class="cell">
+TRANSFER ID
+</div>
+
+<div class="cell">
+RECORDED QUANTITY
+</div>
+
+<div class="cell">
+NOTES
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="cell">
+CT-004
+</div>
+
+<div class="cell">
+<span>WITHIN LIMIT</span>
+</div>
+
+<div class="cell">
+Baseline persistence accepted.
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="cell">
+CT-019
+</div>
+
+<div class="cell">
+<span>EXCEEDS LIMIT</span>
+</div>
+
+<div class="cell">
+Containment temperature remained stable despite impossible load.
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="cell">
+CT-031
+</div>
+
+<div class="cell">
+<span>UNMEASURABLE</span>
+</div>
+
+<div class="cell">
+Output continued after transfer halt.
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="cell">
+CT-███
+</div>
+
+<div class="cell">
+<span class="glitch">NOT APPLICABLE</span>
+</div>
+
+<div class="cell">
+No input source recorded.
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+ENGINEERING NOTES
+</div>
+
+Recovered engineering comments repeatedly indicate
+that the CORE remained stable
+under conditions that should have produced full system collapse.
+
+Several review teams initially classified the anomaly
+as measurement error.
+
+That classification was later revoked.
+
+No replacement classification was entered.
+
+<div class="log">
+
+ENGINEERING MEMO // FRAGMENT
+
+<br><br>
+
+The reactor is not only converting.
+
+<br><br>
+
+It is preserving.
+
+<br><br>
+
+It maintains structure
+even when supplied input should be insufficient.
+
+<br><br>
+
+Transfer loss does not result in proportional output loss.
+
+<br><br>
+
+Output remembers previous input.
+
+<br><br>
+
+That wording is not metaphorical.
+
+</div>
+
+<div class="section">
+MATERIAL SOURCE DISCREPANCY
+</div>
+
+The most severe inconsistency appears in source labeling.
+
+Official documentation references:
+thermal conversion,
+geothermal pressure,
+and structural heat routing.
+
+The suppressed correspondence references:
+extraction,
+vital retention,
+soul-adjacent persistence,
+and determination carryover.
+
+No official documents explain
+why these terms were used.
+
+<div class="block glitch">
+
+SOURCE MATERIAL DOES NOT BEHAVE LIKE FUEL.
+
+<br><br>
+
+SOURCE MATERIAL BEHAVES LIKE REFUSAL.
+
+</div>
+
+<div class="section">
+PERSONNEL THREAD FAILURE
+</div>
+
+Several correspondence packets contain attribution fields
+that cannot be resolved.
+
+The personnel system recognizes the presence of an author,
+but cannot return a name.
+
+It returns an empty field
+followed by a formatting error.
+
+<div class="log">
+
+AUTHOR FIELD:
+<span class="redact">████████████</span>
+
+<br><br>
+
+ROLE:
+PRIMARY SYSTEM ARCHITECT
+
+<br><br>
+
+SIGNATURE:
+UNREADABLE
+
+<br><br>
+
+COMMENT:
+“DO NOT ALLOW THE MATERIAL TO BECOME STILL.”
+
+<br><br>
+
+COMMENT STATUS:
+REMOVED FROM PUBLIC BUILD
+
+</div>
+
+The comment appears in three separate transfer packets.
+
+Each instance was manually deleted.
+
+Each instance reappeared.
+
+<div class="section">
+INTERNAL ENTRY // M
+</div>
+
+I found the same absence again.
+
+Not a missing file.
+
+Not corrupted text.
+
+An absence with structure.
+
+Someone designed these systems.
+Someone wrote the transfer rules.
+Someone knew the material would continue
+after removal.
+
+The public records describe the CORE
+like a machine.
+
+The private records describe it
+like a wound that had to be kept open.
+
+I do not know yet
+whether the extraction began as necessity
+or experiment.
+
+I do know the archive does not want
+that distinction preserved.
+
+If the CORE was stabilizing more than energy,
+then every later continuity incident
+may have inherited its architecture.
+
+That would mean DVC-02 was never
+a discovery.
+
+It was a delayed symptom.
+
+<div class="section">
+SUPPRESSED CONCLUSION
+</div>
+
+<div class="log glitch">
+
+The CORE transfer records cannot be reconciled
+with approved history.
+
+<br><br>
+
+Transfer quantities exceed material limits.
+
+<br><br>
+
+Output persistence exceeds input duration.
+
+<br><br>
+
+Personnel attribution failed.
+
+<br><br>
+
+Further review requires access to unresolved researcher records.
+
+<br><br>
+
+NEXT INDEX:
+URA-03
+
+</div>
+
+<div class="footer">
+
+UNINDEXED RESEARCH ARCHIVE
+
+<br><br>
+
+URA-02 // CORE TRANSFER LOGS
+
+<br>
+
+THE REACTOR WAS NEVER ONLY A REACTOR.
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
