@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +10,7 @@
 
 :root{
     --bg:#02030a;
-    --bg2:#05060f;
+    --bg2:#010106;
     --line:#39456f;
     --text:#d9e2ff;
     --soft:#9aa8d8;
@@ -21,6 +20,7 @@
 
 body{
     margin:0;
+
     background:
         radial-gradient(circle at top,
         rgba(90,110,255,0.08),
@@ -41,19 +41,16 @@ body{
 
     position:relative;
 
-    text-shadow:0 0 4px rgba(180,210,255,0.05);
+    text-shadow:
+        0 0 4px rgba(180,210,255,0.05);
 }
 
 /* SCANLINES */
 
 body::before{
-
     content:"";
-
     position:fixed;
-
     inset:0;
-
     pointer-events:none;
 
     background:
@@ -66,418 +63,298 @@ body::before{
     );
 
     opacity:0.45;
-
     z-index:999;
-
 }
 
 /* GRID */
 
 body::after{
-
     content:"";
-
     position:fixed;
-
     inset:0;
-
     pointer-events:none;
 
     background-image:
-        linear-gradient(
-        rgba(120,140,255,0.03) 1px,
-        transparent 1px),
-
-        linear-gradient(
-        90deg,
-        rgba(120,140,255,0.03) 1px,
-        transparent 1px);
+        linear-gradient(rgba(120,140,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120,140,255,0.025) 1px, transparent 1px);
 
     background-size:42px 42px;
 
-    opacity:0.12;
-
+    opacity:0.1;
     z-index:-1;
-
 }
 
 .container{
-
     max-width:1150px;
-
     margin:auto;
-
     padding:40px;
-
     position:relative;
-
     z-index:2;
-
 }
 
 /* TOPBAR */
 
 .topbar{
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
     border-bottom:1px solid var(--line);
-
     padding-bottom:18px;
-
     margin-bottom:35px;
-
     flex-wrap:wrap;
-
     gap:15px;
-
 }
 
 .network{
-
     color:#dfe6ff;
-
     letter-spacing:4px;
-
     font-size:14px;
-
 }
 
 .status{
-
     color:#93a0c9;
-
     font-size:12px;
-
     letter-spacing:2px;
-
     animation:flicker 5s infinite;
-
 }
 
 /* BACK */
 
 .back{
-
     display:inline-block;
-
     margin-bottom:35px;
-
     color:#a9b8f0;
-
     text-decoration:none;
-
     transition:0.2s;
-
     letter-spacing:1px;
-
 }
 
 .back:hover{
-
     color:white;
-
     transform:translateX(-4px);
-
 }
 
 /* HEADER */
 
 .header{
-
     border:1px solid #364166;
-
     background:rgba(6,8,18,0.95);
-
     padding:40px;
-
     margin-bottom:45px;
-
     box-shadow:0 0 40px var(--glow);
-
     position:relative;
-
     overflow:hidden;
-
 }
 
 .header::after{
-
     content:"";
-
     position:absolute;
-
     top:0;
     left:-100%;
-
     width:100%;
     height:1px;
-
     background:rgba(180,210,255,0.35);
-
     animation:scan 10s linear infinite;
-
 }
 
 @keyframes scan{
-
 0%{left:-100%;}
 100%{left:100%;}
-
 }
 
 .id{
-
     color:#8ea3eb;
-
     letter-spacing:4px;
-
     font-size:13px;
-
     margin-bottom:16px;
-
 }
 
 .title{
-
     font-size:42px;
-
     letter-spacing:7px;
-
     color:#edf2ff;
-
     margin-bottom:28px;
-
     line-height:1.5;
-
 }
 
 .desc{
-
     color:#9aa8d8;
-
     line-height:2;
-
     max-width:900px;
+}
 
+/* META */
+
+.meta{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:18px;
+    color:#96a5d2;
+    line-height:1.9;
+    font-size:14px;
+    margin-top:30px;
+}
+
+.meta span{
+    color:#ffffff;
 }
 
 /* WARNING */
 
 .warning{
-
     border-left:3px solid #7f95db;
-
     background:rgba(7,9,17,0.92);
-
     padding:24px;
-
     margin-bottom:45px;
-
     color:#dce5ff;
-
     line-height:2;
-
 }
 
 /* SECTION */
 
 .section{
-
     margin-top:60px;
-
     margin-bottom:20px;
-
     color:#9db2ff;
-
     letter-spacing:4px;
-
     font-size:15px;
-
     border-bottom:1px solid #2e395c;
-
     padding-bottom:12px;
-
 }
 
 /* FILES */
 
 .file{
-
     display:block;
-
     text-decoration:none;
-
     color:#dce5ff;
-
     background:rgba(7,9,18,0.95);
-
     border:1px solid #2e3858;
-
     padding:24px;
-
     margin:18px 0;
-
     transition:0.2s;
-
     position:relative;
-
     overflow:hidden;
-
 }
 
 .file::before{
-
     content:"";
-
     position:absolute;
-
     top:0;
     left:-100%;
-
     width:100%;
     height:100%;
-
     background:linear-gradient(
         90deg,
         transparent,
         rgba(140,170,255,0.05),
         transparent
     );
-
     transition:0.6s;
-
 }
 
 .file:hover::before{
-
     left:100%;
-
 }
 
 .file:hover{
-
     border-color:#6078c9;
-
     transform:translateX(6px);
-
     box-shadow:0 0 25px rgba(120,150,255,0.08);
-
 }
 
 .file-title{
-
     letter-spacing:2px;
-
     margin-bottom:10px;
-
 }
 
 .file-desc{
-
     color:#93a0c9;
-
     line-height:1.9;
-
     font-size:14px;
-
 }
 
 /* LOCKED */
 
 .locked{
-
     opacity:0.38;
-
     cursor:default;
-
 }
 
 .locked:hover{
-
     transform:none;
-
     border-color:#2e3858;
-
     box-shadow:none;
-
 }
 
 /* LOG */
 
 .log{
-
     margin-top:45px;
-
     background:black;
-
     border:1px solid #3a4670;
-
     padding:25px;
-
     line-height:2.1;
-
     color:#dce5ff;
-
     font-size:14px;
+}
 
+/* BLOCK */
+
+.block{
+    background:rgba(7,9,18,0.96);
+    border:1px solid #3a4670;
+    padding:24px;
+    margin:35px 0;
+    line-height:2;
+    color:#dce5ff;
 }
 
 /* GLITCH */
 
 .glitch{
-
     animation:flicker 4s infinite;
-
 }
 
 @keyframes flicker{
-
 0%{opacity:1;}
 1%{opacity:0.2;}
 2%{opacity:1;}
 70%{opacity:1;}
 71%{opacity:0.5;}
 72%{opacity:1;}
-
 }
 
 /* REDACTION */
 
 .redact{
-
     background:black;
-
     color:black;
-
     padding:0 6px;
-
     user-select:none;
+}
 
+.redact:hover{
+    color:#dce5ff;
+}
+
+/* SMALL HIDDEN TEXT */
+
+.hidden{
+    opacity:0.03;
+    user-select:none;
 }
 
 /* FOOTER */
 
 .footer{
-
     margin-top:90px;
-
     padding-top:30px;
-
     border-top:1px solid #2e395c;
-
     color:#66749b;
-
     line-height:2;
-
     font-size:12px;
-
     letter-spacing:1px;
-
 }
 
 /* MOBILE */
@@ -491,6 +368,10 @@ body::after{
 .title{
     font-size:26px;
     letter-spacing:4px;
+}
+
+.meta{
+    grid-template-columns:1fr;
 }
 
 }
@@ -550,6 +431,40 @@ Removal procedures were unsuccessful.
 
 </div>
 
+<div class="meta">
+
+<div>
+ACCESS METHOD:
+<span>RECOVERED KEY</span>
+</div>
+
+<div>
+INDEX STATUS:
+<span class="glitch">UNLISTED</span>
+</div>
+
+<div>
+PRIMARY SUBJECT:
+<span>EXTRACTION EVENT</span>
+</div>
+
+<div>
+PERSONNEL STATUS:
+<span>INCOMPLETE</span>
+</div>
+
+<div>
+ASSOCIATED NODE:
+<span>DVC-02-12</span>
+</div>
+
+<div>
+ARCHIVE STATE:
+<span class="glitch">ACTIVE</span>
+</div>
+
+</div>
+
 </div>
 
 <div class="warning">
@@ -562,7 +477,9 @@ beyond all standard observer authorization levels.
 <br><br>
 
 Several associated personnel records
-remain incomplete or intentionally erased.
+remain incomplete,
+corrupted,
+or intentionally erased.
 
 <br><br>
 
@@ -572,10 +489,37 @@ was formally prohibited.
 </div>
 
 <div class="section">
+SECTOR SUMMARY
+</div>
+
+<div class="block">
+
+The Unindexed Research Archive contains
+records associated with early continuation fuel theory,
+non-standard energy transfer studies,
+and suppressed reactor correspondence.
+
+<br><br>
+
+Several documents reference:
+extraction,
+persistence,
+observer endurance,
+and a missing researcher identity
+that no longer resolves inside official personnel records.
+
+<br><br>
+
+Researcher M accessed this sector repeatedly
+before all remaining authorization trails were erased.
+
+</div>
+
+<div class="section">
 RECOVERED SECTORS
 </div>
 
-<a href="extraction01.html" class="file">
+<a href="ura01.html" class="file">
 
 <div class="file-title">
 URA-01 // EXTRACTION STUDIES
@@ -587,11 +531,15 @@ Early continuation fuel transfer theory,
 persistence medium observations,
 and non-conventional energy modeling.
 
+<br><br>
+
+The source material is incomplete.
+
 </div>
 
 </a>
 
-<a href="corelogs.html" class="file">
+<a href="ura02.html" class="file">
 
 <div class="file-title">
 URA-02 // CORE TRANSFER LOGS
@@ -600,64 +548,76 @@ URA-02 // CORE TRANSFER LOGS
 <div class="file-desc">
 
 Fragmented transfer records,
-stability fluctuations,
-and restricted reactor correspondence.
+reactor stability fluctuations,
+and restricted containment correspondence.
+
+<br><br>
+
+Several values exceed verified storage limits.
 
 </div>
 
 </a>
 
-<a href="observernotes.html" class="file">
+<a href="ura03.html" class="file">
 
 <div class="file-title">
-URA-03 // OBSERVER PERSISTENCE NOTES
+URA-03 // UNRESOLVED RESEARCHER RECORDS
 </div>
 
 <div class="file-desc">
 
-Continuation retention analysis,
-post-disengagement anomalies,
-and synchronization endurance behavior.
+Personnel indexing failures,
+erased attribution markers,
+and references to an unnamed lead researcher.
+
+<br><br>
+
+Identity resolution failed.
 
 </div>
 
 </a>
 
-<div class="file locked">
+<a href="ura04.html" class="file">
 
-<div class="file-title glitch">
-URA-04 // PERSONNEL RECORDS
+<div class="file-title">
+URA-04 // FOUNTAIN COMPATIBILITY NOTES
 </div>
 
 <div class="file-desc">
 
-Personnel archive partially erased.
+M’s recovered comparisons between continuation pressure,
+Determination exposure,
+and boundary rupture theory.
 
 <br><br>
 
-Several identities no longer resolve correctly.
+Emotional instability indicators detected.
 
 </div>
 
-</div>
+</a>
 
-<div class="file locked">
+<a href="ura05.html" class="file glitch">
 
-<div class="file-title glitch">
-URA-05 // FOUNTAIN COMPATIBILITY TESTS
+<div class="file-title">
+URA-05 // BLACK KNIFE PROTOTYPE
 </div>
 
 <div class="file-desc">
 
-Sector integrity compromised.
+Recovered prototype notes,
+puncture-device theory,
+and final authorization fragments.
 
 <br><br>
 
-Observer access temporarily suspended.
+This file should not be open.
 
 </div>
 
-</div>
+</a>
 
 <div class="section">
 RECOVERED INTERNAL LOG
@@ -666,6 +626,23 @@ RECOVERED INTERNAL LOG
 <div class="log">
 
 INTERNAL ENTRY // M
+
+<br><br>
+
+I was not supposed to find this.
+
+<br><br>
+
+That is the first thing I need recorded.
+
+<br><br>
+
+Not because I regret opening it.
+
+<br><br>
+
+Because someone tried very hard
+to make sure no one could.
 
 <br><br>
 
@@ -721,10 +698,35 @@ I think they were removed intentionally.
 <br><br>
 
 <span class="redact">
-GASTER
+W. D. GASTER
 </span>
 
 </div>
+
+<div class="section">
+UNRESOLVED NOTE
+</div>
+
+<div class="block glitch">
+
+KEY STATUS:
+CONSUMED
+
+<br><br>
+
+OBSERVER STATUS:
+AUTHORIZED
+
+<br><br>
+
+CONTINUATION:
+PERMITTED
+
+</div>
+
+<span class="hidden">
+the key was used up
+</span>
 
 <div class="footer">
 
@@ -745,5 +747,3 @@ NO VERIFIED COMPLETE VERSION EXISTS.
 
 </body>
 </html>
-```
-
