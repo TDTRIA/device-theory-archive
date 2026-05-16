@@ -9,40 +9,27 @@
 <style>
 
 :root{
-    --bg:#02030a;
-    --bg2:#010106;
-    --line:#39456f;
-    --text:#d9e2ff;
-    --soft:#9aa8d8;
-    --dim:#5f6d98;
-    --glow:rgba(120,150,255,0.08);
+    --bg:#010205;
+    --panel:#05070d;
+    --line:#3b4354;
+    --text:#d8dde8;
+    --soft:#9098aa;
+    --dim:#565d6e;
+    --redact:#050505;
+    --amber:#b7a06a;
 }
 
 body{
     margin:0;
-
     background:
-        radial-gradient(circle at top,
-        rgba(90,110,255,0.08),
-        transparent 60%),
-
-        linear-gradient(to bottom,
-        #02030a,
-        #010106 80%,
-        #000000);
-
+        radial-gradient(circle at top, rgba(180,190,210,0.05), transparent 55%),
+        linear-gradient(to bottom, #010205, #020206 70%, #000000);
     color:var(--text);
-
     font-family:"Courier New", monospace;
-
     overflow-x:hidden;
-
-    letter-spacing:0.4px;
-
+    letter-spacing:0.35px;
     position:relative;
-
-    text-shadow:
-        0 0 4px rgba(180,210,255,0.05);
+    text-shadow:0 0 4px rgba(220,230,255,0.035);
 }
 
 /* SCANLINES */
@@ -52,42 +39,37 @@ body::before{
     position:fixed;
     inset:0;
     pointer-events:none;
-
     background:
     repeating-linear-gradient(
         to bottom,
-        rgba(255,255,255,0.014),
-        rgba(255,255,255,0.014) 1px,
+        rgba(255,255,255,0.009),
+        rgba(255,255,255,0.009) 1px,
         transparent 1px,
-        transparent 3px
+        transparent 4px
     );
-
-    opacity:0.45;
+    opacity:0.55;
     z-index:999;
 }
 
-/* GRID */
+/* OLD GRID */
 
 body::after{
     content:"";
     position:fixed;
     inset:0;
     pointer-events:none;
-
     background-image:
-        linear-gradient(rgba(120,140,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(120,140,255,0.025) 1px, transparent 1px);
-
-    background-size:42px 42px;
-
-    opacity:0.1;
+        linear-gradient(rgba(180,190,210,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(180,190,210,0.015) 1px, transparent 1px);
+    background-size:56px 56px;
+    opacity:0.18;
     z-index:-1;
 }
 
 .container{
-    max-width:1150px;
+    max-width:1120px;
     margin:auto;
-    padding:40px;
+    padding:42px;
     position:relative;
     z-index:2;
 }
@@ -106,16 +88,15 @@ body::after{
 }
 
 .network{
-    color:#dfe6ff;
+    color:#e1e5ef;
     letter-spacing:4px;
     font-size:14px;
 }
 
 .status{
-    color:#93a0c9;
+    color:#9aa2b4;
     font-size:12px;
     letter-spacing:2px;
-    animation:flicker 5s infinite;
 }
 
 /* BACK */
@@ -123,7 +104,7 @@ body::after{
 .back{
     display:inline-block;
     margin-bottom:35px;
-    color:#a9b8f0;
+    color:#aeb7cc;
     text-decoration:none;
     transition:0.2s;
     letter-spacing:1px;
@@ -137,11 +118,11 @@ body::after{
 /* HEADER */
 
 .header{
-    border:1px solid #364166;
-    background:rgba(6,8,18,0.95);
+    border:1px solid var(--line);
+    background:rgba(4,6,12,0.96);
     padding:40px;
-    margin-bottom:45px;
-    box-shadow:0 0 40px var(--glow);
+    margin-bottom:40px;
+    box-shadow:0 0 40px rgba(180,190,210,0.045);
     position:relative;
     overflow:hidden;
 }
@@ -153,8 +134,8 @@ body::after{
     left:-100%;
     width:100%;
     height:1px;
-    background:rgba(180,210,255,0.35);
-    animation:scan 10s linear infinite;
+    background:rgba(220,230,255,0.22);
+    animation:scan 12s linear infinite;
 }
 
 @keyframes scan{
@@ -163,23 +144,23 @@ body::after{
 }
 
 .id{
-    color:#8ea3eb;
+    color:#9da8bf;
     letter-spacing:4px;
     font-size:13px;
     margin-bottom:16px;
 }
 
 .title{
-    font-size:42px;
+    font-size:40px;
     letter-spacing:7px;
-    color:#edf2ff;
+    color:#edf1fa;
     margin-bottom:28px;
-    line-height:1.5;
+    line-height:1.45;
 }
 
 .desc{
-    color:#9aa8d8;
-    line-height:2;
+    color:#9aa2b4;
+    line-height:2.05;
     max-width:900px;
 }
 
@@ -189,24 +170,24 @@ body::after{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
     gap:18px;
-    color:#96a5d2;
+    color:#8c95a8;
     line-height:1.9;
     font-size:14px;
-    margin-top:30px;
+    margin-top:32px;
 }
 
 .meta span{
-    color:#ffffff;
+    color:#e5e9f2;
 }
 
 /* WARNING */
 
 .warning{
-    border-left:3px solid #7f95db;
-    background:rgba(7,9,17,0.92);
-    padding:24px;
+    border-left:3px solid #9da8bf;
+    background:rgba(4,6,10,0.92);
+    padding:25px;
     margin-bottom:45px;
-    color:#dce5ff;
+    color:#cfd5e3;
     line-height:2;
 }
 
@@ -215,11 +196,38 @@ body::after{
 .section{
     margin-top:60px;
     margin-bottom:20px;
-    color:#9db2ff;
+    color:#b3bdd3;
     letter-spacing:4px;
     font-size:15px;
-    border-bottom:1px solid #2e395c;
+    border-bottom:1px solid #323a4d;
     padding-bottom:12px;
+}
+
+/* CONTENT */
+
+.content{
+    line-height:2.15;
+    color:#d8dde8;
+    font-size:15px;
+}
+
+.block{
+    background:rgba(4,6,12,0.95);
+    border:1px solid #343d50;
+    padding:24px;
+    margin:35px 0;
+    line-height:2;
+    color:#ccd3e2;
+}
+
+.log{
+    margin:35px 0;
+    padding:25px;
+    background:rgba(0,0,0,0.97);
+    border:1px solid #343d50;
+    color:#cfd5e3;
+    line-height:2.1;
+    font-size:14px;
 }
 
 /* FILES */
@@ -227,12 +235,12 @@ body::after{
 .file{
     display:block;
     text-decoration:none;
-    color:#dce5ff;
-    background:rgba(7,9,18,0.95);
-    border:1px solid #2e3858;
+    color:#dfe4ee;
+    background:rgba(4,6,12,0.94);
+    border:1px solid #30384a;
     padding:24px;
     margin:18px 0;
-    transition:0.2s;
+    transition:0.22s;
     position:relative;
     overflow:hidden;
 }
@@ -247,7 +255,7 @@ body::after{
     background:linear-gradient(
         90deg,
         transparent,
-        rgba(140,170,255,0.05),
+        rgba(220,230,255,0.035),
         transparent
     );
     transition:0.6s;
@@ -258,91 +266,57 @@ body::after{
 }
 
 .file:hover{
-    border-color:#6078c9;
+    border-color:#69738d;
     transform:translateX(6px);
-    box-shadow:0 0 25px rgba(120,150,255,0.08);
+    box-shadow:0 0 24px rgba(180,190,210,0.055);
 }
 
 .file-title{
     letter-spacing:2px;
     margin-bottom:10px;
+    color:#edf1fa;
 }
 
 .file-desc{
-    color:#93a0c9;
-    line-height:1.9;
+    color:#949cad;
+    line-height:1.85;
     font-size:14px;
 }
 
-/* LOCKED */
-
-.locked{
-    opacity:0.38;
-    cursor:default;
+.file-critical{
+    border-color:#5b4f37;
 }
 
-.locked:hover{
-    transform:none;
-    border-color:#2e3858;
-    box-shadow:none;
+.file-critical .file-title{
+    color:#e1d3a2;
 }
 
-/* LOG */
+/* REDACTIONS */
 
-.log{
-    margin-top:45px;
-    background:black;
-    border:1px solid #3a4670;
-    padding:25px;
-    line-height:2.1;
-    color:#dce5ff;
-    font-size:14px;
+.redact{
+    background:#000;
+    color:#000;
+    padding:0 8px;
+    user-select:none;
 }
 
-/* BLOCK */
-
-.block{
-    background:rgba(7,9,18,0.96);
-    border:1px solid #3a4670;
-    padding:24px;
-    margin:35px 0;
-    line-height:2;
-    color:#dce5ff;
+.redact:hover{
+    color:#d8dde8;
 }
 
 /* GLITCH */
 
 .glitch{
-    animation:flicker 4s infinite;
+    animation:flicker 5s infinite;
 }
 
 @keyframes flicker{
 0%{opacity:1;}
-1%{opacity:0.2;}
+1%{opacity:0.35;}
 2%{opacity:1;}
-70%{opacity:1;}
-71%{opacity:0.5;}
 72%{opacity:1;}
-}
-
-/* REDACTION */
-
-.redact{
-    background:black;
-    color:black;
-    padding:0 6px;
-    user-select:none;
-}
-
-.redact:hover{
-    color:#dce5ff;
-}
-
-/* SMALL HIDDEN TEXT */
-
-.hidden{
-    opacity:0.03;
-    user-select:none;
+73%{opacity:0.18;}
+74%{opacity:1;}
 }
 
 /* FOOTER */
@@ -350,8 +324,8 @@ body::after{
 .footer{
     margin-top:90px;
     padding-top:30px;
-    border-top:1px solid #2e395c;
-    color:#66749b;
+    border-top:1px solid #323a4d;
+    color:#697183;
     line-height:2;
     font-size:12px;
     letter-spacing:1px;
@@ -366,7 +340,7 @@ body::after{
 }
 
 .title{
-    font-size:26px;
+    font-size:25px;
     letter-spacing:4px;
 }
 
@@ -377,7 +351,7 @@ body::after{
 }
 
 ::selection{
-    background:#536db8;
+    background:#4d5568;
     color:white;
 }
 
@@ -416,14 +390,11 @@ UNINDEXED RESEARCH ARCHIVE
 
 <div class="desc">
 
-This sector does not appear
-within any verified archive structure.
+This sector does not appear within any verified archive structure.
 
 <br><br>
 
-Recovered references indicate:
-the division was removed from standard indexing
-following late-stage continuation incidents.
+Recovered references indicate the division was removed from standard indexing following late-stage continuation incidents.
 
 <br><br>
 
@@ -435,7 +406,7 @@ Removal procedures were unsuccessful.
 
 <div>
 ACCESS METHOD:
-<span>RECOVERED KEY</span>
+<span>RECOVERED KEY FRAGMENT</span>
 </div>
 
 <div>
@@ -471,22 +442,19 @@ ARCHIVE STATE:
 
 WARNING:
 
-U.R.A materials were classified
-beyond all standard observer authorization levels.
+U.R.A materials were classified beyond all standard observer authorization levels.
 
 <br><br>
 
-Several associated personnel records
-remain incomplete,
-corrupted,
-or intentionally erased.
+Several associated personnel records remain incomplete, corrupted, or intentionally erased.
 
 <br><br>
 
-Continuation beyond this point
-was formally prohibited.
+Continuation beyond this point was formally prohibited.
 
 </div>
+
+<div class="content">
 
 <div class="section">
 SECTOR SUMMARY
@@ -494,10 +462,7 @@ SECTOR SUMMARY
 
 <div class="block">
 
-The Unindexed Research Archive contains
-records associated with early continuation fuel theory,
-non-standard energy transfer studies,
-and suppressed reactor correspondence.
+The Unindexed Research Archive contains records associated with early continuation fuel theory, non-standard energy transfer studies, and suppressed reactor correspondence.
 
 <br><br>
 
@@ -505,18 +470,17 @@ Several documents reference:
 extraction,
 persistence,
 observer endurance,
-and a missing researcher identity
-that no longer resolves inside official personnel records.
+boundary rupture,
+and a missing researcher identity that no longer resolves inside official personnel records.
 
 <br><br>
 
-Researcher M accessed this sector repeatedly
-before all remaining authorization trails were erased.
+Researcher M accessed this sector repeatedly before all remaining authorization trails were erased.
 
 </div>
 
 <div class="section">
-RECOVERED SECTORS
+RECOVERED DOCUMENTS
 </div>
 
 <a href="ura01.html" class="file">
@@ -527,9 +491,7 @@ URA-01 // EXTRACTION STUDIES
 
 <div class="file-desc">
 
-Early continuation fuel transfer theory,
-persistence medium observations,
-and non-conventional energy modeling.
+Early continuation fuel transfer theory, persistence medium observations, and non-conventional energy modeling.
 
 <br><br>
 
@@ -547,9 +509,7 @@ URA-02 // CORE TRANSFER LOGS
 
 <div class="file-desc">
 
-Fragmented transfer records,
-reactor stability fluctuations,
-and restricted containment correspondence.
+Fragmented transfer records, reactor stability fluctuations, and restricted containment correspondence.
 
 <br><br>
 
@@ -567,9 +527,7 @@ URA-03 // UNRESOLVED RESEARCHER RECORDS
 
 <div class="file-desc">
 
-Personnel indexing failures,
-erased attribution markers,
-and references to an unnamed lead researcher.
+Personnel indexing failures, erased attribution markers, and references to an unnamed lead researcher.
 
 <br><br>
 
@@ -587,9 +545,7 @@ URA-04 // FOUNTAIN COMPATIBILITY NOTES
 
 <div class="file-desc">
 
-M’s recovered comparisons between continuation pressure,
-Determination exposure,
-and boundary rupture theory.
+M’s recovered comparisons between continuation pressure, Determination exposure, and boundary rupture theory.
 
 <br><br>
 
@@ -599,7 +555,7 @@ Emotional instability indicators detected.
 
 </a>
 
-<a href="ura05.html" class="file glitch">
+<a href="ura05.html" class="file file-critical glitch">
 
 <div class="file-title">
 URA-05 // BLACK KNIFE PROTOTYPE
@@ -607,9 +563,7 @@ URA-05 // BLACK KNIFE PROTOTYPE
 
 <div class="file-desc">
 
-Recovered prototype notes,
-puncture-device theory,
-and final authorization fragments.
+Recovered prototype notes, puncture-device theory, and final authorization fragments.
 
 <br><br>
 
@@ -641,8 +595,7 @@ Not because I regret opening it.
 
 <br><br>
 
-Because someone tried very hard
-to make sure no one could.
+Because someone tried very hard to make sure no one could.
 
 <br><br>
 
@@ -650,8 +603,7 @@ The extraction records should not exist.
 
 <br><br>
 
-Every surviving reference contradicts
-official continuity architecture completely.
+Every surviving reference contradicts official continuity architecture completely.
 
 <br><br>
 
@@ -663,33 +615,27 @@ Something was sustaining it.
 
 <br><br>
 
-I believed the missing sections
-would clarify the inconsistencies.
+I believed the missing sections would clarify the inconsistencies.
 
 <br><br>
 
-Instead,
-the inconsistencies became larger.
+Instead, the inconsistencies became larger.
 
 <br><br>
 
-There are references to transfer quantities
-that exceed all verified storage limits.
+There are references to transfer quantities that exceed all verified storage limits.
 
 <br><br>
 
-There are timestamps
-that predate the system itself.
+There are timestamps that predate the system itself.
 
 <br><br>
 
-And there are repeated mentions of a researcher
-whose identity no longer resolves correctly.
+And there are repeated mentions of a researcher whose identity no longer resolves correctly.
 
 <br><br>
 
-I am beginning to suspect
-the records were not destroyed.
+I am beginning to suspect the records were not destroyed.
 
 <br><br>
 
@@ -724,10 +670,6 @@ PERMITTED
 
 </div>
 
-<span class="hidden">
-the key was used up
-</span>
-
 <div class="footer">
 
 UNINDEXED RESEARCH ARCHIVE
@@ -740,6 +682,8 @@ UNSTABLE
 <br>
 
 NO VERIFIED COMPLETE VERSION EXISTS.
+
+</div>
 
 </div>
 
