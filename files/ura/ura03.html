@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>URA-03 // GASTER EXPERIMENTS</title>
+
+<style>
+:root{
+    --bg:#04030a;
+    --line:#3a3f5c;
+    --text:#d7dcef;
+    --dim:#66749b;
+    --soft:#95a4cf;
+}
+
+body{
+    margin:0;
+    background:linear-gradient(to bottom, #04030a, #020106 80%, #010102);
+    color:var(--text);
+    font-family:"Courier New", monospace;
+    overflow-x:hidden;
+    letter-spacing:0.4px;
+    position:relative;
+}
+
+/* SCANLINES */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.015),
+        rgba(255,255,255,0.015) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    opacity:0.45;
+    z-index:999;
+}
+
+/* GRID */
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+        linear-gradient(rgba(120,140,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120,140,255,0.03) 1px, transparent 1px);
+    background-size:42px 42px;
+    opacity:0.15;
+    z-index:-1;
+}
+
+/* CONTAINER */
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:40px;
+    position:relative;
+    z-index:2;
+}
+
+/* HEADER */
+.header{
+    border:1px solid var(--line);
+    background:rgba(8,10,20,0.92);
+    padding:40px;
+    margin-bottom:40px;
+    box-shadow:0 0 25px rgba(120,150,255,0.08);
+}
+
+.header::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:1px;
+    background:rgba(180,210,255,0.3);
+    animation:scan 8s linear infinite;
+}
+
+@keyframes scan{
+0%{left:-100%;}
+100%{left:100%;}
+}
+
+.title{
+    font-size:38px;
+    color:#dce5ff;
+    letter-spacing:5px;
+    margin-bottom:25px;
+}
+
+.section{
+    margin-top:50px;
+    margin-bottom:20px;
+    color:#9cb2ff;
+    letter-spacing:3px;
+    font-size:15px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:10px;
+}
+
+.content{
+    line-height:2.1;
+    font-size:15px;
+    color:var(--text);
+}
+
+/* BLOCK */
+.block{
+    background:rgba(8,10,20,0.94);
+    border:1px solid #3a3f5c;
+    padding:25px;
+    margin:25px 0;
+    line-height:1.9;
+    color:#d7dcef;
+}
+
+/* GLITCH */
+.glitch{
+    animation:flicker 6s infinite;
+}
+
+@keyframes flicker{
+0%{opacity:1;}
+1%{opacity:0.3;}
+2%{opacity:1;}
+85%{opacity:1;}
+86%{opacity:0.2;}
+87%{opacity:1;}
+}
+
+/* FOOTER */
+.footer{
+    margin-top:60px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    color:#66749b;
+    font-size:12px;
+    letter-spacing:1px;
+    line-height:1.8;
+}
+
+/* LINKS */
+a{
+    color:#95a4cf;
+    text-decoration:none;
+}
+
+a:hover{
+    color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+<div class="title">URA-03 // GASTER EXPERIMENTS</div>
+</div>
+
+<div class="content">
+
+<div class="section">OVERVIEW</div>
+<div class="block">
+Recovered logs indicate that several high-risk experiments were conducted by Gaster
+on observer synchronization and shadow persistence.
+Many records are fragmented and partially corrupted.
+</div>
+
+<div class="section">EXPERIMENT NOTES</div>
+<div class="block glitch">
+- Observer continuity altered via extraction sequences.<br>
+- Shadow core persistence increased without apparent limit.<br>
+- Ethical boundaries were intentionally bypassed.<br>
+- Some entries reference "M" observing outcomes and responses.<br>
+- Recurrent anomalies suggest underlying influence beyond recorded parameters.
+</div>
+
+<div class="section">OBSERVED ANOMALIES</div>
+<div class="block">
+- Continuity loops triggering unexpected environmental reactions.<br>
+- Data fragments suggest attempts to manipulate intent alignment.<br>
+- Observer reports show signs of desynchronization correlated with Gaster activity.
+</div>
+
+<div class="section">HIDDEN WARNINGS</div>
+<div class="block glitch">
+Certain records appear to hide metadata referencing unverified continuity nodes.<br>
+Warnings were redacted or corrupted intentionally.<br>
+Unclear whether suppression is systemic or applied manually.
+</div>
+
+<div class="footer">
+DELTA CONTINUITY RESEARCH NETWORK
+<br><br>
+DVC-URA-03
+<br>
+NO VERIFIED EXIT CONDITION EXISTS.
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
