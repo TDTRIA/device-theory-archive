@@ -3,251 +3,166 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>URA04 // CONTINUITY CORRUPTION</title>
-
+<title>URA05 // DEVICE THEORY RESEARCH</title>
 <style>
-:root{
-    --bg:#0a0a12;
-    --line:#4a3c8b;
-    --text:#d7dcef;
-    --soft:#a0b0df;
-    --dim:#66749b;
-    --glow:rgba(180,120,255,0.1);
-}
-
 body{
     margin:0;
-    background:radial-gradient(circle at top, rgba(140,60,200,0.08), transparent 55%), linear-gradient(to bottom, #0a0a12, #010107 75%, #000000);
-    color:var(--text);
+    background:#010104;
     font-family:"Courier New", monospace;
+    color:#dfe5ff;
     overflow-x:hidden;
-    letter-spacing:0.4px;
     position:relative;
-    text-shadow:0 0 3px rgba(180,210,255,0.04);
-}
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    background:repeating-linear-gradient(to bottom, rgba(255,255,255,0.014), rgba(255,255,255,0.014) 1px, transparent 1px, transparent 3px);
-    opacity:0.55;
-    z-index:999;
-}
-
-body::after{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    background-image:linear-gradient(rgba(120,140,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(120,140,255,0.025) 1px, transparent 1px);
-    background-size:42px 42px;
-    opacity:0.15;
-    z-index:-1;
 }
 
 .container{
-    max-width:1100px;
+    max-width:1000px;
     margin:auto;
     padding:40px;
-    position:relative;
-    z-index:2;
-}
-
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border-bottom:1px solid var(--line);
-    padding-bottom:18px;
-    margin-bottom:35px;
-}
-
-.network{
-    color:#d5deff;
-    letter-spacing:4px;
-    font-size:14px;
-}
-
-.status{
-    color:#7d8dbb;
-    font-size:12px;
-    letter-spacing:2px;
-}
-
-.back{
-    display:inline-block;
-    margin-bottom:35px;
-    color:#8ea3eb;
-    text-decoration:none;
-    transition:0.2s;
-    letter-spacing:1px;
-}
-
-.back:hover{
-    color:white;
-    transform:translateX(-4px);
 }
 
 .header{
-    border:1px solid #3b4a7b;
-    background:rgba(10,12,20,0.92);
-    padding:40px;
-    margin-bottom:40px;
-    box-shadow:0 0 40px var(--glow);
-    position:relative;
-    overflow:hidden;
-}
-
-.header::after{
-    content:"";
-    position:absolute;
-    top:0;
-    left:-100%;
-    width:100%;
-    height:1px;
-    background:rgba(180,210,255,0.4);
-    animation:scan 8s linear infinite;
-}
-
-@keyframes scan{
-0%{left:-100%;}
-100%{left:100%;}
-}
-
-.id{
-    color:#8ea3eb;
-    letter-spacing:4px;
-    font-size:13px;
-    margin-bottom:16px;
+    border-bottom:1px solid #6277b8;
+    padding-bottom:20px;
+    margin-bottom:30px;
 }
 
 .title{
-    font-size:38px;
-    letter-spacing:6px;
-    color:#dce5ff;
-    margin-bottom:28px;
-    line-height:1.4;
-}
-
-.meta{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:18px;
-    color:#96a5d2;
-    line-height:1.9;
-    font-size:14px;
-}
-
-.meta span{
-    color:#dce5ff;
+    font-size:36px;
+    color:#fff;
+    letter-spacing:4px;
 }
 
 .section{
     margin-top:50px;
     margin-bottom:20px;
     color:#9cb2ff;
-    letter-spacing:4px;
-    font-size:15px;
-    border-bottom:1px solid #2b3555;
-    padding-bottom:12px;
+    letter-spacing:3px;
+    font-size:14px;
+    border-bottom:1px solid #6277b8;
+    padding-bottom:10px;
 }
 
 .content{
-    line-height:2.1;
-    color:#d7dcef;
+    line-height:2;
+    color:#dfe5ff;
     font-size:15px;
 }
 
-.block{
-    background:rgba(5,7,14,0.98);
-    border:1px solid #7087d4;
-    padding:24px;
-    margin:25px 0;
-    line-height:2;
-    color:#eef2ff;
-}
-
-.glitch{
-    animation:flicker 5s infinite;
-}
-
-@keyframes flicker{
-0%{opacity:1;}
-1%{opacity:0.5;}
-2%{opacity:1;}
-85%{opacity:1;}
-86%{opacity:0.2;}
-87%{opacity:1;}
-}
-
-.footer{
-    margin-top:80px;
-    padding-top:30px;
-    border-top:1px solid #28324f;
-    color:#66749b;
-    line-height:2;
-    font-size:12px;
+.key{
+    display:inline-block;
+    padding:6px 12px;
+    background:#2d2a44;
+    border:1px solid #7d5fff;
+    color:#fff;
+    cursor:pointer;
     letter-spacing:1px;
+    margin-top:20px;
+    transition:0.2s;
 }
 
-::selection{
-    background:#536db8;
-    color:white;
+.key:hover{
+    background:#4b3cff;
+    transform:translateY(-2px);
 }
+
+/* TEXT POPUPS */
+
+.popup{
+    position:fixed;
+    top:10%;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:40px;
+    font-weight:bold;
+    color:red;
+    opacity:0;
+    pointer-events:none;
+    z-index:10000;
+    white-space:nowrap;
+}
+
 </style>
 </head>
+
 <body>
 
 <div class="container">
+    <div class="header">
+        <div class="title">UNDERGROUND RESEARCH ARCHIVE // DOC 05</div>
+    </div>
 
-<div class="topbar">
-<div class="network">UNDERGROUND RESEARCH ARCHIVE</div>
-<div class="status">NODE STATUS // ACTIVE</div>
+    <div class="section">RESEARCH SUMMARY</div>
+    <div class="content">
+        The final fragments indicate severe deviation in observer behavior
+        following continued exposure to experimental datasets. Certain
+        sequences suggest unintended manipulation of environmental stability.
+    </div>
+
+    <div class="section">HIDDEN ACCESS</div>
+    <div class="content">
+        Click the recovered key fragment to attempt continuation:
+        <div class="key" id="hiddenKey">Recovered Key Fragment</div>
+    </div>
 </div>
 
-<a href="ura.html" class="back">← RETURN TO URA DIRECTORY</a>
+<!-- AUDIO ELEMENTS -->
+<audio id="keySound">
+    <source src="snd_text.mp3" type="audio/mpeg">
+</audio>
 
-<div class="header">
-<div class="id">URA04 // CONTINUITY CORRUPTION</div>
-<div class="title">CONTINUITY CORRUPTION</div>
-<div class="meta">
-<div>ACCESS LEVEL: <span>LEVEL 4</span></div>
-<div>ARCHIVE BUILD: <span>0.9.1</span></div>
-<div>STABILITY: <span>FRAGILE</span></div>
-</div>
-</div>
+<audio id="fountainSound">
+    <source src="snd_fountain_make.mp3" type="audio/mpeg">
+</audio>
 
-<div class="section">SUMMARY</div>
-<div class="content">
-Following the events observed in previous entries, the subject "M" exhibits increasing intent-driven deviations. Observers note erratic handling of continuity-sensitive artifacts and subtle attempts at bypassing containment protocols. The integrity of recovered data shows signs of manipulation.
-</div>
+<!-- POPUPS -->
+<div class="popup" id="popupText"></div>
 
-<div class="section">OBSERVATIONS</div>
-<div class="content">
-- Multiple continuity nodes report anomalous energy readings.<br>
-- Interaction logs indicate M's manipulation of extracted determination objects, possibly aiming to recreate or enhance Dark Fountain phenomena.<br>
-- Environmental recordings show instability in observer perception zones.<br>
-- Recovered fragments suggest preparatory steps toward constructing a Black Knife artifact, though incomplete.<br>
-- Certain sessions hint at unknown agents observing or influencing M's actions.
-</div>
+<script>
+const key = document.getElementById("hiddenKey");
+const keyAudio = document.getElementById("keySound");
+const fountainAudio = document.getElementById("fountainSound");
+const popup = document.getElementById("popupText");
 
-<div class="section">WARNINGS</div>
-<div class="content">
-Attention: Continued exposure to these records is associated with psychological and synchronization destabilization. Observers are advised to exercise caution; deviations may propagate beyond monitored areas. The subject appears to be intentionally escalating risk factors.
-</div>
+key.addEventListener("click", ()=>{
 
-<div class="block glitch">
-CRITICAL: UNAUTHORIZED CONTINUITY MANIPULATION DETECTED
-</div>
+    // Play key sound
+    keyAudio.play();
 
-<div class="footer">
-DELTA CONTINUITY RESEARCH NETWORK<br><br>
-URA04 STATUS: ACTIVE<br>
-NO VERIFIED ORIGINAL STRUCTURE EXISTS.
-</div>
+    // Disable key so it can't be clicked again
+    key.style.pointerEvents = "none";
+    key.style.opacity = "0.4";
 
-</div>
+    // Show corrupted text sequence
+    const messages = [
+        "Why did you do that?",
+        "What did you do?",
+        "WHY DID YOU DO THAT?",
+        "WHAT DID YOU DO?",
+        "LOOK WHAT YOU'VE DONE"
+    ];
+
+    let delay = 0;
+
+    messages.forEach((msg, i)=>{
+        setTimeout(()=>{
+            popup.innerText = msg;
+            popup.style.opacity = 1;
+
+            // Flicker disappear
+            setTimeout(()=> popup.style.opacity=0, 800 - i*100);
+        }, delay);
+
+        delay += 900 - i*100;
+    });
+
+    // After all messages, play fountain sound and redirect
+    setTimeout(()=>{
+        fountainAudio.play();
+        window.location.href = "prj_roaring.html";
+    }, delay + 500);
+
+});
+</script>
+
 </body>
 </html>
