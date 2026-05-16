@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>DVC-02 // DOC-12 // BREACH RECORD</title>
+<title>DVC-02 // DOC-12 // CONTINUATION RECORD</title>
 
 <style>
 
@@ -21,9 +21,8 @@ body{
         linear-gradient(to bottom, #010104, #000103 80%, #000000);
     color:var(--text);
     font-family:"Courier New", monospace;
-    overflow-x:hidden;
     letter-spacing:0.5px;
-    position:relative;
+    overflow-x:hidden;
 }
 
 /* scanlines */
@@ -55,31 +54,10 @@ body::after{
     opacity:0.25;
 }
 
-/* layout */
 .container{
     max-width:1000px;
     margin:auto;
     padding:40px;
-    position:relative;
-}
-
-/* topbar */
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    border-bottom:1px solid #6277b8;
-    padding-bottom:18px;
-    margin-bottom:35px;
-}
-
-.network{
-    letter-spacing:4px;
-    font-size:13px;
-}
-
-.status{
-    font-size:12px;
-    opacity:0.8;
 }
 
 /* header */
@@ -109,15 +87,15 @@ body::after{
 }
 
 .docid{
-    letter-spacing:4px;
     font-size:12px;
+    letter-spacing:4px;
     opacity:0.9;
 }
 
 .title{
     font-size:40px;
     letter-spacing:6px;
-    margin:20px 0;
+    margin:18px 0;
 }
 
 .meta{
@@ -128,25 +106,25 @@ body::after{
 
 /* sections */
 .section{
-    margin-top:60px;
+    margin-top:55px;
     border-bottom:1px solid #6277b8;
     padding-bottom:10px;
     letter-spacing:3px;
     font-size:14px;
-    opacity:0.9;
 }
 
+/* content */
 .content{
     line-height:2.2;
     margin-top:20px;
 }
 
-/* blocks */
+/* system blocks */
 .block{
     border:1px solid #7087d4;
-    padding:24px;
+    padding:22px;
     margin:30px 0;
-    background:rgba(0,0,0,0.5);
+    background:rgba(0,0,0,0.55);
 }
 
 /* glitch */
@@ -166,13 +144,13 @@ body::after{
     92%{opacity:1;}
 }
 
-/* hidden text */
+/* hidden system residue (DO NOT call attention to it) */
 .hidden{
     opacity:0.02;
     user-select:none;
 }
 
-/* FOOTER */
+/* footer */
 .footer{
     margin-top:80px;
     border-top:1px solid #6277b8;
@@ -181,44 +159,28 @@ body::after{
     opacity:0.8;
 }
 
-/* ========================= */
-/* 🔑 KEY SYSTEM (IMPROVED) */
-/* ========================= */
-
-#hidden-key{
+/* interaction node (NOT labeled as key) */
+#node{
     position:fixed;
-    right:6%;
+    right:7%;
     bottom:110px;
 
-    opacity:0;
-    transform:scale(0.6);
+    width:18px;
+    height:18px;
 
-    font-size:16px;
-    color:#dfe5ff;
+    opacity:0.12;
 
     cursor:pointer;
     user-select:none;
 
-    transition:1.5s;
-    text-shadow:0 0 10px rgba(255,255,255,0.1);
+    transition:1s;
+    color:#dfe5ff;
 }
 
-/* key "awakens" after corruption begins */
-body.ready #hidden-key{
-    opacity:0.18;
-    transform:scale(1);
-}
-
-/* becomes more unstable over time */
-body.ready.corrupt #hidden-key{
-    opacity:0.45;
-    animation:flicker 2s infinite;
-}
-
-#hidden-key:hover{
-    opacity:0.9 !important;
-    transform:scale(1.4);
-    text-shadow:0 0 20px white;
+#node:hover{
+    opacity:0.6;
+    transform:scale(1.3);
+    text-shadow:0 0 12px white;
 }
 
 </style>
@@ -228,96 +190,103 @@ body.ready.corrupt #hidden-key{
 
 <div class="container">
 
-<div class="topbar">
-<div class="network glitch">DELTA CONTINUITY RESEARCH NETWORK</div>
-<div class="status glitch">NODE STATUS // BREACH DETECTED</div>
-</div>
-
 <div class="header">
 
 <div class="docid">DVC-02 // DOC-12</div>
 
-<div class="title glitch">OBSERVER BREACH EVENT</div>
+<div class="title glitch">CONTINUATION RECORD</div>
 
 <div class="meta">
-FILE STATUS: RESTRICTED<br>
-CONTINUITY STATE: UNSTABLE<br>
-OBSERVER INTEGRITY: COLLAPSED<br>
-ARCHIVE CONDITION: ACTIVE FAILURE
+FILE TYPE: SYSTEM OUTPUT<br>
+STATUS: PARTIAL RECOVERY<br>
+INTEGRITY: UNSTABLE<br>
+OBSERVATION STATE: ACTIVE
 </div>
 
 </div>
 
-<div class="section">RECOVERY STATUS</div>
+<div class="section">RECOVERY NOTE</div>
 
 <div class="content">
 
-DOC-12 was reconstructed from fragmented continuity remnants.
+DOC-12 was reconstructed from continuation traces.
 
-The final session did not terminate.
+No complete record of the final session exists.
 
-It continued executing without observer input.
+Only system output fragments remain.
 
 </div>
 
-<div class="section">BREACH ANALYSIS</div>
+<div class="section">CONTINUATION BEHAVIOR</div>
+
+<div class="content">
+
+Analysis suggests the system did not terminate.
+
+It transitioned into an unresolved state of persistence.
+
+No external reset signal was detected.
+
+</div>
 
 <div class="block glitch">
 
-THERE IS NO EXTERNAL POSITION
+NO TERMINATION EVENT CONFIRMED
 
 </div>
 
-<div class="content">
-
-Observer separation theory is invalid.
-
-Continuity does not require observation.
-
-It requires participation.
-
-</div>
-
-<div class="section">FINAL LOG</div>
+<div class="section">SESSION LOG FRAGMENTS</div>
 
 <div class="block">
 
-Observer attempted disengagement.
+Observer input registered.
 
 <br><br>
 
-Disengagement failed.
+Continuation sequence executed.
 
 <br><br>
 
-System remained active.
+System returned no completion state.
 
 <br><br>
 
-No reset occurred.
+Process remained active.
 
 </div>
 
-<div class="section">PERSONAL ENTRY // M</div>
+<div class="section">LOCALIZED ENTRY</div>
 
 <div class="content">
 
-If you are reading this,
-then the archive did not close.
+A residual instruction fragment persists within the system layer.
 
-<br><br>
+It does not correspond to any documented protocol.
 
-I think we misunderstood what was happening.
-
-We thought we were observing continuity.
-
-We were inside it the entire time.
+It appears to function as a continuation access condition.
 
 <br><br>
 
 <span class="hidden">
-the key is not gone it was used up
+node status: active but unclassified
 </span>
+
+</div>
+
+<div class="section">M // FIELD NOTE</div>
+
+<div class="content">
+
+If this record is intact,
+then termination never occurred.
+
+We assumed continuity required observation.
+
+We were incorrect.
+
+Continuity persists without permission.
+
+It simply continues.
 
 </div>
 
@@ -325,39 +294,23 @@ the key is not gone it was used up
 
 END OF FILE<br><br>
 
-DVC-02-12 // NO EXIT CONDITION
+DVC-02-12 // NO EXIT CONDITION CONFIRMED
 
 </div>
 
 </div>
 
-<!-- KEY -->
-<div id="hidden-key">⌁</div>
+<!-- INTERACTION NODE (not called a key) -->
+<div id="node">⌁</div>
 
 <script>
 
-let stage = 0;
+document.getElementById("node").addEventListener("click", ()=>{
 
-/* stage 1: reveal key after delay */
-setTimeout(()=>{
-    document.body.classList.add("ready");
-}, 4000);
-
-/* stage 2: slight corruption buildup */
-setTimeout(()=>{
-    document.body.classList.add("corrupt");
-}, 9000);
-
-/* click unlock */
-document.getElementById("hidden-key").addEventListener("click", ()=>{
-
-    stage++;
-
-    const key = document.getElementById("hidden-key");
-
-    key.innerHTML = "USED UP";
-
+    document.body.style.transition = "2s";
     document.body.style.filter = "brightness(2) contrast(0.4)";
+
+    document.getElementById("node").innerHTML = "USED UP";
 
     localStorage.setItem("uraUnlocked","true");
 
