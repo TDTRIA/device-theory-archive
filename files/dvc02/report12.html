@@ -4,9 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>DVC-02 // DOC-12 // RESTRICTED</title>
+<title>DVC-02 // DOC-12 // OBSERVER BREACH EVENT</title>
 
 <style>
+
 :root{
     --bg:#010104;
     --line:#6277b8;
@@ -16,7 +17,7 @@
 body{
     margin:0;
     background:
-        radial-gradient(circle at top, rgba(140,160,255,0.18), transparent 55%),
+        radial-gradient(circle at top, rgba(140,160,255,0.16), transparent 55%),
         linear-gradient(to bottom, #010104, #000103 80%, #000000);
     color:var(--text);
     font-family:"Courier New", monospace;
@@ -24,36 +25,40 @@ body{
     letter-spacing:0.5px;
     position:relative;
     text-shadow:0 0 6px rgba(180,210,255,0.08);
+    transition:filter 1.8s ease, background 1.8s ease, opacity 0.2s ease;
 }
 
 /* SCANLINES */
+
 body::before{
     content:"";
     position:fixed;
     inset:0;
     pointer-events:none;
-    background:repeating-linear-gradient(
+    background:
+    repeating-linear-gradient(
         to bottom,
-        rgba(255,255,255,0.022),
-        rgba(255,255,255,0.022) 1px,
+        rgba(255,255,255,0.02),
+        rgba(255,255,255,0.02) 1px,
         transparent 1px,
         transparent 3px
     );
-    opacity:0.65;
+    opacity:0.62;
     z-index:999;
 }
 
 /* GRID */
+
 body::after{
     content:"";
     position:fixed;
     inset:0;
     pointer-events:none;
     background-image:
-        linear-gradient(rgba(120,140,255,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(120,140,255,0.05) 1px, transparent 1px);
+        linear-gradient(rgba(120,140,255,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120,140,255,0.045) 1px, transparent 1px);
     background-size:42px 42px;
-    opacity:0.3;
+    opacity:0.22;
     z-index:-1;
 }
 
@@ -66,6 +71,7 @@ body::after{
 }
 
 /* TOPBAR */
+
 .topbar{
     display:flex;
     justify-content:space-between;
@@ -73,24 +79,52 @@ body::after{
     border-bottom:1px solid #6277b8;
     padding-bottom:18px;
     margin-bottom:35px;
+    flex-wrap:wrap;
+    gap:15px;
 }
-.network{ color:#eef2ff; letter-spacing:4px; font-size:14px; animation:flicker 4s infinite; }
-.status{ color:#d6deff; font-size:12px; letter-spacing:2px; animation:flicker 2s infinite; }
+
+.network{
+    color:#eef2ff;
+    letter-spacing:4px;
+    font-size:14px;
+    animation:flicker 4s infinite;
+}
+
+.status{
+    color:#d6deff;
+    font-size:12px;
+    letter-spacing:2px;
+    animation:flicker 2s infinite;
+}
 
 /* BACK */
-.back{ display:inline-block; margin-bottom:35px; color:#c8d5ff; text-decoration:none; transition:0.2s; letter-spacing:1px; }
-.back:hover{ color:white; transform:translateX(-4px); }
+
+.back{
+    display:inline-block;
+    margin-bottom:35px;
+    color:#c8d5ff;
+    text-decoration:none;
+    transition:0.2s;
+    letter-spacing:1px;
+}
+
+.back:hover{
+    color:white;
+    transform:translateX(-4px);
+}
 
 /* HEADER */
+
 .header{
     border:1px solid #7087d4;
     background:rgba(5,7,14,0.98);
     padding:40px;
     margin-bottom:40px;
-    box-shadow:0 0 70px rgba(120,150,255,0.18);
+    box-shadow:0 0 70px rgba(120,150,255,0.14);
     position:relative;
     overflow:hidden;
 }
+
 .header::after{
     content:"";
     position:absolute;
@@ -98,48 +132,279 @@ body::after{
     left:-100%;
     width:100%;
     height:1px;
-    background:rgba(255,255,255,0.7);
-    animation:scan 2s linear infinite;
+    background:rgba(255,255,255,0.65);
+    animation:scan 2.4s linear infinite;
 }
-@keyframes scan{0%{left:-100%;}100%{left:100%;}}
-.docid{ color:#d4ddff; letter-spacing:4px; font-size:13px; margin-bottom:15px; }
-.title{ font-size:42px; letter-spacing:7px; color:#ffffff; margin-bottom:28px; line-height:1.5; animation:flicker 8s infinite; }
-.meta{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; color:#bcc7eb; line-height:1.9; font-size:14px; }
-.meta span{ color:#ffffff; }
+
+@keyframes scan{
+0%{left:-100%;}
+100%{left:100%;}
+}
+
+.docid{
+    color:#d4ddff;
+    letter-spacing:4px;
+    font-size:13px;
+    margin-bottom:15px;
+}
+
+.title{
+    font-size:42px;
+    letter-spacing:7px;
+    color:#ffffff;
+    margin-bottom:28px;
+    line-height:1.5;
+    animation:flicker 8s infinite;
+}
+
+.meta{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:18px;
+    color:#bcc7eb;
+    line-height:1.9;
+    font-size:14px;
+}
+
+.meta span{
+    color:#ffffff;
+}
 
 /* WARNING */
-.warning{ border-left:3px solid #dce5ff; background:rgba(8,11,18,0.96); padding:25px; margin-bottom:45px; color:#eef2ff; line-height:2; }
 
-/* SECTIONS */
-.section{ margin-top:60px; margin-bottom:20px; color:#d7e0ff; letter-spacing:4px; font-size:15px; border-bottom:1px solid #6277b8; padding-bottom:12px; }
-.content{ line-height:2.25; color:#dfe5ff; font-size:15px; }
-.block{ background:rgba(5,7,14,0.98); border:1px solid #7087d4; padding:24px; margin:35px 0; line-height:2; color:#eef2ff; }
-.log{ margin:35px 0; padding:25px; background:rgba(0,0,0,0.98); border:1px solid #7087d4; color:#dce5ff; line-height:2.1; font-size:14px; }
+.warning{
+    border-left:3px solid #dce5ff;
+    background:rgba(8,11,18,0.96);
+    padding:25px;
+    margin-bottom:45px;
+    color:#eef2ff;
+    line-height:2;
+}
+
+/* CONTENT */
+
+.section{
+    margin-top:60px;
+    margin-bottom:20px;
+    color:#d7e0ff;
+    letter-spacing:4px;
+    font-size:15px;
+    border-bottom:1px solid #6277b8;
+    padding-bottom:12px;
+}
+
+.content{
+    line-height:2.25;
+    color:#dfe5ff;
+    font-size:15px;
+}
+
+.block{
+    background:rgba(5,7,14,0.98);
+    border:1px solid #7087d4;
+    padding:24px;
+    margin:35px 0;
+    line-height:2;
+    color:#eef2ff;
+}
+
+.log{
+    margin:35px 0;
+    padding:25px;
+    background:rgba(0,0,0,0.98);
+    border:1px solid #7087d4;
+    color:#dce5ff;
+    line-height:2.1;
+    font-size:14px;
+}
 
 /* GLITCH */
-.glitch{ animation:flicker 3s infinite; }
-@keyframes flicker{0%{opacity:1;}1%{opacity:0.05;}2%{opacity:1;}25%{opacity:1;}26%{opacity:0.3;}27%{opacity:1;}55%{opacity:1;}56%{opacity:0.08;}57%{opacity:1;}88%{opacity:1;}89%{opacity:0.4;}90%{opacity:1;}}
 
-/* HIDDEN KEY */
-#hidden-key{
-    color:#ff4a4a;
-    cursor:pointer;
-    animation:glitch-key 2s infinite;
+.glitch{
+    animation:flicker 3s infinite;
 }
-@keyframes glitch-key{
-    0%,100%{text-shadow: 1px 0 #ff4a4a, -1px 0 #ff4a4a;}
-    50%{text-shadow: 0 1px #ff4a4a, 0 -1px #ff4a4a;}
+
+@keyframes flicker{
+0%{opacity:1;}
+1%{opacity:0.08;}
+2%{opacity:1;}
+25%{opacity:1;}
+26%{opacity:0.32;}
+27%{opacity:1;}
+55%{opacity:1;}
+56%{opacity:0.12;}
+57%{opacity:1;}
+88%{opacity:1;}
+89%{opacity:0.45;}
+90%{opacity:1;}
+}
+
+.hidden{
+    opacity:0.025;
+    user-select:none;
+}
+
+.redact{
+    background:#000;
+    color:#000;
+    padding:0 6px;
+    user-select:none;
+}
+
+.redact:hover{
+    color:#dfe5ff;
 }
 
 /* FOOTER */
-.footer{ margin-top:90px; padding-top:30px; border-top:1px solid #6277b8; color:#95a7dd; line-height:2; font-size:12px; letter-spacing:1px; }
+
+.footer{
+    margin-top:90px;
+    padding-top:30px;
+    border-top:1px solid #6277b8;
+    color:#95a7dd;
+    line-height:2;
+    font-size:12px;
+    letter-spacing:1px;
+}
+
+/* HIDDEN KEY ARTIFACT */
+
+.key-zone{
+    position:relative;
+    height:160px;
+    margin-top:55px;
+    margin-bottom:35px;
+}
+
+#hiddenKey{
+    position:absolute;
+    right:8%;
+    top:50px;
+    width:22px;
+    height:22px;
+    cursor:pointer;
+    opacity:0.055;
+    z-index:20;
+    transition:0.35s;
+    filter:blur(0.3px);
+}
+
+#hiddenKey::before{
+    content:"";
+    position:absolute;
+    left:7px;
+    top:0;
+    width:8px;
+    height:8px;
+    border:2px solid #dfe5ff;
+    border-radius:50%;
+    box-shadow:0 0 8px rgba(255,255,255,0.4);
+}
+
+#hiddenKey::after{
+    content:"";
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:3px;
+    height:16px;
+    background:#dfe5ff;
+    box-shadow:
+        5px 8px 0 -1px #dfe5ff,
+        9px 12px 0 -1px #dfe5ff,
+        0 0 10px rgba(255,255,255,0.35);
+}
+
+#hiddenKey:hover{
+    opacity:0.55;
+    transform:scale(1.35) rotate(-8deg);
+    filter:blur(0);
+}
+
+.key-hint{
+    position:absolute;
+    right:12%;
+    top:88px;
+    font-size:11px;
+    letter-spacing:3px;
+    color:#dfe5ff;
+    opacity:0;
+    transition:0.35s;
+    pointer-events:none;
+}
+
+#hiddenKey:hover + .key-hint{
+    opacity:0.26;
+}
+
+/* CORRUPTION OVERLAY */
+
+#corruption{
+    position:fixed;
+    inset:0;
+    background:
+        radial-gradient(circle at center, rgba(255,255,255,0.16), transparent 28%),
+        radial-gradient(circle at top, rgba(120,150,255,0.12), transparent 55%),
+        rgba(0,0,0,0.96);
+    opacity:0;
+    pointer-events:none;
+    z-index:9500;
+    transition:opacity 1.6s ease;
+}
+
+#corruptionText{
+    position:fixed;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:#ffffff;
+    font-size:20px;
+    letter-spacing:5px;
+    line-height:2;
+    opacity:0;
+    z-index:9600;
+    pointer-events:none;
+    transition:opacity 1.2s ease;
+}
 
 /* MOBILE */
+
 @media(max-width:700px){
-    .container{ padding:22px; }
-    .title{ font-size:26px; letter-spacing:4px; }
+
+.container{
+    padding:22px;
 }
-::selection{ background:#7087d4; color:white; }
+
+.title{
+    font-size:26px;
+    letter-spacing:4px;
+}
+
+.meta{
+    grid-template-columns:1fr;
+}
+
+#hiddenKey{
+    right:12%;
+}
+
+.key-hint{
+    right:18%;
+}
+
+#corruptionText{
+    font-size:14px;
+    padding:20px;
+}
+
+}
+
+::selection{
+    background:#7087d4;
+    color:white;
+}
 
 </style>
 </head>
@@ -149,81 +414,628 @@ body::after{
 <div class="container">
 
 <div class="topbar">
-<div class="network glitch">DELTA CONTINUITY RESEARCH NETWORK</div>
-<div class="status glitch">NODE STATUS // UNRECOVERABLE</div>
+
+<div class="network glitch">
+DELTA CONTINUITY RESEARCH NETWORK
 </div>
 
-<a href="dvc02.html" class="back">← RETURN TO DVC-02 DIRECTORY</a>
+<div class="status glitch">
+NODE STATUS // UNRECOVERABLE
+</div>
+
+</div>
+
+<a href="dvc02.html" class="back">
+← RETURN TO DVC-02 DIRECTORY
+</a>
 
 <div class="header">
-<div class="docid">DVC-02 // DOC-12</div>
-<div class="title">OBSERVER BREACH EVENT</div>
-<div class="meta">
-<div>FILE STATUS: <span class="glitch">RESTRICTED</span></div>
-<div>ACCESS LEVEL: <span>NULL</span></div>
-<div>DEVIATION INDEX: <span class="glitch">UNDEFINED</span></div>
-<div>OBSERVER STABILITY: <span class="glitch">IRREVERSIBLE</span></div>
-<div>ARCHIVE BUILD: <span>UNKNOWN</span></div>
-<div>NODE: <span class="glitch">UNVERIFIED</span></div>
+
+<div class="docid">
+DVC-02 // DOC-12
 </div>
+
+<div class="title">
+OBSERVER BREACH EVENT
+</div>
+
+<div class="meta">
+
+<div>
+FILE STATUS:
+<span class="glitch">RESTRICTED</span>
+</div>
+
+<div>
+ACCESS LEVEL:
+<span>NULL</span>
+</div>
+
+<div>
+DEVIATION INDEX:
+<span class="glitch">UNDEFINED</span>
+</div>
+
+<div>
+OBSERVER STABILITY:
+<span class="glitch">IRREVERSIBLE</span>
+</div>
+
+<div>
+ARCHIVE BUILD:
+<span>UNKNOWN</span>
+</div>
+
+<div>
+NODE:
+<span class="glitch">UNVERIFIED</span>
+</div>
+
+</div>
+
 </div>
 
 <div class="warning">
-WARNING: The following material was never approved for archive recovery.<br><br>
-Further review was prohibited. The prohibition failed.
+
+WARNING:
+
+The following material was never approved
+for archive recovery.
+
+<br><br>
+
+Continuation beyond this point
+was classified as:
+
+<br><br>
+
+- non-reversible
+
+<br>
+
+- psychologically hazardous
+
+<br>
+
+- structurally contaminating
+
+<br>
+
+- observer-compromising
+
+<br><br>
+
+Further review was prohibited.
+
+The prohibition failed.
+
 </div>
 
 <div class="content">
-<div class="section">LAST INTERNAL NOTICE</div>
-<div class="log">
-DVC-02 containment procedures terminated.<br><br>
-Synchronization boundaries lost.<br><br>
-Observer distinction integrity unresolved.<br><br>
-Continuation persists.<br><br>
-ARCHIVE STATUS: ACTIVE
+
+<div class="section">
+RECOVERY STATUS
 </div>
 
-<div class="section">PERSONAL ENTRY // M</div>
-<p>
-If you are reading this now, then the archive continued successfully. That means the synchronization did not fail. It spread.<br><br>
-Several subtle indicators hint at interference in earlier continuities, possibly orchestrated by an unknown entity.
-</p>
+DOC-12 was reconstructed from fragmented continuation remnants
+following total archive synchronization failure.
 
-<!-- HIDDEN KEY -->
-<p id="hidden-key">[ KEY ]</p>
+Large portions of the original material remain permanently unrecoverable.
+
+Recovered sections indicate the final continuation sessions
+did not terminate correctly.
+
+Several records imply:
+the observer remained active
+after synchronization collapse.
+
+This report was originally indexed as a closure document.
+
+It is no longer clear what was meant to close.
+
+<div class="section">
+BREACH CONDITIONS
+</div>
+
+Early synchronization theory assumed:
+the observer existed externally
+to continuity structures.
+
+Late-stage continuation evidence
+contradicted this assumption.
+
+Repeated exposure appears to weaken:
+observer distinction boundaries,
+continuity separation integrity,
+and progression containment stability.
+
+At advanced deviation thresholds,
+the distinction between observer,
+participant,
+and continuity
+becomes increasingly unstable.
+
+<div class="block glitch">
+
+THERE IS NO EXTERNAL POSITION
+
+</div>
+
+This phrase appears in seven recovered fragments.
+
+No author attribution survived.
+
+One copy of the phrase was discovered inside a metadata field
+reserved for personnel identifiers.
+
+<div class="section">
+FINAL CONTINUATION EVENTS
+</div>
+
+Recovered recordings from the final sessions are heavily corrupted.
+
+However,
+several consistent elements remain identifiable:
+
+<br><br>
+
+- continuation refusal
+
+<br>
+
+- failed disengagement
+
+<br>
+
+- unresolved synchronization
+
+<br>
+
+- environmental persistence
+
+<br>
+
+- observer hesitation
+
+<br><br>
+
+One surviving fragment describes a route continuing
+despite complete input inactivity.
+
+Another references entities behaving normally
+after observer interruption.
+
+Researchers were unable to determine
+whether synchronization had actually ended.
+
+<div class="log">
+
+FINAL LOG // OB-01
+
+<br><br>
+
+Observer initiated continuation sequence.
+
+<br><br>
+
+Completion threshold reached.
+
+<br><br>
+
+Termination event failed.
+
+<br><br>
+
+Environmental activity persists.
+
+<br><br>
+
+Observer remains present.
+
+<br><br>
+
+Disengagement unsuccessful.
+
+<br><br>
+
+Secondary archive reference detected.
+
+<br><br>
+
+Reference label:
+<span class="glitch">U.R.A.</span>
+
+</div>
+
+<div class="section">
+ARCHIVE CONTAINMENT FAILURE
+</div>
+
+Shortly after the final continuation sessions,
+the DVC-02 archive experienced catastrophic structural instability.
+
+Recorded effects include:
+
+<br><br>
+
+- recursive file duplication
+
+<br>
+
+- shifting timestamps
+
+<br>
+
+- inaccessible node sectors
+
+<br>
+
+- persistent continuity bleed
+
+<br>
+
+- unauthorized recovery events
+
+<br><br>
+
+Several personnel claimed certain reports appeared altered
+between review sessions.
+
+Others reported remembering documentation
+that no longer existed.
+
+One internal memo states:
+
+<div class="block">
+
+The archive is continuing independently.
+
+</div>
+
+No surviving explanation clarifies what this statement originally meant.
+
+<div class="section">
+UNAUTHORIZED REFERENCES
+</div>
+
+DOC-12 contains several references to materials
+not present in any approved archive directory.
+
+Recovered identifiers include:
+
+<br><br>
+
+- extraction studies
+
+<br>
+
+- continuation fuel transfer
+
+<br>
+
+- reactor correspondence
+
+<br>
+
+- unresolved personnel attribution
+
+<br>
+
+- boundary rupture compatibility
+
+<br><br>
+
+These identifiers were removed from the visible archive index.
+
+Deletion attempts were unsuccessful.
+
+<div class="log">
+
+INTERNAL NOTICE // PARTIAL
+
+<br><br>
+
+Researcher M submitted a request
+to access suppressed extraction records.
+
+<br><br>
+
+Request denied.
+
+<br><br>
+
+Researcher M submitted twelve additional requests.
+
+<br><br>
+
+Final request included terminology
+not present in any authorized DVC research packet.
+
+<br><br>
+
+Recovered terms:
+
+<br><br>
+
+“fuel transfer”
+
+<br>
+
+“persistence medium”
+
+<br>
+
+“fountain compatibility”
+
+<br>
+
+“core extraction”
+
+<br><br>
+
+Request suppressed.
+
+<br><br>
+
+Follow-up correspondence missing.
+
+</div>
+
+<div class="section">
+PERSONNEL ATTRIBUTION FAILURE
+</div>
+
+Several recovered continuation fragments reference
+an unidentified senior researcher.
+
+The identity does not resolve inside the personnel archive.
+
+Names associated with the records are incomplete,
+contradictory,
+or absent.
+
+Some records appear to reference a lead author
+only by missing space.
+
+Others contain blank fields where attribution should exist.
+
+<div class="block">
+
+PERSONNEL ID:
+<span class="redact">████████</span>
+
+<br><br>
+
+ROLE:
+FOUNDATIONAL REACTOR ARCHITECT
+
+<br><br>
+
+STATUS:
+NOT FOUND
+
+</div>
+
+No verified personnel record exists.
+
+No removal authorization exists.
+
+No death record exists.
+
+The absence appears deliberate.
+
+<div class="section">
+M // RECOVERED PERSONAL ENTRY</div>
+
+If this entry survived,
+then the archive was never destroyed.
+
+I used to believe
+the continuities required observers.
+
+Then I believed
+the observers required continuities.
+
+Now I am no longer certain
+there was ever a meaningful difference.
+
+The final session should have ended.
+
+It did not.
+
+The route completed.
+The observer stopped moving.
+The continuity remained active.
+
+Nothing reset.
+
+Nothing disconnected.
+
+The environment simply continued existing.
+
+For several minutes,
+no one interacted.
+
+Yet the continuity persisted
+as though waiting
+for the observer to decide something.
+
+I think we misunderstood continuation entirely.
+
+It was never forcing progression.
+
+It was waiting for permission to stop.
+
+And we never gave it that permission.
+
+<br><br>
+
+There are older records beneath DVC-02.
+
+Not hidden poorly.
+
+Hidden carefully.
+
+That distinction matters.
+
+Someone removed them from the archive,
+but not from the structure.
+
+The references remain embedded everywhere:
+in timestamps,
+in failed personnel lookups,
+in transfer values that should not exist.
+
+I do not know who began this.
+
+But I know someone did.
+
+And if the extraction records are real,
+then everything we called deviation
+may have been a symptom.
+
+Not the cause.
+
+<br><br>
+
+I need the original archive.
+
+I need the unindexed one.
+
+<span class="hidden">
+the key was not lost
+</span>
+
+<div class="section">
+UNRESOLVED ACCESS ARTIFACT
+</div>
+
+The following space was recovered
+inside the document structure.
+
+No visible data was attached.
+
+No permission request generated it.
+
+No personnel marker owns it.
+
+<div class="key-zone">
+
+<div id="hiddenKey"></div>
+<div class="key-hint glitch">RECOVERED KEY FRAGMENT</div>
+
+</div>
+
+<div class="log glitch">
+
+KEY STATUS:
+CONSUMED
+
+<br><br>
+
+OBSERVER STATUS:
+PRESENT
+
+<br><br>
+
+ACCESS PATHWAY:
+UNINDEXED
 
 </div>
 
 <div class="footer">
-END OF FILE<br><br>
-DVC-02-12<br>
+
+END OF FILE
+
+<br><br>
+
+DVC-02-12
+
+<br>
+
 NO VERIFIED EXIT CONDITION EXISTS.
+
 </div>
 
+</div>
+
+</div>
+
+<div id="corruption"></div>
+
+<div id="corruptionText">
+KEY ACCEPTED
+<br>
+UNINDEXED PATHWAY RECOVERED
 </div>
 
 <script>
-const key = document.getElementById("hidden-key");
 
-key.addEventListener("click", () => {
-    // Corrupt page
-    document.body.style.transition = "filter 1s";
-    document.body.style.filter = "blur(5px) hue-rotate(90deg)";
-    // Flash effect
-    const flash = document.createElement("div");
-    flash.style.position = "fixed";
-    flash.style.inset = "0";
-    flash.style.background = "red";
-    flash.style.opacity = "0.2";
-    flash.style.zIndex = "9999";
-    document.body.appendChild(flash);
-    setTimeout(()=> document.body.removeChild(flash), 800);
-    // Redirect after brief delay
-    setTimeout(()=> {
-        localStorage.setItem("roaring","true");
-        window.location.href="../ura/ura.html";
-    }, 1500);
+const hiddenKey =
+document.getElementById("hiddenKey");
+
+const corruption =
+document.getElementById("corruption");
+
+const corruptionText =
+document.getElementById("corruptionText");
+
+let used = false;
+
+hiddenKey.addEventListener("click", ()=>{
+
+    if(used) return;
+
+    used = true;
+
+    localStorage.setItem(
+        "uraUnlocked",
+        "true"
+    );
+
+    document.body.style.filter =
+    "brightness(2.1) contrast(0.45)";
+
+    corruption.style.opacity =
+    "1";
+
+    setTimeout(()=>{
+
+        corruptionText.style.opacity =
+        "1";
+
+    }, 600);
+
+    let flashes = 0;
+
+    const flickerLoop =
+    setInterval(()=>{
+
+        document.body.style.opacity =
+        flashes % 2 === 0 ? "0.88" : "1";
+
+        flashes++;
+
+        if(flashes > 14){
+
+            clearInterval(flickerLoop);
+
+            document.body.style.opacity =
+            "1";
+
+        }
+
+    }, 90);
+
+    setTimeout(()=>{
+
+        window.location.href =
+        "../ura/ura.html";
+
+    }, 2800);
+
 });
+
 </script>
 
 </body>
