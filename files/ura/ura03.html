@@ -3,75 +3,101 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>URA-03 // GASTER EXPERIMENTS</title>
+<title>URA03 // DARK FOUNTAINS & BLACK KNIFE</title>
 
 <style>
 :root{
-    --bg:#04030a;
-    --line:#3a3f5c;
+    --bg:#0b0b14;
+    --line:#3a4a7b;
     --text:#d7dcef;
+    --soft:#9ab0df;
     --dim:#66749b;
-    --soft:#95a4cf;
+    --glow:rgba(150,120,255,0.08);
 }
 
 body{
     margin:0;
-    background:linear-gradient(to bottom, #04030a, #020106 80%, #010102);
+    background:radial-gradient(circle at top, rgba(120,60,180,0.08), transparent 55%), linear-gradient(to bottom, #0b0b14, #010107 75%, #000000);
     color:var(--text);
     font-family:"Courier New", monospace;
     overflow-x:hidden;
     letter-spacing:0.4px;
     position:relative;
+    text-shadow:0 0 3px rgba(180,210,255,0.04);
 }
 
-/* SCANLINES */
 body::before{
     content:"";
     position:fixed;
     inset:0;
     pointer-events:none;
-    background:repeating-linear-gradient(
-        to bottom,
-        rgba(255,255,255,0.015),
-        rgba(255,255,255,0.015) 1px,
-        transparent 1px,
-        transparent 3px
-    );
-    opacity:0.45;
+    background:repeating-linear-gradient(to bottom, rgba(255,255,255,0.012), rgba(255,255,255,0.012) 1px, transparent 1px, transparent 3px);
+    opacity:0.55;
     z-index:999;
 }
 
-/* GRID */
 body::after{
     content:"";
     position:fixed;
     inset:0;
     pointer-events:none;
-    background-image:
-        linear-gradient(rgba(120,140,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(120,140,255,0.03) 1px, transparent 1px);
+    background-image:linear-gradient(rgba(120,140,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(120,140,255,0.025) 1px, transparent 1px);
     background-size:42px 42px;
     opacity:0.15;
     z-index:-1;
 }
 
-/* CONTAINER */
 .container{
-    max-width:1000px;
+    max-width:1100px;
     margin:auto;
     padding:40px;
     position:relative;
     z-index:2;
 }
 
-/* HEADER */
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid var(--line);
+    padding-bottom:18px;
+    margin-bottom:35px;
+}
+
+.network{
+    color:#d5deff;
+    letter-spacing:4px;
+    font-size:14px;
+}
+
+.status{
+    color:#7d8dbb;
+    font-size:12px;
+    letter-spacing:2px;
+}
+
+.back{
+    display:inline-block;
+    margin-bottom:35px;
+    color:#8ea3eb;
+    text-decoration:none;
+    transition:0.2s;
+    letter-spacing:1px;
+}
+
+.back:hover{
+    color:white;
+    transform:translateX(-4px);
+}
+
 .header{
-    border:1px solid var(--line);
-    background:rgba(8,10,20,0.92);
+    border:1px solid #2d3655;
+    background:rgba(10,12,22,0.92);
     padding:40px;
     margin-bottom:40px;
-    box-shadow:0 0 25px rgba(120,150,255,0.08);
+    box-shadow:0 0 35px var(--glow);
+    position:relative;
+    overflow:hidden;
 }
 
 .header::after{
@@ -81,7 +107,7 @@ body::after{
     left:-100%;
     width:100%;
     height:1px;
-    background:rgba(180,210,255,0.3);
+    background:rgba(180,210,255,0.4);
     animation:scan 8s linear infinite;
 }
 
@@ -90,128 +116,133 @@ body::after{
 100%{left:100%;}
 }
 
+.id{
+    color:#8ea3eb;
+    letter-spacing:4px;
+    font-size:13px;
+    margin-bottom:16px;
+}
+
 .title{
     font-size:38px;
+    letter-spacing:6px;
     color:#dce5ff;
-    letter-spacing:5px;
-    margin-bottom:25px;
+    margin-bottom:28px;
+    line-height:1.4;
+}
+
+.meta{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:18px;
+    color:#96a5d2;
+    line-height:1.9;
+    font-size:14px;
+}
+
+.meta span{
+    color:#dce5ff;
 }
 
 .section{
     margin-top:50px;
     margin-bottom:20px;
     color:#9cb2ff;
-    letter-spacing:3px;
+    letter-spacing:4px;
     font-size:15px;
-    border-bottom:1px solid var(--line);
-    padding-bottom:10px;
+    border-bottom:1px solid #2b3555;
+    padding-bottom:12px;
 }
 
 .content{
     line-height:2.1;
-    font-size:15px;
-    color:var(--text);
-}
-
-/* BLOCK */
-.block{
-    background:rgba(8,10,20,0.94);
-    border:1px solid #3a3f5c;
-    padding:25px;
-    margin:25px 0;
-    line-height:1.9;
     color:#d7dcef;
+    font-size:15px;
 }
 
-/* GLITCH */
+.block{
+    background:rgba(5,7,14,0.98);
+    border:1px solid #7087d4;
+    padding:24px;
+    margin:25px 0;
+    line-height:2;
+    color:#eef2ff;
+}
+
 .glitch{
-    animation:flicker 6s infinite;
+    animation:flicker 5s infinite;
 }
 
 @keyframes flicker{
 0%{opacity:1;}
-1%{opacity:0.3;}
+1%{opacity:0.5;}
 2%{opacity:1;}
 85%{opacity:1;}
 86%{opacity:0.2;}
 87%{opacity:1;}
 }
 
-/* FOOTER */
 .footer{
-    margin-top:60px;
-    padding-top:20px;
-    border-top:1px solid var(--line);
+    margin-top:80px;
+    padding-top:30px;
+    border-top:1px solid #28324f;
     color:#66749b;
+    line-height:2;
     font-size:12px;
     letter-spacing:1px;
-    line-height:1.8;
 }
 
-/* LINKS */
-a{
-    color:#95a4cf;
-    text-decoration:none;
-}
-
-a:hover{
+::selection{
+    background:#536db8;
     color:white;
 }
-
 </style>
 </head>
-
 <body>
 
 <div class="container">
 
+<div class="topbar">
+<div class="network">UNDERGROUND RESEARCH ARCHIVE</div>
+<div class="status">NODE STATUS // ACTIVE</div>
+</div>
+
+<a href="ura.html" class="back">← RETURN TO URA DIRECTORY</a>
+
 <div class="header">
-<div class="title">URA-03 // GASTER EXPERIMENTS</div>
+<div class="id">URA03 // DARK FOUNTAINS & BLACK KNIFE</div>
+<div class="title">DARK FOUNTAINS & BLACK KNIFE</div>
+<div class="meta">
+<div>ACCESS LEVEL: <span>LEVEL 4</span></div>
+<div>ARCHIVE BUILD: <span>0.9.0</span></div>
+<div>STABILITY: <span>FRAGILE</span></div>
+</div>
 </div>
 
+<div class="section">SUMMARY</div>
 <div class="content">
-
-<div class="section">OVERVIEW</div>
-<div class="block">
-Recovered logs indicate that several high-risk experiments were conducted by Gaster
-on observer synchronization and shadow persistence.
-Many records are fragmented and partially corrupted.
+This document contains reconstructed logs about emergent dark energy sources observed in restricted pathways. Analysis suggests that concentrated energy extraction, combined with previously unknown continuity manipulation, resulted in artifacts capable of breaching conventional limits. Observers note the sudden appearance of anomalous objects now referred to as <strong>Dark Fountains</strong>.
 </div>
 
-<div class="section">EXPERIMENT NOTES</div>
-<div class="block glitch">
-- Observer continuity altered via extraction sequences.<br>
-- Shadow core persistence increased without apparent limit.<br>
-- Ethical boundaries were intentionally bypassed.<br>
-- Some entries reference "M" observing outcomes and responses.<br>
-- Recurrent anomalies suggest underlying influence beyond recorded parameters.
+<div class="section">OBSERVATIONS</div>
+<div class="content">
+- Recovered lab schematics hint at attempts to craft objects of intense energy concentration.<br>
+- Traces indicate an unknown actor manipulated the extracted energy to create the <strong>Black Knife</strong>.<br>
+- Environmental recordings suggest these events caused observer disorientation and continuity destabilization.<br>
+- Multiple logs imply that the unknown actor may be responsible for triggering Dark Fountains in isolated sectors.
 </div>
 
-<div class="section">OBSERVED ANOMALIES</div>
-<div class="block">
-- Continuity loops triggering unexpected environmental reactions.<br>
-- Data fragments suggest attempts to manipulate intent alignment.<br>
-- Observer reports show signs of desynchronization correlated with Gaster activity.
-</div>
-
-<div class="section">HIDDEN WARNINGS</div>
-<div class="block glitch">
-Certain records appear to hide metadata referencing unverified continuity nodes.<br>
-Warnings were redacted or corrupted intentionally.<br>
-Unclear whether suppression is systemic or applied manually.
+<div class="section">CONCLUSIONS</div>
+<div class="content">
+The data indicates a correlation between highly concentrated extracted energy and anomalies termed Dark Fountains. Evidence implies an actor deliberately orchestrated these events, leaving traces that suggest a deeper agenda affecting continuity. Observers should monitor subsequent deviations closely.
 </div>
 
 <div class="footer">
-DELTA CONTINUITY RESEARCH NETWORK
-<br><br>
-DVC-URA-03
-<br>
-NO VERIFIED EXIT CONDITION EXISTS.
+DELTA CONTINUITY RESEARCH NETWORK<br><br>
+URA03 STATUS: ACTIVE<br>
+NO VERIFIED ORIGINAL STRUCTURE EXISTS.
 </div>
 
 </div>
-
-</div>
-
 </body>
 </html>
