@@ -3,78 +3,101 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>URA-01 // EXTRACTION STUDIES</title>
+<title>URA01 // CORE EXTRACTION ANALYSIS</title>
 
 <style>
 :root{
-    --bg:#01010c;
-    --line:#4c4f72;
-    --text:#dbe1ff;
-    --soft:#a0abdd;
-    --glow:rgba(110,140,255,0.08);
+    --bg:#010114;
+    --line:#2b3360;
+    --text:#d7dcef;
+    --soft:#95a4cf;
+    --dim:#66749b;
+    --glow:rgba(120,150,255,0.08);
 }
 
 body{
     margin:0;
-    background:
-        radial-gradient(circle at top, rgba(90,110,200,0.08), transparent 55%),
-        linear-gradient(to bottom, #01010c, #000103 75%, #000000);
+    background:radial-gradient(circle at top, rgba(90,110,200,0.08), transparent 55%), linear-gradient(to bottom, #010114, #000010 75%, #000000);
     color:var(--text);
     font-family:"Courier New", monospace;
     overflow-x:hidden;
-    letter-spacing:0.5px;
-    line-height:1.9;
-    text-shadow:0 0 3px rgba(180,210,255,0.05);
+    letter-spacing:0.4px;
     position:relative;
+    text-shadow:0 0 3px rgba(180,210,255,0.04);
 }
 
-/* SCANLINES */
 body::before{
     content:"";
     position:fixed;
     inset:0;
     pointer-events:none;
-    background:repeating-linear-gradient(
-        to bottom,
-        rgba(255,255,255,0.01),
-        rgba(255,255,255,0.01) 1px,
-        transparent 1px,
-        transparent 3px
-    );
+    background:repeating-linear-gradient(to bottom, rgba(255,255,255,0.012), rgba(255,255,255,0.012) 1px, transparent 1px, transparent 3px);
     opacity:0.45;
     z-index:999;
 }
 
-/* GRID */
 body::after{
     content:"";
     position:fixed;
     inset:0;
     pointer-events:none;
-    background-image:
-        linear-gradient(rgba(110,140,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(110,140,255,0.03) 1px, transparent 1px);
+    background-image:linear-gradient(rgba(120,140,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(120,140,255,0.025) 1px, transparent 1px);
     background-size:42px 42px;
-    opacity:0.12;
+    opacity:0.15;
     z-index:-1;
 }
 
 .container{
-    max-width:1000px;
+    max-width:1100px;
     margin:auto;
     padding:40px;
     position:relative;
     z-index:2;
 }
 
-/* HEADER */
-.header{
-    border:1px solid var(--line);
-    background:rgba(5,7,15,0.92);
-    padding:40px;
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid var(--line);
+    padding-bottom:18px;
     margin-bottom:35px;
-    box-shadow:0 0 25px var(--glow);
+}
+
+.network{
+    color:#d5deff;
+    letter-spacing:4px;
+    font-size:14px;
+}
+
+.status{
+    color:#7d8dbb;
+    font-size:12px;
+    letter-spacing:2px;
+}
+
+.back{
+    display:inline-block;
+    margin-bottom:35px;
+    color:#8ea3eb;
+    text-decoration:none;
+    transition:0.2s;
+    letter-spacing:1px;
+}
+
+.back:hover{
+    color:white;
+    transform:translateX(-4px);
+}
+
+.header{
+    border:1px solid #2d3655;
+    background:rgba(8,10,20,0.92);
+    padding:40px;
+    margin-bottom:40px;
+    box-shadow:0 0 30px var(--glow);
+    position:relative;
+    overflow:hidden;
 }
 
 .header::after{
@@ -84,8 +107,8 @@ body::after{
     left:-100%;
     width:100%;
     height:1px;
-    background:rgba(180,210,255,0.3);
-    animation:scan 7s linear infinite;
+    background:rgba(180,210,255,0.4);
+    animation:scan 8s linear infinite;
 }
 
 @keyframes scan{
@@ -93,125 +116,133 @@ body::after{
 100%{left:100%;}
 }
 
-.docid{
+.id{
     color:#8ea3eb;
-    font-size:13px;
     letter-spacing:4px;
+    font-size:13px;
     margin-bottom:16px;
 }
 
 .title{
-    font-size:36px;
-    letter-spacing:5px;
+    font-size:38px;
+    letter-spacing:6px;
     color:#dce5ff;
-    margin-bottom:20px;
+    margin-bottom:28px;
+    line-height:1.4;
 }
 
 .meta{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
     gap:18px;
-    color:#9bb0e1;
-    font-size:13px;
+    color:#96a5d2;
+    line-height:1.9;
+    font-size:14px;
 }
 
 .meta span{
     color:#dce5ff;
 }
 
-/* WARNING */
-.warning{
-    border-left:3px solid #8ea3eb;
-    background:rgba(8,10,18,0.92);
-    padding:22px;
-    margin:30px 0;
-    color:#c1cfee;
-}
-
-/* CONTENT */
 .section{
-    margin-top:40px;
-    margin-bottom:15px;
-    color:#a3b1ff;
-    letter-spacing:2px;
-    font-size:14px;
-    border-bottom:1px solid #2c3055;
-    padding-bottom:8px;
+    margin-top:50px;
+    margin-bottom:20px;
+    color:#9cb2ff;
+    letter-spacing:4px;
+    font-size:15px;
+    border-bottom:1px solid #2b3555;
+    padding-bottom:12px;
 }
 
 .content{
+    line-height:2.1;
+    color:#d7dcef;
     font-size:15px;
-    color:var(--text);
-    line-height:2.0;
 }
 
 .block{
-    background:rgba(5,7,15,0.92);
-    border:1px solid #4c4f72;
-    padding:20px;
+    background:rgba(5,7,14,0.98);
+    border:1px solid #7087d4;
+    padding:24px;
     margin:25px 0;
+    line-height:2;
+    color:#eef2ff;
+}
+
+.glitch{
+    animation:flicker 5s infinite;
+}
+
+@keyframes flicker{
+0%{opacity:1;}
+1%{opacity:0.5;}
+2%{opacity:1;}
+85%{opacity:1;}
+86%{opacity:0.2;}
+87%{opacity:1;}
 }
 
 .footer{
-    margin-top:60px;
-    border-top:1px solid #2c3055;
-    color:#7a7fa0;
+    margin-top:80px;
+    padding-top:30px;
+    border-top:1px solid #28324f;
+    color:#66749b;
+    line-height:2;
     font-size:12px;
     letter-spacing:1px;
-    line-height:1.8;
 }
 
-/* MOBILE */
-@media(max-width:700px){
-    .container{padding:20px;}
-    .title{font-size:28px;}
+::selection{
+    background:#536db8;
+    color:white;
 }
 </style>
 </head>
-
 <body>
 
 <div class="container">
 
+<div class="topbar">
+<div class="network">UNDERGROUND RESEARCH ARCHIVE</div>
+<div class="status">NODE STATUS // ACTIVE</div>
+</div>
+
+<a href="ura.html" class="back">← RETURN TO URA DIRECTORY</a>
+
 <div class="header">
-    <div class="docid">URA-01 // EXTRACTION STUDIES</div>
-    <div class="title">CLASSIFIED LOG ENTRY</div>
-    <div class="meta">
-        <div>ACCESS LEVEL: <span>LEVEL 5</span></div>
-        <div>FILE STATUS: <span>PARTIAL</span></div>
-        <div>NODE: <span>URA-MAIN</span></div>
-        <div>ARCHIVE BUILD: <span>0.9.1</span></div>
-    </div>
+<div class="id">URA01 // CORE EXTRACTION ANALYSIS</div>
+<div class="title">CORE EXTRACTION ANALYSIS</div>
+<div class="meta">
+<div>ACCESS LEVEL: <span>LEVEL 2</span></div>
+<div>ARCHIVE BUILD: <span>0.9.0</span></div>
+<div>STABILITY: <span>FRAGILE</span></div>
+</div>
 </div>
 
-<div class="warning">
-WARNING: This material was never intended for standard observation. Repeated exposure may compromise observer stability.
-</div>
-
+<div class="section">SUMMARY</div>
 <div class="content">
+The Core’s energy was harvested from combined determination of humans and monsters. Early reports show extraction protocols, the first observations of irregular energy readings, and subtle interference by an unknown agent. The influence appears to affect structural stability of the Core itself.
+</div>
 
-<div class="section">OVERVIEW</div>
-The archive contains the first verified documentation of Determination extraction procedures. Initial tests treated Determination as a measurable resource. Observers may note unusual environmental persistence effects.
+<div class="section">OBSERVATIONS</div>
+<div class="content">
+- Extraction metrics indicate minor deviations in expected energy flow.<br>
+- Containment units experience anomalous readings, occasionally disrupting synchronization.<br>
+- Certain energy fluctuations suggest the presence of an outside actor, details redacted.<br>
+- Early theories indicate possible cross-continuity contamination affecting baseline human-monster determination.
+</div>
 
-<div class="section">EXPERIMENTAL OBSERVATIONS</div>
-- Extraction efficiency varies depending on subject synchronization.<br>
-- Environmental persistence observed post-extraction.<br>
-- Unauthorized subject intervention accelerates instability.<br>
-- Containment protocols may be insufficient for extreme cases.
-
-<div class="section">NOTES</div>
-Several logs indicate that the procedures were supervised by an unknown entity. Subjects report subtle anomalies without clear origin. Observer discretion advised.
-
-<div class="section">PRELIMINARY CONCLUSIONS</div>
-Determinable energy can be harnessed, but the process is partially corruptive. Full ethical implications remain unassessed. The supervising entity’s influence is suspected but unverified.
-
+<div class="section">CONCLUSIONS</div>
+<div class="content">
+Subtle evidence points to deliberate interference during extraction. The actor remains unidentified, but hints suggest someone operating behind the scenes influencing continuity events.
 </div>
 
 <div class="footer">
-DELTA CONTINUITY RESEARCH ARCHIVE // URA-01
+DELTA CONTINUITY RESEARCH NETWORK<br><br>
+URA01 STATUS: ACTIVE<br>
+NO VERIFIED ORIGINAL STRUCTURE EXISTS.
 </div>
 
 </div>
-
 </body>
 </html>
