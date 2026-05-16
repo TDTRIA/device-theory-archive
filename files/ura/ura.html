@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DEVICE CONTINUITY NETWORK // URA</title>
+<title>UNDERTALE RESEARCH ARCHIVE</title>
 
 <style>
 :root{
-    --bg:#05060d;
+    --bg:#05050a;
     --line:#28324f;
     --text:#d7dcef;
     --soft:#95a4cf;
@@ -17,8 +17,8 @@
 body{
     margin:0;
     background:
-        radial-gradient(circle at top, rgba(90,110,200,0.08), transparent 55%),
-        linear-gradient(to bottom, #05060d, #02030a 75%, #010106);
+        radial-gradient(circle at top, rgba(80,100,200,0.08), transparent 55%),
+        linear-gradient(to bottom, #05050a, #02020a 75%, #010106);
     color:var(--text);
     font-family:"Courier New", monospace;
     overflow-x:hidden;
@@ -32,15 +32,14 @@ body::before{
     position:fixed;
     inset:0;
     pointer-events:none;
-    background:
-        repeating-linear-gradient(
-            to bottom,
-            rgba(255,255,255,0.012),
-            rgba(255,255,255,0.012) 1px,
-            transparent 1px,
-            transparent 3px
-        );
-    opacity:0.4;
+    background:repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.012),
+        rgba(255,255,255,0.012) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    opacity:0.45;
     z-index:999;
 }
 
@@ -58,7 +57,6 @@ body::after{
     z-index:-1;
 }
 
-/* CONTAINER */
 .container{
     max-width:1200px;
     margin:auto;
@@ -75,6 +73,8 @@ body::after{
     border-bottom:1px solid var(--line);
     padding-bottom:18px;
     margin-bottom:35px;
+    flex-wrap:wrap;
+    gap:15px;
 }
 
 .network{
@@ -87,6 +87,21 @@ body::after{
     color:#7d8dbb;
     font-size:12px;
     letter-spacing:2px;
+}
+
+/* BACK */
+.back{
+    display:inline-block;
+    margin-bottom:35px;
+    color:#8ea3eb;
+    text-decoration:none;
+    transition:0.2s;
+    letter-spacing:1px;
+}
+
+.back:hover{
+    color:white;
+    transform:translateX(-4px);
 }
 
 /* HEADER */
@@ -112,20 +127,40 @@ body::after{
 }
 
 @keyframes scan{
-    0%{left:-100%;}
-    100%{left:100%;}
+0%{left:-100%;}
+100%{left:100%;}
+}
+
+.id{
+    color:#8ea3eb;
+    letter-spacing:4px;
+    font-size:13px;
+    margin-bottom:16px;
 }
 
 .title{
-    font-size:36px;
+    font-size:40px;
     letter-spacing:6px;
     color:#dce5ff;
     margin-bottom:28px;
+    line-height:1.4;
 }
 
 .desc{
-    color:#95a4cf;
-    line-height:1.9;
+    color:#9ba9d6;
+    line-height:2;
+    max-width:900px;
+}
+
+/* SECTION */
+.section{
+    margin-top:60px;
+    margin-bottom:20px;
+    color:#9cb2ff;
+    letter-spacing:4px;
+    font-size:15px;
+    border-bottom:1px solid #2b3555;
+    padding-bottom:12px;
 }
 
 /* FILES */
@@ -180,36 +215,61 @@ body::after{
 }
 
 /* PASSWORD */
-#passwordContainer{
-    margin-top:25px;
-}
-
-#passwordContainer input{
+.password-input{
     background:transparent;
-    border:1px solid var(--line);
+    border:none;
+    outline:none;
     color:white;
     font-family:"Courier New", monospace;
     font-size:16px;
-    padding:8px 10px;
-    width:200px;
+    width:60%;
+    letter-spacing:1px;
+    margin-top:10px;
 }
 
-#passwordError{
-    margin-top:10px;
-    color:#ff5f5f;
-    opacity:0;
-    transition:0.4s;
+.password-btn{
+    margin-left:12px;
+    padding:4px 10px;
+    background:#5c5cff;
+    color:white;
+    border:none;
+    cursor:pointer;
+    font-family:"Courier New", monospace;
+    letter-spacing:1px;
+    transition:0.2s;
+}
+
+.password-btn:hover{
+    background:#817fff;
 }
 
 /* FOOTER */
 .footer{
-    margin-top:60px;
-    padding-top:20px;
-    border-top:1px solid var(--line);
+    margin-top:90px;
+    padding-top:30px;
+    border-top:1px solid #28324f;
     color:#66749b;
+    line-height:2;
     font-size:12px;
     letter-spacing:1px;
 }
+
+/* MOBILE */
+@media(max-width:700px){
+    .container{
+        padding:22px;
+    }
+    .title{
+        font-size:28px;
+        letter-spacing:3px;
+    }
+}
+
+::selection{
+    background:#536db8;
+    color:white;
+}
+
 </style>
 </head>
 
@@ -218,83 +278,63 @@ body::after{
 <div class="container">
 
 <div class="topbar">
-    <div class="network">DELTA CONTINUITY RESEARCH NETWORK</div>
-    <div class="status">NODE STATUS // ACTIVE</div>
+<div class="network">UNDERGROUND RESEARCH ARCHIVE</div>
+<div class="status">NODE STATUS // ACTIVE</div>
 </div>
 
 <div class="header">
-    <div class="title">UNDERTALE RESEARCH ARCHIVE (URA)</div>
-    <div class="desc">Observer access required. Each document requires individual authorization to view.</div>
+<div class="id">URA // MAIN NODE</div>
+<div class="title">UNDERGROUND RESEARCH ARCHIVE</div>
+<div class="desc">
+Research files recovered from continuity breach analysis and advanced deviation observations.<br><br>
+Password protected access required for each document.
+</div>
 </div>
 
-<div class="section">ACTIVE DOCUMENTS</div>
+<div class="section">ACTIVE FILES</div>
 
-<!-- URA Files -->
-<a href="ura01.html" class="file">
-    <div class="file-title">URA-01 // GASTER OBSERVATION LOGS</div>
-    <div class="file-desc">Early research notes on Gaster's experiments and anomalies.</div>
+<!-- URA Docs -->
+<a href="ura01.html" class="file" onclick="return checkPassword(event,'URA01')">
+<div class="file-title">URA01 // CORE EXTRACTION ANALYSIS</div>
+<div class="file-desc">Determination extraction, Core construction, subtle hints at unknown interference.</div>
 </a>
 
-<a href="ura02.html" class="file">
-    <div class="file-title">URA-02 // DARK FOUNTAIN RESEARCH</div>
-    <div class="file-desc">Experimental data and initial observations of Dark Fountains.</div>
+<a href="ura02.html" class="file" onclick="return checkPassword(event,'URA02')">
+<div class="file-title">URA02 // TRUE LAB RESEARCH</div>
+<div class="file-desc">Darkness creation, Black Knife, potential interference, hints at unknown entities.</div>
 </a>
 
-<a href="ura03.html" class="file">
-    <div class="file-title">URA-03 // SHADOW CRYSTAL ANALYSIS</div>
-    <div class="file-desc">Material studies, extraction protocols, and containment reports.</div>
+<a href="ura03.html" class="file" onclick="return checkPassword(event,'URA03')">
+<div class="file-title">URA03 // OBSERVER WARNING</div>
+<div class="file-desc">Final document before Project Roaring; observer choice triggers transition.</div>
 </a>
-
-<a href="ura04.html" class="file">
-    <div class="file-title">URA-04 // CONTINUITY DEVIATION INCIDENTS</div>
-    <div class="file-desc">Compilation of observer destabilization and anomaly records.</div>
-</a>
-
-<a href="ura05.html" class="file">
-    <div class="file-title">URA-05 // FINAL CONTINUATION LOGS</div>
-    <div class="file-desc">Recovered sessions detailing high-risk continuation and intent failures.</div>
-</a>
-
-<div class="section">ACCESS AUTHORIZATION</div>
-<div class="content" id="passwordContainer">
-    <input type="password" id="passwordInput" placeholder="ENTER DEVICE KEY">
-    <div id="passwordError">ACCESS DENIED</div>
-</div>
 
 <div class="footer">
-DELTA CONTINUITY RESEARCH NETWORK<br>
-ARCHIVE NODE: URA
+DELTA CONTINUITY RESEARCH NETWORK<br><br>
+ARCHIVE BUILD: 0.9.0<br>
+NO VERIFIED ORIGINAL STRUCTURE EXISTS.
 </div>
 
 </div>
 
 <script>
-const input = document.getElementById("passwordInput");
-const error = document.getElementById("passwordError");
+// Passwords for URA docs
+const passwords = {
+    URA01: 'CORE',
+    URA02: 'LAB',
+    URA03: 'WARNING'
+};
 
-// Main key
-const mainKey = "DEVICE";
-
-input.addEventListener("keydown", (e)=>{
-    if(e.key === "Enter"){
-        const val = input.value.trim();
-        if(val === mainKey){
-            // unlock all links
-            const files = document.querySelectorAll(".file");
-            files.forEach(f=>f.style.pointerEvents="auto");
-            files.forEach(f=>f.style.opacity="1");
-            error.style.opacity = "0";
-        } else {
-            error.style.opacity = "1";
-            input.value = "";
-        }
+function checkPassword(event, key){
+    event.preventDefault();
+    const attempt = prompt('Enter access password:');
+    if(attempt && attempt.toUpperCase() === passwords[key]){
+        window.location.href = event.currentTarget.href;
+    } else {
+        alert('ACCESS DENIED');
     }
-});
-
-// Initially disable files
-const files = document.querySelectorAll(".file");
-files.forEach(f=>f.style.pointerEvents="none");
-files.forEach(f=>f.style.opacity="0.5");
+    return false;
+}
 </script>
 
 </body>
