@@ -3,79 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>U.R.A // UNINDEXED RESEARCH ARCHIVE</title>
+<title>UNDERTALE RESEARCH ARCHIVE</title>
 
 <style>
-
 :root{
-    --bg:#010205;
-    --panel:#05070d;
-    --line:#3b4354;
-    --text:#d8dde8;
-    --soft:#9098aa;
-    --dim:#565d6e;
-    --redact:#050505;
-    --amber:#b7a06a;
+    --bg:#03040a;
+    --line:#444871;
+    --text:#d7dcef;
+    --soft:#95a4cf;
+    --glow:rgba(140,120,255,0.08);
 }
 
 body{
     margin:0;
     background:
-        radial-gradient(circle at top, rgba(180,190,210,0.05), transparent 55%),
-        linear-gradient(to bottom, #010205, #020206 70%, #000000);
+        radial-gradient(circle at top, rgba(120,80,255,0.06), transparent 60%),
+        linear-gradient(to bottom, #03040a, #010103 75%, #000000);
     color:var(--text);
     font-family:"Courier New", monospace;
     overflow-x:hidden;
-    letter-spacing:0.35px;
+    letter-spacing:0.5px;
     position:relative;
-    text-shadow:0 0 4px rgba(220,230,255,0.035);
+    text-shadow:0 0 3px rgba(180,210,255,0.04);
 }
 
 /* SCANLINES */
-
 body::before{
     content:"";
     position:fixed;
     inset:0;
     pointer-events:none;
-    background:
-    repeating-linear-gradient(
+    background:repeating-linear-gradient(
         to bottom,
-        rgba(255,255,255,0.009),
-        rgba(255,255,255,0.009) 1px,
+        rgba(255,255,255,0.015),
+        rgba(255,255,255,0.015) 1px,
         transparent 1px,
-        transparent 4px
+        transparent 3px
     );
-    opacity:0.55;
+    opacity:0.4;
     z-index:999;
 }
 
-/* OLD GRID */
-
+/* GRID */
 body::after{
     content:"";
     position:fixed;
     inset:0;
     pointer-events:none;
     background-image:
-        linear-gradient(rgba(180,190,210,0.015) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(180,190,210,0.015) 1px, transparent 1px);
-    background-size:56px 56px;
-    opacity:0.18;
+        linear-gradient(rgba(120,140,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120,140,255,0.025) 1px, transparent 1px);
+    background-size:42px 42px;
+    opacity:0.12;
     z-index:-1;
 }
 
+/* CONTAINER */
 .container{
-    max-width:1120px;
+    max-width:1000px;
     margin:auto;
-    padding:42px;
+    padding:40px;
     position:relative;
     z-index:2;
 }
 
 /* TOPBAR */
-
 .topbar{
     display:flex;
     justify-content:space-between;
@@ -88,41 +80,38 @@ body::after{
 }
 
 .network{
-    color:#e1e5ef;
+    color:#d5deff;
     letter-spacing:4px;
     font-size:14px;
 }
 
 .status{
-    color:#9aa2b4;
+    color:#7d8dbb;
     font-size:12px;
     letter-spacing:2px;
 }
 
 /* BACK */
-
 .back{
     display:inline-block;
     margin-bottom:35px;
-    color:#aeb7cc;
+    color:#8ea3eb;
     text-decoration:none;
     transition:0.2s;
     letter-spacing:1px;
 }
-
 .back:hover{
     color:white;
     transform:translateX(-4px);
 }
 
 /* HEADER */
-
 .header{
-    border:1px solid var(--line);
-    background:rgba(4,6,12,0.96);
+    border:1px solid #2d3655;
+    background:rgba(8,10,20,0.92);
     padding:40px;
     margin-bottom:40px;
-    box-shadow:0 0 40px rgba(180,190,210,0.045);
+    box-shadow:0 0 30px var(--glow);
     position:relative;
     overflow:hidden;
 }
@@ -134,17 +123,17 @@ body::after{
     left:-100%;
     width:100%;
     height:1px;
-    background:rgba(220,230,255,0.22);
-    animation:scan 12s linear infinite;
+    background:rgba(180,210,255,0.4);
+    animation:scan 8s linear infinite;
 }
 
 @keyframes scan{
-0%{left:-100%;}
-100%{left:100%;}
+    0%{left:-100%;}
+    100%{left:100%;}
 }
 
 .id{
-    color:#9da8bf;
+    color:#8ea3eb;
     letter-spacing:4px;
     font-size:13px;
     margin-bottom:16px;
@@ -152,97 +141,41 @@ body::after{
 
 .title{
     font-size:40px;
-    letter-spacing:7px;
-    color:#edf1fa;
+    letter-spacing:6px;
+    color:#dce5ff;
     margin-bottom:28px;
-    line-height:1.45;
+    line-height:1.4;
 }
 
 .desc{
-    color:#9aa2b4;
-    line-height:2.05;
-    max-width:900px;
-}
-
-/* META */
-
-.meta{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:18px;
-    color:#8c95a8;
-    line-height:1.9;
-    font-size:14px;
-    margin-top:32px;
-}
-
-.meta span{
-    color:#e5e9f2;
-}
-
-/* WARNING */
-
-.warning{
-    border-left:3px solid #9da8bf;
-    background:rgba(4,6,10,0.92);
-    padding:25px;
-    margin-bottom:45px;
-    color:#cfd5e3;
+    color:#95a4cf;
     line-height:2;
 }
 
 /* SECTION */
-
 .section{
     margin-top:60px;
     margin-bottom:20px;
-    color:#b3bdd3;
+    color:#9cb2ff;
     letter-spacing:4px;
     font-size:15px;
-    border-bottom:1px solid #323a4d;
+    border-bottom:1px solid #2b3555;
     padding-bottom:12px;
 }
 
-/* CONTENT */
-
-.content{
-    line-height:2.15;
-    color:#d8dde8;
-    font-size:15px;
-}
-
-.block{
-    background:rgba(4,6,12,0.95);
-    border:1px solid #343d50;
-    padding:24px;
-    margin:35px 0;
-    line-height:2;
-    color:#ccd3e2;
-}
-
-.log{
-    margin:35px 0;
-    padding:25px;
-    background:rgba(0,0,0,0.97);
-    border:1px solid #343d50;
-    color:#cfd5e3;
-    line-height:2.1;
-    font-size:14px;
-}
-
 /* FILES */
-
 .file{
     display:block;
     text-decoration:none;
-    color:#dfe4ee;
-    background:rgba(4,6,12,0.94);
-    border:1px solid #30384a;
+    color:#dce5ff;
+    background:rgba(9,12,22,0.88);
+    border:1px solid #2d3757;
     padding:24px;
     margin:18px 0;
-    transition:0.22s;
+    transition:0.2s;
     position:relative;
     overflow:hidden;
+    cursor:pointer;
 }
 
 .file::before{
@@ -255,106 +188,78 @@ body::after{
     background:linear-gradient(
         90deg,
         transparent,
-        rgba(220,230,255,0.035),
+        rgba(140,170,255,0.05),
         transparent
     );
-    transition:0.6s;
+    transition:0.5s;
 }
-
 .file:hover::before{
     left:100%;
 }
-
 .file:hover{
-    border-color:#69738d;
+    border-color:#4d67aa;
     transform:translateX(6px);
-    box-shadow:0 0 24px rgba(180,190,210,0.055);
+    box-shadow:0 0 20px rgba(120,150,255,0.08);
 }
 
 .file-title{
     letter-spacing:2px;
     margin-bottom:10px;
-    color:#edf1fa;
 }
-
 .file-desc{
-    color:#949cad;
-    line-height:1.85;
+    color:#95a4cf;
+    line-height:1.8;
     font-size:14px;
 }
 
-.file-critical{
-    border-color:#5b4f37;
+/* LOCKED */
+.locked{
+    opacity:0.45;
+    cursor:default;
 }
-
-.file-critical .file-title{
-    color:#e1d3a2;
-}
-
-/* REDACTIONS */
-
-.redact{
-    background:#000;
-    color:#000;
-    padding:0 8px;
-    user-select:none;
-}
-
-.redact:hover{
-    color:#d8dde8;
-}
-
-/* GLITCH */
-
-.glitch{
-    animation:flicker 5s infinite;
-}
-
-@keyframes flicker{
-0%{opacity:1;}
-1%{opacity:0.35;}
-2%{opacity:1;}
-72%{opacity:1;}
-73%{opacity:0.18;}
-74%{opacity:1;}
+.locked:hover{
+    transform:none;
+    border-color:#2d3757;
+    box-shadow:none;
 }
 
 /* FOOTER */
-
 .footer{
     margin-top:90px;
     padding-top:30px;
-    border-top:1px solid #323a4d;
-    color:#697183;
+    border-top:1px solid #28324f;
+    color:#66749b;
     line-height:2;
     font-size:12px;
     letter-spacing:1px;
 }
 
+/* GLITCH */
+.glitch{
+    animation:flicker 3s infinite;
+}
+@keyframes flicker{
+    0%{opacity:1;}
+    1%{opacity:0.2;}
+    2%{opacity:1;}
+    55%{opacity:1;}
+    56%{opacity:0.4;}
+    57%{opacity:1;}
+    90%{opacity:1;}
+    91%{opacity:0.1;}
+    92%{opacity:1;}
+}
+
 /* MOBILE */
-
 @media(max-width:700px){
-
-.container{
-    padding:22px;
-}
-
-.title{
-    font-size:25px;
-    letter-spacing:4px;
-}
-
-.meta{
-    grid-template-columns:1fr;
-}
-
+    .container{padding:22px;}
+    .title{font-size:26px; letter-spacing:4px;}
 }
 
 ::selection{
-    background:#4d5568;
+    background:#58418a;
     color:white;
 }
-
 </style>
 </head>
 
@@ -363,331 +268,73 @@ body::after{
 <div class="container">
 
 <div class="topbar">
-
-<div class="network">
-UNINDEXED RESEARCH ARCHIVE
+<div class="network">UNDERTALE RESEARCH ARCHIVE</div>
+<div class="status">NODE STATUS // ACTIVE</div>
 </div>
 
-<div class="status glitch">
-VISIBILITY STATUS // SUPPRESSED
-</div>
-
-</div>
-
-<a href="../dvc02/report12.html" class="back">
-← RETURN TO RECOVERED PATHWAY
+<a href="../../archive.html" class="back">
+← RETURN TO MAIN ARCHIVE
 </a>
 
 <div class="header">
-
-<div class="id">
-U.R.A // HIDDEN RESEARCH SECTOR
-</div>
-
-<div class="title">
-UNINDEXED RESEARCH ARCHIVE
-</div>
-
+<div class="id">URA // MAIN NODE</div>
+<div class="title">UNDERTALE RESEARCH ARCHIVE</div>
 <div class="desc">
-
-This sector does not appear within any verified archive structure.
-
-<br><br>
-
-Recovered references indicate the division was removed from standard indexing following late-stage continuation incidents.
-
-<br><br>
-
-Removal procedures were unsuccessful.
-
+Recovered Gaster research, dark fountain documentation,
+and observer activity logs. Access restricted.
+</div>
 </div>
 
-<div class="meta">
+<div class="section">ACTIVE DOCUMENTS</div>
 
-<div>
-ACCESS METHOD:
-<span>RECOVERED KEY FRAGMENT</span>
-</div>
+<a class="file" id="ura1"><div class="file-title">URA-01 // DARK FOUNTAIN ORIGINS</div>
+<div class="file-desc">Initial notes on dark fountain experiments and anomalies.</div></a>
 
-<div>
-INDEX STATUS:
-<span class="glitch">UNLISTED</span>
-</div>
+<a class="file" id="ura2"><div class="file-title">URA-02 // SHADOW DETERMINATION</div>
+<div class="file-desc">Analysis of determination extraction and effects on core.</div></a>
 
-<div>
-PRIMARY SUBJECT:
-<span>EXTRACTION EVENT</span>
-</div>
+<a class="file" id="ura3"><div class="file-title">URA-03 // EXTRACTION PROCEDURES</div>
+<div class="file-desc">Procedures related to extraction of observer data.</div></a>
 
-<div>
-PERSONNEL STATUS:
-<span>INCOMPLETE</span>
-</div>
+<a class="file" id="ura4"><div class="file-title">URA-04 // M'S INVESTIGATION</div>
+<div class="file-desc">Research into M’s pursuit of Gaster and corrupted continuities.</div></a>
 
-<div>
-ASSOCIATED NODE:
-<span>DVC-02-12</span>
-</div>
-
-<div>
-ARCHIVE STATE:
-<span class="glitch">ACTIVE</span>
-</div>
-
-</div>
-
-</div>
-
-<div class="warning">
-
-WARNING:
-
-U.R.A materials were classified beyond all standard observer authorization levels.
-
-<br><br>
-
-Several associated personnel records remain incomplete, corrupted, or intentionally erased.
-
-<br><br>
-
-Continuation beyond this point was formally prohibited.
-
-</div>
-
-<div class="content">
-
-<div class="section">
-SECTOR SUMMARY
-</div>
-
-<div class="block">
-
-The Unindexed Research Archive contains records associated with early continuation fuel theory, non-standard energy transfer studies, and suppressed reactor correspondence.
-
-<br><br>
-
-Several documents reference:
-extraction,
-persistence,
-observer endurance,
-boundary rupture,
-and a missing researcher identity that no longer resolves inside official personnel records.
-
-<br><br>
-
-Researcher M accessed this sector repeatedly before all remaining authorization trails were erased.
-
-</div>
-
-<div class="section">
-RECOVERED DOCUMENTS
-</div>
-
-<a href="ura01.html" class="file">
-
-<div class="file-title">
-URA-01 // EXTRACTION STUDIES
-</div>
-
-<div class="file-desc">
-
-Early continuation fuel transfer theory, persistence medium observations, and non-conventional energy modeling.
-
-<br><br>
-
-The source material is incomplete.
-
-</div>
-
-</a>
-
-<a href="ura02.html" class="file">
-
-<div class="file-title">
-URA-02 // CORE TRANSFER LOGS
-</div>
-
-<div class="file-desc">
-
-Fragmented transfer records, reactor stability fluctuations, and restricted containment correspondence.
-
-<br><br>
-
-Several values exceed verified storage limits.
-
-</div>
-
-</a>
-
-<a href="ura03.html" class="file">
-
-<div class="file-title">
-URA-03 // UNRESOLVED RESEARCHER RECORDS
-</div>
-
-<div class="file-desc">
-
-Personnel indexing failures, erased attribution markers, and references to an unnamed lead researcher.
-
-<br><br>
-
-Identity resolution failed.
-
-</div>
-
-</a>
-
-<a href="ura04.html" class="file">
-
-<div class="file-title">
-URA-04 // FOUNTAIN COMPATIBILITY NOTES
-</div>
-
-<div class="file-desc">
-
-M’s recovered comparisons between continuation pressure, Determination exposure, and boundary rupture theory.
-
-<br><br>
-
-Emotional instability indicators detected.
-
-</div>
-
-</a>
-
-<a href="ura05.html" class="file file-critical glitch">
-
-<div class="file-title">
-URA-05 // BLACK KNIFE PROTOTYPE
-</div>
-
-<div class="file-desc">
-
-Recovered prototype notes, puncture-device theory, and final authorization fragments.
-
-<br><br>
-
-This file should not be open.
-
-</div>
-
-</a>
-
-<div class="section">
-RECOVERED INTERNAL LOG
-</div>
-
-<div class="log">
-
-INTERNAL ENTRY // M
-
-<br><br>
-
-I was not supposed to find this.
-
-<br><br>
-
-That is the first thing I need recorded.
-
-<br><br>
-
-Not because I regret opening it.
-
-<br><br>
-
-Because someone tried very hard to make sure no one could.
-
-<br><br>
-
-The extraction records should not exist.
-
-<br><br>
-
-Every surviving reference contradicts official continuity architecture completely.
-
-<br><br>
-
-The reactor was never sustaining itself.
-
-<br><br>
-
-Something was sustaining it.
-
-<br><br>
-
-I believed the missing sections would clarify the inconsistencies.
-
-<br><br>
-
-Instead, the inconsistencies became larger.
-
-<br><br>
-
-There are references to transfer quantities that exceed all verified storage limits.
-
-<br><br>
-
-There are timestamps that predate the system itself.
-
-<br><br>
-
-And there are repeated mentions of a researcher whose identity no longer resolves correctly.
-
-<br><br>
-
-I am beginning to suspect the records were not destroyed.
-
-<br><br>
-
-I think they were removed intentionally.
-
-<br><br>
-
-<span class="redact">
-W. D. GASTER
-</span>
-
-</div>
-
-<div class="section">
-UNRESOLVED NOTE
-</div>
-
-<div class="block glitch">
-
-KEY STATUS:
-CONSUMED
-
-<br><br>
-
-OBSERVER STATUS:
-AUTHORIZED
-
-<br><br>
-
-CONTINUATION:
-PERMITTED
-
-</div>
+<a class="file" id="ura5"><div class="file-title">URA-05 // DARK ROUTES LOG</div>
+<div class="file-desc">Records of unusual dark route anomalies and observer impact.</div></a>
 
 <div class="footer">
-
-UNINDEXED RESEARCH ARCHIVE
-
+DELTA CONTINUITY RESEARCH NETWORK
 <br><br>
-
-VISIBILITY STATUS:
-UNSTABLE
-
+ARCHIVE BUILD: 0.9.1
 <br>
-
-NO VERIFIED COMPLETE VERSION EXISTS.
-
+NO VERIFIED ORIGINAL STRUCTURE EXISTS.
 </div>
 
 </div>
 
-</div>
+<script>
+/* Passwords for each URA doc */
+const passwords = {
+    "ura1": "fountain",
+    "ura2": "shadow",
+    "ura3": "extraction",
+    "ura4": "investigation",
+    "ura5": "routes"
+};
+
+/* Add click handlers */
+Object.keys(passwords).forEach(id=>{
+    const el = document.getElementById(id);
+    el.addEventListener("click", ()=>{
+        const userPass = prompt("Enter access key for this document:");
+        if(userPass && userPass.toLowerCase() === passwords[id]){
+            window.location.href = "files/" + id + ".html";
+        } else {
+            alert("ACCESS DENIED");
+        }
+    });
+});
+</script>
 
 </body>
 </html>
