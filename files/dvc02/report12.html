@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>DVC-02 // DOC-12 // RESTRICTED</title>
 
 <style>
@@ -56,7 +57,6 @@ body::after{
     z-index:-1;
 }
 
-/* CONTAINERS */
 .container{
     max-width:1000px;
     margin:auto;
@@ -74,12 +74,12 @@ body::after{
     padding-bottom:18px;
     margin-bottom:35px;
 }
-.network{color:#eef2ff;letter-spacing:4px;font-size:14px;animation:flicker 4s infinite;}
-.status{color:#d6deff;font-size:12px;letter-spacing:2px;animation:flicker 2s infinite;}
+.network{ color:#eef2ff; letter-spacing:4px; font-size:14px; animation:flicker 4s infinite; }
+.status{ color:#d6deff; font-size:12px; letter-spacing:2px; animation:flicker 2s infinite; }
 
 /* BACK */
-.back{display:inline-block;margin-bottom:35px;color:#c8d5ff;text-decoration:none;transition:0.2s;letter-spacing:1px;}
-.back:hover{color:white;transform:translateX(-4px);}
+.back{ display:inline-block; margin-bottom:35px; color:#c8d5ff; text-decoration:none; transition:0.2s; letter-spacing:1px; }
+.back:hover{ color:white; transform:translateX(-4px); }
 
 /* HEADER */
 .header{
@@ -102,35 +102,45 @@ body::after{
     animation:scan 2s linear infinite;
 }
 @keyframes scan{0%{left:-100%;}100%{left:100%;}}
-.docid{color:#d4ddff;letter-spacing:4px;font-size:13px;margin-bottom:15px;}
-.title{font-size:42px;letter-spacing:7px;color:#ffffff;margin-bottom:28px;line-height:1.5;animation:flicker 8s infinite;}
-.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;color:#bcc7eb;line-height:1.9;font-size:14px;}
-.meta span{color:#ffffff;}
+.docid{ color:#d4ddff; letter-spacing:4px; font-size:13px; margin-bottom:15px; }
+.title{ font-size:42px; letter-spacing:7px; color:#ffffff; margin-bottom:28px; line-height:1.5; animation:flicker 8s infinite; }
+.meta{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; color:#bcc7eb; line-height:1.9; font-size:14px; }
+.meta span{ color:#ffffff; }
+
+/* WARNING */
+.warning{ border-left:3px solid #dce5ff; background:rgba(8,11,18,0.96); padding:25px; margin-bottom:45px; color:#eef2ff; line-height:2; }
 
 /* SECTIONS */
-.section{margin-top:60px;margin-bottom:20px;color:#d7e0ff;letter-spacing:4px;font-size:15px;border-bottom:1px solid #6277b8;padding-bottom:12px;}
-.content{line-height:2.25;color:#dfe5ff;font-size:15px;}
-.block{background:rgba(5,7,14,0.98);border:1px solid #7087d4;padding:24px;margin:35px 0;line-height:2;color:#eef2ff;}
-.log{margin:35px 0;padding:25px;background:rgba(0,0,0,0.98);border:1px solid #7087d4;color:#dce5ff;line-height:2.1;font-size:14px;}
-.glitch{animation:flicker 3s infinite;}
-@keyframes flicker{0%{opacity:1;}1%{opacity:0.05;}2%{opacity:1;}55%{opacity:1;}56%{opacity:0.08;}57%{opacity:1;}90%{opacity:1;}91%{opacity:0.1;}92%{opacity:1;}}
-.hidden{opacity:0.03;user-select:none;}
-.footer{margin-top:90px;padding-top:30px;border-top:1px solid #6277b8;color:#95a7dd;line-height:2;font-size:12px;letter-spacing:1px;}
+.section{ margin-top:60px; margin-bottom:20px; color:#d7e0ff; letter-spacing:4px; font-size:15px; border-bottom:1px solid #6277b8; padding-bottom:12px; }
+.content{ line-height:2.25; color:#dfe5ff; font-size:15px; }
+.block{ background:rgba(5,7,14,0.98); border:1px solid #7087d4; padding:24px; margin:35px 0; line-height:2; color:#eef2ff; }
+.log{ margin:35px 0; padding:25px; background:rgba(0,0,0,0.98); border:1px solid #7087d4; color:#dce5ff; line-height:2.1; font-size:14px; }
+
+/* GLITCH */
+.glitch{ animation:flicker 3s infinite; }
+@keyframes flicker{0%{opacity:1;}1%{opacity:0.05;}2%{opacity:1;}25%{opacity:1;}26%{opacity:0.3;}27%{opacity:1;}55%{opacity:1;}56%{opacity:0.08;}57%{opacity:1;}88%{opacity:1;}89%{opacity:0.4;}90%{opacity:1;}}
 
 /* HIDDEN KEY */
 #hidden-key{
-    position:fixed;
-    bottom:40px;
-    right:40px;
-    width:50px;
-    height:50px;
-    background:rgba(140,0,255,0.3);
-    border:2px dashed #d7dcef;
+    color:#ff4a4a;
     cursor:pointer;
-    opacity:0.05;
-    transition:opacity 0.4s;
+    animation:glitch-key 2s infinite;
 }
-#hidden-key:hover{opacity:0.3;}
+@keyframes glitch-key{
+    0%,100%{text-shadow: 1px 0 #ff4a4a, -1px 0 #ff4a4a;}
+    50%{text-shadow: 0 1px #ff4a4a, 0 -1px #ff4a4a;}
+}
+
+/* FOOTER */
+.footer{ margin-top:90px; padding-top:30px; border-top:1px solid #6277b8; color:#95a7dd; line-height:2; font-size:12px; letter-spacing:1px; }
+
+/* MOBILE */
+@media(max-width:700px){
+    .container{ padding:22px; }
+    .title{ font-size:26px; letter-spacing:4px; }
+}
+::selection{ background:#7087d4; color:white; }
+
 </style>
 </head>
 
@@ -159,69 +169,60 @@ body::after{
 </div>
 
 <div class="warning">
-WARNING:
-<br><br>
-The following material was never approved for archive recovery.
-<br><br>
+WARNING: The following material was never approved for archive recovery.<br><br>
 Further review was prohibited. The prohibition failed.
 </div>
 
 <div class="content">
-
 <div class="section">LAST INTERNAL NOTICE</div>
 <div class="log">
-DVC-02 containment procedures terminated.
-<br><br>
-Synchronization boundaries lost.
-<br><br>
-Observer distinction integrity unresolved.
-<br><br>
-Continuation persists.
-<br><br>
+DVC-02 containment procedures terminated.<br><br>
+Synchronization boundaries lost.<br><br>
+Observer distinction integrity unresolved.<br><br>
+Continuation persists.<br><br>
 ARCHIVE STATUS: ACTIVE
 </div>
 
 <div class="section">PERSONAL ENTRY // M</div>
-<div class="log">
-M observes irregularities within the continuation layers.
-<br><br>
-Evidence suggests extraction of determination from the CORE.
-<br><br>
-Hints point to a shadowed entity influencing outcomes.
-<br><br>
-Observer alignment appears compromised.
-<br><br>
-M’s persistence indicates a potential escalation in deviation containment.
-<br><br>
-Continued observation advised.
-</div>
+<p>
+If you are reading this now, then the archive continued successfully. That means the synchronization did not fail. It spread.<br><br>
+Several subtle indicators hint at interference in earlier continuities, possibly orchestrated by an unknown entity.
+</p>
+
+<!-- HIDDEN KEY -->
+<p id="hidden-key">[ KEY ]</p>
 
 </div>
 
 <div class="footer">
-END OF FILE
-<br><br>
-DVC-02-12
-<br>
+END OF FILE<br><br>
+DVC-02-12<br>
 NO VERIFIED EXIT CONDITION EXISTS.
 </div>
 
 </div>
 
-<!-- HIDDEN KEY -->
-<div id="hidden-key" title="click me"></div>
-
 <script>
-// Hidden key mechanic
-const hiddenKey = document.getElementById("hidden-key");
-hiddenKey.addEventListener("click", () => {
-    // Visual corruption effect
-    document.body.style.filter = "hue-rotate(180deg) blur(2px)";
-    // After brief delay, redirect to URA
-    setTimeout(() => {
-        localStorage.setItem("uraUnlocked", "true");
-        window.location.href = "../ura/ura.html";
-    }, 2000);
+const key = document.getElementById("hidden-key");
+
+key.addEventListener("click", () => {
+    // Corrupt page
+    document.body.style.transition = "filter 1s";
+    document.body.style.filter = "blur(5px) hue-rotate(90deg)";
+    // Flash effect
+    const flash = document.createElement("div");
+    flash.style.position = "fixed";
+    flash.style.inset = "0";
+    flash.style.background = "red";
+    flash.style.opacity = "0.2";
+    flash.style.zIndex = "9999";
+    document.body.appendChild(flash);
+    setTimeout(()=> document.body.removeChild(flash), 800);
+    // Redirect after brief delay
+    setTimeout(()=> {
+        localStorage.setItem("roaring","true");
+        window.location.href="../../ura.html";
+    }, 1500);
 });
 </script>
 
