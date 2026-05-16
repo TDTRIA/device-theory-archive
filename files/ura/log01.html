@@ -1,1 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>URA-01 // EXTRACTION STUDIES</title>
+
+<style>
+:root{
+    --bg:#01010c;
+    --line:#4c4f72;
+    --text:#dbe1ff;
+    --soft:#a0abdd;
+    --glow:rgba(110,140,255,0.08);
+}
+
+body{
+    margin:0;
+    background:
+        radial-gradient(circle at top, rgba(90,110,200,0.08), transparent 55%),
+        linear-gradient(to bottom, #01010c, #000103 75%, #000000);
+    color:var(--text);
+    font-family:"Courier New", monospace;
+    overflow-x:hidden;
+    letter-spacing:0.5px;
+    line-height:1.9;
+    text-shadow:0 0 3px rgba(180,210,255,0.05);
+    position:relative;
+}
+
+/* SCANLINES */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.01),
+        rgba(255,255,255,0.01) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    opacity:0.45;
+    z-index:999;
+}
+
+/* GRID */
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+        linear-gradient(rgba(110,140,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(110,140,255,0.03) 1px, transparent 1px);
+    background-size:42px 42px;
+    opacity:0.12;
+    z-index:-1;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:40px;
+    position:relative;
+    z-index:2;
+}
+
+/* HEADER */
+.header{
+    border:1px solid var(--line);
+    background:rgba(5,7,15,0.92);
+    padding:40px;
+    margin-bottom:35px;
+    box-shadow:0 0 25px var(--glow);
+}
+
+.header::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:1px;
+    background:rgba(180,210,255,0.3);
+    animation:scan 7s linear infinite;
+}
+
+@keyframes scan{
+0%{left:-100%;}
+100%{left:100%;}
+}
+
+.docid{
+    color:#8ea3eb;
+    font-size:13px;
+    letter-spacing:4px;
+    margin-bottom:16px;
+}
+
+.title{
+    font-size:36px;
+    letter-spacing:5px;
+    color:#dce5ff;
+    margin-bottom:20px;
+}
+
+.meta{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
+    color:#9bb0e1;
+    font-size:13px;
+}
+
+.meta span{
+    color:#dce5ff;
+}
+
+/* WARNING */
+.warning{
+    border-left:3px solid #8ea3eb;
+    background:rgba(8,10,18,0.92);
+    padding:22px;
+    margin:30px 0;
+    color:#c1cfee;
+}
+
+/* CONTENT */
+.section{
+    margin-top:40px;
+    margin-bottom:15px;
+    color:#a3b1ff;
+    letter-spacing:2px;
+    font-size:14px;
+    border-bottom:1px solid #2c3055;
+    padding-bottom:8px;
+}
+
+.content{
+    font-size:15px;
+    color:var(--text);
+    line-height:2.0;
+}
+
+.block{
+    background:rgba(5,7,15,0.92);
+    border:1px solid #4c4f72;
+    padding:20px;
+    margin:25px 0;
+}
+
+.footer{
+    margin-top:60px;
+    border-top:1px solid #2c3055;
+    color:#7a7fa0;
+    font-size:12px;
+    letter-spacing:1px;
+    line-height:1.8;
+}
+
+/* MOBILE */
+@media(max-width:700px){
+    .container{padding:20px;}
+    .title{font-size:28px;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+    <div class="docid">URA-01 // EXTRACTION STUDIES</div>
+    <div class="title">CLASSIFIED LOG ENTRY</div>
+    <div class="meta">
+        <div>ACCESS LEVEL: <span>LEVEL 5</span></div>
+        <div>FILE STATUS: <span>PARTIAL</span></div>
+        <div>NODE: <span>URA-MAIN</span></div>
+        <div>ARCHIVE BUILD: <span>0.9.1</span></div>
+    </div>
+</div>
+
+<div class="warning">
+WARNING: This material was never intended for standard observation. Repeated exposure may compromise observer stability.
+</div>
+
+<div class="content">
+
+<div class="section">OVERVIEW</div>
+The archive contains the first verified documentation of Determination extraction procedures. Initial tests treated Determination as a measurable resource. Observers may note unusual environmental persistence effects.
+
+<div class="section">EXPERIMENTAL OBSERVATIONS</div>
+- Extraction efficiency varies depending on subject synchronization.<br>
+- Environmental persistence observed post-extraction.<br>
+- Unauthorized subject intervention accelerates instability.<br>
+- Containment protocols may be insufficient for extreme cases.
+
+<div class="section">NOTES</div>
+Several logs indicate that the procedures were supervised by an unknown entity. Subjects report subtle anomalies without clear origin. Observer discretion advised.
+
+<div class="section">PRELIMINARY CONCLUSIONS</div>
+Determinable energy can be harnessed, but the process is partially corruptive. Full ethical implications remain unassessed. The supervising entity’s influence is suspected but unverified.
+
+</div>
+
+<div class="footer">
+DELTA CONTINUITY RESEARCH ARCHIVE // URA-01
+</div>
+
+</div>
+
+</body>
+</html>
