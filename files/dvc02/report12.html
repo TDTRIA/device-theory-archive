@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>DVC-02 // DOC-12 // RESTRICTED</title>
+<title>DVC-02 // DOC-12 // BREACH RECORD</title>
 
 <style>
 
@@ -24,107 +24,70 @@ body{
     overflow-x:hidden;
     letter-spacing:0.5px;
     position:relative;
-    text-shadow:0 0 6px rgba(180,210,255,0.08);
 }
 
-/* SCANLINES */
-
+/* scanlines */
 body::before{
     content:"";
     position:fixed;
     inset:0;
     pointer-events:none;
-
-    background:
-    repeating-linear-gradient(
+    background:repeating-linear-gradient(
         to bottom,
-        rgba(255,255,255,0.022),
-        rgba(255,255,255,0.022) 1px,
+        rgba(255,255,255,0.02),
+        rgba(255,255,255,0.02) 1px,
         transparent 1px,
         transparent 3px
     );
-
-    opacity:0.65;
-    z-index:999;
+    opacity:0.6;
 }
 
-/* GRID */
-
+/* grid */
 body::after{
     content:"";
     position:fixed;
     inset:0;
     pointer-events:none;
-
     background-image:
         linear-gradient(rgba(120,140,255,0.05) 1px, transparent 1px),
         linear-gradient(90deg, rgba(120,140,255,0.05) 1px, transparent 1px);
-
     background-size:42px 42px;
-
-    opacity:0.3;
-    z-index:-1;
+    opacity:0.25;
 }
 
+/* layout */
 .container{
     max-width:1000px;
     margin:auto;
     padding:40px;
     position:relative;
-    z-index:2;
 }
 
-/* TOPBAR */
-
+/* topbar */
 .topbar{
     display:flex;
     justify-content:space-between;
-    align-items:center;
     border-bottom:1px solid #6277b8;
     padding-bottom:18px;
     margin-bottom:35px;
-    flex-wrap:wrap;
-    gap:15px;
 }
 
 .network{
-    color:#eef2ff;
     letter-spacing:4px;
-    font-size:14px;
-    animation:flicker 4s infinite;
+    font-size:13px;
 }
 
 .status{
-    color:#d6deff;
     font-size:12px;
-    letter-spacing:2px;
-    animation:flicker 2s infinite;
+    opacity:0.8;
 }
 
-/* BACK */
-
-.back{
-    display:inline-block;
-    margin-bottom:35px;
-    color:#c8d5ff;
-    text-decoration:none;
-    transition:0.2s;
-    letter-spacing:1px;
-}
-
-.back:hover{
-    color:white;
-    transform:translateX(-4px);
-}
-
-/* HEADER */
-
+/* header */
 .header{
     border:1px solid #7087d4;
-    background:rgba(5,7,14,0.98);
+    background:rgba(5,7,14,0.95);
     padding:40px;
     margin-bottom:40px;
-    box-shadow:0 0 70px rgba(120,150,255,0.18);
     position:relative;
     overflow:hidden;
 }
@@ -136,182 +99,126 @@ body::after{
     left:-100%;
     width:100%;
     height:1px;
-    background:rgba(255,255,255,0.7);
-    animation:scan 2s linear infinite;
+    background:white;
+    animation:scan 3s linear infinite;
 }
 
 @keyframes scan{
-0%{left:-100%;}
-100%{left:100%;}
+    0%{left:-100%;}
+    100%{left:100%;}
 }
 
 .docid{
-    color:#d4ddff;
     letter-spacing:4px;
-    font-size:13px;
-    margin-bottom:15px;
+    font-size:12px;
+    opacity:0.9;
 }
 
 .title{
-    font-size:42px;
-    letter-spacing:7px;
-    color:#ffffff;
-    margin-bottom:28px;
-    line-height:1.5;
-    animation:flicker 8s infinite;
+    font-size:40px;
+    letter-spacing:6px;
+    margin:20px 0;
 }
 
 .meta{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:18px;
-    color:#bcc7eb;
-    line-height:1.9;
-    font-size:14px;
+    font-size:13px;
+    line-height:1.8;
+    opacity:0.85;
 }
 
-.meta span{
-    color:#ffffff;
-}
-
-.warning{
-    border-left:3px solid #dce5ff;
-    background:rgba(8,11,18,0.96);
-    padding:25px;
-    margin-bottom:45px;
-    color:#eef2ff;
-    line-height:2;
-}
-
+/* sections */
 .section{
     margin-top:60px;
-    margin-bottom:20px;
-    color:#d7e0ff;
-    letter-spacing:4px;
-    font-size:15px;
     border-bottom:1px solid #6277b8;
-    padding-bottom:12px;
+    padding-bottom:10px;
+    letter-spacing:3px;
+    font-size:14px;
+    opacity:0.9;
 }
 
 .content{
-    line-height:2.25;
-    color:#dfe5ff;
-    font-size:15px;
+    line-height:2.2;
+    margin-top:20px;
 }
 
+/* blocks */
 .block{
-    background:rgba(5,7,14,0.98);
     border:1px solid #7087d4;
     padding:24px;
-    margin:35px 0;
-    line-height:2;
-    color:#eef2ff;
+    margin:30px 0;
+    background:rgba(0,0,0,0.5);
 }
 
-.log{
-    margin:35px 0;
-    padding:25px;
-    background:rgba(0,0,0,0.98);
-    border:1px solid #7087d4;
-    color:#dce5ff;
-    line-height:2.1;
-    font-size:14px;
-}
-
+/* glitch */
 .glitch{
-    animation:flicker 3s infinite;
+    animation:flicker 4s infinite;
 }
 
 @keyframes flicker{
-0%{opacity:1;}
-1%{opacity:0.05;}
-2%{opacity:1;}
-25%{opacity:1;}
-26%{opacity:0.3;}
-27%{opacity:1;}
-55%{opacity:1;}
-56%{opacity:0.08;}
-57%{opacity:1;}
-88%{opacity:1;}
-89%{opacity:0.4;}
-90%{opacity:1;}
+    0%{opacity:1;}
+    2%{opacity:0.2;}
+    4%{opacity:1;}
+    55%{opacity:1;}
+    56%{opacity:0.3;}
+    57%{opacity:1;}
+    90%{opacity:1;}
+    91%{opacity:0.4;}
+    92%{opacity:1;}
 }
 
+/* hidden text */
 .hidden{
     opacity:0.02;
     user-select:none;
 }
 
+/* FOOTER */
 .footer{
-    margin-top:90px;
-    padding-top:30px;
+    margin-top:80px;
     border-top:1px solid #6277b8;
-    color:#95a7dd;
-    line-height:2;
+    padding-top:25px;
     font-size:12px;
-    letter-spacing:1px;
+    opacity:0.8;
 }
 
-/* HIDDEN KEY */
+/* ========================= */
+/* 🔑 KEY SYSTEM (IMPROVED) */
+/* ========================= */
 
 #hidden-key{
+    position:fixed;
+    right:6%;
+    bottom:110px;
 
-    position:absolute;
+    opacity:0;
+    transform:scale(0.6);
 
-    right:7%;
-    bottom:120px;
-
-    width:20px;
-    height:20px;
-
-    opacity:0.04;
-
-    cursor:pointer;
-
-    transition:0.3s;
-
+    font-size:16px;
     color:#dfe5ff;
 
-    font-size:14px;
-
-    z-index:5000;
-
+    cursor:pointer;
     user-select:none;
 
+    transition:1.5s;
+    text-shadow:0 0 10px rgba(255,255,255,0.1);
+}
+
+/* key "awakens" after corruption begins */
+body.ready #hidden-key{
+    opacity:0.18;
+    transform:scale(1);
+}
+
+/* becomes more unstable over time */
+body.ready.corrupt #hidden-key{
+    opacity:0.45;
+    animation:flicker 2s infinite;
 }
 
 #hidden-key:hover{
-
-    opacity:0.55;
-
-    transform:scale(1.3);
-
-    text-shadow:0 0 15px white;
-
-}
-
-/* MOBILE */
-
-@media(max-width:700px){
-
-.container{
-    padding:22px;
-}
-
-.title{
-    font-size:26px;
-    letter-spacing:4px;
-}
-
-.meta{
-    grid-template-columns:1fr;
-}
-
-}
-
-::selection{
-    background:#7087d4;
-    color:white;
+    opacity:0.9 !important;
+    transform:scale(1.4);
+    text-shadow:0 0 20px white;
 }
 
 </style>
@@ -322,138 +229,38 @@ body::after{
 <div class="container">
 
 <div class="topbar">
-
-<div class="network glitch">
-DELTA CONTINUITY RESEARCH NETWORK
+<div class="network glitch">DELTA CONTINUITY RESEARCH NETWORK</div>
+<div class="status glitch">NODE STATUS // BREACH DETECTED</div>
 </div>
-
-<div class="status glitch">
-NODE STATUS // UNRECOVERABLE
-</div>
-
-</div>
-
-<a href="dvc02.html" class="back">
-← RETURN TO DVC-02 DIRECTORY
-</a>
 
 <div class="header">
 
-<div class="docid">
-DVC-02 // DOC-12
-</div>
+<div class="docid">DVC-02 // DOC-12</div>
 
-<div class="title">
-OBSERVER BREACH EVENT
-</div>
+<div class="title glitch">OBSERVER BREACH EVENT</div>
 
 <div class="meta">
-
-<div>
-FILE STATUS:
-<span class="glitch">RESTRICTED</span>
-</div>
-
-<div>
-ACCESS LEVEL:
-<span>NULL</span>
-</div>
-
-<div>
-DEVIATION INDEX:
-<span class="glitch">UNDEFINED</span>
-</div>
-
-<div>
-OBSERVER STABILITY:
-<span class="glitch">IRREVERSIBLE</span>
-</div>
-
-<div>
-ARCHIVE BUILD:
-<span>UNKNOWN</span>
-</div>
-
-<div>
-NODE:
-<span class="glitch">UNVERIFIED</span>
+FILE STATUS: RESTRICTED<br>
+CONTINUITY STATE: UNSTABLE<br>
+OBSERVER INTEGRITY: COLLAPSED<br>
+ARCHIVE CONDITION: ACTIVE FAILURE
 </div>
 
 </div>
 
-</div>
-
-<div class="warning">
-
-WARNING:
-
-The following material was never approved
-for archive recovery.
-
-<br><br>
-
-Continuation beyond this point
-was classified as:
-<br><br>
-
-- non-reversible
-
-<br>
-
-- psychologically hazardous
-
-<br>
-
-- structurally contaminating
-
-<br>
-
-- observer-compromising
-
-<br><br>
-
-Further review was prohibited.
-
-The prohibition failed.
-
-</div>
+<div class="section">RECOVERY STATUS</div>
 
 <div class="content">
 
-<div class="section">
-RECOVERY STATUS
+DOC-12 was reconstructed from fragmented continuity remnants.
+
+The final session did not terminate.
+
+It continued executing without observer input.
+
 </div>
 
-DOC-12 was reconstructed
-from fragmented continuation remnants
-following total archive synchronization failure.
-
-Large portions of the original material
-remain permanently unrecoverable.
-
-Recovered sections indicate:
-the final continuation sessions
-did not terminate correctly.
-
-Several records imply:
-the observer remained active
-after synchronization collapse.
-
-<div class="section">
-BREACH CONDITIONS
-</div>
-
-Early synchronization theory assumed:
-the observer existed externally
-to continuity structures.
-
-Late-stage continuation evidence
-contradicted this assumption completely.
-
-Repeated exposure appears to weaken:
-observer distinction boundaries,
-continuity separation integrity,
-and progression containment stability.
+<div class="section">BREACH ANALYSIS</div>
 
 <div class="block glitch">
 
@@ -461,181 +268,102 @@ THERE IS NO EXTERNAL POSITION
 
 </div>
 
-<div class="section">
-FINAL CONTINUATION EVENTS
-</div>
+<div class="content">
 
-Recovered recordings from the final sessions
-are heavily corrupted.
+Observer separation theory is invalid.
 
-However,
-several consistent elements remain identifiable:
-- continuation refusal
-- failed disengagement
-- unresolved synchronization
-- environmental persistence
-- observer hesitation
+Continuity does not require observation.
 
-<div class="log">
-
-FINAL LOG // OB-01
-
-<br><br>
-
-Observer initiated continuation sequence.
-
-<br><br>
-
-Completion threshold reached.
-
-<br><br>
-
-Termination event failed.
-
-<br><br>
-
-Environmental activity persists.
-
-<br><br>
-
-Observer remains present.
-
-<br><br>
-
-Disengagement unsuccessful.
+It requires participation.
 
 </div>
 
-<div class="section">
-LAST INTERNAL NOTICE
-</div>
+<div class="section">FINAL LOG</div>
 
-<div class="log">
+<div class="block">
 
-DVC-02 containment procedures terminated.
+Observer attempted disengagement.
 
 <br><br>
 
-Synchronization boundaries lost.
+Disengagement failed.
 
 <br><br>
 
-Observer distinction integrity unresolved.
+System remained active.
 
 <br><br>
 
-Continuation persists.
-
-<br><br>
-
-ARCHIVE STATUS:
-ACTIVE
+No reset occurred.
 
 </div>
 
-<div class="section">
-PERSONAL ENTRY // M
-</div>
+<div class="section">PERSONAL ENTRY // M</div>
 
-If this entry survived,
-then the archive was never destroyed.
+<div class="content">
 
-I used to believe
-the continuities required observers.
+If you are reading this,
+then the archive did not close.
 
-Then I believed
-the observers required continuities.
+<br><br>
 
-Now I am no longer certain
-there was ever a meaningful difference.
+I think we misunderstood what was happening.
 
-The final session should have ended.
+We thought we were observing continuity.
 
-It did not.
+We were inside it the entire time.
 
-The route completed.
-The observer stopped moving.
-The continuity remained active.
-
-Nothing reset.
-
-Nothing disconnected.
-
-The environment simply continued existing.
-
-For several minutes,
-no one interacted.
-
-Yet the continuity persisted
-as though waiting
-for the observer to decide something.
-
-I think we misunderstood continuation entirely.
-
-It was never forcing progression.
-
-It was waiting for permission to stop.
-
-And we never gave it that permission.
+<br><br>
 
 <span class="hidden">
-the key is not gone
-it was USED UP
+the key is not gone it was used up
 </span>
 
 </div>
 
 <div class="footer">
 
-END OF FILE
+END OF FILE<br><br>
 
-<br><br>
-
-DVC-02-12
-
-<br>
-
-NO VERIFIED EXIT CONDITION EXISTS.
+DVC-02-12 // NO EXIT CONDITION
 
 </div>
 
 </div>
 
-<!-- HIDDEN KEY -->
-
+<!-- KEY -->
 <div id="hidden-key">⌁</div>
 
 <script>
 
-const hiddenKey =
-document.getElementById("hidden-key");
+let stage = 0;
 
-hiddenKey.addEventListener("click", ()=>{
+/* stage 1: reveal key after delay */
+setTimeout(()=>{
+    document.body.classList.add("ready");
+}, 4000);
 
-    hiddenKey.innerHTML = "USED UP";
+/* stage 2: slight corruption buildup */
+setTimeout(()=>{
+    document.body.classList.add("corrupt");
+}, 9000);
 
-    hiddenKey.style.opacity = "1";
+/* click unlock */
+document.getElementById("hidden-key").addEventListener("click", ()=>{
 
-    hiddenKey.style.textShadow =
-    "0 0 18px white";
+    stage++;
 
-    localStorage.setItem(
-        "uraUnlocked",
-        "true"
-    );
+    const key = document.getElementById("hidden-key");
 
-    document.body.style.transition =
-    "2s";
+    key.innerHTML = "USED UP";
 
-    document.body.style.filter =
-    "brightness(2) contrast(0.4)";
+    document.body.style.filter = "brightness(2) contrast(0.4)";
+
+    localStorage.setItem("uraUnlocked","true");
 
     setTimeout(()=>{
-
-        window.location.href =
-        "../../ura.html";
-
-    }, 1800);
+        window.location.href = "../../ura.html";
+    }, 1600);
 
 });
 
