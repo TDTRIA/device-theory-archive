@@ -3,28 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UNDERTALE RESEARCH ARCHIVE</title>
+<title>DEVICE CONTINUITY NETWORK // URA</title>
 
 <style>
 :root{
-    --bg:#03040a;
-    --line:#444871;
+    --bg:#05060d;
+    --line:#28324f;
     --text:#d7dcef;
     --soft:#95a4cf;
-    --glow:rgba(140,120,255,0.08);
+    --dim:#66749b;
 }
 
 body{
     margin:0;
     background:
-        radial-gradient(circle at top, rgba(120,80,255,0.06), transparent 60%),
-        linear-gradient(to bottom, #03040a, #010103 75%, #000000);
+        radial-gradient(circle at top, rgba(90,110,200,0.08), transparent 55%),
+        linear-gradient(to bottom, #05060d, #02030a 75%, #010106);
     color:var(--text);
     font-family:"Courier New", monospace;
     overflow-x:hidden;
-    letter-spacing:0.5px;
+    letter-spacing:0.4px;
     position:relative;
-    text-shadow:0 0 3px rgba(180,210,255,0.04);
 }
 
 /* SCANLINES */
@@ -33,13 +32,14 @@ body::before{
     position:fixed;
     inset:0;
     pointer-events:none;
-    background:repeating-linear-gradient(
-        to bottom,
-        rgba(255,255,255,0.015),
-        rgba(255,255,255,0.015) 1px,
-        transparent 1px,
-        transparent 3px
-    );
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            rgba(255,255,255,0.012),
+            rgba(255,255,255,0.012) 1px,
+            transparent 1px,
+            transparent 3px
+        );
     opacity:0.4;
     z-index:999;
 }
@@ -54,13 +54,13 @@ body::after{
         linear-gradient(rgba(120,140,255,0.025) 1px, transparent 1px),
         linear-gradient(90deg, rgba(120,140,255,0.025) 1px, transparent 1px);
     background-size:42px 42px;
-    opacity:0.12;
+    opacity:0.15;
     z-index:-1;
 }
 
 /* CONTAINER */
 .container{
-    max-width:1000px;
+    max-width:1200px;
     margin:auto;
     padding:40px;
     position:relative;
@@ -75,8 +75,6 @@ body::after{
     border-bottom:1px solid var(--line);
     padding-bottom:18px;
     margin-bottom:35px;
-    flex-wrap:wrap;
-    gap:15px;
 }
 
 .network{
@@ -91,27 +89,13 @@ body::after{
     letter-spacing:2px;
 }
 
-/* BACK */
-.back{
-    display:inline-block;
-    margin-bottom:35px;
-    color:#8ea3eb;
-    text-decoration:none;
-    transition:0.2s;
-    letter-spacing:1px;
-}
-.back:hover{
-    color:white;
-    transform:translateX(-4px);
-}
-
 /* HEADER */
 .header{
     border:1px solid #2d3655;
     background:rgba(8,10,20,0.92);
     padding:40px;
     margin-bottom:40px;
-    box-shadow:0 0 30px var(--glow);
+    box-shadow:0 0 30px rgba(120,150,255,0.08);
     position:relative;
     overflow:hidden;
 }
@@ -132,35 +116,16 @@ body::after{
     100%{left:100%;}
 }
 
-.id{
-    color:#8ea3eb;
-    letter-spacing:4px;
-    font-size:13px;
-    margin-bottom:16px;
-}
-
 .title{
-    font-size:40px;
+    font-size:36px;
     letter-spacing:6px;
     color:#dce5ff;
     margin-bottom:28px;
-    line-height:1.4;
 }
 
 .desc{
     color:#95a4cf;
-    line-height:2;
-}
-
-/* SECTION */
-.section{
-    margin-top:60px;
-    margin-bottom:20px;
-    color:#9cb2ff;
-    letter-spacing:4px;
-    font-size:15px;
-    border-bottom:1px solid #2b3555;
-    padding-bottom:12px;
+    line-height:1.9;
 }
 
 /* FILES */
@@ -175,7 +140,6 @@ body::after{
     transition:0.2s;
     position:relative;
     overflow:hidden;
-    cursor:pointer;
 }
 
 .file::before{
@@ -193,9 +157,11 @@ body::after{
     );
     transition:0.5s;
 }
+
 .file:hover::before{
     left:100%;
 }
+
 .file:hover{
     border-color:#4d67aa;
     transform:translateX(6px);
@@ -206,59 +172,43 @@ body::after{
     letter-spacing:2px;
     margin-bottom:10px;
 }
+
 .file-desc{
     color:#95a4cf;
     line-height:1.8;
     font-size:14px;
 }
 
-/* LOCKED */
-.locked{
-    opacity:0.45;
-    cursor:default;
+/* PASSWORD */
+#passwordContainer{
+    margin-top:25px;
 }
-.locked:hover{
-    transform:none;
-    border-color:#2d3757;
-    box-shadow:none;
+
+#passwordContainer input{
+    background:transparent;
+    border:1px solid var(--line);
+    color:white;
+    font-family:"Courier New", monospace;
+    font-size:16px;
+    padding:8px 10px;
+    width:200px;
+}
+
+#passwordError{
+    margin-top:10px;
+    color:#ff5f5f;
+    opacity:0;
+    transition:0.4s;
 }
 
 /* FOOTER */
 .footer{
-    margin-top:90px;
-    padding-top:30px;
-    border-top:1px solid #28324f;
+    margin-top:60px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
     color:#66749b;
-    line-height:2;
     font-size:12px;
     letter-spacing:1px;
-}
-
-/* GLITCH */
-.glitch{
-    animation:flicker 3s infinite;
-}
-@keyframes flicker{
-    0%{opacity:1;}
-    1%{opacity:0.2;}
-    2%{opacity:1;}
-    55%{opacity:1;}
-    56%{opacity:0.4;}
-    57%{opacity:1;}
-    90%{opacity:1;}
-    91%{opacity:0.1;}
-    92%{opacity:1;}
-}
-
-/* MOBILE */
-@media(max-width:700px){
-    .container{padding:22px;}
-    .title{font-size:26px; letter-spacing:4px;}
-}
-
-::selection{
-    background:#58418a;
-    color:white;
 }
 </style>
 </head>
@@ -268,72 +218,83 @@ body::after{
 <div class="container">
 
 <div class="topbar">
-<div class="network">UNDERTALE RESEARCH ARCHIVE</div>
-<div class="status">NODE STATUS // ACTIVE</div>
+    <div class="network">DELTA CONTINUITY RESEARCH NETWORK</div>
+    <div class="status">NODE STATUS // ACTIVE</div>
 </div>
-
-<a href="../../archive.html" class="back">
-← RETURN TO MAIN ARCHIVE
-</a>
 
 <div class="header">
-<div class="id">URA // MAIN NODE</div>
-<div class="title">UNDERTALE RESEARCH ARCHIVE</div>
-<div class="desc">
-Recovered Gaster research, dark fountain documentation,
-and observer activity logs. Access restricted.
-</div>
+    <div class="title">UNDERTALE RESEARCH ARCHIVE (URA)</div>
+    <div class="desc">Observer access required. Each document requires individual authorization to view.</div>
 </div>
 
 <div class="section">ACTIVE DOCUMENTS</div>
 
-<a class="file" id="ura1"><div class="file-title">URA-01 // DARK FOUNTAIN ORIGINS</div>
-<div class="file-desc">Initial notes on dark fountain experiments and anomalies.</div></a>
+<!-- URA Files -->
+<a href="ura01.html" class="file">
+    <div class="file-title">URA-01 // GASTER OBSERVATION LOGS</div>
+    <div class="file-desc">Early research notes on Gaster's experiments and anomalies.</div>
+</a>
 
-<a class="file" id="ura2"><div class="file-title">URA-02 // SHADOW DETERMINATION</div>
-<div class="file-desc">Analysis of determination extraction and effects on core.</div></a>
+<a href="ura02.html" class="file">
+    <div class="file-title">URA-02 // DARK FOUNTAIN RESEARCH</div>
+    <div class="file-desc">Experimental data and initial observations of Dark Fountains.</div>
+</a>
 
-<a class="file" id="ura3"><div class="file-title">URA-03 // EXTRACTION PROCEDURES</div>
-<div class="file-desc">Procedures related to extraction of observer data.</div></a>
+<a href="ura03.html" class="file">
+    <div class="file-title">URA-03 // SHADOW CRYSTAL ANALYSIS</div>
+    <div class="file-desc">Material studies, extraction protocols, and containment reports.</div>
+</a>
 
-<a class="file" id="ura4"><div class="file-title">URA-04 // M'S INVESTIGATION</div>
-<div class="file-desc">Research into M’s pursuit of Gaster and corrupted continuities.</div></a>
+<a href="ura04.html" class="file">
+    <div class="file-title">URA-04 // CONTINUITY DEVIATION INCIDENTS</div>
+    <div class="file-desc">Compilation of observer destabilization and anomaly records.</div>
+</a>
 
-<a class="file" id="ura5"><div class="file-title">URA-05 // DARK ROUTES LOG</div>
-<div class="file-desc">Records of unusual dark route anomalies and observer impact.</div></a>
+<a href="ura05.html" class="file">
+    <div class="file-title">URA-05 // FINAL CONTINUATION LOGS</div>
+    <div class="file-desc">Recovered sessions detailing high-risk continuation and intent failures.</div>
+</a>
+
+<div class="section">ACCESS AUTHORIZATION</div>
+<div class="content" id="passwordContainer">
+    <input type="password" id="passwordInput" placeholder="ENTER DEVICE KEY">
+    <div id="passwordError">ACCESS DENIED</div>
+</div>
 
 <div class="footer">
-DELTA CONTINUITY RESEARCH NETWORK
-<br><br>
-ARCHIVE BUILD: 0.9.1
-<br>
-NO VERIFIED ORIGINAL STRUCTURE EXISTS.
+DELTA CONTINUITY RESEARCH NETWORK<br>
+ARCHIVE NODE: URA
 </div>
 
 </div>
 
 <script>
-/* Passwords for each URA doc */
-const passwords = {
-    "ura1": "fountain",
-    "ura2": "shadow",
-    "ura3": "extraction",
-    "ura4": "investigation",
-    "ura5": "routes"
-};
+const input = document.getElementById("passwordInput");
+const error = document.getElementById("passwordError");
 
-/* Add click handlers */
-Object.keys(passwords).forEach(id=>{
-    const el = document.getElementById(id);
-    el.addEventListener("click", ()=>{
-        const userPass = prompt("Enter access key for this document:");
-        if(userPass && userPass.toLowerCase() === passwords[id]){
-            window.location.href = "files/" + id + ".html";
+// Main key
+const mainKey = "DEVICE";
+
+input.addEventListener("keydown", (e)=>{
+    if(e.key === "Enter"){
+        const val = input.value.trim();
+        if(val === mainKey){
+            // unlock all links
+            const files = document.querySelectorAll(".file");
+            files.forEach(f=>f.style.pointerEvents="auto");
+            files.forEach(f=>f.style.opacity="1");
+            error.style.opacity = "0";
         } else {
-            alert("ACCESS DENIED");
+            error.style.opacity = "1";
+            input.value = "";
         }
-    });
+    }
 });
+
+// Initially disable files
+const files = document.querySelectorAll(".file");
+files.forEach(f=>f.style.pointerEvents="none");
+files.forEach(f=>f.style.opacity="0.5");
 </script>
 
 </body>
