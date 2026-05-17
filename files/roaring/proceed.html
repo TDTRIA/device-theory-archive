@@ -1,1 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>CONTINUE?</title>
+
+<style>
+
+body{
+    margin:0;
+    background:black;
+    overflow:hidden;
+    font-family:"Courier New", monospace;
+    color:white;
+}
+
+/* SCANLINES */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            rgba(255,255,255,0.03),
+            rgba(255,255,255,0.03) 1px,
+            transparent 1px,
+            transparent 3px
+        );
+    opacity:0.25;
+    z-index:999;
+}
+
+/* MAIN */
+
+.container{
+    width:100vw;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+}
+
+/* HEART */
+
+.heart{
+    position:absolute;
+    width:28px;
+    height:28px;
+    background:red;
+    transform:rotate(-45deg);
+    transition:0.18s;
+    z-index:5;
+    box-shadow:
+        0 0 15px rgba(255,0,0,0.6),
+        0 0 35px rgba(255,0,0,0.35);
+}
+
+.heart::before,
+.heart::after{
+    content:"";
+    position:absolute;
+    width:28px;
+    height:28px;
+    background:red;
+    border-radius:50%;
+}
+
+.heart::before{
+    top:-14px;
+    left:0;
+}
+
+.heart::after{
+    left:14px;
+    top:0;
+}
+
+/* OPTIONS */
+
+.option{
+    position:absolute;
+    font-size:32px;
+    color:#d0d0d0;
+    transition:0.2s;
+    letter-spacing:2px;
+}
+
+.option.active{
+    color:white;
+    text-shadow:
+        0 0 10px rgba(255,255,255,0.35);
+}
+
+#continue{
+    left:18%;
+}
+
+#dont{
+    right:12%;
+}
+
+/* TEXTBOX */
+
+.textbox{
+    position:fixed;
+    left:50%;
+    bottom:50px;
+    transform:translateX(-50%);
+    width:78%;
+    background:black;
+    border:5px solid white;
+    padding:22px;
+    display:none;
+    z-index:1000;
+}
+
+.text{
+    color:white;
+    font-size:30px;
+    line-height:1.6;
+    white-space:pre-wrap;
+}
+
+/* WHITE FADE */
+
+.white{
+    position:fixed;
+    inset:0;
+    background:white;
+    opacity:0;
+    pointer-events:none;
+    z-index:5000;
+    transition:4s;
+}
+
+.white.active{
+    opacity:1;
+}
+
+/* BLACK FADE */
+
+.black{
+    position:fixed;
+    inset:0;
+    background:black;
+    opacity:0;
+    pointer-events:none;
+    z-index:4000;
+    transition:1.2s;
+}
+
+.black.active{
+    opacity:1;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="option active" id="continue">
+        CONTINUE
+    </div>
+
+    <div class="heart" id="heart"></div>
+
+    <div class="option" id="dont">
+        PLEASE DON'T...
+    </div>
+
+</div>
+
+<div class="textbox" id="textbox">
+    <div class="text" id="text"></div>
+</div>
+
+<div class="black" id="blackFade"></div>
+<div class="white" id="whiteFade"></div>
+
+<!-- AUDIO -->
+
+<audio id="drone" loop>
+    <source src="drone.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="select">
+    <source src="snd_select.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="textSound">
+    <source src="snd_text.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="fountain">
+    <source src="snd_fountain_make.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+const options = [
+    document.getElementById("continue"),
+    document.getElementById("dont")
+];
+
+const heart = document.getElementById("heart");
+
+const selectSound = document.getElementById("select");
+const textSound = document.getElementById("textSound");
+const fountain = document.getElementById("fountain");
+const drone = document.getElementById("drone");
+
+const textbox = document.getElementById("textbox");
+const text = document.getElementById("text");
+
+const blackFade = document.getElementById("blackFade");
+const whiteFade = document.getElementById("whiteFade");
+
+let selected = 0;
+let locked = false;
+
+/* START DRONE */
+
+window.onload = () => {
+    drone.volume = 0.55;
+    drone.play().catch(()=>{});
+    updateSelection();
+};
+
+/* MOVE HEART */
+
+function updateSelection(){
+
+    options.forEach(o=>o.classList.remove("active"));
+    options[selected].classList.add("active");
+
+    const rect = options[selected].getBoundingClientRect();
+
+    heart.style.left =
+        (rect.left - 50) + "px";
+
+    heart.style.top =
+        (rect.top + 10) + "px";
+}
+
+/* INPUT */
+
+document.addEventListener("keydown", e=>{
+
+    if(locked) return;
+
+    if(e.key === "ArrowLeft" || e.key === "ArrowRight"){
+
+        selected = selected === 0 ? 1 : 0;
+
+        selectSound.currentTime = 0;
+        selectSound.play();
+
+        updateSelection();
+    }
+
+    if(e.key === "Enter"){
+
+        locked = true;
+
+        blackFade.classList.add("active");
+
+        setTimeout(()=>{
+            startSequence();
+        }, 1400);
+    }
+
+});
+
+/* TEXT SEQUENCE */
+
+function startSequence(){
+
+    textbox.style.display = "block";
+
+    const lines = [
+        "The Key was used up.",
+        "She was used up.",
+        "You were used up."
+    ];
+
+    let lineIndex = 0;
+
+    function typeLine(){
+
+        if(lineIndex >= lines.length){
+
+            setTimeout(()=>{
+
+                fountain.play();
+
+                setTimeout(()=>{
+                    whiteFade.classList.add("active");
+                }, 1200);
+
+                /* START GAME */
+
+                setTimeout(()=>{
+                    window.location.href = "../game/index.html";
+                }, 5200);
+
+            }, 2000);
+
+            return;
+        }
+
+        let i = 0;
+        text.innerHTML = "";
+
+        const interval = setInterval(()=>{
+
+            text.innerHTML += lines[lineIndex][i];
+
+            textSound.currentTime = 0;
+            textSound.play();
+
+            i++;
+
+            if(i >= lines[lineIndex].length){
+
+                clearInterval(interval);
+
+                lineIndex++;
+
+                setTimeout(typeLine, 1600);
+            }
+
+        }, 120);
+
+    }
+
+    typeLine();
+}
+
+</script>
+
+</body>
+</html>
