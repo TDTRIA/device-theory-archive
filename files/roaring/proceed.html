@@ -7,7 +7,6 @@
 <title>CONTINUE?</title>
 
 <style>
-
 body{
     margin:0;
     background:black;
@@ -16,26 +15,21 @@ body{
     color:white;
 }
 
-/* SCANLINES */
-
 body::before{
     content:"";
     position:fixed;
     inset:0;
     pointer-events:none;
-    background:
-        repeating-linear-gradient(
-            to bottom,
-            rgba(255,255,255,0.03),
-            rgba(255,255,255,0.03) 1px,
-            transparent 1px,
-            transparent 3px
-        );
+    background:repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.03),
+        rgba(255,255,255,0.03) 1px,
+        transparent 1px,
+        transparent 3px
+    );
     opacity:0.25;
     z-index:999;
 }
-
-/* MAIN */
 
 .container{
     width:100vw;
@@ -44,9 +38,8 @@ body::before{
     justify-content:center;
     align-items:center;
     position:relative;
+    z-index:10;
 }
-
-/* HEART */
 
 .heart{
     position:absolute;
@@ -55,7 +48,7 @@ body::before{
     background:red;
     transform:rotate(-45deg);
     transition:0.18s;
-    z-index:5;
+    z-index:20;
     box-shadow:
         0 0 15px rgba(255,0,0,0.6),
         0 0 35px rgba(255,0,0,0.35);
@@ -81,8 +74,6 @@ body::before{
     top:0;
 }
 
-/* OPTIONS */
-
 .option{
     position:absolute;
     font-size:32px;
@@ -93,8 +84,7 @@ body::before{
 
 .option.active{
     color:white;
-    text-shadow:
-        0 0 10px rgba(255,255,255,0.35);
+    text-shadow:0 0 10px rgba(255,255,255,0.35);
 }
 
 #continue{
@@ -104,8 +94,6 @@ body::before{
 #dont{
     right:12%;
 }
-
-/* TEXTBOX */
 
 .textbox{
     position:fixed;
@@ -117,7 +105,7 @@ body::before{
     border:5px solid white;
     padding:22px;
     display:none;
-    z-index:1000;
+    z-index:7000;
 }
 
 .text{
@@ -127,15 +115,13 @@ body::before{
     white-space:pre-wrap;
 }
 
-/* WHITE FADE */
-
 .white{
     position:fixed;
     inset:0;
     background:white;
     opacity:0;
     pointer-events:none;
-    z-index:5000;
+    z-index:8000;
     transition:4s;
 }
 
@@ -143,28 +129,25 @@ body::before{
     opacity:1;
 }
 
-/* BLACK FADE */
-
 .black{
     position:fixed;
     inset:0;
     background:black;
     opacity:0;
     pointer-events:none;
-    z-index:4000;
+    z-index:3000;
     transition:1.2s;
 }
 
 .black.active{
     opacity:1;
 }
-
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="container" id="menu">
 
     <div class="option active" id="continue">
         CONTINUE
@@ -178,39 +161,38 @@ body::before{
 
 </div>
 
+<div class="black" id="blackFade"></div>
+
 <div class="textbox" id="textbox">
     <div class="text" id="text"></div>
 </div>
 
-<div class="black" id="blackFade"></div>
 <div class="white" id="whiteFade"></div>
 
-<!-- AUDIO -->
-
 <audio id="drone" loop>
-    <source src="drone.mp3" type="audio/mpeg">
+    <source src="audio/drone.mp3" type="audio/mpeg">
 </audio>
 
 <audio id="select">
-    <source src="snd_select.mp3" type="audio/mpeg">
+    <source src="audio/snd_select.mp3" type="audio/mpeg">
 </audio>
 
 <audio id="textSound">
-    <source src="snd_text.mp3" type="audio/mpeg">
+    <source src="audio/snd_text.mp3" type="audio/mpeg">
 </audio>
 
 <audio id="fountain">
-    <source src="snd_fountain_make.mp3" type="audio/mpeg">
+    <source src="audio/snd_fountain_make.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-
 const options = [
     document.getElementById("continue"),
     document.getElementById("dont")
 ];
 
 const heart = document.getElementById("heart");
+const menu = document.getElementById("menu");
 
 const selectSound = document.getElementById("select");
 const textSound = document.getElementById("textSound");
@@ -226,33 +208,26 @@ const whiteFade = document.getElementById("whiteFade");
 let selected = 0;
 let locked = false;
 
-/* START DRONE */
+window.addEventListener("load", () => {
+    updateSelection();
+});
 
-window.onload = () => {
+document.body.addEventListener("click", () => {
     drone.volume = 0.55;
     drone.play().catch(()=>{});
-    updateSelection();
-};
-
-/* MOVE HEART */
+}, { once:true });
 
 function updateSelection(){
-
-    options.forEach(o=>o.classList.remove("active"));
+    options.forEach(o => o.classList.remove("active"));
     options[selected].classList.add("active");
 
     const rect = options[selected].getBoundingClientRect();
 
-    heart.style.left =
-        (rect.left - 50) + "px";
-
-    heart.style.top =
-        (rect.top + 10) + "px";
+    heart.style.left = (rect.left - 50) + "px";
+    heart.style.top = (rect.top + 10) + "px";
 }
 
-/* INPUT */
-
-document.addEventListener("keydown", e=>{
+document.addEventListener("keydown", e => {
 
     if(locked) return;
 
@@ -261,7 +236,7 @@ document.addEventListener("keydown", e=>{
         selected = selected === 0 ? 1 : 0;
 
         selectSound.currentTime = 0;
-        selectSound.play();
+        selectSound.play().catch(()=>{});
 
         updateSelection();
     }
@@ -270,80 +245,69 @@ document.addEventListener("keydown", e=>{
 
         locked = true;
 
+        selectSound.currentTime = 0;
+        selectSound.play().catch(()=>{});
+
         blackFade.classList.add("active");
 
-        setTimeout(()=>{
+        setTimeout(() => {
             startSequence();
-        }, 1400);
+        }, 1300);
     }
-
 });
-
-/* TEXT SEQUENCE */
 
 function startSequence(){
 
+    menu.style.display = "none";
+
+    blackFade.classList.remove("active");
+
     textbox.style.display = "block";
 
-    const lines = [
-        "The Key was used up.",
-        "She was used up.",
-        "You were used up."
-    ];
+    const fullMessage =
+        "* The Key was used up.\n" +
+        "* She was used up.\n" +
+        "* You were used up.";
 
-    let lineIndex = 0;
+    let i = 0;
+    text.innerHTML = "";
 
-    function typeLine(){
+    const typing = setInterval(() => {
 
-        if(lineIndex >= lines.length){
+        const char = fullMessage[i];
 
-            setTimeout(()=>{
-
-                fountain.play();
-
-                setTimeout(()=>{
-                    whiteFade.classList.add("active");
-                }, 1200);
-
-                /* START GAME */
-
-                setTimeout(()=>{
-                    window.location.href = "../game/index.html";
-                }, 5200);
-
-            }, 2000);
-
-            return;
+        if(char === "\n"){
+            text.innerHTML += "<br>";
+        }else{
+            text.innerHTML += char;
         }
 
-        let i = 0;
-        text.innerHTML = "";
-
-        const interval = setInterval(()=>{
-
-            text.innerHTML += lines[lineIndex][i];
-
+        if(char !== " " && char !== "\n"){
             textSound.currentTime = 0;
-            textSound.play();
+            textSound.play().catch(()=>{});
+        }
 
-            i++;
+        i++;
 
-            if(i >= lines[lineIndex].length){
+        if(i >= fullMessage.length){
 
-                clearInterval(interval);
+            clearInterval(typing);
 
-                lineIndex++;
+            setTimeout(() => {
+                fountain.play().catch(()=>{});
+            }, 1200);
 
-                setTimeout(typeLine, 1600);
-            }
+            setTimeout(() => {
+                whiteFade.classList.add("active");
+            }, 2400);
 
-        }, 120);
+            setTimeout(() => {
+                window.location.href = "../game/index.html";
+            }, 7200);
+        }
 
-    }
-
-    typeLine();
+    }, 135);
 }
-
 </script>
 
 </body>
