@@ -3,167 +3,129 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UNDERTALE RESEARCH ARCHIVE</title>
+
+<title>UNDERTALE RESEARCH ARCHIVE (URA)</title>
 
 <style>
-:root{
-    --bg:#05050a;
-    --line:#28324f;
-    --text:#d7dcef;
-    --soft:#95a4cf;
-    --dim:#66749b;
-}
 
 body{
     margin:0;
-    background:
-        radial-gradient(circle at top, rgba(80,100,200,0.08), transparent 55%),
-        linear-gradient(to bottom, #05050a, #02020a 75%, #010106);
-    color:var(--text);
+    background:#020204;
+    color:#e0dcef;
     font-family:"Courier New", monospace;
-    overflow-x:hidden;
-    letter-spacing:0.4px;
-    position:relative;
+    overflow:hidden;
 }
 
-/* SCANLINES */
-body::before{
+/* SCANLINES & GRID */
+
+.scanlines::before{
     content:"";
     position:fixed;
-    inset:0;
+    top:0; left:0;
+    width:100%; height:100%;
     pointer-events:none;
     background:repeating-linear-gradient(
         to bottom,
-        rgba(255,255,255,0.012),
-        rgba(255,255,255,0.012) 1px,
+        rgba(255,255,255,0.015),
+        rgba(255,255,255,0.015) 1px,
         transparent 1px,
         transparent 3px
     );
-    opacity:0.45;
     z-index:999;
 }
 
-/* GRID */
-body::after{
-    content:"";
+.grid{
     position:fixed;
-    inset:0;
-    pointer-events:none;
+    top:0; left:0;
+    width:100%; height:100%;
     background-image:
-        linear-gradient(rgba(120,140,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(120,140,255,0.025) 1px, transparent 1px);
+        linear-gradient(rgba(120,90,180,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120,90,180,0.03) 1px, transparent 1px);
     background-size:42px 42px;
-    opacity:0.15;
-    z-index:-1;
+    pointer-events:none;
 }
 
+/* MAIN */
+
 .container{
-    max-width:1200px;
-    margin:auto;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
     padding:40px;
     position:relative;
     z-index:2;
 }
 
-/* TOPBAR */
-.topbar{
+.panel{
+    width:720px;
+    max-width:90%;
+    border:1px solid #332b47;
+    background:rgba(8,8,14,0.92);
+    padding:35px;
+    box-shadow:0 0 24px rgba(140,110,255,0.08);
+}
+
+/* TITLE */
+
+.logo{
+    font-size:34px;
+    letter-spacing:5px;
+    color:#d8c9ff;
+    margin-bottom:18px;
+}
+
+.subtitle{
+    color:#988bb8;
+    line-height:1.9;
+    margin-bottom:45px;
+}
+
+/* TERMINAL / PASSWORD */
+
+.line{
+    color:#bdb5d4;
+    margin-bottom:18px;
+    line-height:1.8;
+}
+
+.prompt{
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    border-bottom:1px solid var(--line);
-    padding-bottom:18px;
-    margin-bottom:35px;
-    flex-wrap:wrap;
-    gap:15px;
-}
-
-.network{
-    color:#d5deff;
-    letter-spacing:4px;
-    font-size:14px;
-}
-
-.status{
-    color:#7d8dbb;
-    font-size:12px;
-    letter-spacing:2px;
-}
-
-/* BACK */
-.back{
-    display:inline-block;
-    margin-bottom:35px;
-    color:#8ea3eb;
-    text-decoration:none;
-    transition:0.2s;
-    letter-spacing:1px;
-}
-
-.back:hover{
-    color:white;
-    transform:translateX(-4px);
-}
-
-/* HEADER */
-.header{
-    border:1px solid #2d3655;
-    background:rgba(8,10,20,0.92);
-    padding:40px;
-    margin-bottom:40px;
-    box-shadow:0 0 30px rgba(120,150,255,0.08);
-    position:relative;
-    overflow:hidden;
-}
-
-.header::after{
-    content:"";
-    position:absolute;
-    top:0;
-    left:-100%;
-    width:100%;
-    height:1px;
-    background:rgba(180,210,255,0.4);
-    animation:scan 8s linear infinite;
-}
-
-@keyframes scan{
-0%{left:-100%;}
-100%{left:100%;}
-}
-
-.id{
-    color:#8ea3eb;
-    letter-spacing:4px;
-    font-size:13px;
-    margin-bottom:16px;
-}
-
-.title{
-    font-size:40px;
-    letter-spacing:6px;
-    color:#dce5ff;
-    margin-bottom:28px;
-    line-height:1.4;
-}
-
-.desc{
-    color:#9ba9d6;
-    line-height:2;
-    max-width:900px;
-}
-
-/* SECTION */
-.section{
-    margin-top:60px;
-    margin-bottom:20px;
-    color:#9cb2ff;
-    letter-spacing:4px;
-    font-size:15px;
-    border-bottom:1px solid #2b3555;
+    border-bottom:1px solid #413758;
     padding-bottom:12px;
 }
 
-/* FILES */
+.symbol{
+    color:#8c73d8;
+    margin-right:12px;
+    font-size:20px;
+}
+
+input{
+    background:transparent;
+    border:none;
+    outline:none;
+    color:white;
+    font-family:"Courier New", monospace;
+    font-size:18px;
+    width:100%;
+    letter-spacing:2px;
+}
+
+/* ERROR */
+
+.error{
+    margin-top:24px;
+    color:#8b3a3a;
+    opacity:0;
+    transition:0.4s;
+    line-height:1.8;
+}
+
+/* FILE LIST */
+
 .file{
     display:block;
     text-decoration:none;
@@ -182,8 +144,7 @@ body::after{
     position:absolute;
     top:0;
     left:-100%;
-    width:100%;
-    height:100%;
+    width:100%; height:100%;
     background:linear-gradient(
         90deg,
         transparent,
@@ -214,127 +175,109 @@ body::after{
     font-size:14px;
 }
 
-/* PASSWORD */
-.password-input{
-    background:transparent;
-    border:none;
-    outline:none;
-    color:white;
-    font-family:"Courier New", monospace;
-    font-size:16px;
-    width:60%;
-    letter-spacing:1px;
-    margin-top:10px;
-}
-
-.password-btn{
-    margin-left:12px;
-    padding:4px 10px;
-    background:#5c5cff;
-    color:white;
-    border:none;
-    cursor:pointer;
-    font-family:"Courier New", monospace;
-    letter-spacing:1px;
-    transition:0.2s;
-}
-
-.password-btn:hover{
-    background:#817fff;
-}
-
 /* FOOTER */
+
 .footer{
-    margin-top:90px;
-    padding-top:30px;
-    border-top:1px solid #28324f;
-    color:#66749b;
-    line-height:2;
+    margin-top:40px;
+    color:#5d566e;
     font-size:12px;
-    letter-spacing:1px;
-}
-
-/* MOBILE */
-@media(max-width:700px){
-    .container{
-        padding:22px;
-    }
-    .title{
-        font-size:28px;
-        letter-spacing:3px;
-    }
-}
-
-::selection{
-    background:#536db8;
-    color:white;
+    letter-spacing:2px;
+    line-height:1.8;
 }
 
 </style>
 </head>
 
-<body>
+<body class="scanlines">
+
+<div class="grid"></div>
 
 <div class="container">
 
-<div class="topbar">
-<div class="network">UNDERGROUND RESEARCH ARCHIVE</div>
-<div class="status">NODE STATUS // ACTIVE</div>
+<div class="panel">
+
+<div class="logo">
+UNDERTALE RESEARCH ARCHIVE
 </div>
 
-<div class="header">
-<div class="id">URA // MAIN NODE</div>
-<div class="title">UNDERGROUND RESEARCH ARCHIVE</div>
-<div class="desc">
-Research files recovered from continuity breach analysis and advanced deviation observations.<br><br>
-Password protected access required for each document.
-</div>
+<div class="subtitle">
+OBSERVER AUTHORIZATION REQUIRED
 </div>
 
-<div class="section">ACTIVE FILES</div>
+<div class="line">
+CONNECTION STATUS: ACTIVE
+</div>
 
-<!-- URA Docs -->
-<a href="ura01.html" class="file" onclick="return checkPassword(event,'URA01')">
-<div class="file-title">URA01 // CORE EXTRACTION ANALYSIS</div>
-<div class="file-desc">Determination extraction, Core construction, subtle hints at unknown interference.</div>
+<div class="line">
+ENTER ACCESS PHRASE
+</div>
+
+<div class="prompt">
+<div class="symbol">></div>
+<input type="password" id="password" autofocus>
+</div>
+
+<div class="error" id="error">
+ACCESS DENIED
+</div>
+
+<div class="section">
+AVAILABLE RESEARCH FILES
+</div>
+
+<a href="ura01.html" class="file" data-password="KEY01">
+<div class="file-title">URA-01 // CORE SYNTHESIS RESEARCH</div>
+<div class="file-desc">Human & monster determination extraction and early Core assembly notes.</div>
 </a>
 
-<a href="ura02.html" class="file" onclick="return checkPassword(event,'URA02')">
-<div class="file-title">URA02 // TRUE LAB RESEARCH</div>
-<div class="file-desc">Darkness creation, Black Knife, potential interference, hints at unknown entities.</div>
+<a href="ura02.html" class="file" data-password="KEY02">
+<div class="file-title">URA-02 // TRUE LAB ANALYSIS</div>
+<div class="file-desc">Dark Fountain & Black Knife theory, early experiments, and anomalies.</div>
 </a>
 
-<a href="ura03.html" class="file" onclick="return checkPassword(event,'URA03')">
-<div class="file-title">URA03 // OBSERVER WARNING</div>
-<div class="file-desc">Final document before Project Roaring; observer choice triggers transition.</div>
+<a href="ura03.html" class="file" data-password="KEY03">
+<div class="file-title">URA-03 // M’S OBSERVATIONS</div>
+<div class="file-desc">Recovered notes indicating instability, environmental persistence, and ethical concerns.</div>
+</a>
+
+<a href="ura04.html" class="file" data-password="KEY04">
+<div class="file-title">URA-04 // FINAL WARNING</div>
+<div class="file-desc">Subtle hints of M losing control; final observations before Project Roaring begins.</div>
+</a>
+
+<a href="ura05.html" class="file" data-password="KEY05">
+<div class="file-title">URA-05 // OBSERVER TEST</div>
+<div class="file-desc">A hidden access point leading directly into Project Roaring.</div>
 </a>
 
 <div class="footer">
-DELTA CONTINUITY RESEARCH NETWORK<br><br>
-ARCHIVE BUILD: 0.9.0<br>
-NO VERIFIED ORIGINAL STRUCTURE EXISTS.
+DCN BUILD // OBSERVER LAYER ACTIVE
 </div>
 
+</div>
 </div>
 
 <script>
-// Passwords for URA docs
-const passwords = {
-    URA01: 'CORE',
-    URA02: 'LAB',
-    URA03: 'WARNING'
-};
+const input = document.getElementById("password");
+const error = document.getElementById("error");
 
-function checkPassword(event, key){
-    event.preventDefault();
-    const attempt = prompt('Enter access password:');
-    if(attempt && attempt.toUpperCase() === passwords[key]){
-        window.location.href = event.currentTarget.href;
-    } else {
-        alert('ACCESS DENIED');
+input.addEventListener("keydown", function(e){
+    if(e.key === "Enter"){
+        const val = input.value.trim().toUpperCase();
+        const files = document.querySelectorAll(".file");
+        let matched = false;
+        files.forEach(f=>{
+            if(f.dataset.password.toUpperCase()===val){
+                window.location.href = f.getAttribute("href");
+                matched = true;
+            }
+        });
+        if(!matched){
+            error.style.opacity = "1";
+            input.value = "";
+        }
     }
-    return false;
-}
+});
 </script>
 
 </body>
