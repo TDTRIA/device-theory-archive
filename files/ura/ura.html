@@ -3,136 +3,94 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>UNDERTALE RESEARCH ARCHIVE (URA)</title>
+<title>URA // DEVICE CONTINUITY NETWORK</title>
 
 <style>
+:root{
+    --bg:#020204;
+    --line:#28324f;
+    --text:#d7dcef;
+    --accent:#95a4cf;
+}
 
 body{
     margin:0;
-    background:#020204;
-    color:#e0dcef;
-    font-family:"Courier New", monospace;
-    overflow:hidden;
+    background: linear-gradient(to bottom, #020204, #010103 90%, #000000);
+    color: var(--text);
+    font-family: "Courier New", monospace;
+    overflow-y: auto;
+    letter-spacing:0.4px;
+    line-height:1.8;
 }
 
 /* SCANLINES & GRID */
 
-.scanlines::before{
+body::before{
     content:"";
     position:fixed;
-    top:0; left:0;
-    width:100%; height:100%;
+    inset:0;
     pointer-events:none;
-    background:repeating-linear-gradient(
+    background: repeating-linear-gradient(
         to bottom,
         rgba(255,255,255,0.015),
         rgba(255,255,255,0.015) 1px,
         transparent 1px,
         transparent 3px
     );
+    opacity:0.35;
     z-index:999;
 }
 
-.grid{
+body::after{
+    content:"";
     position:fixed;
-    top:0; left:0;
-    width:100%; height:100%;
-    background-image:
-        linear-gradient(rgba(120,90,180,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(120,90,180,0.03) 1px, transparent 1px);
-    background-size:42px 42px;
+    inset:0;
     pointer-events:none;
+    background-image:
+        linear-gradient(rgba(120,140,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120,140,255,0.025) 1px, transparent 1px);
+    background-size:42px 42px;
+    opacity:0.12;
+    z-index:-1;
 }
 
-/* MAIN */
+/* CONTAINER */
 
 .container{
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    padding:40px;
-    position:relative;
-    z-index:2;
+    max-width:1000px;
+    margin: 0 auto;
+    padding:40px 20px;
 }
 
-.panel{
-    width:720px;
-    max-width:90%;
-    border:1px solid #332b47;
-    background:rgba(8,8,14,0.92);
-    padding:35px;
-    box-shadow:0 0 24px rgba(140,110,255,0.08);
+/* HEADER */
+
+.header{
+    border-bottom:1px solid var(--line);
+    padding-bottom:25px;
+    margin-bottom:40px;
 }
 
-/* TITLE */
-
-.logo{
-    font-size:34px;
+.header .title{
+    font-size:36px;
     letter-spacing:5px;
-    color:#d8c9ff;
-    margin-bottom:18px;
+    color: var(--accent);
+    margin-bottom:12px;
 }
 
-.subtitle{
-    color:#988bb8;
-    line-height:1.9;
-    margin-bottom:45px;
+.header .desc{
+    color: #a8b0d1;
+    font-size:14px;
 }
 
-/* TERMINAL / PASSWORD */
-
-.line{
-    color:#bdb5d4;
-    margin-bottom:18px;
-    line-height:1.8;
-}
-
-.prompt{
-    display:flex;
-    align-items:center;
-    border-bottom:1px solid #413758;
-    padding-bottom:12px;
-}
-
-.symbol{
-    color:#8c73d8;
-    margin-right:12px;
-    font-size:20px;
-}
-
-input{
-    background:transparent;
-    border:none;
-    outline:none;
-    color:white;
-    font-family:"Courier New", monospace;
-    font-size:18px;
-    width:100%;
-    letter-spacing:2px;
-}
-
-/* ERROR */
-
-.error{
-    margin-top:24px;
-    color:#8b3a3a;
-    opacity:0;
-    transition:0.4s;
-    line-height:1.8;
-}
-
-/* FILE LIST */
+/* FILES */
 
 .file{
     display:block;
     text-decoration:none;
-    color:#dce5ff;
-    background:rgba(9,12,22,0.88);
-    border:1px solid #2d3757;
-    padding:24px;
+    color: var(--text);
+    background: rgba(8,8,12,0.92);
+    border:1px solid var(--line);
+    padding:20px;
     margin:18px 0;
     transition:0.2s;
     position:relative;
@@ -144,8 +102,9 @@ input{
     position:absolute;
     top:0;
     left:-100%;
-    width:100%; height:100%;
-    background:linear-gradient(
+    width:100%;
+    height:100%;
+    background: linear-gradient(
         90deg,
         transparent,
         rgba(140,170,255,0.05),
@@ -159,126 +118,93 @@ input{
 }
 
 .file:hover{
-    border-color:#4d67aa;
-    transform:translateX(6px);
-    box-shadow:0 0 20px rgba(120,150,255,0.08);
+    border-color: var(--accent);
+    transform: translateX(6px);
+    box-shadow: 0 0 20px rgba(120,150,255,0.08);
 }
 
 .file-title{
-    letter-spacing:2px;
-    margin-bottom:10px;
+    font-weight:bold;
+    margin-bottom:6px;
 }
 
 .file-desc{
-    color:#95a4cf;
-    line-height:1.8;
+    color: #95a4cf;
+    font-size:13px;
+}
+
+/* SECTION */
+
+.section{
+    margin-top:50px;
+    margin-bottom:15px;
     font-size:14px;
+    color: var(--accent);
+    border-bottom:1px solid var(--line);
+    padding-bottom:8px;
 }
 
 /* FOOTER */
 
 .footer{
-    margin-top:40px;
-    color:#5d566e;
+    margin-top:60px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    color: #66749b;
     font-size:12px;
-    letter-spacing:2px;
-    line-height:1.8;
+    letter-spacing:1px;
 }
 
+::selection{
+    background:#536db8;
+    color:white;
+}
 </style>
 </head>
 
-<body class="scanlines">
-
-<div class="grid"></div>
+<body>
 
 <div class="container">
 
-<div class="panel">
-
-<div class="logo">
-UNDERTALE RESEARCH ARCHIVE
+<div class="header">
+    <div class="title">UNDERTALE RESEARCH ARCHIVE</div>
+    <div class="desc">
+        Recovered notes from advanced continuity research, dark fountain studies, and observer synchronization logs.
+    </div>
 </div>
 
-<div class="subtitle">
-OBSERVER AUTHORIZATION REQUIRED
-</div>
+<div class="section">RESEARCH DOCUMENTS</div>
 
-<div class="line">
-CONNECTION STATUS: ACTIVE
-</div>
-
-<div class="line">
-ENTER ACCESS PHRASE
-</div>
-
-<div class="prompt">
-<div class="symbol">></div>
-<input type="password" id="password" autofocus>
-</div>
-
-<div class="error" id="error">
-ACCESS DENIED
-</div>
-
-<div class="section">
-AVAILABLE RESEARCH FILES
-</div>
-
-<a href="ura01.html" class="file" data-password="KEY01">
-<div class="file-title">URA-01 // CORE SYNTHESIS RESEARCH</div>
-<div class="file-desc">Human & monster determination extraction and early Core assembly notes.</div>
+<a href="ura01.html" class="file">
+    <div class="file-title">URA-01 // CONTINUITY & DETERMINATION EXTRACTION</div>
+    <div class="file-desc">
+        Research on how the CORE was constructed and the extraction of human & monster determination.
+    </div>
 </a>
 
-<a href="ura02.html" class="file" data-password="KEY02">
-<div class="file-title">URA-02 // TRUE LAB ANALYSIS</div>
-<div class="file-desc">Dark Fountain & Black Knife theory, early experiments, and anomalies.</div>
+<a href="ura02.html" class="file">
+    <div class="file-title">URA-02 // DARK FOUNTAINS & BLACK KNIFE</div>
+    <div class="file-desc">
+        Observations of dark fountains, early black knife prototypes, and containment anomalies.
+    </div>
 </a>
 
-<a href="ura03.html" class="file" data-password="KEY03">
-<div class="file-title">URA-03 // M’S OBSERVATIONS</div>
-<div class="file-desc">Recovered notes indicating instability, environmental persistence, and ethical concerns.</div>
-</a>
-
-<a href="ura04.html" class="file" data-password="KEY04">
-<div class="file-title">URA-04 // FINAL WARNING</div>
-<div class="file-desc">Subtle hints of M losing control; final observations before Project Roaring begins.</div>
-</a>
-
-<a href="ura05.html" class="file" data-password="KEY05">
-<div class="file-title">URA-05 // OBSERVER TEST</div>
-<div class="file-desc">A hidden access point leading directly into Project Roaring.</div>
+<a href="ura03.html" class="file">
+    <div class="file-title">URA-03 // TRUE LAB & CONTINUITY EFFECTS</div>
+    <div class="file-desc">
+        Data on the True Lab, unintended consequences, and early corruption signatures leading to dark fountain creation.
+    </div>
 </a>
 
 <div class="footer">
-DCN BUILD // OBSERVER LAYER ACTIVE
+DELTA CONTINUITY RESEARCH NETWORK
+<br><br>
+ARCHIVE BUILD: 0.9.1
+<br>
+NO VERIFIED ORIGINAL STRUCTURE EXISTS.
 </div>
 
 </div>
-</div>
-
-<script>
-const input = document.getElementById("password");
-const error = document.getElementById("error");
-
-input.addEventListener("keydown", function(e){
-    if(e.key === "Enter"){
-        const val = input.value.trim().toUpperCase();
-        const files = document.querySelectorAll(".file");
-        let matched = false;
-        files.forEach(f=>{
-            if(f.dataset.password.toUpperCase()===val){
-                window.location.href = f.getAttribute("href");
-                matched = true;
-            }
-        });
-        if(!matched){
-            error.style.opacity = "1";
-            input.value = "";
-        }
-    }
-});
-</script>
 
 </body>
 </html>
