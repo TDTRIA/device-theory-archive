@@ -3,27 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>URA01 // CORE EXTRACTION ANALYSIS</title>
+
+<title>URA-01 // EXTRACTION AND CORE CONSTRUCTION</title>
 
 <style>
 :root{
-    --bg:#010114;
-    --line:#2b3360;
-    --text:#d7dcef;
-    --soft:#95a4cf;
-    --dim:#66749b;
-    --glow:rgba(120,150,255,0.08);
+    --bg:#010205;
+    --panel:#05070d;
+    --line:#353d4f;
+    --text:#d7dce7;
+    --soft:#949caf;
+    --dim:#5f6677;
 }
 
 body{
     margin:0;
-    background:radial-gradient(circle at top, rgba(90,110,200,0.08), transparent 55%), linear-gradient(to bottom, #010114, #000010 75%, #000000);
+    background:
+        radial-gradient(circle at top, rgba(180,190,210,0.04), transparent 55%),
+        linear-gradient(to bottom, #010205, #020206 70%, #000000);
     color:var(--text);
     font-family:"Courier New", monospace;
+    overflow-y:auto;
     overflow-x:hidden;
-    letter-spacing:0.4px;
-    position:relative;
-    text-shadow:0 0 3px rgba(180,210,255,0.04);
+    letter-spacing:0.35px;
+    line-height:1.9;
 }
 
 body::before{
@@ -31,8 +34,14 @@ body::before{
     position:fixed;
     inset:0;
     pointer-events:none;
-    background:repeating-linear-gradient(to bottom, rgba(255,255,255,0.012), rgba(255,255,255,0.012) 1px, transparent 1px, transparent 3px);
-    opacity:0.45;
+    background:repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.008),
+        rgba(255,255,255,0.008) 1px,
+        transparent 1px,
+        transparent 4px
+    );
+    opacity:0.55;
     z-index:999;
 }
 
@@ -41,16 +50,18 @@ body::after{
     position:fixed;
     inset:0;
     pointer-events:none;
-    background-image:linear-gradient(rgba(120,140,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(120,140,255,0.025) 1px, transparent 1px);
-    background-size:42px 42px;
+    background-image:
+        linear-gradient(rgba(180,190,210,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(180,190,210,0.015) 1px, transparent 1px);
+    background-size:56px 56px;
     opacity:0.15;
     z-index:-1;
 }
 
 .container{
-    max-width:1100px;
+    max-width:1050px;
     margin:auto;
-    padding:40px;
+    padding:42px;
     position:relative;
     z-index:2;
 }
@@ -62,16 +73,18 @@ body::after{
     border-bottom:1px solid var(--line);
     padding-bottom:18px;
     margin-bottom:35px;
+    flex-wrap:wrap;
+    gap:15px;
 }
 
 .network{
-    color:#d5deff;
+    color:#e1e5ef;
     letter-spacing:4px;
     font-size:14px;
 }
 
 .status{
-    color:#7d8dbb;
+    color:#98a0b2;
     font-size:12px;
     letter-spacing:2px;
 }
@@ -79,7 +92,7 @@ body::after{
 .back{
     display:inline-block;
     margin-bottom:35px;
-    color:#8ea3eb;
+    color:#adb6cb;
     text-decoration:none;
     transition:0.2s;
     letter-spacing:1px;
@@ -91,11 +104,10 @@ body::after{
 }
 
 .header{
-    border:1px solid #2d3655;
-    background:rgba(8,10,20,0.92);
-    padding:40px;
-    margin-bottom:40px;
-    box-shadow:0 0 30px var(--glow);
+    border:1px solid var(--line);
+    background:rgba(4,6,12,0.96);
+    padding:38px;
+    margin-bottom:42px;
     position:relative;
     overflow:hidden;
 }
@@ -107,8 +119,8 @@ body::after{
     left:-100%;
     width:100%;
     height:1px;
-    background:rgba(180,210,255,0.4);
-    animation:scan 8s linear infinite;
+    background:rgba(220,230,255,0.2);
+    animation:scan 12s linear infinite;
 }
 
 @keyframes scan{
@@ -117,56 +129,53 @@ body::after{
 }
 
 .id{
-    color:#8ea3eb;
+    color:#9ba6bd;
     letter-spacing:4px;
     font-size:13px;
-    margin-bottom:16px;
+    margin-bottom:15px;
 }
 
 .title{
     font-size:38px;
     letter-spacing:6px;
-    color:#dce5ff;
-    margin-bottom:28px;
-    line-height:1.4;
+    color:#edf1fa;
+    margin-bottom:25px;
+    line-height:1.45;
 }
 
-.meta{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:18px;
-    color:#96a5d2;
-    line-height:1.9;
-    font-size:14px;
-}
-
-.meta span{
-    color:#dce5ff;
+.desc{
+    color:#98a0b2;
+    line-height:2;
+    max-width:900px;
 }
 
 .section{
-    margin-top:50px;
+    margin-top:55px;
     margin-bottom:20px;
-    color:#9cb2ff;
+    color:#b2bccf;
     letter-spacing:4px;
     font-size:15px;
-    border-bottom:1px solid #2b3555;
+    border-bottom:1px solid #323a4d;
     padding-bottom:12px;
 }
 
-.content{
-    line-height:2.1;
-    color:#d7dcef;
-    font-size:15px;
+.block{
+    background:rgba(4,6,12,0.96);
+    border:1px solid #343d50;
+    padding:24px;
+    margin:30px 0;
+    line-height:2;
+    color:#cfd5e2;
 }
 
-.block{
-    background:rgba(5,7,14,0.98);
-    border:1px solid #7087d4;
-    padding:24px;
-    margin:25px 0;
-    line-height:2;
-    color:#eef2ff;
+.log{
+    margin:35px 0;
+    padding:25px;
+    background:rgba(0,0,0,0.97);
+    border:1px solid #343d50;
+    color:#d5dbe8;
+    line-height:2.15;
+    font-size:14px;
 }
 
 .glitch{
@@ -175,74 +184,239 @@ body::after{
 
 @keyframes flicker{
 0%{opacity:1;}
-1%{opacity:0.5;}
+1%{opacity:0.35;}
 2%{opacity:1;}
-85%{opacity:1;}
-86%{opacity:0.2;}
-87%{opacity:1;}
+76%{opacity:1;}
+77%{opacity:0.15;}
+78%{opacity:1;}
 }
 
 .footer{
-    margin-top:80px;
+    margin-top:90px;
     padding-top:30px;
-    border-top:1px solid #28324f;
-    color:#66749b;
+    border-top:1px solid #323a4d;
+    color:#697183;
     line-height:2;
     font-size:12px;
     letter-spacing:1px;
 }
 
 ::selection{
-    background:#536db8;
+    background:#4d5568;
     color:white;
 }
 </style>
 </head>
+
 <body>
 
 <div class="container">
 
 <div class="topbar">
-<div class="network">UNDERGROUND RESEARCH ARCHIVE</div>
-<div class="status">NODE STATUS // ACTIVE</div>
+
+    <div class="network">
+        U.R.A // UNINDEXED RESEARCH ARCHIVE
+    </div>
+
+    <div class="status">
+        DOCUMENT STATUS // RECOVERED
+    </div>
+
 </div>
 
-<a href="ura.html" class="back">← RETURN TO URA DIRECTORY</a>
+<a href="ura.html" class="back">
+← RETURN TO U.R.A DIRECTORY
+</a>
 
 <div class="header">
-<div class="id">URA01 // CORE EXTRACTION ANALYSIS</div>
-<div class="title">CORE EXTRACTION ANALYSIS</div>
-<div class="meta">
-<div>ACCESS LEVEL: <span>LEVEL 2</span></div>
-<div>ARCHIVE BUILD: <span>0.9.0</span></div>
-<div>STABILITY: <span>FRAGILE</span></div>
-</div>
+
+    <div class="id">
+        URA-01 // RECOVERED MATERIAL
+    </div>
+
+    <div class="title">
+        EXTRACTION AND CORE CONSTRUCTION
+    </div>
+
+    <div class="desc">
+        Fragmented material concerning Determination extraction,
+        early CORE architecture,
+        and suppressed Underground power-transfer systems.
+
+        <br><br>
+
+        Several attached personnel records no longer resolve correctly.
+    </div>
+
 </div>
 
-<div class="section">SUMMARY</div>
-<div class="content">
-The Core’s energy was harvested from combined determination of humans and monsters. Early reports show extraction protocols, the first observations of irregular energy readings, and subtle interference by an unknown agent. The influence appears to affect structural stability of the Core itself.
+<div class="section">
+SUMMARY
 </div>
 
-<div class="section">OBSERVATIONS</div>
-<div class="content">
-- Extraction metrics indicate minor deviations in expected energy flow.<br>
-- Containment units experience anomalous readings, occasionally disrupting synchronization.<br>
-- Certain energy fluctuations suggest the presence of an outside actor, details redacted.<br>
-- Early theories indicate possible cross-continuity contamination affecting baseline human-monster determination.
+<div class="block">
+Official Underground infrastructure reports describe the CORE as a standard geothermal and magical energy conversion system.
+
+<br><br>
+
+Recovered extraction logs contradict this entirely.
+
+<br><br>
+
+The recovered files reference transfer systems involving human and monster Determination in quantities exceeding all verified ethical thresholds.
+
+<br><br>
+
+The material suggests the CORE was not simply generating power.
+
+<br><br>
+
+It was stabilizing something.
 </div>
 
-<div class="section">CONCLUSIONS</div>
-<div class="content">
-Subtle evidence points to deliberate interference during extraction. The actor remains unidentified, but hints suggest someone operating behind the scenes influencing continuity events.
+<div class="section">
+RECOVERED OBSERVATIONS
+</div>
+
+<div class="log">
+TRANSFER LOG // PARTIAL
+
+<br><br>
+
+SUBJECT INTEGRITY:
+DECLINING
+
+<br><br>
+
+EXTRACTION TOLERANCE:
+EXCEEDED
+
+<br><br>
+
+STABILITY OUTPUT:
+MAINTAINED
+
+<br><br>
+
+NOTE:
+
+Sustained output appears significantly higher when human and monster samples are synchronized simultaneously.
+
+<br><br>
+
+Unexpected resonance continues to occur during mixed transfer phases.
+
+<br><br>
+
+Boundary interference was observed during the third calibration cycle.
+
+<br><br>
+
+Lead researcher requested continuation despite structural concerns.
+</div>
+
+<div class="section">
+STRUCTURAL IRREGULARITIES
+</div>
+
+<div class="block">
+The recovered diagrams do not resemble modern CORE schematics.
+
+<br><br>
+
+Entire sections appear removed or rewritten.
+
+<br><br>
+
+Power routing pathways terminate in locations absent from all verified Underground architectural records.
+
+<br><br>
+
+Several transfer chambers appear connected to unidentified containment structures beneath the main reactor assembly.
+
+<br><br>
+
+The purpose of these chambers remains unresolved.
+</div>
+
+<div class="section">
+M // INTERNAL NOTES
+</div>
+
+<div class="log">
+The official explanations do not survive contact with the raw records.
+
+<br><br>
+
+Every recovered file contradicts the public architecture model completely.
+
+<br><br>
+
+Someone buried this intentionally.
+
+<br><br>
+
+Not because the extraction failed.
+
+<br><br>
+
+Because it worked.
+
+<br><br>
+
+I cannot stop thinking about the synchronization references.
+
+<br><br>
+
+The transfer logs repeatedly mention resonance events occurring between incompatible sources.
+
+<br><br>
+
+Human.
+
+Monster.
+
+Darkness.
+
+<br><br>
+
+Three variables appearing together long before the first documented fountain events.
+
+<br><br>
+
+That should not be possible.
+</div>
+
+<div class="section">
+ATTACHED NOTE
+</div>
+
+<div class="block glitch">
+Several referenced researchers cannot be traced through surviving personnel archives.
+
+<br><br>
+
+One designation appears repeatedly across deleted material.
+
+<br><br>
+
+Identity resolution failed.
 </div>
 
 <div class="footer">
-DELTA CONTINUITY RESEARCH NETWORK<br><br>
-URA01 STATUS: ACTIVE<br>
-NO VERIFIED ORIGINAL STRUCTURE EXISTS.
+UNINDEXED RESEARCH ARCHIVE
+
+<br><br>
+
+FILE STATUS:
+INCOMPLETE
+
+<br>
+
+MULTIPLE SEGMENTS REMAIN UNRECOVERED.
 </div>
 
 </div>
+
 </body>
 </html>
