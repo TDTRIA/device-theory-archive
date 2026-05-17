@@ -3,27 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>URA03 // DARK FOUNTAINS & BLACK KNIFE</title>
+
+<title>URA-03 // ARTIFICIAL FOUNTAIN THEORY</title>
 
 <style>
 :root{
-    --bg:#0b0b14;
-    --line:#3a4a7b;
-    --text:#d7dcef;
-    --soft:#9ab0df;
-    --dim:#66749b;
-    --glow:rgba(150,120,255,0.08);
+    --bg:#010205;
+    --panel:#05070d;
+    --line:#3f3b50;
+    --text:#d7dce7;
+    --soft:#949caf;
+    --dim:#5f6677;
+    --gold:#d2c28f;
 }
 
 body{
     margin:0;
-    background:radial-gradient(circle at top, rgba(120,60,180,0.08), transparent 55%), linear-gradient(to bottom, #0b0b14, #010107 75%, #000000);
+    background:
+        radial-gradient(circle at top, rgba(190,170,120,0.045), transparent 55%),
+        linear-gradient(to bottom, #010205, #020206 70%, #000000);
     color:var(--text);
     font-family:"Courier New", monospace;
+    overflow-y:auto;
     overflow-x:hidden;
-    letter-spacing:0.4px;
-    position:relative;
-    text-shadow:0 0 3px rgba(180,210,255,0.04);
+    letter-spacing:0.35px;
+    line-height:1.9;
 }
 
 body::before{
@@ -31,8 +35,14 @@ body::before{
     position:fixed;
     inset:0;
     pointer-events:none;
-    background:repeating-linear-gradient(to bottom, rgba(255,255,255,0.012), rgba(255,255,255,0.012) 1px, transparent 1px, transparent 3px);
-    opacity:0.55;
+    background:repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.008),
+        rgba(255,255,255,0.008) 1px,
+        transparent 1px,
+        transparent 4px
+    );
+    opacity:0.6;
     z-index:999;
 }
 
@@ -41,16 +51,18 @@ body::after{
     position:fixed;
     inset:0;
     pointer-events:none;
-    background-image:linear-gradient(rgba(120,140,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(120,140,255,0.025) 1px, transparent 1px);
-    background-size:42px 42px;
-    opacity:0.15;
+    background-image:
+        linear-gradient(rgba(190,180,150,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(190,180,150,0.015) 1px, transparent 1px);
+    background-size:56px 56px;
+    opacity:0.18;
     z-index:-1;
 }
 
 .container{
-    max-width:1100px;
+    max-width:1050px;
     margin:auto;
-    padding:40px;
+    padding:42px;
     position:relative;
     z-index:2;
 }
@@ -62,16 +74,18 @@ body::after{
     border-bottom:1px solid var(--line);
     padding-bottom:18px;
     margin-bottom:35px;
+    flex-wrap:wrap;
+    gap:15px;
 }
 
 .network{
-    color:#d5deff;
+    color:#e1e5ef;
     letter-spacing:4px;
     font-size:14px;
 }
 
 .status{
-    color:#7d8dbb;
+    color:#b8ad87;
     font-size:12px;
     letter-spacing:2px;
 }
@@ -79,7 +93,7 @@ body::after{
 .back{
     display:inline-block;
     margin-bottom:35px;
-    color:#8ea3eb;
+    color:#c6bb91;
     text-decoration:none;
     transition:0.2s;
     letter-spacing:1px;
@@ -91,13 +105,13 @@ body::after{
 }
 
 .header{
-    border:1px solid #2d3655;
-    background:rgba(10,12,22,0.92);
-    padding:40px;
-    margin-bottom:40px;
-    box-shadow:0 0 35px var(--glow);
+    border:1px solid var(--line);
+    background:rgba(5,5,10,0.97);
+    padding:38px;
+    margin-bottom:42px;
     position:relative;
     overflow:hidden;
+    box-shadow:0 0 40px rgba(210,194,143,0.04);
 }
 
 .header::after{
@@ -107,8 +121,8 @@ body::after{
     left:-100%;
     width:100%;
     height:1px;
-    background:rgba(180,210,255,0.4);
-    animation:scan 8s linear infinite;
+    background:rgba(230,220,180,0.24);
+    animation:scan 10s linear infinite;
 }
 
 @keyframes scan{
@@ -117,56 +131,58 @@ body::after{
 }
 
 .id{
-    color:#8ea3eb;
+    color:#b8ad87;
     letter-spacing:4px;
     font-size:13px;
-    margin-bottom:16px;
+    margin-bottom:15px;
 }
 
 .title{
     font-size:38px;
     letter-spacing:6px;
-    color:#dce5ff;
-    margin-bottom:28px;
-    line-height:1.4;
+    color:#f0ead6;
+    margin-bottom:25px;
+    line-height:1.45;
 }
 
-.meta{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:18px;
-    color:#96a5d2;
-    line-height:1.9;
-    font-size:14px;
-}
-
-.meta span{
-    color:#dce5ff;
+.desc{
+    color:#a9a18b;
+    line-height:2;
+    max-width:900px;
 }
 
 .section{
-    margin-top:50px;
+    margin-top:55px;
     margin-bottom:20px;
-    color:#9cb2ff;
+    color:#d2c28f;
     letter-spacing:4px;
     font-size:15px;
-    border-bottom:1px solid #2b3555;
+    border-bottom:1px solid #3f3b50;
     padding-bottom:12px;
 }
 
-.content{
-    line-height:2.1;
-    color:#d7dcef;
-    font-size:15px;
+.block{
+    background:rgba(5,5,10,0.96);
+    border:1px solid #3f3b50;
+    padding:24px;
+    margin:30px 0;
+    line-height:2;
+    color:#d8d3c5;
 }
 
-.block{
-    background:rgba(5,7,14,0.98);
-    border:1px solid #7087d4;
-    padding:24px;
-    margin:25px 0;
-    line-height:2;
-    color:#eef2ff;
+.log{
+    margin:35px 0;
+    padding:25px;
+    background:rgba(0,0,0,0.97);
+    border:1px solid #3f3b50;
+    color:#ded8c8;
+    line-height:2.15;
+    font-size:14px;
+}
+
+.critical{
+    border-color:#6b5931;
+    color:#f1e3ad;
 }
 
 .glitch{
@@ -175,74 +191,370 @@ body::after{
 
 @keyframes flicker{
 0%{opacity:1;}
-1%{opacity:0.5;}
+1%{opacity:0.3;}
 2%{opacity:1;}
-85%{opacity:1;}
-86%{opacity:0.2;}
-87%{opacity:1;}
+64%{opacity:1;}
+65%{opacity:0.14;}
+66%{opacity:1;}
+}
+
+.project-link{
+    display:block;
+    text-decoration:none;
+    color:#f1e3ad;
+    background:rgba(10,7,3,0.95);
+    border:1px solid #6b5931;
+    padding:24px;
+    margin:40px 0;
+    transition:0.22s;
+    position:relative;
+    overflow:hidden;
+}
+
+.project-link::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(210,194,143,0.08),
+        transparent
+    );
+    transition:0.6s;
+}
+
+.project-link:hover::before{
+    left:100%;
+}
+
+.project-link:hover{
+    border-color:#d2c28f;
+    transform:translateX(6px);
+    box-shadow:0 0 30px rgba(210,194,143,0.08);
+}
+
+.project-title{
+    letter-spacing:2px;
+    margin-bottom:10px;
+}
+
+.project-desc{
+    color:#a9a18b;
+    line-height:1.85;
+    font-size:14px;
 }
 
 .footer{
-    margin-top:80px;
+    margin-top:90px;
     padding-top:30px;
-    border-top:1px solid #28324f;
-    color:#66749b;
+    border-top:1px solid #3f3b50;
+    color:#756e5a;
     line-height:2;
     font-size:12px;
     letter-spacing:1px;
 }
 
 ::selection{
-    background:#536db8;
+    background:#6b5931;
     color:white;
 }
 </style>
 </head>
+
 <body>
 
 <div class="container">
 
 <div class="topbar">
-<div class="network">UNDERGROUND RESEARCH ARCHIVE</div>
-<div class="status">NODE STATUS // ACTIVE</div>
+
+    <div class="network">
+        U.R.A // UNINDEXED RESEARCH ARCHIVE
+    </div>
+
+    <div class="status glitch">
+        DOCUMENT STATUS // FINAL RECOVERY
+    </div>
+
 </div>
 
-<a href="ura.html" class="back">← RETURN TO URA DIRECTORY</a>
+<a href="ura.html" class="back">
+← RETURN TO U.R.A DIRECTORY
+</a>
 
 <div class="header">
-<div class="id">URA03 // DARK FOUNTAINS & BLACK KNIFE</div>
-<div class="title">DARK FOUNTAINS & BLACK KNIFE</div>
-<div class="meta">
-<div>ACCESS LEVEL: <span>LEVEL 4</span></div>
-<div>ARCHIVE BUILD: <span>0.9.0</span></div>
-<div>STABILITY: <span>FRAGILE</span></div>
-</div>
+
+    <div class="id">
+        URA-03 // RECOVERED MATERIAL
+    </div>
+
+    <div class="title">
+        ARTIFICIAL FOUNTAIN THEORY
+    </div>
+
+    <div class="desc">
+        M’s final recovered notes before the creation of Project Roaring.
+
+        <br><br>
+
+        This file does not describe a completed experiment.
+
+        <br><br>
+
+        It describes a decision.
+    </div>
+
 </div>
 
-<div class="section">SUMMARY</div>
-<div class="content">
-This document contains reconstructed logs about emergent dark energy sources observed in restricted pathways. Analysis suggests that concentrated energy extraction, combined with previously unknown continuity manipulation, resulted in artifacts capable of breaching conventional limits. Observers note the sudden appearance of anomalous objects now referred to as <strong>Dark Fountains</strong>.
+<div class="section">
+SUMMARY
 </div>
 
-<div class="section">OBSERVATIONS</div>
-<div class="content">
-- Recovered lab schematics hint at attempts to craft objects of intense energy concentration.<br>
-- Traces indicate an unknown actor manipulated the extracted energy to create the <strong>Black Knife</strong>.<br>
-- Environmental recordings suggest these events caused observer disorientation and continuity destabilization.<br>
-- Multiple logs imply that the unknown actor may be responsible for triggering Dark Fountains in isolated sectors.
+<div class="block">
+URA-01 established that Determination extraction was tied to CORE construction.
+
+<br><br>
+
+URA-02 established that True Lab experimentation produced artificial darkness as a repeatable byproduct.
+
+<br><br>
+
+URA-03 contains the first recovered attempt to connect those systems into a single theory:
+
+<br><br>
+
+If Determination can preserve structure,
+and darkness can destabilize structure,
+then a controlled rupture may be possible.
+
+<br><br>
+
+The recovered notes refer to this rupture as an artificial fountain event.
 </div>
 
-<div class="section">CONCLUSIONS</div>
-<div class="content">
-The data indicates a correlation between highly concentrated extracted energy and anomalies termed Dark Fountains. Evidence implies an actor deliberately orchestrated these events, leaving traces that suggest a deeper agenda affecting continuity. Observers should monitor subsequent deviations closely.
+<div class="section">
+BLACK KNIFE THEORY
 </div>
+
+<div class="log">
+THEORY FRAGMENT // M
+
+<br><br>
+
+A fountain requires a wound.
+
+<br><br>
+
+Not metaphorically.
+
+<br><br>
+
+The boundary must be punctured.
+
+<br><br>
+
+Existing records describe spontaneous rupture events,
+but the hidden research suggests they were never spontaneous.
+
+<br><br>
+
+They were induced.
+
+<br><br>
+
+A tool was required.
+
+<br><br>
+
+A blade strong enough to carry extracted Determination.
+
+<br><br>
+
+A blade unstable enough to introduce darkness into the wound.
+
+<br><br>
+
+A blade designed not to kill.
+
+<br><br>
+
+A blade designed to open.
+</div>
+
+<div class="section">
+UNRESOLVED PARTICIPANT DATA
+</div>
+
+<div class="block">
+Several recovered observations describe interference from entities not assigned to the experiment.
+
+<br><br>
+
+One record references a human-shaped participant whose movement patterns repeatedly contradict external control models.
+
+<br><br>
+
+Another refers to a second human profile attached to intent readings despite no matching physical body being present.
+
+<br><br>
+
+Neither profile resolves correctly.
+
+<br><br>
+
+Both appear connected to prior route-deviation events.
+
+<br><br>
+
+M marked these entries as relevant,
+but did not explain why.
+</div>
+
+<div class="section">
+M // FINAL U.R.A ENTRY
+</div>
+
+<div class="log">
+I understand it now.
+
+<br><br>
+
+The CORE was not the beginning.
+
+<br><br>
+
+The lab was not the beginning.
+
+<br><br>
+
+The fountains were not accidents.
+
+<br><br>
+
+They are the same architecture repeating under different names.
+
+<br><br>
+
+Extraction.
+
+<br>
+
+Preservation.
+
+<br>
+
+Darkness.
+
+<br>
+
+Rupture.
+
+<br><br>
+
+Someone built the framework.
+
+<br><br>
+
+Someone knew what the extracted Determination would do.
+
+<br><br>
+
+Someone understood how darkness formed from failure.
+
+<br><br>
+
+Someone left enough behind that the process could be repeated.
+
+<br><br>
+
+I do not know if that was arrogance.
+
+<br><br>
+
+Or invitation.
+
+<br><br>
+
+But I know this:
+
+<br><br>
+
+If the darkness can be generated artificially,
+then the fountains are not natural phenomena.
+
+<br><br>
+
+They are engineered.
+
+<br><br>
+
+And if they can be engineered—
+
+<br><br>
+
+then they can be recreated.
+</div>
+
+<div class="section">
+FINAL SYSTEM NOTE
+</div>
+
+<div class="block critical glitch">
+PROJECT FILE GENERATED:
+
+<br><br>
+
+PRJ-ROARING // CONTINUATION CASCADE
+
+<br><br>
+
+AUTHORIZATION SOURCE:
+M
+
+<br><br>
+
+PURPOSE:
+UNDECLARED
+
+<br><br>
+
+STATUS:
+ACTIVE
+</div>
+
+<a href="../roaring/prj_roaring.html" class="project-link glitch">
+
+    <div class="project-title">
+        OPEN GENERATED PROJECT FILE
+    </div>
+
+    <div class="project-desc">
+        This file was not present during previous archive recovery.
+
+        <br><br>
+
+        The creation timestamp matches the final U.R.A access event.
+    </div>
+
+</a>
 
 <div class="footer">
-DELTA CONTINUITY RESEARCH NETWORK<br><br>
-URA03 STATUS: ACTIVE<br>
-NO VERIFIED ORIGINAL STRUCTURE EXISTS.
+UNINDEXED RESEARCH ARCHIVE
+
+<br><br>
+
+FILE STATUS:
+FINAL RECOVERY
+
+<br>
+
+FURTHER U.R.A MATERIAL NOT FOUND.
 </div>
 
 </div>
+
 </body>
 </html>
