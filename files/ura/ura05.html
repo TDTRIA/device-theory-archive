@@ -3,165 +3,190 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>URA05 // DEVICE THEORY RESEARCH</title>
+<title>URA // DOC-05 // DARK RESEARCH</title>
+
 <style>
+:root{
+    --bg:#010104;
+    --text:#dfe5ff;
+    --dim:#666;
+    --accent:#7d5fff;
+}
+
 body{
     margin:0;
-    background:#010104;
+    padding:0;
     font-family:"Courier New", monospace;
-    color:#dfe5ff;
-    overflow-x:hidden;
-    position:relative;
+    background:radial-gradient(circle at top, rgba(140,160,255,0.08), transparent 55%), #010104;
+    color:var(--text);
+    overflow-y:auto;
+    line-height:1.8;
 }
 
 .container{
-    max-width:1000px;
+    max-width:900px;
     margin:auto;
     padding:40px;
+    position:relative;
+    z-index:2;
 }
 
 .header{
-    border-bottom:1px solid #6277b8;
-    padding-bottom:20px;
-    margin-bottom:30px;
+    border-bottom:1px solid var(--dim);
+    padding-bottom:25px;
+    margin-bottom:35px;
 }
 
-.title{
+.header .title{
     font-size:36px;
-    color:#fff;
-    letter-spacing:4px;
+    color:var(--accent);
+    letter-spacing:3px;
+}
+
+.header .meta{
+    font-size:13px;
+    color:var(--dim);
+    letter-spacing:1px;
+    margin-top:8px;
 }
 
 .section{
-    margin-top:50px;
+    margin-top:40px;
     margin-bottom:20px;
-    color:#9cb2ff;
-    letter-spacing:3px;
+    color:var(--accent);
     font-size:14px;
-    border-bottom:1px solid #6277b8;
-    padding-bottom:10px;
+    letter-spacing:1.5px;
+    border-bottom:1px solid var(--dim);
+    padding-bottom:6px;
 }
 
 .content{
-    line-height:2;
-    color:#dfe5ff;
     font-size:15px;
+    color:var(--text);
 }
 
-.key{
-    display:inline-block;
-    padding:6px 12px;
-    background:#2d2a44;
-    border:1px solid #7d5fff;
-    color:#fff;
+.hidden-key{
+    display:block;
+    width:120px;
+    margin:50px auto;
+    text-align:center;
+    border:2px dashed var(--accent);
+    padding:12px;
     cursor:pointer;
-    letter-spacing:1px;
-    margin-top:20px;
-    transition:0.2s;
+    opacity:0.8;
+    transition:0.3s;
 }
-
-.key:hover{
-    background:#4b3cff;
-    transform:translateY(-2px);
+.hidden-key:hover{
+    opacity:1;
+    transform:scale(1.05);
 }
-
-/* TEXT POPUPS */
 
 .popup{
     position:fixed;
-    top:10%;
-    left:50%;
-    transform:translateX(-50%);
-    font-size:40px;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:48px;
     font-weight:bold;
     color:red;
-    opacity:0;
+    background:rgba(0,0,0,0.85);
+    text-align:center;
     pointer-events:none;
+    opacity:0;
     z-index:10000;
-    white-space:nowrap;
+    white-space:pre-wrap;
 }
 
 </style>
 </head>
-
 <body>
 
 <div class="container">
-    <div class="header">
-        <div class="title">UNDERGROUND RESEARCH ARCHIVE // DOC 05</div>
-    </div>
 
-    <div class="section">RESEARCH SUMMARY</div>
-    <div class="content">
-        The final fragments indicate severe deviation in observer behavior
-        following continued exposure to experimental datasets. Certain
-        sequences suggest unintended manipulation of environmental stability.
-    </div>
-
-    <div class="section">HIDDEN ACCESS</div>
-    <div class="content">
-        Click the recovered key fragment to attempt continuation:
-        <div class="key" id="hiddenKey">Recovered Key Fragment</div>
-    </div>
+<div class="header">
+    <div class="title">URA // DOC-05</div>
+    <div class="meta">Unauthorized Continuity Research</div>
 </div>
 
-<!-- AUDIO ELEMENTS -->
-<audio id="keySound">
-    <source src="snd_text.mp3" type="audio/mpeg">
-</audio>
+<div class="section">OBSERVED ANOMALIES</div>
+<div class="content">
+The observer records suggest irregularities in the continuity energy flow. Reconstructed notes imply that human and monster determination has been extracted to power subterranean systems. Multiple nodes indicate early-stage dark phenomena tied to unverified laboratory experiments.
+</div>
 
-<audio id="fountainSound">
-    <source src="snd_fountain_make.mp3" type="audio/mpeg">
-</audio>
+<div class="section">IMPLICATIONS</div>
+<div class="content">
+Analysis of recovered fragments suggests the potential creation of localized instability zones. Certain experiments hint at the formation of objects capable of interacting with the core structure in unprecedented ways. The observer should note: extrapolated findings are incomplete and potentially hazardous.
+</div>
 
-<!-- POPUPS -->
+<div class="section">FINAL OBSERVATIONS</div>
+<div class="content">
+Some fragments imply an individual has acted upon this research. The identity remains unknown, but the patterns of intent align with high-risk continuity deviation. Proceed with caution. 
+</div>
+
+<div class="hidden-key" id="hiddenKey">Recovered Key Fragment</div>
+
+</div>
+
 <div class="popup" id="popupText"></div>
 
+<!-- AUDIO -->
+<audio id="keySound">
+    <source src="files/ura/snd_text.mp3" type="audio/mpeg">
+</audio>
+
 <script>
-const key = document.getElementById("hiddenKey");
-const keyAudio = document.getElementById("keySound");
-const fountainAudio = document.getElementById("fountainSound");
+// Scroll-triggered reveal for hidden key
+const hiddenKey = document.getElementById("hiddenKey");
+const keySound = document.getElementById("keySound");
 const popup = document.getElementById("popupText");
 
-key.addEventListener("click", ()=>{
-
-    // Play key sound
-    keyAudio.play();
-
-    // Disable key so it can't be clicked again
-    key.style.pointerEvents = "none";
-    key.style.opacity = "0.4";
-
-    // Show corrupted text sequence
-    const messages = [
-        "Why did you do that?",
-        "What did you do?",
-        "WHY DID YOU DO THAT?",
-        "WHAT DID YOU DO?",
-        "LOOK WHAT YOU'VE DONE"
-    ];
-
-    let delay = 0;
-
-    messages.forEach((msg, i)=>{
-        setTimeout(()=>{
-            popup.innerText = msg;
-            popup.style.opacity = 1;
-
-            // Flicker disappear
-            setTimeout(()=> popup.style.opacity=0, 800 - i*100);
-        }, delay);
-
-        delay += 900 - i*100;
-    });
-
-    // After all messages, play fountain sound and redirect
-    setTimeout(()=>{
-        fountainAudio.play();
-        window.location.href = "prj_roaring.html";
-    }, delay + 500);
-
+window.addEventListener("scroll", ()=>{
+    const scrollPosition = window.innerHeight + window.scrollY;
+    const pageHeight = document.body.offsetHeight;
+    if(scrollPosition >= pageHeight - 200){
+        hiddenKey.style.opacity = "1";
+    }
 });
+
+// Click the key to start chaos
+hiddenKey.addEventListener("click", ()=>{
+    keySound.play();
+    startPopups();
+});
+
+// Chaos popups
+function startPopups(){
+    const messages = [
+        "Why did you do this?",
+        "What have you done?",
+        "WHAT DID YOU DO!?",
+        "You cannot stop it..."
+    ];
+    let start = Date.now();
+    const duration = 60000; // 1 minute
+    popup.style.opacity = 1;
+
+    const interval = setInterval(()=>{
+        const elapsed = Date.now() - start;
+        if(elapsed >= duration){
+            clearInterval(interval);
+            // Redirect to project roaring
+            window.location.href = "files/roaring/prj_roaring.html";
+            return;
+        }
+        const msg = messages[Math.floor(Math.random()*messages.length)];
+        const x = Math.random()*80 + 10;
+        const y = Math.random()*80 + 10;
+        popup.style.left = x + "%";
+        popup.style.top = y + "%";
+        popup.innerText = msg;
+    }, 800);
+}
+
 </script>
 
 </body>
