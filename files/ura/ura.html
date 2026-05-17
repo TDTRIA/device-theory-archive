@@ -3,41 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>URA // DEVICE CONTINUITY NETWORK</title>
+
+<title>U.R.A // UNINDEXED RESEARCH ARCHIVE</title>
 
 <style>
 :root{
-    --bg:#020204;
-    --line:#28324f;
-    --text:#d7dcef;
-    --accent:#95a4cf;
+    --bg:#010205;
+    --panel:#05070d;
+    --line:#3b4354;
+    --text:#d8dde8;
+    --soft:#9098aa;
+    --dim:#565d6e;
 }
 
 body{
     margin:0;
-    background: linear-gradient(to bottom, #020204, #010103 90%, #000000);
-    color: var(--text);
-    font-family: "Courier New", monospace;
-    overflow-y: auto;
-    letter-spacing:0.4px;
+    background:
+        radial-gradient(circle at top, rgba(180,190,210,0.05), transparent 55%),
+        linear-gradient(to bottom, #010205, #020206 70%, #000000);
+    color:var(--text);
+    font-family:"Courier New", monospace;
+    overflow-y:auto;
+    overflow-x:hidden;
+    letter-spacing:0.35px;
     line-height:1.8;
 }
-
-/* SCANLINES & GRID */
 
 body::before{
     content:"";
     position:fixed;
     inset:0;
     pointer-events:none;
-    background: repeating-linear-gradient(
+    background:repeating-linear-gradient(
         to bottom,
-        rgba(255,255,255,0.015),
-        rgba(255,255,255,0.015) 1px,
+        rgba(255,255,255,0.009),
+        rgba(255,255,255,0.009) 1px,
         transparent 1px,
-        transparent 3px
+        transparent 4px
     );
-    opacity:0.35;
+    opacity:0.55;
     z-index:999;
 }
 
@@ -47,52 +51,156 @@ body::after{
     inset:0;
     pointer-events:none;
     background-image:
-        linear-gradient(rgba(120,140,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(120,140,255,0.025) 1px, transparent 1px);
-    background-size:42px 42px;
-    opacity:0.12;
+        linear-gradient(rgba(180,190,210,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(180,190,210,0.015) 1px, transparent 1px);
+    background-size:56px 56px;
+    opacity:0.18;
     z-index:-1;
 }
 
-/* CONTAINER */
-
 .container{
-    max-width:1000px;
-    margin: 0 auto;
-    padding:40px 20px;
+    max-width:1120px;
+    margin:auto;
+    padding:42px;
+    position:relative;
+    z-index:2;
 }
 
-/* HEADER */
-
-.header{
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
     border-bottom:1px solid var(--line);
-    padding-bottom:25px;
-    margin-bottom:40px;
+    padding-bottom:18px;
+    margin-bottom:35px;
+    flex-wrap:wrap;
+    gap:15px;
 }
 
-.header .title{
-    font-size:36px;
-    letter-spacing:5px;
-    color: var(--accent);
-    margin-bottom:12px;
-}
-
-.header .desc{
-    color: #a8b0d1;
+.network{
+    color:#e1e5ef;
+    letter-spacing:4px;
     font-size:14px;
 }
 
-/* FILES */
+.status{
+    color:#9aa2b4;
+    font-size:12px;
+    letter-spacing:2px;
+}
+
+.back{
+    display:inline-block;
+    margin-bottom:35px;
+    color:#aeb7cc;
+    text-decoration:none;
+    transition:0.2s;
+    letter-spacing:1px;
+}
+
+.back:hover{
+    color:white;
+    transform:translateX(-4px);
+}
+
+.header{
+    border:1px solid var(--line);
+    background:rgba(4,6,12,0.96);
+    padding:40px;
+    margin-bottom:40px;
+    box-shadow:0 0 40px rgba(180,190,210,0.045);
+    position:relative;
+    overflow:hidden;
+}
+
+.header::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:1px;
+    background:rgba(220,230,255,0.22);
+    animation:scan 12s linear infinite;
+}
+
+@keyframes scan{
+0%{left:-100%;}
+100%{left:100%;}
+}
+
+.id{
+    color:#9da8bf;
+    letter-spacing:4px;
+    font-size:13px;
+    margin-bottom:16px;
+}
+
+.title{
+    font-size:40px;
+    letter-spacing:7px;
+    color:#edf1fa;
+    margin-bottom:28px;
+    line-height:1.45;
+}
+
+.desc{
+    color:#9aa2b4;
+    line-height:2.05;
+    max-width:900px;
+}
+
+.meta{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:18px;
+    color:#8c95a8;
+    line-height:1.9;
+    font-size:14px;
+    margin-top:32px;
+}
+
+.meta span{
+    color:#e5e9f2;
+}
+
+.warning{
+    border-left:3px solid #9da8bf;
+    background:rgba(4,6,10,0.92);
+    padding:25px;
+    margin-bottom:45px;
+    color:#cfd5e3;
+    line-height:2;
+}
+
+.section{
+    margin-top:60px;
+    margin-bottom:20px;
+    color:#b3bdd3;
+    letter-spacing:4px;
+    font-size:15px;
+    border-bottom:1px solid #323a4d;
+    padding-bottom:12px;
+}
+
+.block{
+    background:rgba(4,6,12,0.95);
+    border:1px solid #343d50;
+    padding:24px;
+    margin:35px 0;
+    line-height:2;
+    color:#ccd3e2;
+}
 
 .file{
     display:block;
     text-decoration:none;
-    color: var(--text);
-    background: rgba(8,8,12,0.92);
-    border:1px solid var(--line);
-    padding:20px;
+    color:#dfe4ee;
+    background:rgba(4,6,12,0.94);
+    border:1px solid #30384a;
+    padding:24px;
     margin:18px 0;
-    transition:0.2s;
+    transition:0.22s;
     position:relative;
     overflow:hidden;
 }
@@ -104,13 +212,13 @@ body::after{
     left:-100%;
     width:100%;
     height:100%;
-    background: linear-gradient(
+    background:linear-gradient(
         90deg,
         transparent,
-        rgba(140,170,255,0.05),
+        rgba(220,230,255,0.035),
         transparent
     );
-    transition:0.5s;
+    transition:0.6s;
 }
 
 .file:hover::before{
@@ -118,45 +226,81 @@ body::after{
 }
 
 .file:hover{
-    border-color: var(--accent);
-    transform: translateX(6px);
-    box-shadow: 0 0 20px rgba(120,150,255,0.08);
+    border-color:#69738d;
+    transform:translateX(6px);
+    box-shadow:0 0 24px rgba(180,190,210,0.055);
 }
 
 .file-title{
-    font-weight:bold;
-    margin-bottom:6px;
+    letter-spacing:2px;
+    margin-bottom:10px;
+    color:#edf1fa;
 }
 
 .file-desc{
-    color: #95a4cf;
-    font-size:13px;
-}
-
-/* SECTION */
-
-.section{
-    margin-top:50px;
-    margin-bottom:15px;
+    color:#949cad;
+    line-height:1.85;
     font-size:14px;
-    color: var(--accent);
-    border-bottom:1px solid var(--line);
-    padding-bottom:8px;
 }
 
-/* FOOTER */
+.file-critical{
+    border-color:#5b4f37;
+}
+
+.file-critical .file-title{
+    color:#e1d3a2;
+}
+
+.log{
+    margin:35px 0;
+    padding:25px;
+    background:rgba(0,0,0,0.97);
+    border:1px solid #343d50;
+    color:#cfd5e3;
+    line-height:2.1;
+    font-size:14px;
+}
+
+.glitch{
+    animation:flicker 5s infinite;
+}
+
+@keyframes flicker{
+0%{opacity:1;}
+1%{opacity:0.35;}
+2%{opacity:1;}
+72%{opacity:1;}
+73%{opacity:0.18;}
+74%{opacity:1;}
+}
 
 .footer{
-    margin-top:60px;
-    padding-top:20px;
-    border-top:1px solid var(--line);
-    color: #66749b;
+    margin-top:90px;
+    padding-top:30px;
+    border-top:1px solid #323a4d;
+    color:#697183;
+    line-height:2;
     font-size:12px;
     letter-spacing:1px;
 }
 
+@media(max-width:700px){
+    .container{
+        padding:22px;
+    }
+
+    .title{
+        font-size:25px;
+        letter-spacing:4px;
+    }
+
+    .meta{
+        grid-template-columns:1fr;
+    }
+}
+
 ::selection{
-    background:#536db8;
+    background:#4d5568;
     color:white;
 }
 </style>
@@ -166,47 +310,265 @@ body::after{
 
 <div class="container">
 
-<div class="header">
-    <div class="title">UNDERTALE RESEARCH ARCHIVE</div>
-    <div class="desc">
-        Recovered notes on M's continuity investigations, Gaster's experiments, dark fountains, and observer synchronization anomalies.
+<div class="topbar">
+    <div class="network">
+        UNINDEXED RESEARCH ARCHIVE
+    </div>
+
+    <div class="status glitch">
+        VISIBILITY STATUS // SUPPRESSED
     </div>
 </div>
 
-<div class="section">RESEARCH DOCUMENTS</div>
+<a href="../dvc02/report12.html" class="back">
+← RETURN TO RECOVERED PATHWAY
+</a>
 
-<!-- 5 URA Files -->
+<div class="header">
+
+    <div class="id">
+        U.R.A // HIDDEN RESEARCH SECTOR
+    </div>
+
+    <div class="title">
+        UNINDEXED RESEARCH ARCHIVE
+    </div>
+
+    <div class="desc">
+        This sector does not appear within any verified archive structure.
+
+        <br><br>
+
+        Recovered references indicate the division was removed from standard indexing
+        following late-stage continuity incidents.
+
+        <br><br>
+
+        Removal procedures were unsuccessful.
+    </div>
+
+    <div class="meta">
+
+        <div>
+            ACCESS METHOD:
+            <span>RECOVERED KEY FRAGMENT</span>
+        </div>
+
+        <div>
+            INDEX STATUS:
+            <span class="glitch">UNLISTED</span>
+        </div>
+
+        <div>
+            PRIMARY SUBJECT:
+            <span>EXTRACTION EVENT</span>
+        </div>
+
+        <div>
+            PERSONNEL STATUS:
+            <span>INCOMPLETE</span>
+        </div>
+
+        <div>
+            ASSOCIATED NODE:
+            <span>DVC-02-12</span>
+        </div>
+
+        <div>
+            ARCHIVE STATE:
+            <span class="glitch">ACTIVE</span>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="warning">
+WARNING:
+
+U.R.A materials were classified beyond all standard observer authorization levels.
+
+<br><br>
+
+Several associated personnel records remain incomplete,
+corrupted,
+or intentionally erased.
+
+<br><br>
+
+Continuation beyond this point was formally prohibited.
+</div>
+
+<div class="section">
+SECTOR SUMMARY
+</div>
+
+<div class="block">
+The Unindexed Research Archive contains records associated with
+Determination extraction,
+CORE construction,
+True Lab experimentation,
+and artificial darkness generation.
+
+<br><br>
+
+Researcher M accessed this sector repeatedly before all remaining
+authorization trails were erased.
+
+<br><br>
+
+Later access attempts show a sharp increase in fixation,
+sleep loss,
+and unauthorized cross-reference searches.
+</div>
+
+<div class="section">
+RECOVERED DOCUMENTS
+</div>
+
 <a href="ura01.html" class="file">
-    <div class="file-title">URA-01 // CONTINUITY & DETERMINATION EXTRACTION</div>
-    <div class="file-desc">Notes on how the CORE was built and extraction of human & monster determination.</div>
+
+    <div class="file-title">
+        URA-01 // EXTRACTION AND CORE CONSTRUCTION
+    </div>
+
+    <div class="file-desc">
+        Recovered material concerning human and monster Determination extraction,
+        early CORE design,
+        and suppressed energy-transfer models.
+    </div>
+
 </a>
 
 <a href="ura02.html" class="file">
-    <div class="file-title">URA-02 // DARK FOUNTAINS & BLACK KNIFE</div>
-    <div class="file-desc">Observations of dark fountains, early black knife prototypes, and containment anomalies.</div>
+
+    <div class="file-title">
+        URA-02 // TRUE LAB DARKNESS RESEARCH
+    </div>
+
+    <div class="file-desc">
+        Fragmented notes linking True Lab experimentation,
+        artificial darkness generation,
+        and unstable boundary phenomena.
+    </div>
+
 </a>
 
-<a href="ura03.html" class="file">
-    <div class="file-title">URA-03 // TRUE LAB & CONTINUITY EFFECTS</div>
-    <div class="file-desc">Data on the True Lab, early corruption signatures, and unintended continuity effects.</div>
+<a href="ura03.html" class="file file-critical glitch">
+
+    <div class="file-title">
+        URA-03 // ARTIFICIAL FOUNTAIN THEORY
+    </div>
+
+    <div class="file-desc">
+        M’s final recovered URA notes before Project Roaring.
+
+        <br><br>
+
+        The file does not contain authorization to proceed.
+    </div>
+
 </a>
 
-<a href="ura04.html" class="file">
-    <div class="file-title">URA-04 // OBSERVER SYNCHRONIZATION LOGS</div>
-    <div class="file-desc">M’s records on observers, anomalies in behavior, and deviations in experimental sessions.</div>
-</a>
+<div class="section">
+RECOVERED INTERNAL LOG
+</div>
 
-<a href="ura05.html" class="file">
-    <div class="file-title">URA-05 // FINAL WARNING & PRE-ROARING TRANSITION</div>
-    <div class="file-desc">Hints of the final deviation, subtle warnings, and setup for Project Roaring.</div>
-</a>
+<div class="log">
+INTERNAL ENTRY // M
+
+<br><br>
+
+I was not supposed to find this.
+
+<br><br>
+
+That is the first thing I need recorded.
+
+<br><br>
+
+Not because I regret opening it.
+
+<br><br>
+
+Because someone tried very hard to make sure no one could.
+
+<br><br>
+
+The extraction records should not exist.
+
+<br><br>
+
+Every surviving reference contradicts official continuity architecture completely.
+
+<br><br>
+
+The CORE was not only sustaining the Underground.
+
+<br><br>
+
+It was preserving something inside it.
+
+<br><br>
+
+I believed the missing sections would clarify the inconsistencies.
+
+<br><br>
+
+Instead,
+the inconsistencies became larger.
+
+<br><br>
+
+There are references to transfer quantities that exceed all verified limits.
+
+<br><br>
+
+There are timestamps that predate the system itself.
+
+<br><br>
+
+And there are repeated mentions of a researcher whose identity no longer resolves correctly.
+
+<br><br>
+
+I am beginning to suspect the records were not destroyed.
+
+<br><br>
+
+I think they were removed intentionally.
+</div>
+
+<div class="section">
+UNRESOLVED NOTE
+</div>
+
+<div class="block glitch">
+KEY STATUS:
+CONSUMED
+
+<br><br>
+
+OBSERVER STATUS:
+AUTHORIZED
+
+<br><br>
+
+CONTINUATION:
+PERMITTED
+</div>
 
 <div class="footer">
-DELTA CONTINUITY RESEARCH NETWORK
+UNINDEXED RESEARCH ARCHIVE
+
 <br><br>
-ARCHIVE BUILD: 0.9.1
+
+VISIBILITY STATUS:
+UNSTABLE
+
 <br>
-NO VERIFIED ORIGINAL STRUCTURE EXISTS.
+
+NO VERIFIED COMPLETE VERSION EXISTS.
 </div>
 
 </div>
